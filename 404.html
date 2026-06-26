@@ -40,7 +40,7 @@
 <div class="bg-field" aria-hidden="true"></div>
 <div class="bg-grid" aria-hidden="true"></div>
 <div class="progress-top" id="progressTop"></div>
-<div class="loader" id="loader" aria-hidden="true"><img class="mark" src="assets/img/ai-mark-white.png" alt="" width="72" height="72"><span class="lbl">Initialising edge…</span></div>
+<div class="loader" id="loader" aria-hidden="true"><img class="mark" src="assets/img/ionity-anim.gif" onerror="this.onerror=null;this.src='assets/img/ai-mark-white.png';this.style.cssText='width:72px;height:72px'" alt="" width="160" height="106"><span class="lbl">Initialising edge…</span></div>
 
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav" id="nav">
@@ -130,11 +130,38 @@
   </div>
 </section>
 <aside class="scroll-rail" id="scrollRail" aria-hidden="true"></aside>
+
+<!-- AEDi on-site AI assistant -->
+<div class="aedi-wrap" id="aediWrap">
+  <button class="aedi-fab" id="aediToggle" aria-label="Chat with AEDi — Ionity AI" aria-expanded="false" title="Chat with AEDi">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20"><path d="M12 2a10 10 0 0 1 7.39 16.74L21 22l-3.26-1.61A10 10 0 1 1 12 2z"/><circle cx="8" cy="12" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="16" cy="12" r="1.2" fill="currentColor"/></svg>
+    <span class="aedi-badge">AEDi</span>
+    <span class="aedi-pulse" aria-hidden="true"></span>
+  </button>
+  <div class="aedi-panel" id="aediPanel" role="dialog" aria-label="AEDi — Ionity AI" aria-hidden="true" hidden>
+    <div class="aedi-head">
+      <div>
+        <span class="aedi-name">AEDi</span>
+        <span class="aedi-sub">Automated Ecosystems Intelligence</span>
+      </div>
+      <div class="aedi-status"><span class="dot"></span><span id="aediStatusText">Online</span></div>
+      <button class="aedi-close" id="aediClose" aria-label="Close AEDi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="aedi-messages" id="aediMessages"></div>
+    <div class="aedi-input-row">
+      <input class="aedi-input" id="aediInput" type="text" placeholder="Ask AEDi…" autocomplete="off" maxlength="500" aria-label="Message AEDi">
+      <button class="aedi-send" id="aediSend" aria-label="Send message"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
+    </div>
+    <p class="aedi-disc">AEDi by Ionity · messages processed via cloud API</p>
+  </div>
+</div>
+
 <script src="assets/js/audio.js" defer></script>
 <script src="assets/js/cookies.js" defer></script>
 <script src="assets/js/core.js" defer></script>
 <script src="assets/js/edge-diagnostics.js" defer></script>
 <script src="assets/js/proximity.js" defer></script>
 <script src="assets/js/sensor-node.js" defer></script>
+<script src="assets/js/aedi-chat.js" defer></script>
 </body>
 </html>

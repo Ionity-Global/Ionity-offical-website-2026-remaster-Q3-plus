@@ -390,7 +390,7 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 /* --------------------------------------------------------- LOADER ---------- */
 .loader { position:fixed; inset:0; z-index:2000; display:grid; place-items:center; background:var(--bg); transition:opacity .6s, visibility .6s; }
 .loader.done { opacity:0; visibility:hidden; }
-.loader .mark { width:64px; height:64px; filter:drop-shadow(var(--glow)); animation:floaty 2.4s var(--ease) infinite; }
+.loader .mark { max-width:200px; max-height:140px; width:auto; height:auto; filter:drop-shadow(var(--glow-blue)); animation:floaty 2.4s var(--ease) infinite; }
 .loader .lbl { position:absolute; bottom:18%; font-family:var(--f-mono); font-size:.62rem; letter-spacing:.3em; text-transform:uppercase; color:var(--faint); }
 @keyframes floaty { 50% { transform:translateY(-10px); } }
 
@@ -403,6 +403,102 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 .note { font-family:var(--f-mono); font-size:.66rem; color:var(--faint); border-left:2px solid var(--cyan); padding-left:.8rem; line-height:1.7; }
 .skip { position:absolute; left:-999px; top:0; background:var(--cyan); color:#000; padding:.6rem 1rem; z-index:3000; }
 .skip:focus { left:8px; top:8px; }
+
+/* ---------------------------------------------------------- AEDI CHAT ------- */
+.aedi-wrap { position:fixed; bottom:24px; right:24px; z-index:1500; }
+
+.aedi-fab {
+  position:relative; display:flex; align-items:center; gap:.55rem;
+  background:linear-gradient(135deg, var(--blue) 0%, var(--cyan) 100%);
+  border:none; border-radius:99px; padding:.7rem 1.1rem .7rem .9rem;
+  color:#fff; font-family:var(--f-mono); font-size:.7rem; font-weight:600;
+  letter-spacing:.1em; text-transform:uppercase; cursor:pointer;
+  box-shadow:0 4px 24px rgba(0,121,227,.45), 0 0 0 0 rgba(0,210,255,.4);
+  transition:box-shadow .3s, transform .2s;
+}
+.aedi-fab:hover { transform:translateY(-2px); box-shadow:0 8px 32px rgba(0,121,227,.6), var(--glow-blue); }
+.aedi-fab:focus-visible { outline:2px solid var(--cyan); outline-offset:3px; }
+.aedi-fab svg { width:20px; height:20px; flex:none; }
+
+.aedi-badge { pointer-events:none; }
+
+.aedi-pulse {
+  position:absolute; inset:-6px; border-radius:99px;
+  border:2px solid var(--cyan); opacity:0;
+  animation:aedi-ping 2.8s ease-out infinite;
+}
+@keyframes aedi-ping { 0%{opacity:.6;transform:scale(1)} 100%{opacity:0;transform:scale(1.35)} }
+
+.aedi-panel {
+  position:absolute; bottom:calc(100% + 12px); right:0;
+  width:min(380px, calc(100vw - 40px)); background:rgba(8,10,18,.97);
+  -webkit-backdrop-filter:blur(20px); backdrop-filter:blur(20px);
+  border:1px solid var(--line-strong); border-radius:var(--radius);
+  box-shadow:0 24px 64px rgba(0,0,0,.6), 0 0 0 1px rgba(0,210,255,.08);
+  display:flex; flex-direction:column; overflow:hidden;
+  transform-origin:bottom right;
+  animation:aedi-in .22s var(--ease-out);
+}
+@keyframes aedi-in { from{opacity:0;transform:scale(.92) translateY(8px)} to{opacity:1;transform:none} }
+
+.aedi-head {
+  display:flex; align-items:center; gap:.8rem; padding:.9rem 1rem;
+  border-bottom:1px solid var(--line); background:rgba(0,121,227,.08);
+  flex-shrink:0;
+}
+.aedi-head > div:first-child { flex:1; min-width:0; }
+.aedi-name { font-family:var(--f-mono); font-size:.8rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--cyan); display:block; }
+.aedi-sub  { font-size:.58rem; color:var(--faint); letter-spacing:.08em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:block; }
+.aedi-status { font-family:var(--f-mono); font-size:.6rem; color:var(--faint); white-space:nowrap; display:flex; align-items:center; gap:.4rem; }
+.aedi-status .dot { width:6px; height:6px; background:#3ddc6e; border-radius:50%; box-shadow:0 0 8px #3ddc6e; flex:none; }
+.aedi-close { background:none; border:none; color:var(--muted); cursor:pointer; padding:.3rem; border-radius:6px; display:grid; place-items:center; transition:color .2s; }
+.aedi-close:hover { color:var(--text); }
+.aedi-close svg { width:16px; height:16px; }
+
+.aedi-messages { flex:1; overflow-y:auto; padding:.8rem 1rem; display:flex; flex-direction:column; gap:.7rem; min-height:200px; max-height:320px; scrollbar-width:thin; scrollbar-color:var(--line) transparent; }
+
+.aedi-msg { display:flex; }
+.aedi-msg--user { justify-content:flex-end; }
+.aedi-msg--model { justify-content:flex-start; }
+
+.aedi-bubble {
+  max-width:88%; padding:.6rem .9rem; border-radius:14px; font-size:var(--step--1); line-height:1.6;
+}
+.aedi-msg--user .aedi-bubble { background:linear-gradient(135deg, var(--blue), var(--blue-deep)); color:#fff; border-bottom-right-radius:4px; }
+.aedi-msg--model .aedi-bubble { background:var(--surface); border:1px solid var(--line); color:var(--text); border-bottom-left-radius:4px; }
+.aedi-bubble code { font-family:var(--f-mono); font-size:.8em; background:rgba(0,210,255,.1); padding:.1em .4em; border-radius:4px; }
+
+.aedi-typing .aedi-bubble { background:var(--surface); border:1px solid var(--line); padding:.7rem 1rem; }
+.aedi-dots { display:flex; gap:.35rem; align-items:center; height:1.2em; }
+.aedi-dots i { width:6px; height:6px; border-radius:50%; background:var(--cyan); animation:aedi-dot .9s ease-in-out infinite; }
+.aedi-dots i:nth-child(2) { animation-delay:.18s; }
+.aedi-dots i:nth-child(3) { animation-delay:.36s; }
+@keyframes aedi-dot { 0%,80%,100%{opacity:.25;transform:scale(.8)} 40%{opacity:1;transform:scale(1)} }
+
+.aedi-input-row { display:flex; gap:.5rem; padding:.7rem .9rem; border-top:1px solid var(--line); flex-shrink:0; }
+.aedi-input {
+  flex:1; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-s);
+  color:var(--text); font:inherit; font-size:var(--step--1); padding:.55rem .8rem;
+  transition:border-color .2s, box-shadow .2s;
+}
+.aedi-input:focus { outline:none; border-color:var(--cyan); box-shadow:var(--glow); }
+.aedi-input::placeholder { color:var(--faint); }
+.aedi-send {
+  background:var(--blue); border:none; border-radius:var(--radius-s); color:#fff;
+  width:36px; height:36px; display:grid; place-items:center; cursor:pointer; flex:none;
+  transition:background .2s, transform .15s;
+}
+.aedi-send:hover { background:var(--cyan); color:#000; transform:scale(1.06); }
+.aedi-send:disabled { opacity:.4; cursor:not-allowed; transform:none; }
+.aedi-send svg { width:15px; height:15px; }
+
+.aedi-disc { font-family:var(--f-mono); font-size:.54rem; color:var(--faint); text-align:center; padding:.4rem .9rem .6rem; flex-shrink:0; }
+
+@media (max-width:480px) {
+  .aedi-wrap { bottom:16px; right:12px; }
+  .aedi-panel { width:calc(100vw - 24px); right:-12px; }
+  .aedi-fab { padding:.65rem .9rem .65rem .8rem; font-size:.66rem; }
+}
 
 /* --------------------------------------------------- REDUCED MOTION -------- */
 @media (prefers-reduced-motion: reduce) {
