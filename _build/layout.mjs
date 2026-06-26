@@ -34,7 +34,7 @@ const navHtml = (active) => `
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav" id="nav">
   <a class="brand" href="index.html" aria-label="Ionity Global home">
-    <img class="wm" src="assets/img/wordmark.png" alt="Ionity Global" height="46">
+    <img class="wm" src="assets/img/wordmark.png" alt="Ionity Global" height="58">
   </a>
   <nav class="nav-links" id="navLinks" aria-label="Primary">
     ${NAV.map(([h, l]) => `<a href="${h}"${h === active ? ' aria-current="page"' : ''}>${l}</a>`).join('\n    ')}

@@ -1,80 +1,69 @@
 /* ============================================================================
-   IONITY · mario.js — 8-bit "power-up" UI SFX (Web Audio, no files)
-   Classic coin (B5→E6) on hover, jump sweep on click/interaction.
-   On by default; mutable (persisted). Auto-armed on first user gesture so it
-   complies with browser autoplay policy. Honors prefers-reduced-motion only as
-   a hint (sounds still allowed — the user explicitly asked for them).
+   IONITY · mario.js — real Super-Mario UI sound effects (Web Audio buffers)
+   Plays the actual SMB .wav clips (assets/sfx/) on hover/click/interaction.
+   On by default; mutable (persisted as ionity-sfx). The AudioContext is created
+   and the clips decoded on the first user gesture (browser autoplay policy).
    ========================================================================== */
 (() => {
   'use strict';
   const KEY = 'ionity-sfx';
-  let ctx = null, sfx = null, armed = false;
-  let enabled = localStorage.getItem(KEY) !== 'off';   // default ON
-  let lastHover = 0, lastEl = null;
-
   const AC = window.AudioContext || window.webkitAudioContext;
   if (!AC) return;
 
-  function ensure() {
-    if (ctx) return;
-    ctx = new AC();
-    sfx = ctx.createGain();
-    sfx.gain.value = 0.5;            // master SFX trim
-    sfx.connect(ctx.destination);
+  // sound name → file. Short clips, decoded once into AudioBuffers.
+  const FILES = {
+    coin:    'assets/sfx/smb_coin.wav',
+    jump:    'assets/sfx/smb_jump-small.wav',
+    powerup: 'assets/sfx/smb_powerup.wav',
+    appear:  'assets/sfx/smb_powerup_appears.wav',
+    bump:    'assets/sfx/smb_bump.wav',
+    stomp:   'assets/sfx/smb_stomp.wav',
+    oneup:   'assets/sfx/smb_1-up.wav',
+    pipe:    'assets/sfx/smb_pipe.wav',
+  };
+
+  let ctx = null, master = null, armed = false, loading = null;
+  const buffers = {};
+  let enabled = localStorage.getItem(KEY) !== 'off';   // default ON
+  let lastHover = 0, lastEl = null;
+
+  function loadAll() {
+    if (loading) return loading;
+    loading = Promise.all(Object.entries(FILES).map(([name, url]) =>
+      fetch(url)
+        .then(r => r.ok ? r.arrayBuffer() : Promise.reject(r.status))
+        .then(buf => ctx.decodeAudioData(buf))
+        .then(decoded => { buffers[name] = decoded; })
+        .catch(e => console.warn('[mario] load', name, e))
+    ));
+    return loading;
   }
 
   function arm() {
     if (armed) return;
-    ensure();
-    if (ctx && ctx.state === 'suspended') ctx.resume();
+    ctx = new AC();
+    master = ctx.createGain();
+    master.gain.value = 0.6;       // overall trim
+    master.connect(ctx.destination);
     armed = true;
+    loadAll();
+    if (ctx.state === 'suspended') ctx.resume();
   }
 
-  /* one square-wave voice with an attack/decay envelope */
-  function voice(freq, t0, dur, peak, type) {
-    const o = ctx.createOscillator(), g = ctx.createGain();
-    o.type = type || 'square';
-    o.frequency.setValueAtTime(freq, t0);
-    g.gain.setValueAtTime(0.0001, t0);
-    g.gain.exponentialRampToValueAtTime(peak, t0 + 0.006);
-    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
-    o.connect(g); g.connect(sfx);
-    o.start(t0); o.stop(t0 + dur + 0.02);
-    return o;
+  function play(name, vol = 1) {
+    if (!enabled || !armed || !ctx) return;
+    const buf = buffers[name];
+    if (!buf) return;              // not decoded yet / failed
+    if (ctx.state === 'suspended') ctx.resume();
+    const src = ctx.createBufferSource();
+    src.buffer = buf;
+    const g = ctx.createGain();
+    g.gain.value = vol;
+    src.connect(g); g.connect(master);
+    src.start(0);
   }
 
-  /* the iconic Super-Mario coin: B5 blip → sustained E6 */
-  function coin(vol = 0.08) {
-    if (!enabled || !ctx) return;
-    const t = ctx.currentTime;
-    voice(987.77, t, 0.09, vol, 'square');           // B5
-    voice(1318.51, t + 0.075, 0.36, vol, 'square');  // E6 (sustained)
-  }
-
-  /* small-jump pitch sweep up */
-  function jump(vol = 0.07) {
-    if (!enabled || !ctx) return;
-    const t = ctx.currentTime;
-    const o = ctx.createOscillator(), g = ctx.createGain();
-    o.type = 'square';
-    o.frequency.setValueAtTime(330, t);
-    o.frequency.exponentialRampToValueAtTime(1245, t + 0.16);
-    g.gain.setValueAtTime(0.0001, t);
-    g.gain.exponentialRampToValueAtTime(vol, t + 0.01);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.22);
-    o.connect(g); g.connect(sfx);
-    o.start(t); o.stop(t + 0.24);
-  }
-
-  /* power-up arpeggio for big moments (data-sfx="powerup") */
-  function powerup(vol = 0.07) {
-    if (!enabled || !ctx) return;
-    const t = ctx.currentTime;
-    [392, 523.25, 659.25, 784, 1046.5].forEach((f, i) =>
-      voice(f, t + i * 0.06, 0.12, vol, 'square'));
-  }
-
-  const INTERACTIVE = 'a,button,.card,.btn,[data-sfx],input[type=submit],.nav-links a,.tag';
+  const INTERACTIVE = 'a,button,.card,.btn,[data-sfx],.nav-links a,.tag,.portal-corner,.aedi-fab';
 
   /* hover → coin (throttled, deduped per element) */
   function onOver(e) {
@@ -82,29 +71,32 @@
     const el = e.target.closest && e.target.closest(INTERACTIVE);
     if (!el || el === lastEl) return;
     const now = performance.now();
-    if (now - lastHover < 60) return;
+    if (now - lastHover < 70) return;
     lastHover = now; lastEl = el;
     arm();
-    coin(0.055);
+    play('coin', 0.35);
   }
   function onOut(e) {
     const el = e.target.closest && e.target.closest(INTERACTIVE);
     if (el === lastEl) lastEl = null;
   }
 
-  /* click → jump (or powerup / coin per data-sfx) */
+  /* click → jump, or a specific clip via data-sfx="powerup|coin|stomp|pipe|1up" */
   function onClick(e) {
+    arm();
     if (!enabled) return;
     const el = e.target.closest && e.target.closest(INTERACTIVE);
-    if (!el) { arm(); return; }
-    arm();
+    if (!el) return;
     const kind = el.getAttribute('data-sfx');
-    if (kind === 'powerup') powerup();
-    else if (kind === 'coin') coin();
-    else jump();
+    if (kind === 'powerup') play('powerup', 0.55);
+    else if (kind === 'coin') play('coin', 0.5);
+    else if (kind === 'stomp') play('stomp', 0.6);
+    else if (kind === 'pipe') play('pipe', 0.5);
+    else if (kind === '1up' || kind === 'oneup') play('oneup', 0.5);
+    else play('jump', 0.5);
   }
 
-  /* public toggle + nav wiring */
+  /* public API + nav mute toggle */
   function setEnabled(state) {
     enabled = state;
     localStorage.setItem(KEY, state ? 'on' : 'off');
@@ -112,14 +104,13 @@
       b.classList.toggle('on', state);
       b.setAttribute('aria-pressed', String(state));
     });
-    if (state) { arm(); coin(0.08); }
+    if (state) { arm(); loadAll().then(() => play('coin', 0.5)); }
   }
-  window.IonityMario = { coin, jump, powerup, setEnabled, isOn: () => enabled };
+  window.IonityMario = { play, setEnabled, isOn: () => enabled };
 
   document.addEventListener('pointerover', onOver, { passive: true });
   document.addEventListener('pointerout', onOut, { passive: true });
   document.addEventListener('click', onClick, true);
-  // first gesture arms the context
   addEventListener('pointerdown', arm, { once: true });
   addEventListener('keydown', arm, { once: true });
 

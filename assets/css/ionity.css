@@ -61,7 +61,7 @@
   --ease:    cubic-bezier(.22,.61,.36,1);
   --ease-out:cubic-bezier(.16,1,.3,1);
 
-  --nav-h:   72px;
+  --nav-h:   84px;
   color-scheme: dark;
 }
 
@@ -143,7 +143,7 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 }
 .nav.scrolled { background:rgba(7,8,13,.9); border-bottom-color:var(--line); }
 .brand { display:flex; align-items:center; gap:.7rem; }
-.brand .wm { height:46px; width:auto; filter:drop-shadow(0 0 10px rgba(0,121,227,.35)) drop-shadow(0 0 22px rgba(0,210,255,.18)); transition:filter .3s, transform .3s var(--ease-out); }
+.brand .wm { height:58px; width:auto; filter:drop-shadow(0 0 10px rgba(0,121,227,.35)) drop-shadow(0 0 22px rgba(0,210,255,.18)); transition:filter .3s, transform .3s var(--ease-out); }
 .brand:hover .wm { filter:drop-shadow(0 0 14px rgba(255,149,0,.5)) drop-shadow(0 0 26px rgba(0,210,255,.3)); transform:translateY(-1px) scale(1.02); }
 .foot .brand .wm { height:40px; }
 .nav-links { display:flex; align-items:center; gap:1.6rem; }
@@ -637,8 +637,13 @@ html:not(.no3d) .bg-grid{ opacity:.32; }
 @media (prefers-reduced-motion:reduce){ .grain{ opacity:.035; } }
 
 /* --- mobile logo (still bigger than the timid old 30px) --- */
-@media (max-width:880px){ .brand .wm{ height:38px; } }
-@media (max-width:420px){ .brand .wm{ height:34px; } }
+@media (max-width:880px){ .brand .wm{ height:50px; } }
+@media (max-width:420px){ .brand .wm{ height:46px; } }
+
+/* Mobile: zoom the whole layout out a touch (everything scales off rem). The
+   nav logo is px-based so it stays prominent. */
+@media (max-width:600px){ html{ font-size:90%; } }
+@media (max-width:380px){ html{ font-size:86%; } }
 
 /* --- AEDi section: calm translucent panel over the live 3D --- */
 #aedi{ background:rgba(14,16,24,.6); border-radius:var(--radius); }

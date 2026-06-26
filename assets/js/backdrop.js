@@ -52,9 +52,11 @@ function webglOK() {
 function shouldRun() {
   const reduce = window.matchMedia &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const lowCore = (navigator.hardwareConcurrency || 8) <= 4;
-  const small = (window.screen && window.screen.width || window.innerWidth) < 760;
-  return !reduce && !lowCore && !small && webglOK();
+  // Run on mobile too (same backdrop everywhere) — only bail on reduced-motion,
+  // genuinely low-end (≤2 cores) devices, or no WebGL. DPR is clamped low on
+  // small screens (below) to keep phones smooth.
+  const veryLowCore = (navigator.hardwareConcurrency || 8) <= 2;
+  return !reduce && !veryLowCore && webglOK();
 }
 
 /* If we bail, flag the document so CSS can paint the static fallback image. */
@@ -117,7 +119,7 @@ async function boot() {
   });
   renderer.setSize(window.innerWidth, window.innerHeight);
   // Cap DPR at 1.5 for performance (legacy used 2.0).
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, window.innerWidth < 760 ? 1.25 : 1.5));
   // ACESFilmic tonemapping + generous exposure for the bright, blooming look.
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 3.4;
