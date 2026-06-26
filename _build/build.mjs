@@ -69,39 +69,31 @@ const index = page(
   <div class="portal-id">
     <img class="hero-wm" src="assets/img/wordmark.png" alt="Ionity Global" width="460">
     <span class="pill"><span class="dot"></span> Native-AI · AIoT · Edge · Audit · ${SITE.location} · since 2018</span>
-    <h1 class="portal-h1">Choose your <span class="grad-text">vector</span>.</h1>
   </div>
 
-  <div class="portal-split">
-    <!-- LEFT portal — AEDi / Access System -->
-    <div class="portal portal-ai reveal">
-      <span class="portal-kicker">AEDi</span>
-      <h2>Automated Ecosystems<br>Designs Intelligence</h2>
-      <p>Our own Native-AI fabric. Talk to it, brief it, let it route you through the build.</p>
-      <button class="portal-btn" id="portalAccess" data-sfx="powerup" aria-label="Access the AEDi system">
-        <span class="portal-orbit"></span>
-        <span class="portal-scan"></span>
-        <span class="portal-core">Access<br>System</span>
-      </button>
-    </div>
+  <!-- CENTRE — AEDi / Access System (the focal point) -->
+  <div class="portal portal-ai portal-main reveal">
+    <span class="portal-kicker">AEDi</span>
+    <h2>Automated Ecosystems<br>Designs Intelligence</h2>
+    <button class="portal-btn portal-btn-lg" id="portalAccess" data-sfx="powerup" aria-label="Access the AEDi system">
+      <span class="portal-orbit"></span>
+      <span class="portal-scan"></span>
+      <span class="portal-core">Access<br>System</span>
+    </button>
+    <p>Our own Native-AI fabric. Talk to it, brief it, let it route you through the build.</p>
+  </div>
 
-    <!-- divider -->
-    <div class="portal-div" aria-hidden="true"><span></span></div>
-
-    <!-- RIGHT portal — IO // WAY / Gateway -->
-    <div class="portal portal-io reveal d1">
+  <!-- LEFT CORNER — IO // WAY / Gateway -->
+  <a class="portal-corner reveal" href="edge.html" data-sfx="coin" aria-label="Enter the IO Way gateway — live on-device edge scan">
+    <span class="portal-corner-orbit" aria-hidden="true"></span>
+    <span class="portal-corner-text">
       <span class="portal-kicker warm-text">IO // WAY</span>
-      <h2>Enter the<br>Gateway System</h2>
-      <p>Run a live, on-device edge scan — real hardware, network, proximity & sensors. No simulation.</p>
-      <a class="portal-btn portal-btn-warm" href="edge.html" data-sfx="coin" aria-label="Enter the IO Way gateway">
-        <span class="portal-orbit"></span>
-        <span class="portal-scan"></span>
-        <span class="portal-core">IO<br>Way</span>
-      </a>
-    </div>
-  </div>
+      <span class="portal-corner-title">Enter the Gateway System</span>
+      <span class="portal-corner-cue">Live edge scan ${ICON.arrow}</span>
+    </span>
+  </a>
 
-  <a class="portal-skip" href="#ethos" data-sfx="coin">or scroll to explore ${ICON.arrow}</a>
+  <a class="portal-skip" href="#ethos" data-sfx="coin">scroll to explore ${ICON.arrow}</a>
   <div class="scroll-hint" aria-hidden="true"><i></i><i></i></div>
 </section>
 

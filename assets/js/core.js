@@ -57,6 +57,7 @@
   const access = $('#portalAccess');
   if (access) access.addEventListener('click', (e) => {
     e.preventDefault();
+    e.stopPropagation();   // else this click bubbles to AEDi's outside-click handler and re-closes it
     const t = document.getElementById('aediToggle');
     if (t) t.click();
   });
