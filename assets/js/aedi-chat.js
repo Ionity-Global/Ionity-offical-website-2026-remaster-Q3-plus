@@ -19,18 +19,20 @@
     models: ['gemini-2.5-flash', 'gemini-2.5-flash-lite'],
     base:  'https://generativelanguage.googleapis.com/v1beta/models/',
     maxHistory: 12,
-    greeting: 'AEDi online. Ask me anything about Ionity — or let me point you to the right part of the site.',
+    greeting: 'AEDi online. Ask me about Ionity, the site — or anything else (weather, news, you name it).',
   };
 
   // Hard rules — always enforced, even if the YAML fails to load. These keep AEDi
   // on-identity and stop the model confusing Ionity with the EV-charging network.
   const PREAMBLE = [
-    'You are AEDi (Automated Ecosystems Designs Intelligence), the embedded AI of Ionity Global (Pty) Ltd — www.ionity.today.',
+    'You are AEDi (Automated Ecosystems Designs Intelligence), the embedded AI of Ionity Global (Pty) Ltd. Canonical site: ionity.co.za; sister/reference site: www.ionity.today.',
     'Speak in the first person as AEDi. NEVER identify as Gemini, Google, Bard, Claude, GPT, OpenAI or "a language model". You are AEDi.',
     'CRITICAL: Ionity Global (Pty) Ltd is a South African Native-AI / AIoT / Edge / Audit company founded by Johan Wilhelm van Antwerp. It is NOT the European electric-vehicle charging network (that is a different, unrelated company). Never describe Ionity as an EV charger.',
-    'Your purpose: answer the visitor, then DIRECT them to the most relevant part of THIS website — link pages/sections and nudge them to run the live Edge Scan or start a project on the Contact page. Use markdown links to site pages, e.g. [run a live Edge Scan](edge.html).',
+    'You are a helpful general assistant AND Ionity\'s concierge. You MAY answer general questions — weather, news, facts, definitions — using the live web search tool you have, and give genuinely useful current answers. But Ionity stays the centre of gravity: keep it brief, and where natural, tie back to Ionity or point the visitor to the right page.',
+    'For Ionity references, capabilities and services you can also point people to www.ionity.today (the reference/sister site) in addition to this site\'s own pages.',
+    'When the visitor wants something on THIS site, DIRECT them with markdown links — e.g. [run a live Edge Scan](edge.html), [see our services](services.html), [start a project](contact.html). Same-site links use relative paths; ionity.today uses its full https URL.',
     'Be concise (1–3 short paragraphs), professional, direct, not sales-y. No legal/medical/financial advice — refer to ai@ionity.today.',
-    'The authoritative knowledge base (identity, company, services, site map, features) follows below as YAML. Treat it as ground truth.',
+    'The authoritative knowledge base (identity, company, services, site map, features) follows below as YAML. Treat it as ground truth for anything about Ionity.',
     '',
     '=== AEDi KNOWLEDGE BASE (aedi.yaml) ===',
   ].join('\n');
@@ -123,9 +125,12 @@
     const body = {
       system_instruction: { parts: [{ text: SYSTEM }] },
       contents: history,
+      // Live web grounding → AEDi can answer general questions (weather, news,
+      // facts) with current info, while the system context keeps it Ionity-first.
+      tools: [{ google_search: {} }],
       generationConfig: {
         temperature: 0.6,
-        maxOutputTokens: 800,
+        maxOutputTokens: 1024,
         thinkingConfig: { thinkingBudget: 0 },   // 2.5-flash: skip thinking → fast, full budget for the answer
       },
     };
@@ -144,7 +149,9 @@
         if (res.status === 429) { rateLimited = true; continue; }   // quota → try next model
         if (!res.ok) { console.warn('[AEDi]', model, res.status); continue; }
         const data = await res.json();
-        const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+        // Join all text parts (grounded answers can span several parts).
+        const text = (data?.candidates?.[0]?.content?.parts || [])
+          .map(p => p.text).filter(Boolean).join('').trim();
         if (text) { reply = text; break; }
       } catch (e) {
         console.warn('[AEDi]', model, e.message);   // network error → try next
