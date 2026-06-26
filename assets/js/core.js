@@ -8,15 +8,12 @@
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---- loader: deliberate digital "glitch" out -------------------------- */
+  /* ---- loader out → glitch.js detects #loader.done and fires the
+         randomized static-glitch burst (single source of glitch truth) ----- */
   window.addEventListener('load', () => {
     const l = $('#loader');
     if (!l) return;
-    if (reduce) { setTimeout(() => l.classList.add('done'), 250); return; }
-    setTimeout(() => {
-      l.classList.add('glitching');                 // RGB-split + scanline tear
-      setTimeout(() => l.classList.add('done'), 520); // then collapse away
-    }, 300);
+    setTimeout(() => l.classList.add('done'), reduce ? 250 : 320);
   });
 
   /* ---- nav: scrolled state + mobile menu -------------------------------- */
@@ -42,6 +39,18 @@
     $$('a', links).forEach(a => a.addEventListener('click', () => {
       links.classList.remove('open'); burger.setAttribute('aria-expanded', false);
     }));
+  }
+
+  /* ---- hero ecosystem video: pause when off-screen ---------------------- */
+  const heroVid = $('.sheet-video__media');
+  if (heroVid && 'IntersectionObserver' in window) {
+    const vio = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { heroVid.play && heroVid.play().catch(() => {}); }
+        else { heroVid.pause && heroVid.pause(); }
+      });
+    }, { threshold: 0.1 });
+    vio.observe(heroVid);
   }
 
   /* ---- portal "Access System" opens the AEDi assistant ------------------ */

@@ -33,7 +33,7 @@ const navHtml = (active) => `
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav" id="nav">
   <a class="brand" href="index.html" aria-label="Ionity Global home">
-    <img class="wm" src="assets/img/wordmark.png" alt="Ionity Global" height="30">
+    <img class="wm" src="assets/img/wordmark.png" alt="Ionity Global" height="46">
   </a>
   <nav class="nav-links" id="navLinks" aria-label="Primary">
     ${NAV.map(([h, l]) => `<a href="${h}"${h === active ? ' aria-current="page"' : ''}>${l}</a>`).join('\n    ')}
@@ -94,11 +94,20 @@ export function head(page) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
-<link rel="stylesheet" href="assets/css/ionity.css">${jsonld}
+<link rel="stylesheet" href="assets/css/ionity.css">
+<!-- Three.js backdrop importmap (must precede the module) -->
+<script type="importmap">
+{ "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+}}
+</script>${jsonld}
 </head>
 <body${page.bodyClass ? ` class="${page.bodyClass}"` : ''}>
+<canvas id="bg3d" aria-hidden="true"></canvas>
 <div class="bg-field" aria-hidden="true"></div>
 <div class="bg-grid" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
 <div class="progress-top" id="progressTop"></div>
 <div class="loader" id="loader" aria-hidden="true"><img class="mark" src="assets/img/ionity-anim.gif" onerror="this.onerror=null;this.src='assets/img/ai-mark-white.png';this.style.cssText='width:72px;height:72px'" alt="" width="160" height="106"><span class="lbl">Initialising edge…</span></div>
 ${navHtml(page.path)}
@@ -118,7 +127,7 @@ export function footer() {
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="brand" href="index.html"><img class="wm" src="assets/img/wordmark.png" alt="Ionity Global" height="34"></a>
+        <a class="brand" href="index.html"><img class="wm" src="assets/img/wordmark.png" alt="Ionity Global" height="40"></a>
         <p class="blurb">${SITE.legal} — a Native-AI company building AIoT, Cloud & Edge systems and running evidence-first audits across mechanical, electrical and IT. Grown from Antwerp Designs (2018).</p>
         <p class="blurb mono" style="font-size:.66rem;margin-top:.8rem">${SITE.location} · <a href="tel:${SITE.phoneHref}" style="color:var(--cyan)">${SITE.phone}</a> · <a href="mailto:${SITE.email}" style="color:var(--cyan)">${SITE.email}</a></p>
         <div class="socials">
@@ -195,6 +204,10 @@ ${cookieHtml()}
 <script src="assets/js/proximity.js" defer></script>
 <script src="assets/js/sensor-node.js" defer></script>
 <script src="assets/js/aedi-chat.js" defer></script>
+<script>window.IonityGlitch=window.IonityGlitch||{};window.IonityGlitch.config={zIndex:3000};</script>
+<script src="assets/js/glitch.js" defer></script>
+<!-- Three.js WebGL backdrop (ES module; degrades to CSS via html.no3d) -->
+<script type="module" src="assets/js/backdrop.js"></script>
 </body>
 </html>`;
 }

@@ -59,7 +59,10 @@ const index = page(
   { path: 'index.html', title: 'Ionity Global — Native-AI · AIoT · Cloud · Edge · Audit', desc: SITE.desc, jsonld: indexJsonld },
   `
 <!-- ACT 1 ── split-portal hero (the old "Access System / IO // WAY" concept) ── -->
-<section class="hero portal-hero" id="hero" data-act="Enter">
+<section class="hero portal-hero sheet-video" id="hero" data-act="Enter">
+  <video class="sheet-video__media" autoplay muted loop playsinline preload="metadata" poster="assets/img/aedi-mark.jpg" aria-hidden="true" tabindex="-1">
+    <source src="assets/video/ecosystem-loop.mp4" type="video/mp4">
+  </video>
   <div class="orbit-field" aria-hidden="true">
     <div class="ring r1"><span class="sat"></span></div>
     <div class="ring r2"><span class="sat"></span></div>
@@ -124,7 +127,7 @@ const index = page(
 </section>
 
 <!-- ACT 3 ───────────────────────────────────────────── -->
-<section class="wrap" id="capabilities" data-act="Capabilities">
+<section class="wrap sheet sheet--pcb" id="capabilities" data-act="Capabilities">
   <div class="section-head reveal">
     <span class="kicker">02 · What we do</span>
     <h2>Six disciplines, <span class="grad-text">one stack</span>.</h2>
@@ -137,7 +140,7 @@ const index = page(
 </section>
 
 <!-- ACT 4 ───────────────────────────────────────────── -->
-<section class="wrap" id="audit" data-act="Audit">
+<section class="wrap sheet sheet--audit" id="audit" data-act="Audit">
   <div class="feature split">
     <div class="reveal">
       <span class="kicker">03 · Audit &amp; forensics</span>
@@ -161,7 +164,7 @@ const index = page(
 </section>
 
 <!-- ACT 5 ── THE SIGNATURE: LIVE EDGE MICRO-AUDIT ──────── -->
-<section class="wrap" id="edge" data-act="Edge Scan">
+<section class="wrap sheet sheet--edge" id="edge" data-act="Edge Scan">
   <div class="section-head reveal">
     <span class="kicker">04 · Something unheard of</span>
     <h2>Run a <span class="grad-text">live edge micro-audit</span> — on yourself.</h2>
@@ -208,7 +211,7 @@ const index = page(
 </section>
 
 <!-- ACT 8 ── FOUNDER ───────────────────────────────────── -->
-<section class="wrap" id="founder" data-act="Founder">
+<section class="wrap sheet sheet--founder" id="founder" data-act="Founder">
   <div class="center reveal" style="max-width:60ch;margin-inline:auto">
     <span class="kicker" style="justify-content:center">08 · Behind it</span>
     <h2 class="mt-1">Founder-led, evidence-driven.</h2>
@@ -222,7 +225,7 @@ const index = page(
 </section>
 
 <!-- ACT 9 ── CTA ──────────────────────────────────────── -->
-<section class="wrap" id="cta" data-act="Begin">
+<section class="wrap sheet sheet--clouds" id="cta" data-act="Begin">
   <div class="feature center reveal">
     <span class="kicker" style="justify-content:center">09 · Your move</span>
     <h2 class="mt-1">Let's build something <span class="grad-text">unlike anything</span>.</h2>

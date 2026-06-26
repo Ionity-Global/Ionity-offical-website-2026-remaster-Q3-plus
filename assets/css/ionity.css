@@ -143,9 +143,9 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 }
 .nav.scrolled { background:rgba(7,8,13,.9); border-bottom-color:var(--line); }
 .brand { display:flex; align-items:center; gap:.7rem; }
-.brand .wm { height:30px; width:auto; filter:drop-shadow(0 0 14px rgba(0,121,227,.35)); transition:filter .3s; }
-.brand:hover .wm { filter:drop-shadow(0 0 18px rgba(255,149,0,.45)); }
-.foot .brand .wm { height:34px; }
+.brand .wm { height:46px; width:auto; filter:drop-shadow(0 0 10px rgba(0,121,227,.35)) drop-shadow(0 0 22px rgba(0,210,255,.18)); transition:filter .3s, transform .3s var(--ease-out); }
+.brand:hover .wm { filter:drop-shadow(0 0 14px rgba(255,149,0,.5)) drop-shadow(0 0 26px rgba(0,210,255,.3)); transform:translateY(-1px) scale(1.02); }
+.foot .brand .wm { height:40px; }
 .nav-links { display:flex; align-items:center; gap:1.6rem; }
 .nav-links a {
   font-family:var(--f-mono); font-size:.66rem; letter-spacing:.18em; text-transform:uppercase;
@@ -490,7 +490,7 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 .flex{display:flex;} .gap{gap:1rem;} .wrapf{flex-wrap:wrap;} .aic{align-items:center;}
 .divider { height:1px; background:var(--line); border:none; margin-block:clamp(3rem,7vw,6rem); }
 .note { font-family:var(--f-mono); font-size:.66rem; color:var(--faint); border-left:2px solid var(--cyan); padding-left:.8rem; line-height:1.7; }
-.skip { position:absolute; left:-999px; top:0; background:var(--cyan); color:#000; padding:.6rem 1rem; z-index:3000; }
+.skip { position:absolute; left:-999px; top:0; background:var(--cyan); color:#000; padding:.6rem 1rem; z-index:2600; }
 .skip:focus { left:8px; top:8px; }
 
 /* ---------------------------------------------------------- AEDI CHAT ------- */
@@ -595,3 +595,257 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
   *,*::before,*::after { animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
   .reveal { opacity:1; transform:none; }
 }
+
+/* ==========================================================================
+   2026 UPLIFT — 3D backdrop layering · film grain · sheets · glitch · fixes
+   (integrated from the parallel design pass; paths made relative for the
+   github.io project subpath; pcb/clouds use .jpg)
+   ========================================================================== */
+
+/* z-index stack tokens */
+:root{ --z-bg3d:-3; --z-bgfield:-2; --z-grid:-1; --z-content:2; --z-rail:900; --z-nav:1000; --z-glitch:3000; }
+
+/* --- 3D WebGL backdrop layering --- */
+canvas#bg3d{ position:fixed; inset:0; width:100%; height:100%; z-index:-3 !important; pointer-events:none; display:block; }
+html:not(.no3d) .bg-field{ opacity:.45; mix-blend-mode:screen; }
+html:not(.no3d) .bg-grid{ opacity:.32; }
+
+/* --- film grain + scanline (one unifying "shot on film" surface) --- */
+.grain{ position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size:200px 200px; opacity:.05; mix-blend-mode:overlay; }
+.grain::after{ content:""; position:absolute; inset:0;
+  background:repeating-linear-gradient(0deg, rgba(255,255,255,.02) 0 1px, transparent 1px 3px); opacity:.5; }
+@media (prefers-reduced-motion:reduce){ .grain{ opacity:.035; } }
+
+/* --- mobile logo (still bigger than the timid old 30px) --- */
+@media (max-width:880px){ .brand .wm{ height:38px; } }
+@media (max-width:420px){ .brand .wm{ height:34px; } }
+
+/* --- AEDi section: calm translucent panel over the live 3D --- */
+#aedi{ background:rgba(14,16,24,.6); border-radius:var(--radius); }
+
+/* --- asymmetry: left-weight the ethos head, keep capability cards centered --- */
+#ethos .section-head{ margin-inline:0; text-align:left; }
+
+/* --- hero ecosystem video: never load/show on low-power (no3d) devices --- */
+html.no3d .sheet-video__media{ display:none !important; }
+/* FIX: the generated ".sheet-video > *{z-index:1}" rule also matched the <video>
+   (a direct child) and lifted it OVER the content. Pin the media back behind. */
+.sheet-video > video.sheet-video__media, .sheet-video .sheet-video__media{ z-index:-2 !important; }
+.portal-hero.sheet-video{ overflow:hidden; }
+
+/* ============================ SECTION SHEETS ============================ */
+/* ============================================================
+   IONITY 2026 — SECTION BACKGROUND "SHEETS"
+   Real legacy assets reused as full-bleed section backdrops.
+   Brand tokens (new palette, NOT old #3366FF):
+     blue #0079E3  deep-blue #0A51AB  cyan #00D2FF
+     orange #FF9500  amber #FFB23E  red/live #FF2828  bg #07080D
+   Layers sit BEHIND #main; #main keeps its own z-index/background.
+   ============================================================ */
+
+:root{
+  --c-blue:#0079E3; --c-deep:#0A51AB; --c-cyan:#00D2FF;
+  --c-orange:#FF9500; --c-amber:#FFB23E; --c-live:#FF2828; --c-bg:#07080D;
+}
+
+/* A section that carries a sheet establishes a stacking context and
+   becomes the positioning parent for its own backdrop + scrim. */
+.sheet{
+  position:relative;
+  isolation:isolate;            /* keep sheet layers local to this section */
+  overflow:hidden;
+}
+
+/* The image backdrop: full-bleed, cover, sent behind content.
+   Set the actual image via the modifier classes below. */
+.sheet::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:cover;        /* object-fit:cover equivalent for bg images */
+  /* subtle parallax: only where the device can afford it (see media query) */
+  will-change:transform;
+}
+
+/* The scrim: dark gradient over the image so text stays readable.
+   Default neutral-blue scrim; modifiers retint per section. */
+.sheet::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:
+    linear-gradient(180deg,
+      rgba(7,8,13,0.72) 0%,
+      rgba(7,8,13,0.55) 45%,
+      rgba(7,8,13,0.85) 100%),
+    radial-gradient(120% 90% at 50% 0%,
+      rgba(0,121,227,0.18) 0%,
+      rgba(7,8,13,0) 60%);
+}
+
+/* Make sure real section content rides above the two pseudo layers. */
+.sheet > *{ position:relative; z-index:1; }
+
+/* ---- Per-section image bindings ------------------------------------ */
+.sheet--pcb::before{ background-image:url("../img/sheet-pcb.jpg"); }
+.sheet--edge::before{ background-image:url("../img/sheet-edge.png"); }
+.sheet--clouds::before{ background-image:url("../img/sheet-clouds.jpg"); }
+.sheet--founder::before{ background-image:url("../img/founder-origin.png"); background-size:cover; }
+.sheet--audit::before{ background-image:url("../img/sheet-gui.jpg"); }
+.sheet--repo::before{ background-image:url("../img/sheet-repo.jpg"); }
+
+/* ---- Per-section scrim tints (keep contrast, hint the palette) ------ */
+.sheet--pcb::after{
+  background:
+    linear-gradient(180deg, rgba(7,8,13,0.78), rgba(7,8,13,0.6) 50%, rgba(7,8,13,0.9)),
+    radial-gradient(100% 80% at 80% 20%, rgba(0,210,255,0.20), rgba(7,8,13,0) 55%);
+}
+.sheet--edge::after{
+  background:
+    linear-gradient(180deg, rgba(7,8,13,0.80), rgba(7,8,13,0.58) 50%, rgba(7,8,13,0.9)),
+    radial-gradient(100% 80% at 20% 25%, rgba(0,121,227,0.22), rgba(7,8,13,0) 55%);
+}
+.sheet--clouds::after{
+  background:
+    linear-gradient(180deg, rgba(7,8,13,0.70), rgba(10,81,171,0.45) 50%, rgba(7,8,13,0.88)),
+    radial-gradient(120% 90% at 50% 10%, rgba(0,210,255,0.16), rgba(7,8,13,0) 60%);
+}
+.sheet--founder::after{
+  background:
+    linear-gradient(90deg, rgba(7,8,13,0.92) 0%, rgba(7,8,13,0.55) 55%, rgba(7,8,13,0.35) 100%),
+    linear-gradient(180deg, rgba(7,8,13,0.25), rgba(7,8,13,0.7));
+}
+.sheet--audit::after{
+  background:
+    linear-gradient(180deg, rgba(7,8,13,0.86), rgba(7,8,13,0.7) 50%, rgba(7,8,13,0.92)),
+    radial-gradient(90% 70% at 85% 15%, rgba(255,149,0,0.16), rgba(7,8,13,0) 55%);
+}
+.sheet--repo::after{
+  background:
+    linear-gradient(180deg, rgba(7,8,13,0.88), rgba(7,8,13,0.72) 50%, rgba(7,8,13,0.94)),
+    radial-gradient(90% 70% at 15% 20%, rgba(255,40,40,0.12), rgba(7,8,13,0) 55%);
+}
+
+/* ---- Parallax: fixed attachment only on capable, non-touch screens.
+   background-attachment:fixed is janky on mobile, so guard it. -------- */
+@media (min-width:900px) and (hover:hover) and (prefers-reduced-motion:no-preference){
+  .sheet--edge::before,
+  .sheet--clouds::before,
+  .sheet--pcb::before{
+    background-attachment:fixed;   /* cheap parallax, no JS */
+  }
+}
+
+/* ============================================================
+   VIDEO SHEET — ecosystem clip behind ONE hero/section only.
+   Muted autoplay loop, poster fallback, cover-fit, behind content.
+   ============================================================ */
+.sheet-video{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+}
+.sheet-video__media{
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  width:100%;
+  height:100%;
+  object-fit:cover;            /* fill the section, never distort */
+  object-position:center;
+  pointer-events:none;
+}
+.sheet-video::after{           /* readability scrim over the video */
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:
+    linear-gradient(180deg,
+      rgba(7,8,13,0.66) 0%,
+      rgba(7,8,13,0.42) 40%,
+      rgba(7,8,13,0.82) 100%),
+    radial-gradient(120% 90% at 50% 0%,
+      rgba(0,210,255,0.18) 0%,
+      rgba(7,8,13,0) 55%);
+}
+.sheet-video > *{ position:relative; z-index:1; }
+
+/* Respect reduced-motion: hide the video, fall back to its poster. */
+@media (prefers-reduced-motion:reduce){
+  .sheet-video__media{ display:none; }
+  .sheet-video{
+    background:#07080D url("../img/aedi-mark.jpg") center/cover no-repeat;
+  }
+}
+
+/* ============================ no3d FALLBACK ============================ */
+/* ===========================================================================
+   Static fallback backdrop for when the WebGL scene is suppressed.
+   backdrop.js adds `html.no3d` whenever it declines to start (reduced-motion,
+   low-core, small screen, no WebGL, or CDN/import failure). This recreates the
+   legacy "portal" vibe with pure CSS — layered radial glows in the brand
+   palette (cyan underlight, blue body, orange warm rim) over the #07080D bg,
+   so the page never falls back to a flat colour or a broken image.
+   These rules OVERRIDE the default .bg-field declaration in ionity.css.
+   =========================================================================== */
+html.no3d .bg-field {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  /* Cyan underlight + blue body + orange warm rim, fading to the dark bg. */
+  background:
+    radial-gradient(70vw 55vw at 50% 118%, rgba(0,210,255,.22), transparent 62%),
+    radial-gradient(60vw 60vw at 14% -10%, rgba(0,121,227,.18), transparent 60%),
+    radial-gradient(46vw 46vw at 88% 6%, rgba(255,149,0,.10), transparent 58%),
+    radial-gradient(80vw 70vw at 50% 50%, rgba(10,81,171,.14), transparent 70%),
+    var(--bg, #07080D);
+  /* Very slow drifting "breathing" of the glows — disabled under reduced-motion
+     (see below) so it stays a static image when motion is the reason we bailed. */
+  animation: no3dDrift 24s ease-in-out infinite alternate;
+}
+
+@keyframes no3dDrift {
+  from { background-position: 0 0, 0 0, 0 0, 0 0, 0 0; transform: scale(1); }
+  to   { background-position: 0 -2vh, 0 1vh, 0 0, 0 1vh, 0 0; transform: scale(1.03); }
+}
+
+/* If motion specifically is the reason for no3d, keep it perfectly still. */
+@media (prefers-reduced-motion: reduce) {
+  html.no3d .bg-field { animation: none; }
+}
+
+/* ============================ GLITCH TRANSITION ======================== */
+/* IonityGlitch — page-transition styling. Add to your global stylesheet. */
+body.glitching {
+  cursor: progress;
+}
+/* The overlay canvas is created/removed by glitch.js; these rules are a
+   belt-and-suspenders guarantee in case the inline styles are ever stripped. */
+#ionity-glitch-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3000;          /* above all site chrome incl. nav, cookie, AEDi widget */
+  pointer-events: none;   /* never blocks clicks */
+  display: block;
+  background: #07080D;     /* brand bg, matches the noise base */
+}
+@media (prefers-reduced-motion: reduce) {
+  /* glitch.js already does a 120ms fade instead of the storm; keep cursor calm */
+  body.glitching { cursor: progress; }
+}
+
+/* --- full-bleed breakout: .sheet is applied to width-constrained .wrap
+   sections, so stretch its image+scrim pseudos to the full viewport width
+   while content stays in the column. Overrides the agent's overflow:hidden. --- */
+.wrap.sheet { overflow:visible; }
+.wrap.sheet::before, .wrap.sheet::after { left:50%; width:100vw; transform:translateX(-50%); }
+.wrap.sheet { padding-block:clamp(3rem,7vw,6rem); }
