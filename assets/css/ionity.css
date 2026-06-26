@@ -164,6 +164,8 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
   width:38px; height:38px; display:grid; place-items:center; border-radius:50%;
   border:1px solid var(--line); color:var(--muted); transition:.25s;
 }
+.icon-btn svg { width:18px; height:18px; }
+.icon-btn.burger svg { width:20px; height:20px; }
 .icon-btn:hover { color:var(--cyan); border-color:var(--line-strong); box-shadow:var(--glow); }
 .icon-btn.on { color:var(--cyan); border-color:var(--cyan); }
 .burger { display:none; }
@@ -270,6 +272,7 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 .portal-kicker { font-family:var(--f-mono); font-size:.7rem; letter-spacing:.34em; text-transform:uppercase; color:var(--cyan); }
 .portal-main h2 { font-size:clamp(1.3rem,.9rem + 1.7vw,2.15rem); line-height:1.12; letter-spacing:-.01em; margin:.1rem 0 .25rem; }
 .portal-main p { font-size:var(--step--1); color:var(--muted); max-width:40ch; margin:.65rem auto 0; }
+.aedi-cta { margin-top:1.3rem; }
 
 /* IO // WAY — compact card pinned to the lower-left corner */
 .portal-corner { position:absolute; left:clamp(1rem,4vw,3.2rem); bottom:clamp(1.2rem,5vh,3rem); z-index:3;
@@ -431,7 +434,7 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 .socials { display:flex; gap:.6rem; margin-top:1.2rem; }
 .socials a { width:40px; height:40px; border:1px solid var(--line); border-radius:12px; display:grid; place-items:center; color:var(--muted); padding:0; }
 .socials a:hover { color:var(--cyan); border-color:var(--line-strong); box-shadow:var(--glow); transform:translateY(-3px); }
-.socials img { width:18px; height:18px; }
+.socials img, .socials a svg { width:18px; height:18px; }
 .foot-base { margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
 .foot-base p,.foot-base a { font-family:var(--f-mono); font-size:.62rem; letter-spacing:.1em; color:var(--faint); }
 

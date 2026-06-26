@@ -14,7 +14,9 @@
 
   const CFG = {
     get key() { return _k(); },
-    model: 'gemini-2.5-flash',     // 1.5-flash is retired (404); 2.5-flash is the live model
+    // 1.5-flash is retired (404), 2.0-flash is quota-blocked on this key; 2.5-flash
+    // is primary, 2.5-flash-lite is the fallback (separate quota). Tried in order.
+    models: ['gemini-2.5-flash', 'gemini-2.5-flash-lite'],
     base:  'https://generativelanguage.googleapis.com/v1beta/models/',
     maxHistory: 12,
     greeting: 'AEDi online. Ask me anything about Ionity — or let me point you to the right part of the site.',
@@ -128,36 +130,39 @@
       },
     };
 
-    const url = `${CFG.base}${CFG.model}:generateContent?key=${CFG.key}`;
-
-    try {
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      });
-
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        throw new Error(err?.error?.message || `HTTP ${res.status}`);
+    // Try each model in turn; fall through on 404/429/5xx/empty so a single
+    // retired or rate-limited model can't take AEDi fully offline.
+    let reply = null, lastStatus = 0, rateLimited = false;
+    for (const model of CFG.models) {
+      try {
+        const res = await fetch(`${CFG.base}${model}:generateContent?key=${CFG.key}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+        lastStatus = res.status;
+        if (res.status === 429) { rateLimited = true; continue; }   // quota → try next model
+        if (!res.ok) { console.warn('[AEDi]', model, res.status); continue; }
+        const data = await res.json();
+        const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (text) { reply = text; break; }
+      } catch (e) {
+        console.warn('[AEDi]', model, e.message);   // network error → try next
       }
-
-      const data = await res.json();
-      const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text
-        || 'AEDi encountered an unexpected response. Please try again.';
-
-      history.push({ role: 'model', parts: [{ text: reply }] });
-      typingEl.remove();
-      appendMsg('model', reply);
-    } catch (e) {
-      typingEl.remove();
-      appendMsg('model', 'AEDi is temporarily offline. Please contact us at ai@ionity.today.');
-      console.warn('[AEDi]', e.message);
-    } finally {
-      busy = false;
-      sendBtn.disabled = false;
-      statusDot.textContent = 'Online';
     }
+
+    typingEl.remove();
+    if (reply) {
+      history.push({ role: 'model', parts: [{ text: reply }] });
+      appendMsg('model', reply);
+    } else if (rateLimited) {
+      appendMsg('model', "AEDi is handling a lot of requests right now — give it a moment and ask again. For anything urgent: ai@ionity.today.");
+    } else {
+      appendMsg('model', "AEDi couldn't reach the network just now. Please try again, or contact us at ai@ionity.today.");
+    }
+    busy = false;
+    sendBtn.disabled = false;
+    statusDot.textContent = 'Online';
   }
 
   /* ── panel toggle ─────────────────────────────────────────────────────── */
