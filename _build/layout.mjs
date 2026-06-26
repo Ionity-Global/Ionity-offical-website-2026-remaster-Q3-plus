@@ -39,7 +39,10 @@ const navHtml = (active) => `
     ${NAV.map(([h, l]) => `<a href="${h}"${h === active ? ' aria-current="page"' : ''}>${l}</a>`).join('\n    ')}
   </nav>
   <div class="nav-cta">
-    <button class="icon-btn" data-audio-toggle title="Toggle 8-bit industrial soundscape" aria-label="Toggle sound">
+    <button class="icon-btn" data-sfx-toggle title="Toggle 8-bit power-up sounds" aria-label="Toggle interface sounds">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M9.5 9.5h5M12 8v8M10 16h4"/></svg>
+    </button>
+    <button class="icon-btn" data-audio-toggle title="Toggle 8-bit industrial soundscape" aria-label="Toggle ambient soundscape">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14"/></svg>
     </button>
     <a class="btn btn-primary" href="contact.html">Start a project</a>
@@ -82,6 +85,7 @@ export function head(page) {
 <meta name="twitter:description" content="${desc}">
 <meta name="twitter:image" content="${SITE.origin}/assets/og/social-card.png">
 <!-- Icons / PWA -->
+<link rel="icon" href="assets/img/favicon.ico" sizes="any">
 <link rel="icon" href="assets/img/favicon-64.png" type="image/png" sizes="64x64">
 <link rel="icon" href="assets/img/icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
@@ -184,6 +188,7 @@ ${cookieHtml()}
 </div>
 
 <script src="assets/js/audio.js" defer></script>
+<script src="assets/js/mario.js" defer></script>
 <script src="assets/js/cookies.js" defer></script>
 <script src="assets/js/core.js" defer></script>
 <script src="assets/js/edge-diagnostics.js" defer></script>

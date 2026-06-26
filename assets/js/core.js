@@ -8,10 +8,15 @@
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---- loader ----------------------------------------------------------- */
+  /* ---- loader: deliberate digital "glitch" out -------------------------- */
   window.addEventListener('load', () => {
     const l = $('#loader');
-    if (l) setTimeout(() => l.classList.add('done'), 350);
+    if (!l) return;
+    if (reduce) { setTimeout(() => l.classList.add('done'), 250); return; }
+    setTimeout(() => {
+      l.classList.add('glitching');                 // RGB-split + scanline tear
+      setTimeout(() => l.classList.add('done'), 520); // then collapse away
+    }, 300);
   });
 
   /* ---- nav: scrolled state + mobile menu -------------------------------- */
@@ -38,6 +43,14 @@
       links.classList.remove('open'); burger.setAttribute('aria-expanded', false);
     }));
   }
+
+  /* ---- portal "Access System" opens the AEDi assistant ------------------ */
+  const access = $('#portalAccess');
+  if (access) access.addEventListener('click', (e) => {
+    e.preventDefault();
+    const t = document.getElementById('aediToggle');
+    if (t) t.click();
+  });
 
   /* ---- reveal on scroll -------------------------------------------------- */
   const reveals = $$('.reveal');

@@ -58,28 +58,50 @@ const indexJsonld = {
 const index = page(
   { path: 'index.html', title: 'Ionity Global — Native-AI · AIoT · Cloud · Edge · Audit', desc: SITE.desc, jsonld: indexJsonld },
   `
-<!-- ACT 1 ───────────────────────────────────────────── -->
-<section class="hero" id="hero" data-act="Enter">
+<!-- ACT 1 ── split-portal hero (the old "Access System / IO // WAY" concept) ── -->
+<section class="hero portal-hero" id="hero" data-act="Enter">
   <div class="orbit-field" aria-hidden="true">
     <div class="ring r1"><span class="sat"></span></div>
     <div class="ring r2"><span class="sat"></span></div>
     <div class="ring r3"><span class="sat"></span></div>
   </div>
-  <div class="inner">
-    <img class="hero-wm" src="assets/img/wordmark.png" alt="Ionity Global" width="520">
-    <span class="pill"><span class="dot"></span> Native-AI company · ${SITE.location} · since 2018</span>
-    <h1>We build systems that <span class="grad-text">think at the edge</span>.</h1>
-    <p class="lead">Ionity Global engineers Native-AI, AIoT, Cloud &amp; Edge — and runs evidence-first audits that cut cost and prove return. Software, hardware, forensics. One team of solutionists.</p>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="#capabilities">Explore the build ${ICON.arrow}</a>
-      <a class="btn btn-warm" href="#edge">Run a live edge scan</a>
+
+  <div class="portal-id">
+    <img class="hero-wm" src="assets/img/wordmark.png" alt="Ionity Global" width="460">
+    <span class="pill"><span class="dot"></span> Native-AI · AIoT · Edge · Audit · ${SITE.location} · since 2018</span>
+    <h1 class="portal-h1">Choose your <span class="grad-text">vector</span>.</h1>
+  </div>
+
+  <div class="portal-split">
+    <!-- LEFT portal — AEDi / Access System -->
+    <div class="portal portal-ai reveal">
+      <span class="portal-kicker">AEDi</span>
+      <h2>Automated Ecosystems<br>Designs Intelligence</h2>
+      <p>Our own Native-AI fabric. Talk to it, brief it, let it route you through the build.</p>
+      <button class="portal-btn" id="portalAccess" data-sfx="powerup" aria-label="Access the AEDi system">
+        <span class="portal-orbit"></span>
+        <span class="portal-scan"></span>
+        <span class="portal-core">Access<br>System</span>
+      </button>
     </div>
-    <div class="hero-stats">
-      <div><div class="n grad-text">2018</div><div class="l">Roots · Antwerp Designs</div></div>
-      <div><div class="n grad-text">M·E·IT</div><div class="l">Cross-discipline</div></div>
-      <div><div class="n grad-text">AEDi</div><div class="l">Our own AI</div></div>
+
+    <!-- divider -->
+    <div class="portal-div" aria-hidden="true"><span></span></div>
+
+    <!-- RIGHT portal — IO // WAY / Gateway -->
+    <div class="portal portal-io reveal d1">
+      <span class="portal-kicker warm-text">IO // WAY</span>
+      <h2>Enter the<br>Gateway System</h2>
+      <p>Run a live, on-device edge scan — real hardware, network, proximity & sensors. No simulation.</p>
+      <a class="portal-btn portal-btn-warm" href="edge.html" data-sfx="coin" aria-label="Enter the IO Way gateway">
+        <span class="portal-orbit"></span>
+        <span class="portal-scan"></span>
+        <span class="portal-core">IO<br>Way</span>
+      </a>
     </div>
   </div>
+
+  <a class="portal-skip" href="#ethos" data-sfx="coin">or scroll to explore ${ICON.arrow}</a>
   <div class="scroll-hint" aria-hidden="true"><i></i><i></i></div>
 </section>
 

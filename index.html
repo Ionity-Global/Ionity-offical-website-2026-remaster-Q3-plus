@@ -26,6 +26,7 @@
 <meta name="twitter:description" content="Ionity Global is a Native-AI company. We build AIoT, Cloud & Edge systems, custom MCP, dashboards and digital twins — and run evidence-first audits & forensics that cut cost and prove return. Solutionists across mechanical, electrical and IT.">
 <meta name="twitter:image" content="https://www.ionity.today/assets/og/social-card.png">
 <!-- Icons / PWA -->
+<link rel="icon" href="assets/img/favicon.ico" sizes="any">
 <link rel="icon" href="assets/img/favicon-64.png" type="image/png" sizes="64x64">
 <link rel="icon" href="assets/img/icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
@@ -56,7 +57,10 @@
     <a href="contact.html">Contact</a>
   </nav>
   <div class="nav-cta">
-    <button class="icon-btn" data-audio-toggle title="Toggle 8-bit industrial soundscape" aria-label="Toggle sound">
+    <button class="icon-btn" data-sfx-toggle title="Toggle 8-bit power-up sounds" aria-label="Toggle interface sounds">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M9.5 9.5h5M12 8v8M10 16h4"/></svg>
+    </button>
+    <button class="icon-btn" data-audio-toggle title="Toggle 8-bit industrial soundscape" aria-label="Toggle ambient soundscape">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14"/></svg>
     </button>
     <a class="btn btn-primary" href="contact.html">Start a project</a>
@@ -66,28 +70,50 @@
   </div>
 </header>
 <main id="main">
-<!-- ACT 1 ───────────────────────────────────────────── -->
-<section class="hero" id="hero" data-act="Enter">
+<!-- ACT 1 ── split-portal hero (the old "Access System / IO // WAY" concept) ── -->
+<section class="hero portal-hero" id="hero" data-act="Enter">
   <div class="orbit-field" aria-hidden="true">
     <div class="ring r1"><span class="sat"></span></div>
     <div class="ring r2"><span class="sat"></span></div>
     <div class="ring r3"><span class="sat"></span></div>
   </div>
-  <div class="inner">
-    <img class="hero-wm" src="assets/img/wordmark.png" alt="Ionity Global" width="520">
-    <span class="pill"><span class="dot"></span> Native-AI company · Centurion, South Africa · since 2018</span>
-    <h1>We build systems that <span class="grad-text">think at the edge</span>.</h1>
-    <p class="lead">Ionity Global engineers Native-AI, AIoT, Cloud &amp; Edge — and runs evidence-first audits that cut cost and prove return. Software, hardware, forensics. One team of solutionists.</p>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="#capabilities">Explore the build <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="btn btn-warm" href="#edge">Run a live edge scan</a>
+
+  <div class="portal-id">
+    <img class="hero-wm" src="assets/img/wordmark.png" alt="Ionity Global" width="460">
+    <span class="pill"><span class="dot"></span> Native-AI · AIoT · Edge · Audit · Centurion, South Africa · since 2018</span>
+    <h1 class="portal-h1">Choose your <span class="grad-text">vector</span>.</h1>
+  </div>
+
+  <div class="portal-split">
+    <!-- LEFT portal — AEDi / Access System -->
+    <div class="portal portal-ai reveal">
+      <span class="portal-kicker">AEDi</span>
+      <h2>Automated Ecosystems<br>Designs Intelligence</h2>
+      <p>Our own Native-AI fabric. Talk to it, brief it, let it route you through the build.</p>
+      <button class="portal-btn" id="portalAccess" data-sfx="powerup" aria-label="Access the AEDi system">
+        <span class="portal-orbit"></span>
+        <span class="portal-scan"></span>
+        <span class="portal-core">Access<br>System</span>
+      </button>
     </div>
-    <div class="hero-stats">
-      <div><div class="n grad-text">2018</div><div class="l">Roots · Antwerp Designs</div></div>
-      <div><div class="n grad-text">M·E·IT</div><div class="l">Cross-discipline</div></div>
-      <div><div class="n grad-text">AEDi</div><div class="l">Our own AI</div></div>
+
+    <!-- divider -->
+    <div class="portal-div" aria-hidden="true"><span></span></div>
+
+    <!-- RIGHT portal — IO // WAY / Gateway -->
+    <div class="portal portal-io reveal d1">
+      <span class="portal-kicker warm-text">IO // WAY</span>
+      <h2>Enter the<br>Gateway System</h2>
+      <p>Run a live, on-device edge scan — real hardware, network, proximity & sensors. No simulation.</p>
+      <a class="portal-btn portal-btn-warm" href="edge.html" data-sfx="coin" aria-label="Enter the IO Way gateway">
+        <span class="portal-orbit"></span>
+        <span class="portal-scan"></span>
+        <span class="portal-core">IO<br>Way</span>
+      </a>
     </div>
   </div>
+
+  <a class="portal-skip" href="#ethos" data-sfx="coin">or scroll to explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
   <div class="scroll-hint" aria-hidden="true"><i></i><i></i></div>
 </section>
 
@@ -410,6 +436,7 @@
 </div>
 
 <script src="assets/js/audio.js" defer></script>
+<script src="assets/js/mario.js" defer></script>
 <script src="assets/js/cookies.js" defer></script>
 <script src="assets/js/core.js" defer></script>
 <script src="assets/js/edge-diagnostics.js" defer></script>
