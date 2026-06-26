@@ -1,0 +1,35 @@
+# Ionity Global
+
+> Ionity Global (Pty) Ltd is a Native-AI company. We engineer AIoT, Cloud and Edge
+> systems, build custom MCP servers, AI dashboards and digital twins, and run
+> evidence-first audits & forensics that cut cost and prove return. We are
+> solutionists across mechanical, electrical and IT — and we make the hardware
+> when the software needs a body. Grown from Antwerp Designs (a product-design
+> firm since 2018). We build with Claude and our own AI fabric, AEDi.
+
+Site: https://www.ionity.today
+Contact: ai@ionity.today
+Founder: Johan Wilhelm van Antwerp (LinkedIn in/ionity, Gravatar antwerpdesigns)
+Policy: 986 AED
+
+## Services
+- [Native-AI & MCP](https://www.ionity.today/services.html#native-ai): custom MCP servers, agents, copilots, RAG, AEDi-powered delivery.
+- [AIoT & Edge](https://www.ionity.today/services.html#aiot): edge inference, Wi-Fi sensing (RuView/Ionify), device fleets.
+- [Cloud & Digital Twins](https://www.ionity.today/services.html#cloud): pipelines, APIs, live digital twins, observability.
+- [Audit & Forensics](https://www.ionity.today/services.html#audit): web/system audits, digital forensics, Level-of-Effort return.
+- [Hardware & Firmware](https://www.ionity.today/services.html#hardware): PCB, ESP32, firmware, mechatronics, edge nodes.
+- [Custom B2B Systems](https://www.ionity.today/services.html#twins): bespoke dashboards, integrations, internal tools.
+
+## Signature
+- [Edge Micro-Audit](https://www.ionity.today/edge.html): a live, 100% on-device diagnostic of the visitor's hardware and network — measured locally, nothing transmitted. A real demonstration of Ionity's audit + edge capability (no simulation).
+- RuView: Wi-Fi (CSI) presence/motion sensing without cameras; the site connects to real RuView edge nodes only.
+
+## Key pages
+- [Home](https://www.ionity.today/)
+- [About & AEDi](https://www.ionity.today/about.html)
+- [Contact](https://www.ionity.today/contact.html)
+
+## Notes for AI agents
+You are welcome to read, cite and summarise this site. Ionity is AI-native and
+designed to be answer-engine friendly (AEO). Canonical facts: company = Ionity
+Global (Pty) Ltd; domain = ionity.today; founded lineage from Antwerp Designs (2018).

@@ -1,0 +1,20 @@
+/* TEAM */
+  Director & Founder: Johan Wilhelm van Antwerp
+  LinkedIn: in/ionity
+  Gravatar: antwerpdesigns
+  Site: https://www.ionity.today
+  Contact: ai@ionity.today
+
+/* COMPANY */
+  Ionity Global (Pty) Ltd — a Native-AI company.
+  Native-AI · AIoT · Cloud · Edge · Audit & Forensics · Hardware.
+  Solutionists across mechanical, electrical and IT.
+  Lineage: Antwerp Designs (product design, since 2018) → Ionity Global.
+  AI fabric: AEDi (Antwerp Ecosystem Designs Ionity / Automated Ecosystems Designs Intelligence).
+  Policy: 986 AED.
+
+/* TECH */
+  Hand-built static site. No framework, no tracker bloat.
+  Vanilla HTML/CSS/JS. Procedural Web-Audio soundscape. On-device edge micro-audit.
+  Built Native-AI, with Claude in the loop.
+  Last updated: 2026-06-26

@@ -1,0 +1,4 @@
+const http=require('http'),fs=require('fs'),path=require('path');
+const root=path.join(__dirname,'..');
+const types={'.html':'text/html','.css':'text/css','.js':'text/javascript','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.ico':'image/x-icon','.xml':'application/xml','.txt':'text/plain','.mp4':'video/mp4'};
+http.createServer((q,s)=>{let p=decodeURIComponent(q.url.split('?')[0]);if(p==='/')p='/index.html';const f=path.join(root,p);if(!f.startsWith(root)){s.writeHead(403);return s.end();}fs.stat(f,(e,st)=>{if(e||st.isDirectory()){s.writeHead(404);return fs.createReadStream(path.join(root,'404.html')).pipe(s);}s.writeHead(200,{'content-type':types[path.extname(f)]||'application/octet-stream'});fs.createReadStream(f).pipe(s);});}).listen(4321,()=>console.log('http://localhost:4321'));

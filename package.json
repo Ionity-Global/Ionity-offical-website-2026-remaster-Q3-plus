@@ -1,0 +1,16 @@
+{
+  "name": "ionity-offical-website-2026-remaster-q3-plus",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ionity Global official website — 2026 Q3+ remaster. Native-AI · AIoT · Cloud · Edge · Audit & Forensics.",
+  "homepage": "https://www.ionity.today",
+  "scripts": {
+    "build": "node _build/build.mjs",
+    "icons": "node _build/gen-icons.mjs",
+    "serve": "node _build/serve.cjs",
+    "dev": "npm run build && npm run serve"
+  },
+  "devDependencies": { "sharp": "^0.35.2" },
+  "author": "Johan Wilhelm van Antwerp — Ionity Global (Pty) Ltd",
+  "license": "UNLICENSED"
+}

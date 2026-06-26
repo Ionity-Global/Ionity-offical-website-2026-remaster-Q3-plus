@@ -1,0 +1,120 @@
+IONITY GLOBAL — WEBSITE REMASTER · WORK DONE
+============================================
+Repo : Ionity-Global/Ionity-offical-website-2026-remaster-Q3-plus
+Source: Antwerp-Ecosystem-Designs-Ionity/Ionity-offical-werbsite
+Domain: www.ionity.today   ·   Policy 986 AED
+Built : 2026-06-26   ·   Native-AI, with Claude in the loop
+
+
+0. APPROACH (why this is a COMBINED remaster, not a master pull)
+---------------------------------------------------------------
+- Analysed the source repo: 30 branches. Finding: `master` was already the
+  integration branch — almost every feature/copilot branch (SEO, cookies,
+  footers, mobile, loading, AI links) was MERGED into master with 0 unique
+  commits ahead. Only Version-2.2 (5), improve-loading-screen-gui (1) and
+  automated-ecosystems-designs-ionity (1) held anything master didn't.
+- So "most weight" = master's distilled feature set, rebuilt clean. We kept the
+  best DNA (dark immersive aesthetic, AI-welcoming robots.txt, real cookie
+  consent, SEO/IndexNow groundwork, audio-manager concept) and re-authored it
+  modular, unique and ~40x lighter — instead of carrying 119–314 KB monolith
+  pages and 132 MB of assets.
+
+
+1. BRAND / DESIGN
+-----------------
+- Extracted brand tokens from legacy style.css: #1A1A1A bg, #3366FF blue,
+  cyan glow #00D2FF, white text, uppercase micro-labels, fixed glass nav,
+  chevron scroll hints. Refined into a full token system (assets/css/ionity.css).
+- NEW custom vector logo (ion-node motif, blue→cyan gradient): icon.svg, logo.svg,
+  favicon.svg. Replaced the legacy 4800×3200 raster-in-SVG logos (1.5–7 MB each).
+- Generated correctly-sized PWA icons (192/512/maskable/apple-touch) + a 1200×630
+  OG social card via sharp. (Legacy "icon-192/512" were all the same 1.27 MB file.)
+
+
+2. PAGES (immersive single-page adventure + lean supporting pages)
+------------------------------------------------------------------
+- index.html      — 9-act immersive scroll: Enter · Native-AI · Capabilities ·
+                    Audit · Edge Scan (live) · RuView (live) · AEDi · Founder · Begin.
+                    Scroll-rail, top progress bar, parallax orbital field, marquee,
+                    count-up stats, reveal-on-scroll.
+- services.html   — six disciplines EXPANDED and de-bulked (no tab overlap):
+                    Native-AI & MCP · AIoT & Edge · Cloud & Digital Twins ·
+                    Audit & Forensics · Hardware & Firmware · Custom B2B Systems.
+- edge.html       — dedicated Edge Micro-Audit + RuView.
+- about.html      — Antwerp Designs (2018) → Ionity arc, AEDi explained, founder
+                    block with LinkedIn in/ionity + Gravatar antwerpdesigns.
+- contact.html    — mailto form (no third-party tracker) + direct lines HUD.
+- privacy.html / terms.html — real, plain-language legal incl. cookie + edge-scan
+                    privacy statements.
+- 404.html        — on-brand "off the grid".
+- Page weight: 119–314 KB  →  9–28 KB each.
+
+
+3. SIGNATURE FEATURE — EDGE MICRO-AUDIT (assets/js/edge-diagnostics.js)
+----------------------------------------------------------------------
+- 100% REAL, on-device, NO SIMULATION, nothing transmitted. Verified live in
+  browser to read genuine values: GPU renderer (WebGL UNMASKED_RENDERER),
+  CPU threads, deviceMemory, WebGPU availability, display + measured refresh Hz
+  (from frame cadence), a real compute benchmark (Mops/s), MEASURED network RTT
+  (5 real round-trips) + MEASURED throughput, battery, storage quota, platform,
+  timezone — folded into an honest composite "Edge Readiness" index.
+
+4. RUVIEW CONNECTOR (assets/js/ruview.js) — honoring "NO SIMULATIONS"
+--------------------------------------------------------------------
+- A browser is sandboxed and cannot scan a LAN / count nearby radios. RuView's
+  Wi-Fi (CSI) sensing happens on Ionity HARDWARE. So the connector ONLY shows
+  real data: connect a reachable RuView node (WebSocket or HTTP) and it streams
+  live device/presence/motion; otherwise it shows a truthful "NO EDGE NODE"
+  state. It NEVER fabricates a number. Verified: default state = "NO EDGE NODE / —".
+
+5. AUDIO (assets/js/audio.js)
+-----------------------------
+- Procedural 8-bit INDUSTRIAL soundscape, fully synthesised with Web Audio API
+  (no files): detuned square drones + LFO-swept filter + filtered noise "machine
+  room" bed + periodic mechanical tick + chiptune hover/click/ok blips.
+  Off by default; nav toggle; preference persisted; respects reduced-motion.
+
+6. COOKIES / CONSENT (assets/js/cookies.js)
+-------------------------------------------
+- Granular opt-in manager: necessary (locked) · preferences · analytics ·
+  marketing. Durable `ionity_consent` cookie (180d) + localStorage mirror.
+  Fires `ionity:consent` for script gating. Re-openable via footer "Cookie
+  settings". Verified accept/dismiss + cookie write.
+
+7. SEO / AEO / PWA / TRUST
+--------------------------
+- Per-page <title>/description, canonical, OG + Twitter, theme-color, keywords.
+- JSON-LD: Organization (+founder sameAs LinkedIn/Gravatar/GitHub), Breadcrumb,
+  ContactPage.
+- sitemap.xml, robots.txt (search + AI/answer engines explicitly allowed),
+  llms.txt, humans.txt, security.txt + /.well-known/security.txt.
+- manifest.json (standalone PWA, maskable icon, shortcuts), CNAME, .nojekyll.
+
+8. ENGINEERING
+--------------
+- No framework, no runtime build. Deterministic static generator in _build/
+  (layout.mjs = single source of truth for head/nav/footer/cookie/JSON-LD →
+  guarantees consistent footers + links everywhere). HTML is committed; Pages
+  serves the root directly. npm scripts: build · icons · serve · dev.
+
+9. VERIFICATION (done, then re-checked)
+---------------------------------------
+- Static server smoke test: index/css/js/svg/services = 200, unknown = 404.
+- Browser: home (desktop + 390px mobile) renders; no console errors.
+- Edge scan executed live → real GPU/CPU/mem/refresh/RTT/throughput, score 99.
+- RuView default = honest "NO EDGE NODE".
+- Cookie accept writes consent + hides banner; persists on reload.
+- Generator re-runs cleanly in repo layout.
+
+ASSETS NOTE
+-----------
+Curated from legacy (logos/social icons), dropped bloat (7 MB eagle SVG, dup
+assets/assets/, 1.27 MB mis-sized icons), kept one ecosystem clip. 132 MB → ~3 MB.
+
+POSSIBLE NEXT (optional, your call)
+-----------------------------------
+- A short hero/ambient video (you offered) → drop into assets/video, wire as a
+  muted autoplay background behind the hero orbital field.
+- Stand up a public RuView demo bridge so the panel is live for all visitors.
+- Privacy-friendly analytics (e.g. self-hosted) gated behind the analytics
+  consent category already wired in cookies.js.

@@ -1,0 +1,24 @@
+{
+  "name": "Ionity Global",
+  "short_name": "Ionity",
+  "description": "Native-AI · AIoT · Cloud · Edge · Audit & Forensics. Solutionists across mechanical, electrical and IT.",
+  "id": "/",
+  "start_url": "/?utm_source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#07080D",
+  "theme_color": "#07080D",
+  "lang": "en",
+  "categories": ["business", "technology", "productivity"],
+  "icons": [
+    { "src": "assets/img/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/img/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/img/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "assets/img/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ],
+  "shortcuts": [
+    { "name": "Edge micro-audit", "url": "/edge.html" },
+    { "name": "Services", "url": "/services.html" },
+    { "name": "Contact", "url": "/contact.html" }
+  ]
+}

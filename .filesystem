@@ -1,0 +1,95 @@
+IONITY GLOBAL WEBSITE — FILESYSTEM MAP
+Repo: Ionity-offical-website-2026-remaster-Q3-plus  ·  www.ionity.today
+Generated 2026-06-26. Published files at root (GitHub Pages); generator in _build/.
+
+ANNOTATED TREE
+==============
+.
+├── index.html                 Immersive single-page adventure (9 acts)
+├── services.html              Six disciplines, expanded & de-bulked
+├── edge.html                  Live Edge Micro-Audit + RuView
+├── about.html                 Antwerp Designs→Ionity, AEDi, founder
+├── contact.html               Mailto form + direct lines
+├── privacy.html               Privacy notice (incl. edge-scan + cookies)
+├── terms.html                 Terms of use
+├── 404.html                   On-brand not-found
+├── CNAME                       www.ionity.today
+├── .nojekyll                   Serve dotfiles/_build verbatim
+├── manifest.json               PWA (standalone, maskable, shortcuts)
+├── robots.txt                  Search + AI/answer engines allowed
+├── sitemap.xml                 7 URLs + image
+├── llms.txt                    AEO summary for AI agents
+├── humans.txt                  Credits
+├── security.txt                Responsible disclosure
+├── .well-known/
+│   └── security.txt            RFC 9116 location
+├── assets/
+│   ├── css/
+│   │   └── ionity.css          Single design system (tokens→components→responsive)
+│   ├── js/
+│   │   ├── core.js             Nav, scroll rail, progress, reveals, count-up, parallax
+│   │   ├── audio.js            Procedural 8-bit industrial soundscape (Web Audio)
+│   │   ├── cookies.js          Granular consent + ionity_consent cookie
+│   │   ├── edge-diagnostics.js Edge Micro-Audit — REAL, on-device, no simulation
+│   │   └── ruview.js           Live RuView edge-node connector (no fabrication)
+│   ├── img/                    icon.svg · logo.svg · favicon.* · PWA icons · social svgs
+│   ├── og/                     social-card.png (1200×630) · maskable
+│   └── video/                  ecosystem.mp4 (curated single clip)
+└── _build/                    SITE GENERATOR (run locally; output is committed)
+    ├── layout.mjs              Single source of truth: head/nav/footer/cookie/JSON-LD
+    ├── build.mjs               Builds index + orchestrates
+    ├── pages.mjs               Builds services/edge/about/contact/legal/404
+    ├── gen-icons.mjs           Regenerates PWA icons + OG card (sharp)
+    └── serve.cjs               Local static server (npm run serve)
+
+ACTUAL FILE INVENTORY (size · path)
+===================================
+0          ./.nojekyll
+40         ./.gitignore
+17         ./CNAME
+273        ./.well-known/security.txt
+819        ./_build/serve.cjs
+824        ./assets/img/github-icon.svg
+306        ./assets/img/gravatar-icon.svg
+602        ./assets/img/linkedin-icon.svg
+775        ./humans.txt
+971        ./manifest.json
+598        ./package.json
+261        ./security.txt
+2786       ./.filesystem
+6732       ./.workdone
+9187       ./404.html
+5001       ./README.md
+1756       ./_build/gen-icons.mjs
+9909       ./_build/layout.mjs
+9326       ./assets/img/favicon.ico
+1527       ./assets/img/favicon.svg
+1527       ./assets/img/icon.svg
+1101       ./assets/img/logo.svg
+5072       ./assets/js/audio.js
+4111       ./assets/js/cookies.js
+4896       ./assets/js/core.js
+9649       ./assets/js/edge-diagnostics.js
+4528       ./assets/js/ruview.js
+2206       ./llms.txt
+1118       ./robots.txt
+1315       ./sitemap.xml
+18562      ./_build/build.mjs
+17102      ./_build/pages.mjs
+12485      ./about.html
+23950      ./assets/css/ionity.css
+11277      ./assets/img/apple-touch-icon.png
+12451      ./assets/img/icon-192.png
+46514      ./assets/img/icon-512.png
+46514      ./assets/img/icon-maskable-512.png
+86827      ./assets/og/social-card.png
+11663      ./contact.html
+13789      ./edge.html
+27966      ./index.html
+17785      ./ionity_logo.ico
+10827      ./privacy.html
+21086      ./services.html
+10233      ./terms.html
+2536400    ./assets/video/ecosystem.mp4
+
+TOTAL: 47 files · 3.0M
