@@ -274,8 +274,8 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 .portal-main p { font-size:var(--step--1); color:var(--muted); max-width:40ch; margin:.65rem auto 0; }
 .aedi-cta { margin-top:1.3rem; }
 
-/* IO // WAY — compact card pinned to the lower-left corner */
-.portal-corner { position:absolute; left:clamp(1rem,4vw,3.2rem); bottom:clamp(1.2rem,5vh,3rem); z-index:3;
+/* IO // WAY — compact card, lower-left, lifted to sit above the floating AEDi launcher */
+.portal-corner { position:absolute; left:clamp(1rem,4vw,3.2rem); bottom:clamp(92px,15vh,150px); z-index:3;
   display:flex; align-items:center; gap:.85rem; text-align:left; padding:.7rem .95rem;
   border:1px solid var(--line); border-radius:var(--radius); background:rgba(10,12,20,.42);
   -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
@@ -510,7 +510,7 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 .skip:focus { left:8px; top:8px; }
 
 /* ---------------------------------------------------------- AEDI CHAT ------- */
-.aedi-wrap { position:fixed; bottom:24px; right:24px; z-index:1500; }
+.aedi-wrap { position:fixed; bottom:24px; left:24px; z-index:1500; }
 
 .aedi-fab {
   position:relative; display:flex; align-items:center; gap:.55rem;
@@ -535,13 +535,13 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 @keyframes aedi-ping { 0%{opacity:.6;transform:scale(1)} 100%{opacity:0;transform:scale(1.35)} }
 
 .aedi-panel {
-  position:absolute; bottom:calc(100% + 12px); right:0;
+  position:absolute; bottom:calc(100% + 12px); left:0;
   width:min(380px, calc(100vw - 40px)); background:rgba(8,10,18,.97);
   -webkit-backdrop-filter:blur(20px); backdrop-filter:blur(20px);
   border:1px solid var(--line-strong); border-radius:var(--radius);
   box-shadow:0 24px 64px rgba(0,0,0,.6), 0 0 0 1px rgba(0,210,255,.08);
   display:flex; flex-direction:column; overflow:hidden;
-  transform-origin:bottom right;
+  transform-origin:bottom left;
   animation:aedi-in .22s var(--ease-out);
 }
 .aedi-panel[hidden] { display:none !important; }   /* hidden attr must win over display:flex */
@@ -603,8 +603,8 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 .aedi-disc { font-family:var(--f-mono); font-size:.54rem; color:var(--faint); text-align:center; padding:.4rem .9rem .6rem; flex-shrink:0; }
 
 @media (max-width:480px) {
-  .aedi-wrap { bottom:16px; right:12px; }
-  .aedi-panel { width:calc(100vw - 24px); right:-12px; }
+  .aedi-wrap { bottom:16px; left:12px; }
+  .aedi-panel { width:calc(100vw - 24px); left:-12px; }
   .aedi-fab { padding:.65rem .9rem .65rem .8rem; font-size:.66rem; }
 }
 
