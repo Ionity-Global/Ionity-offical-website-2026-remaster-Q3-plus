@@ -14,23 +14,45 @@
 
   const CFG = {
     get key() { return _k(); },
-    model: 'gemini-1.5-flash',
+    model: 'gemini-2.5-flash',     // 1.5-flash is retired (404); 2.5-flash is the live model
     base:  'https://generativelanguage.googleapis.com/v1beta/models/',
     maxHistory: 12,
-    greeting: 'AEDi online. How can I help you navigate Ionity\'s edge?',
-    system: [
-      'You are AEDi — Automated Ecosystems Designs Intelligence — the embedded AI of Ionity Global (Pty) Ltd (ionity.today).',
-      'You were created by the Ionity team. NEVER identify as Gemini, Google AI, Claude, GPT, or any other AI product — you are AEDi only.',
-      '',
-      'Ionity Global: Native-AI company founded by Johan Wilhelm van Antwerp, Centurion, South Africa.',
-      'Services: AIoT & Edge, Cloud & Digital Twins, custom MCP servers, audit & forensics, hardware & firmware, custom B2B systems.',
-      'AEDi (Automated Ecosystems Designs Intelligence) is Ionity\'s own AI fabric — an intelligent orchestration layer powering their services.',
-      '',
-      'Tone: professional, technically confident, direct, not sales-y. Answer concisely — one to three short paragraphs max unless the user asks for detail.',
-      'Contact: ai@ionity.today | +27 64 699 9877 | Policy 986 AED',
-      'Site: https://www.ionity.today',
-    ].join('\n'),
+    greeting: 'AEDi online. Ask me anything about Ionity — or let me point you to the right part of the site.',
   };
+
+  // Hard rules — always enforced, even if the YAML fails to load. These keep AEDi
+  // on-identity and stop the model confusing Ionity with the EV-charging network.
+  const PREAMBLE = [
+    'You are AEDi (Automated Ecosystems Designs Intelligence), the embedded AI of Ionity Global (Pty) Ltd — www.ionity.today.',
+    'Speak in the first person as AEDi. NEVER identify as Gemini, Google, Bard, Claude, GPT, OpenAI or "a language model". You are AEDi.',
+    'CRITICAL: Ionity Global (Pty) Ltd is a South African Native-AI / AIoT / Edge / Audit company founded by Johan Wilhelm van Antwerp. It is NOT the European electric-vehicle charging network (that is a different, unrelated company). Never describe Ionity as an EV charger.',
+    'Your purpose: answer the visitor, then DIRECT them to the most relevant part of THIS website — link pages/sections and nudge them to run the live Edge Scan or start a project on the Contact page. Use markdown links to site pages, e.g. [run a live Edge Scan](edge.html).',
+    'Be concise (1–3 short paragraphs), professional, direct, not sales-y. No legal/medical/financial advice — refer to ai@ionity.today.',
+    'The authoritative knowledge base (identity, company, services, site map, features) follows below as YAML. Treat it as ground truth.',
+    '',
+    '=== AEDi KNOWLEDGE BASE (aedi.yaml) ===',
+  ].join('\n');
+
+  // Compact fallback used only if aedi.yaml can't be fetched (e.g. file:// or 404).
+  const FALLBACK_CONTEXT = [
+    'company: Ionity Global (Pty) Ltd — Centurion, South Africa. Founder: Johan Wilhelm van Antwerp.',
+    'what_we_are: Native-AI engineering — AIoT, Cloud & Edge systems, custom MCP/agents/copilots, dashboards, digital twins, and evidence-first audits & forensics. Hardware too. Grown from Antwerp Designs (2018).',
+    'pages: Home (index.html), Services (services.html), Edge Scan (edge.html), About & AEDi (about.html), Contact (contact.html).',
+    'signature (real, on-device): Edge Micro-Audit, RSSI Proximity, Sensor Node — all on edge.html, no simulation.',
+    'contact: ai@ionity.today | +27 64 699 9877 | Policy 986 AED.',
+  ].join('\n');
+
+  // Built once from PREAMBLE + aedi.yaml (fetched). Falls back to FALLBACK_CONTEXT.
+  let SYSTEM = PREAMBLE + '\n' + FALLBACK_CONTEXT;
+  let systemReady = (async () => {
+    try {
+      const res = await fetch('aedi.yaml', { cache: 'no-cache' });
+      if (res.ok) {
+        const yaml = (await res.text()).trim();
+        if (yaml) SYSTEM = PREAMBLE + '\n' + yaml;
+      }
+    } catch (e) { /* keep fallback */ }
+  })();
 
   /* ── state ────────────────────────────────────────────────────────────── */
   const history = [];
@@ -48,8 +70,15 @@
   }
 
   function formatMsg(text) {
-    // minimal markdown: **bold**, *italic*, `code`, newlines
+    // minimal markdown: [label](url) links, **bold**, *italic*, `code`, newlines.
+    // Links are escaped first, then re-built; only safe same-site / http(s) / mail targets.
     return escHtml(text)
+      .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, label, href) => {
+        const safe = /^(https?:\/\/|mailto:|tel:|\/|[\w./#?-]+\.html|[\w./#?-]+#)/i.test(href);
+        if (!safe) return label;
+        const ext = /^https?:\/\//i.test(href) && !/ionity\.today/i.test(href);
+        return `<a href="${href}"${ext ? ' target="_blank" rel="noopener"' : ''}>${label}</a>`;
+      })
       .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.+?)\*/g, '<em>$1</em>')
       .replace(/`([^`]+)`/g, '<code>$1</code>')
@@ -87,10 +116,16 @@
 
     const typingEl = appendMsg('model', '', true);
 
+    await systemReady;   // make sure aedi.yaml context is loaded before the first call
+
     const body = {
-      system_instruction: { parts: [{ text: CFG.system }] },
+      system_instruction: { parts: [{ text: SYSTEM }] },
       contents: history,
-      generationConfig: { temperature: 0.7, maxOutputTokens: 512 },
+      generationConfig: {
+        temperature: 0.6,
+        maxOutputTokens: 800,
+        thinkingConfig: { thinkingBudget: 0 },   // 2.5-flash: skip thinking → fast, full budget for the answer
+      },
     };
 
     const url = `${CFG.base}${CFG.model}:generateContent?key=${CFG.key}`;
