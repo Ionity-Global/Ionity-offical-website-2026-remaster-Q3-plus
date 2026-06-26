@@ -1,52 +1,33 @@
 IONITY GLOBAL WEBSITE — FILESYSTEM MAP
 Repo: Ionity-offical-website-2026-remaster-Q3-plus  ·  www.ionity.today
-Generated 2026-06-26. Published files at root (GitHub Pages); generator in _build/.
+Generated 2026-06-26 (v2). Published files at root (GitHub Pages); generator in _build/.
 
-ANNOTATED TREE
-==============
-.
-├── index.html                 Immersive single-page adventure (9 acts)
-├── services.html              Six disciplines, expanded & de-bulked
-├── edge.html                  Live Edge Micro-Audit + RuView
-├── about.html                 Antwerp Designs→Ionity, AEDi, founder
-├── contact.html               Mailto form + direct lines
-├── privacy.html               Privacy notice (incl. edge-scan + cookies)
-├── terms.html                 Terms of use
-├── 404.html                   On-brand not-found
-├── CNAME                       www.ionity.today
-├── .nojekyll                   Serve dotfiles/_build verbatim
-├── manifest.json               PWA (standalone, maskable, shortcuts)
-├── robots.txt                  Search + AI/answer engines allowed
-├── sitemap.xml                 7 URLs + image
-├── llms.txt                    AEO summary for AI agents
-├── humans.txt                  Credits
-├── security.txt                Responsible disclosure
-├── .well-known/
-│   └── security.txt            RFC 9116 location
-├── assets/
-│   ├── css/
-│   │   └── ionity.css          Single design system (tokens→components→responsive)
-│   ├── js/
-│   │   ├── core.js             Nav, scroll rail, progress, reveals, count-up, parallax
-│   │   ├── audio.js            Procedural 8-bit industrial soundscape (Web Audio)
-│   │   ├── cookies.js          Granular consent + ionity_consent cookie
-│   │   ├── edge-diagnostics.js Edge Micro-Audit — REAL, on-device, no simulation
-│   │   └── ruview.js           Live RuView edge-node connector (no fabrication)
-│   ├── img/                    icon.svg · logo.svg · favicon.* · PWA icons · social svgs
-│   ├── og/                     social-card.png (1200×630) · maskable
-│   └── video/                  ecosystem.mp4 (curated single clip)
-└── _build/                    SITE GENERATOR (run locally; output is committed)
-    ├── layout.mjs              Single source of truth: head/nav/footer/cookie/JSON-LD
-    ├── build.mjs               Builds index + orchestrates
-    ├── pages.mjs               Builds services/edge/about/contact/legal/404
-    ├── gen-icons.mjs           Regenerates PWA icons + OG card (sharp)
-    └── serve.cjs               Local static server (npm run serve)
+KEY
+===
+index.html      Immersive 10-act adventure home (real IONITY GLOBAL logo, blue+orange)
+services.html   Six disciplines, expanded & de-bulked
+edge.html       Edge Micro-Audit + RSSI Proximity + Sensor Node
+about.html      Antwerp Designs→Ionity, AEDi, founder (LinkedIn/Gravatar)
+contact.html    Mailto form + direct lines (Centurion SA, phone, email)
+privacy/terms/404
+assets/css/ionity.css         design system (tokens: --blue #0079E3, --orange #FF9500, --cyan, --live)
+assets/js/core.js             nav, scroll-rail, progress, reveals, count-up, parallax
+assets/js/audio.js            procedural 8-bit industrial Web-Audio soundscape
+assets/js/cookies.js          granular consent + ionity_consent cookie
+assets/js/edge-diagnostics.js Edge Micro-Audit — REAL, on-device, no simulation
+assets/js/proximity.js        RSSI people-nearby — Web Bluetooth LE + edge node, no simulation
+assets/js/sensor-node.js      device-as-edge-node: motion/tilt/compass/light/mic, real
+assets/img    wordmark.png (official) · ai-mark*.png · PWA icons · social svgs
+assets/og     social-card.png 1200x630
+_build/       generator (layout.mjs single source of truth; build.mjs/pages.mjs; gen-icons.mjs; serve.cjs)
+seo/pwa       manifest.json robots.txt sitemap.xml llms.txt humans.txt security.txt .well-known/ CNAME .nojekyll
 
-ACTUAL FILE INVENTORY (size · path)
-===================================
+FILE INVENTORY (size · path)
+============================
 0          ./.nojekyll
 40         ./.gitignore
 17         ./CNAME
+121        ./.readme
 273        ./.well-known/security.txt
 819        ./_build/serve.cjs
 824        ./assets/img/github-icon.svg
@@ -56,40 +37,47 @@ ACTUAL FILE INVENTORY (size · path)
 971        ./manifest.json
 598        ./package.json
 261        ./security.txt
-2786       ./.filesystem
+1589       ./.filesystem
 6732       ./.workdone
-9187       ./404.html
-5001       ./README.md
+9496       ./404.html
+6239       ./README.md
 1756       ./_build/gen-icons.mjs
-9909       ./_build/layout.mjs
-9326       ./assets/img/favicon.ico
+8298       ./assets/img/ai-mark-white.png
+3953       ./assets/img/apple-touch-icon.png
+1389       ./assets/img/favicon-64.png
+2205       ./assets/img/favicon.ico
 1527       ./assets/img/favicon.svg
+4237       ./assets/img/icon-192.png
 1527       ./assets/img/icon.svg
 1101       ./assets/img/logo.svg
+3479       ./assets/img/wordmark-white.png
 5072       ./assets/js/audio.js
 4111       ./assets/js/cookies.js
 4896       ./assets/js/core.js
 9649       ./assets/js/edge-diagnostics.js
-4528       ./assets/js/ruview.js
-2206       ./llms.txt
+6815       ./assets/js/proximity.js
+5053       ./assets/js/sensor-node.js
+2558       ./llms.txt
 1118       ./robots.txt
 1315       ./sitemap.xml
-18562      ./_build/build.mjs
-17102      ./_build/pages.mjs
-12485      ./about.html
-23950      ./assets/css/ionity.css
-11277      ./assets/img/apple-touch-icon.png
-12451      ./assets/img/icon-192.png
-46514      ./assets/img/icon-512.png
-46514      ./assets/img/icon-maskable-512.png
+21932      ./_build/build.mjs
+10306      ./_build/layout.mjs
+17616      ./_build/pages.mjs
+12794      ./about.html
+25815      ./assets/css/ionity.css
+89054      ./assets/img/ai-mark.png
+17925      ./assets/img/icon-512.png
+17925      ./assets/img/icon-maskable-512.png
+11796      ./assets/img/wordmark-blue.png
 86827      ./assets/og/social-card.png
-11663      ./contact.html
-13789      ./edge.html
-27966      ./index.html
+11972      ./contact.html
+17433      ./edge.html
+31777      ./index.html
 17785      ./ionity_logo.ico
-10827      ./privacy.html
-21086      ./services.html
-10233      ./terms.html
+11136      ./privacy.html
+21395      ./services.html
+10542      ./terms.html
+140584     ./assets/img/wordmark.png
 2536400    ./assets/video/ecosystem.mp4
 
-TOTAL: 47 files · 3.0M
+TOTAL: 55 files · 3.2M

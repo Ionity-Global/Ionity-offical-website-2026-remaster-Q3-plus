@@ -2,7 +2,7 @@
    IONITY remaster — supporting pages
    ========================================================================== */
 export function buildPages(ctx) {
-  const { page, SITE, ICON, SERVICES, serviceCard, edgeBlock, ruviewBlock, write } = ctx;
+  const { page, SITE, ICON, SERVICES, serviceCard, edgeBlock, proximityBlock, sensorBlock, write } = ctx;
 
   const crumbLd = (name, path) => ({
     '@context': 'https://schema.org', '@type': 'BreadcrumbList',
@@ -94,9 +94,14 @@ ${SERVICES.map(serviceDetail).join('')}
 </section>
 <section class="wrap" id="edge" data-act="Run scan">${edgeBlock()}</section>
 <hr class="divider wrap">
-<section class="wrap" id="ruview" data-act="RuView">
-  <div class="section-head reveal"><span class="kicker">Wi-Fi sensing</span><h2>RuView — live edge node</h2><p>No fabricated radar. Connect a real RuView bridge and watch genuine presence data; otherwise it stays honestly dark.</p></div>
-  ${ruviewBlock()}
+<section class="wrap" id="proximity" data-act="RSSI Proximity">
+  <div class="section-head reveal"><span class="kicker">RSSI proximity</span><h2>How many are <span class="warm-text">nearby</span>?</h2><p>Real Bluetooth-LE RSSI, counted and turned into a people-nearby estimate — on-device, no upload, no simulation. Connect an Ionity edge node for hardware-grade RSSI.</p></div>
+  ${proximityBlock()}
+</section>
+<hr class="divider wrap">
+<section class="wrap" id="sensor" data-act="Sensor Node">
+  <div class="section-head reveal"><span class="kicker">Edge sensing</span><h2>This device as an <span class="grad-text">Ionity node</span></h2><p>Wake the real sensors on your device — motion, tilt, compass, ambient light and live sound — the same signals our field nodes read.</p></div>
+  ${sensorBlock()}
 </section>
 `));
 
@@ -182,9 +187,11 @@ ${SERVICES.map(serviceDetail).join('')}
         <div class="hud-head"><span class="t">direct lines</span><span class="pill"><span class="dot"></span> open</span></div>
         <div class="metric-grid">
           <div class="metric"><div class="k">EMAIL</div><div class="v" style="font-size:.95rem">${SITE.email}</div></div>
-          <div class="metric"><div class="k">WEB</div><div class="v" style="font-size:.95rem">ionity.today</div></div>
+          <div class="metric"><div class="k">PHONE</div><div class="v" style="font-size:.95rem">${SITE.phone}</div></div>
+          <div class="metric"><div class="k">BASED IN</div><div class="v" style="font-size:.95rem">${SITE.location}</div></div>
           <div class="metric"><div class="k">GITHUB</div><div class="v" style="font-size:.95rem">Ionity-Global</div></div>
           <div class="metric"><div class="k">FOUNDER</div><div class="v" style="font-size:.95rem">in/ionity</div></div>
+          <div class="metric"><div class="k">WEB</div><div class="v" style="font-size:.95rem">ionity.today</div></div>
         </div>
         <p class="note mt-2">${SITE.legal} · ${SITE.policy}. We reply fast and start with evidence.</p>
       </div>

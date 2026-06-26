@@ -26,8 +26,8 @@
 <meta name="twitter:description" content="Ionity Global is a Native-AI company. We build AIoT, Cloud & Edge systems, custom MCP, dashboards and digital twins — and run evidence-first audits & forensics that cut cost and prove return. Solutionists across mechanical, electrical and IT.">
 <meta name="twitter:image" content="https://www.ionity.today/assets/og/social-card.png">
 <!-- Icons / PWA -->
-<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="assets/img/favicon.ico" sizes="any">
+<link rel="icon" href="assets/img/favicon-64.png" type="image/png" sizes="64x64">
+<link rel="icon" href="assets/img/icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="manifest" href="manifest.json">
 <!-- Fonts (no cookies set; degrades to system) -->
@@ -35,19 +35,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
 <link rel="stylesheet" href="assets/css/ionity.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Ionity Global (Pty) Ltd","alternateName":"Ionity","url":"https://www.ionity.today","logo":"https://www.ionity.today/assets/img/icon-512.png","email":"ai@ionity.today","slogan":"Native-AI engineering, AIoT & evidence-first audits.","description":"Ionity Global is a Native-AI company. We build AIoT, Cloud & Edge systems, custom MCP, dashboards and digital twins — and run evidence-first audits & forensics that cut cost and prove return. Solutionists across mechanical, electrical and IT.","foundingDate":"2018","founder":{"@type":"Person","name":"Johan Wilhelm van Antwerp","sameAs":["https://www.linkedin.com/in/ionity","https://gravatar.com/antwerpdesigns"]},"sameAs":["https://www.linkedin.com/in/ionity","https://github.com/Ionity-Global","https://gravatar.com/antwerpdesigns"],"knowsAbout":["Native AI","AIoT","Edge computing","Cloud","Model Context Protocol","Digital twins","Website audit","Digital forensics","Wi-Fi sensing"],"areaServed":"Worldwide"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Ionity Global (Pty) Ltd","alternateName":"Ionity","url":"https://www.ionity.today","logo":"https://www.ionity.today/assets/img/icon-512.png","email":"ai@ionity.today","slogan":"Native-AI engineering, AIoT & evidence-first audits.","description":"Ionity Global is a Native-AI company. We build AIoT, Cloud & Edge systems, custom MCP, dashboards and digital twins — and run evidence-first audits & forensics that cut cost and prove return. Solutionists across mechanical, electrical and IT.","foundingDate":"2018","telephone":"+27 64 699 9877","address":{"@type":"PostalAddress","addressLocality":"Centurion","addressCountry":"ZA"},"founder":{"@type":"Person","name":"Johan Wilhelm van Antwerp","sameAs":["https://www.linkedin.com/in/ionity","https://gravatar.com/antwerpdesigns"]},"sameAs":["https://www.linkedin.com/in/ionity","https://github.com/Ionity-Global","https://gravatar.com/antwerpdesigns"],"knowsAbout":["Native AI","AIoT","Edge computing","Cloud","Model Context Protocol","Digital twins","Website audit","Digital forensics","Wi-Fi sensing"],"areaServed":"Worldwide"}</script>
 </head>
 <body>
 <div class="bg-field" aria-hidden="true"></div>
 <div class="bg-grid" aria-hidden="true"></div>
 <div class="progress-top" id="progressTop"></div>
-<div class="loader" id="loader" aria-hidden="true"><img class="mark" src="assets/img/icon.svg" alt="" width="64" height="64"><span class="lbl">Initialising edge…</span></div>
+<div class="loader" id="loader" aria-hidden="true"><img class="mark" src="assets/img/ai-mark-white.png" alt="" width="72" height="72"><span class="lbl">Initialising edge…</span></div>
 
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav" id="nav">
   <a class="brand" href="index.html" aria-label="Ionity Global home">
-    <img class="mark" src="assets/img/icon.svg" alt="" width="34" height="34">
-    <b>IONITY<span>.</span></b>
+    <img class="wm" src="assets/img/wordmark.png" alt="Ionity Global" height="30">
   </a>
   <nav class="nav-links" id="navLinks" aria-label="Primary">
     <a href="index.html" aria-current="page">Home</a>
@@ -75,12 +74,13 @@
     <div class="ring r3"><span class="sat"></span></div>
   </div>
   <div class="inner">
-    <span class="pill"><span class="dot"></span> Native-AI company · since 2018</span>
+    <img class="hero-wm" src="assets/img/wordmark.png" alt="Ionity Global" width="520">
+    <span class="pill"><span class="dot"></span> Native-AI company · Centurion, South Africa · since 2018</span>
     <h1>We build systems that <span class="grad-text">think at the edge</span>.</h1>
     <p class="lead">Ionity Global engineers Native-AI, AIoT, Cloud &amp; Edge — and runs evidence-first audits that cut cost and prove return. Software, hardware, forensics. One team of solutionists.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="#capabilities">Explore the build <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="btn btn-ghost" href="#edge">Run a live edge scan</a>
+      <a class="btn btn-warm" href="#edge">Run a live edge scan</a>
     </div>
     <div class="hero-stats">
       <div><div class="n grad-text">2018</div><div class="l">Roots · Antwerp Designs</div></div>
@@ -209,35 +209,72 @@
 </div>
 </section>
 
-<!-- ACT 6 ── RUVIEW LIVE ───────────────────────────────── -->
-<section class="wrap" id="ruview" data-act="RuView">
+<!-- ACT 6 ── RSSI PROXIMITY (real) ─────────────────────── -->
+<section class="wrap" id="proximity" data-act="Proximity">
   <div class="section-head reveal">
-    <span class="kicker">05 · Wi-Fi sensing</span>
-    <h2>RuView — presence from <span class="grad-text">radio, not cameras</span>.</h2>
-    <p>RuView turns commodity Wi-Fi (CSI) into presence, motion and device sensing — privately, without a single pixel of video. A browser can't do that alone, so this panel streams <strong>real</strong> data from a RuView edge node, or honestly stays dark until one is connected.</p>
+    <span class="kicker">05 · RSSI proximity</span>
+    <h2>How many are <span class="warm-text">nearby</span>? Ask the radio.</h2>
+    <p>Real RSSI from the Bluetooth-LE advertisements around you — counted, distance-bucketed, and turned into a people-nearby estimate, live in your browser. No camera, no upload, no simulation.</p>
   </div>
   
-<div class="feature split reveal">
+<div class="feature split reveal" data-endpoint="">
   <div class="hud">
-    <div class="hud-head"><span class="t">ruview · live edge node</span><span class="pill"><span class="dot" style="background:var(--warn);box-shadow:0 0 10px var(--warn)"></span> <span id="rvStatus" data-kind="idle">NO EDGE NODE</span></span></div>
+    <div class="hud-head"><span class="t">ionity · rssi proximity</span><span class="pill live"><span class="dot"></span> <span id="pxStatus" data-kind="idle">READY</span></span></div>
     <div class="center">
-      <div class="radar" id="rvSweep" style="opacity:.25"><div class="sweep"></div>
+      <div class="radar" id="pxSweep" style="opacity:.25"><div class="sweep"></div>
         <svg viewBox="0 0 100 100" fill="none" stroke="rgba(120,170,255,.25)"><circle cx="50" cy="50" r="48"/><circle cx="50" cy="50" r="32"/><circle cx="50" cy="50" r="16"/><line x1="50" y1="2" x2="50" y2="98"/><line x1="2" y1="50" x2="98" y2="50"/></svg>
       </div>
-      <div style="font-family:var(--f-display);font-size:3.6rem;font-weight:700" class="grad-text" id="rvCount">—</div>
-      <div class="k mono" style="font-size:.6rem;letter-spacing:.2em;color:var(--faint)">DEVICES SENSED</div>
-      <p class="note mt-2" id="rvSub" style="text-align:left">No RuView node connected. This panel shows <strong>real</strong> sensing only — it will not invent a number.</p>
+      <div class="flex gap aic" style="justify-content:center;gap:2.5rem">
+        <div><div style="font-family:var(--f-display);font-size:3rem;font-weight:700" class="grad-text" id="pxPeople">—</div><div class="k mono" style="font-size:.56rem;letter-spacing:.18em;color:var(--faint)">PEOPLE NEARBY (est.)</div></div>
+        <div><div style="font-family:var(--f-display);font-size:3rem;font-weight:700" class="warm-text" id="pxDevices">—</div><div class="k mono" style="font-size:.56rem;letter-spacing:.18em;color:var(--faint)">RADIOS SENSED</div></div>
+      </div>
+      <div class="metric-grid mt-2" style="grid-template-columns:repeat(3,1fr)">
+        <div class="metric"><div class="k">NEAR &lt;-60dBm</div><div class="bar"><i id="pxNear"></i></div></div>
+        <div class="metric"><div class="k">MID</div><div class="bar"><i id="pxMid"></i></div></div>
+        <div class="metric"><div class="k">FAR &gt;-80dBm</div><div class="bar"><i id="pxFar"></i></div></div>
+      </div>
+      <p class="mono mt-1" style="font-size:.62rem;color:var(--faint)">strongest signal <span id="pxBest" class="orange">—</span></p>
     </div>
   </div>
   <div>
-    <h3>Connect a real node</h3>
-    <p class="mt-1">RuView runs on an Ionity edge node (ESP32 / router CSI) that streams JSON over WebSocket or HTTP. Paste a reachable node endpoint and this panel goes live — genuinely.</p>
-    <form id="rvForm" class="mt-2">
-      <div class="field"><label for="rvEndpoint">RuView bridge endpoint</label>
-      <input id="rvEndpoint" type="text" placeholder="wss://node.local:8787  or  https://…/ruview.json" autocomplete="off"></div>
-      <button class="btn btn-ghost" type="submit">Connect live <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    <h3>Count the room — from <span class="warm-text">radio</span>, not cameras</h3>
+    <p class="mt-1">Tap scan and Ionity reads the <strong>real RSSI</strong> of Bluetooth-LE advertisements around you — counting unique radios, bucketing them by distance, and estimating people from near-range density. Same idea our Wi-Fi edge nodes run in the field.</p>
+    <div class="cta-row mt-2"><button class="btn btn-primary" id="pxStart">Start RSSI scan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+    <p class="note mt-2" id="pxNote">All processing is on-device; no signal data is uploaded. Live BLE scanning needs a Chromium browser with the Web&nbsp;Bluetooth scanning capability — or connect an Ionity edge node for real RSSI from hardware.</p>
+    <form id="pxForm" class="mt-2">
+      <div class="field"><label for="pxEndpoint">Ionity edge node (ESP32 RSSI sniffer)</label>
+      <input id="pxEndpoint" type="text" placeholder="wss://node.local:8787  or  https://…/rssi.json" autocomplete="off"></div>
+      <button class="btn btn-ghost" type="submit">Connect node <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </form>
-    <p class="note mt-2">Expected frame: <code>{ devices, presence, motion, rooms, ts }</code>. No endpoint? The honest default is “dark”. See <a href="about.html#aedi" style="color:var(--cyan)">AEDi &amp; hardware</a>.</p>
+  </div>
+</div>
+</section>
+
+<!-- ACT 6b ── DEVICE-AS-SENSOR-NODE (real) ─────────────── -->
+<section class="wrap" id="sensor" data-act="Sensor Node">
+  <div class="section-head reveal">
+    <span class="kicker">06 · Edge sensing</span>
+    <h2>Turn this device into an <span class="grad-text">Ionity node</span>.</h2>
+    <p>Motion, tilt, compass, ambient light and live sound — read straight from your device's real sensors. A working taste of the edge nodes we deploy in the field.</p>
+  </div>
+  
+<div class="feature split reveal">
+  <div>
+    <h3>Your browser, as an <span class="grad-text">edge sensor node</span></h3>
+    <p class="mt-1">This is what an Ionity node does in the field — now in your hand. Tap to wake the real sensors on <em>this</em> device: motion, tilt &amp; compass, ambient light, and a live microphone sound meter. Readings are live and stay on-device.</p>
+    <div class="cta-row mt-2"><button class="btn btn-warm" id="snStart">Activate sensors <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+    <p class="note mt-2">On a phone you'll feel it: tilt the device and watch the horizon. Desktop exposes fewer sensors — that honesty is the point. Permissions are asked on tap.</p>
+  </div>
+  <div class="hud">
+    <div class="hud-head"><span class="t">edge node · this device</span><span class="pill live"><span class="dot"></span> <span id="snStatus" data-kind="idle">DORMANT</span></span></div>
+    <div class="sn-level"><div class="sn-horizon" id="snHorizon"></div><span class="sn-bubble" id="snBubble"></span></div>
+    <div class="metric-grid mt-2">
+      <div class="metric"><div class="k">TILT β/γ</div><div class="v live" id="snTilt">—</div></div>
+      <div class="metric"><div class="k">COMPASS</div><div class="v live" id="snHeading">—</div></div>
+      <div class="metric"><div class="k">ACCEL</div><div class="v" id="snAccel">—</div><div class="bar"><i id="snAccelBar"></i></div></div>
+      <div class="metric"><div class="k">SOUND</div><div class="v" id="snSound">—</div><div class="bar"><i id="snSoundBar"></i></div></div>
+      <div class="metric"><div class="k">AMBIENT LIGHT</div><div class="v" id="snLight">—</div></div>
+    </div>
   </div>
 </div>
 </section>
@@ -246,7 +283,7 @@
 <section class="wrap" id="aedi" data-act="AEDi">
   <div class="feature split">
     <div class="reveal">
-      <span class="kicker">06 · Our intelligence</span>
+      <span class="kicker">07 · Our intelligence</span>
       <h2 class="mt-1">AEDi.</h2>
       <p class="lead mt-1">Antwerp Ecosystem Designs Ionity — also read as <em>Automated Ecosystems Designs Intelligence</em>. AEDi is the in-house AI fabric we build on and with: orchestrating agents, MCP and data so that what we ship for you is genuinely native, not glued together.</p>
       <p class="mt-1">We use Claude, and we enjoy it — pairing frontier models with our own systems and hardware to deliver custom anything, B2B.</p>
@@ -262,7 +299,7 @@
 <!-- ACT 8 ── FOUNDER ───────────────────────────────────── -->
 <section class="wrap" id="founder" data-act="Founder">
   <div class="center reveal" style="max-width:60ch;margin-inline:auto">
-    <span class="kicker" style="justify-content:center">07 · Behind it</span>
+    <span class="kicker" style="justify-content:center">08 · Behind it</span>
     <h2 class="mt-1">Founder-led, evidence-driven.</h2>
     <p class="lead mt-1">Ionity Global is directed and founded by Johan Wilhelm van Antwerp. The work — and the receipts — are public.</p>
     <div class="flex gap wrapf aic mt-2" style="justify-content:center">
@@ -276,7 +313,7 @@
 <!-- ACT 9 ── CTA ──────────────────────────────────────── -->
 <section class="wrap" id="cta" data-act="Begin">
   <div class="feature center reveal">
-    <span class="kicker" style="justify-content:center">08 · Your move</span>
+    <span class="kicker" style="justify-content:center">09 · Your move</span>
     <h2 class="mt-1">Let's build something <span class="grad-text">unlike anything</span>.</h2>
     <p class="lead mt-1" style="margin-inline:auto;max-width:48ch">Audit, integration, a custom AI system, or hardware that thinks — tell us the problem and we'll bring the whole stack.</p>
     <div class="cta-row" style="justify-content:center;margin-top:1.6rem">
@@ -290,8 +327,9 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="brand" href="index.html"><img class="mark" src="assets/img/icon.svg" alt="" width="30" height="30"><b>IONITY<span>.</span></b></a>
+        <a class="brand" href="index.html"><img class="wm" src="assets/img/wordmark.png" alt="Ionity Global" height="34"></a>
         <p class="blurb">Ionity Global (Pty) Ltd — a Native-AI company building AIoT, Cloud & Edge systems and running evidence-first audits across mechanical, electrical and IT. Grown from Antwerp Designs (2018).</p>
+        <p class="blurb mono" style="font-size:.66rem;margin-top:.8rem">Centurion, South Africa · <a href="tel:+27646999877" style="color:var(--cyan)">+27 64 699 9877</a> · <a href="mailto:ai@ionity.today" style="color:var(--cyan)">ai@ionity.today</a></p>
         <div class="socials">
           <a href="https://www.linkedin.com/in/ionity" target="_blank" rel="noopener me" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.3c0-1.26-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21H9z"/></svg></a>
           <a href="https://github.com/Ionity-Global" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.46-1.11-1.46-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85l-.01 2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg></a>
@@ -349,6 +387,7 @@
 <script src="assets/js/cookies.js" defer></script>
 <script src="assets/js/core.js" defer></script>
 <script src="assets/js/edge-diagnostics.js" defer></script>
-<script src="assets/js/ruview.js" defer></script>
+<script src="assets/js/proximity.js" defer></script>
+<script src="assets/js/sensor-node.js" defer></script>
 </body>
 </html>

@@ -20,9 +20,11 @@ Policy: 986 AED
 - [Hardware & Firmware](https://www.ionity.today/services.html#hardware): PCB, ESP32, firmware, mechatronics, edge nodes.
 - [Custom B2B Systems](https://www.ionity.today/services.html#twins): bespoke dashboards, integrations, internal tools.
 
-## Signature
-- [Edge Micro-Audit](https://www.ionity.today/edge.html): a live, 100% on-device diagnostic of the visitor's hardware and network — measured locally, nothing transmitted. A real demonstration of Ionity's audit + edge capability (no simulation).
-- RuView: Wi-Fi (CSI) presence/motion sensing without cameras; the site connects to real RuView edge nodes only.
+## Signature (live, on-device, real — no simulation)
+- [Edge Micro-Audit](https://www.ionity.today/edge.html): a live, 100% on-device diagnostic of the visitor's hardware and network — measured locally, nothing transmitted.
+- RSSI Proximity: reads real Bluetooth-LE advertisement RSSI to count nearby radios and estimate people nearby (Web Bluetooth scanning, with permission), or connects to a real Ionity ESP32 edge node. No fabricated counts.
+- Edge Sensor Node: turns the visitor's own browser into a live sensor node — real accelerometer, gyro/tilt/compass, ambient light and microphone sound-level readings.
+- Wi-Fi (CSI) sensing (RuView / Ionify) is an Ionity hardware product line referenced under AIoT & Edge.
 
 ## Key pages
 - [Home](https://www.ionity.today/)

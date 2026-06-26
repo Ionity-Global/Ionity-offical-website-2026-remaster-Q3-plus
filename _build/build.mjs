@@ -47,6 +47,8 @@ const indexJsonld = {
   email: SITE.email, slogan: SITE.tagline,
   description: SITE.desc,
   foundingDate: '2018',
+  telephone: SITE.phone,
+  address: { '@type': 'PostalAddress', addressLocality: 'Centurion', addressCountry: 'ZA' },
   founder: { '@type': 'Person', name: SITE.founder, sameAs: [SITE.linkedin, SITE.gravatar] },
   sameAs: [SITE.linkedin, SITE.github, SITE.gravatar],
   knowsAbout: ['Native AI', 'AIoT', 'Edge computing', 'Cloud', 'Model Context Protocol', 'Digital twins', 'Website audit', 'Digital forensics', 'Wi-Fi sensing'],
@@ -64,12 +66,13 @@ const index = page(
     <div class="ring r3"><span class="sat"></span></div>
   </div>
   <div class="inner">
-    <span class="pill"><span class="dot"></span> Native-AI company · since 2018</span>
+    <img class="hero-wm" src="assets/img/wordmark.png" alt="Ionity Global" width="520">
+    <span class="pill"><span class="dot"></span> Native-AI company · ${SITE.location} · since 2018</span>
     <h1>We build systems that <span class="grad-text">think at the edge</span>.</h1>
     <p class="lead">Ionity Global engineers Native-AI, AIoT, Cloud &amp; Edge — and runs evidence-first audits that cut cost and prove return. Software, hardware, forensics. One team of solutionists.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="#capabilities">Explore the build ${ICON.arrow}</a>
-      <a class="btn btn-ghost" href="#edge">Run a live edge scan</a>
+      <a class="btn btn-warm" href="#edge">Run a live edge scan</a>
     </div>
     <div class="hero-stats">
       <div><div class="n grad-text">2018</div><div class="l">Roots · Antwerp Designs</div></div>
@@ -145,21 +148,31 @@ const index = page(
   ${edgeBlock()}
 </section>
 
-<!-- ACT 6 ── RUVIEW LIVE ───────────────────────────────── -->
-<section class="wrap" id="ruview" data-act="RuView">
+<!-- ACT 6 ── RSSI PROXIMITY (real) ─────────────────────── -->
+<section class="wrap" id="proximity" data-act="Proximity">
   <div class="section-head reveal">
-    <span class="kicker">05 · Wi-Fi sensing</span>
-    <h2>RuView — presence from <span class="grad-text">radio, not cameras</span>.</h2>
-    <p>RuView turns commodity Wi-Fi (CSI) into presence, motion and device sensing — privately, without a single pixel of video. A browser can't do that alone, so this panel streams <strong>real</strong> data from a RuView edge node, or honestly stays dark until one is connected.</p>
+    <span class="kicker">05 · RSSI proximity</span>
+    <h2>How many are <span class="warm-text">nearby</span>? Ask the radio.</h2>
+    <p>Real RSSI from the Bluetooth-LE advertisements around you — counted, distance-bucketed, and turned into a people-nearby estimate, live in your browser. No camera, no upload, no simulation.</p>
   </div>
-  ${ruviewBlock()}
+  ${proximityBlock()}
+</section>
+
+<!-- ACT 6b ── DEVICE-AS-SENSOR-NODE (real) ─────────────── -->
+<section class="wrap" id="sensor" data-act="Sensor Node">
+  <div class="section-head reveal">
+    <span class="kicker">06 · Edge sensing</span>
+    <h2>Turn this device into an <span class="grad-text">Ionity node</span>.</h2>
+    <p>Motion, tilt, compass, ambient light and live sound — read straight from your device's real sensors. A working taste of the edge nodes we deploy in the field.</p>
+  </div>
+  ${sensorBlock()}
 </section>
 
 <!-- ACT 7 ── AEDi ──────────────────────────────────────── -->
 <section class="wrap" id="aedi" data-act="AEDi">
   <div class="feature split">
     <div class="reveal">
-      <span class="kicker">06 · Our intelligence</span>
+      <span class="kicker">07 · Our intelligence</span>
       <h2 class="mt-1">AEDi.</h2>
       <p class="lead mt-1">Antwerp Ecosystem Designs Ionity — also read as <em>Automated Ecosystems Designs Intelligence</em>. AEDi is the in-house AI fabric we build on and with: orchestrating agents, MCP and data so that what we ship for you is genuinely native, not glued together.</p>
       <p class="mt-1">We use Claude, and we enjoy it — pairing frontier models with our own systems and hardware to deliver custom anything, B2B.</p>
@@ -175,7 +188,7 @@ const index = page(
 <!-- ACT 8 ── FOUNDER ───────────────────────────────────── -->
 <section class="wrap" id="founder" data-act="Founder">
   <div class="center reveal" style="max-width:60ch;margin-inline:auto">
-    <span class="kicker" style="justify-content:center">07 · Behind it</span>
+    <span class="kicker" style="justify-content:center">08 · Behind it</span>
     <h2 class="mt-1">Founder-led, evidence-driven.</h2>
     <p class="lead mt-1">Ionity Global is directed and founded by ${SITE.founder}. The work — and the receipts — are public.</p>
     <div class="flex gap wrapf aic mt-2" style="justify-content:center">
@@ -189,7 +202,7 @@ const index = page(
 <!-- ACT 9 ── CTA ──────────────────────────────────────── -->
 <section class="wrap" id="cta" data-act="Begin">
   <div class="feature center reveal">
-    <span class="kicker" style="justify-content:center">08 · Your move</span>
+    <span class="kicker" style="justify-content:center">09 · Your move</span>
     <h2 class="mt-1">Let's build something <span class="grad-text">unlike anything</span>.</h2>
     <p class="lead mt-1" style="margin-inline:auto;max-width:48ch">Audit, integration, a custom AI system, or hardware that thinks — tell us the problem and we'll bring the whole stack.</p>
     <div class="cta-row" style="justify-content:center;margin-top:1.6rem">
@@ -222,29 +235,60 @@ function edgeBlock() {
 </div>`;
 }
 
-function ruviewBlock() {
+function proximityBlock() {
   return `
-<div class="feature split reveal">
+<div class="feature split reveal" data-endpoint="">
   <div class="hud">
-    <div class="hud-head"><span class="t">ruview · live edge node</span><span class="pill"><span class="dot" style="background:var(--warn);box-shadow:0 0 10px var(--warn)"></span> <span id="rvStatus" data-kind="idle">NO EDGE NODE</span></span></div>
+    <div class="hud-head"><span class="t">ionity · rssi proximity</span><span class="pill live"><span class="dot"></span> <span id="pxStatus" data-kind="idle">READY</span></span></div>
     <div class="center">
-      <div class="radar" id="rvSweep" style="opacity:.25"><div class="sweep"></div>
+      <div class="radar" id="pxSweep" style="opacity:.25"><div class="sweep"></div>
         <svg viewBox="0 0 100 100" fill="none" stroke="rgba(120,170,255,.25)"><circle cx="50" cy="50" r="48"/><circle cx="50" cy="50" r="32"/><circle cx="50" cy="50" r="16"/><line x1="50" y1="2" x2="50" y2="98"/><line x1="2" y1="50" x2="98" y2="50"/></svg>
       </div>
-      <div style="font-family:var(--f-display);font-size:3.6rem;font-weight:700" class="grad-text" id="rvCount">—</div>
-      <div class="k mono" style="font-size:.6rem;letter-spacing:.2em;color:var(--faint)">DEVICES SENSED</div>
-      <p class="note mt-2" id="rvSub" style="text-align:left">No RuView node connected. This panel shows <strong>real</strong> sensing only — it will not invent a number.</p>
+      <div class="flex gap aic" style="justify-content:center;gap:2.5rem">
+        <div><div style="font-family:var(--f-display);font-size:3rem;font-weight:700" class="grad-text" id="pxPeople">—</div><div class="k mono" style="font-size:.56rem;letter-spacing:.18em;color:var(--faint)">PEOPLE NEARBY (est.)</div></div>
+        <div><div style="font-family:var(--f-display);font-size:3rem;font-weight:700" class="warm-text" id="pxDevices">—</div><div class="k mono" style="font-size:.56rem;letter-spacing:.18em;color:var(--faint)">RADIOS SENSED</div></div>
+      </div>
+      <div class="metric-grid mt-2" style="grid-template-columns:repeat(3,1fr)">
+        <div class="metric"><div class="k">NEAR &lt;-60dBm</div><div class="bar"><i id="pxNear"></i></div></div>
+        <div class="metric"><div class="k">MID</div><div class="bar"><i id="pxMid"></i></div></div>
+        <div class="metric"><div class="k">FAR &gt;-80dBm</div><div class="bar"><i id="pxFar"></i></div></div>
+      </div>
+      <p class="mono mt-1" style="font-size:.62rem;color:var(--faint)">strongest signal <span id="pxBest" class="orange">—</span></p>
     </div>
   </div>
   <div>
-    <h3>Connect a real node</h3>
-    <p class="mt-1">RuView runs on an Ionity edge node (ESP32 / router CSI) that streams JSON over WebSocket or HTTP. Paste a reachable node endpoint and this panel goes live — genuinely.</p>
-    <form id="rvForm" class="mt-2">
-      <div class="field"><label for="rvEndpoint">RuView bridge endpoint</label>
-      <input id="rvEndpoint" type="text" placeholder="wss://node.local:8787  or  https://…/ruview.json" autocomplete="off"></div>
-      <button class="btn btn-ghost" type="submit">Connect live ${ICON.arrow}</button>
+    <h3>Count the room — from <span class="warm-text">radio</span>, not cameras</h3>
+    <p class="mt-1">Tap scan and Ionity reads the <strong>real RSSI</strong> of Bluetooth-LE advertisements around you — counting unique radios, bucketing them by distance, and estimating people from near-range density. Same idea our Wi-Fi edge nodes run in the field.</p>
+    <div class="cta-row mt-2"><button class="btn btn-primary" id="pxStart">Start RSSI scan ${ICON.arrow}</button></div>
+    <p class="note mt-2" id="pxNote">All processing is on-device; no signal data is uploaded. Live BLE scanning needs a Chromium browser with the Web&nbsp;Bluetooth scanning capability — or connect an Ionity edge node for real RSSI from hardware.</p>
+    <form id="pxForm" class="mt-2">
+      <div class="field"><label for="pxEndpoint">Ionity edge node (ESP32 RSSI sniffer)</label>
+      <input id="pxEndpoint" type="text" placeholder="wss://node.local:8787  or  https://…/rssi.json" autocomplete="off"></div>
+      <button class="btn btn-ghost" type="submit">Connect node ${ICON.arrow}</button>
     </form>
-    <p class="note mt-2">Expected frame: <code>{ devices, presence, motion, rooms, ts }</code>. No endpoint? The honest default is “dark”. See <a href="about.html#aedi" style="color:var(--cyan)">AEDi &amp; hardware</a>.</p>
+  </div>
+</div>`;
+}
+
+function sensorBlock() {
+  return `
+<div class="feature split reveal">
+  <div>
+    <h3>Your browser, as an <span class="grad-text">edge sensor node</span></h3>
+    <p class="mt-1">This is what an Ionity node does in the field — now in your hand. Tap to wake the real sensors on <em>this</em> device: motion, tilt &amp; compass, ambient light, and a live microphone sound meter. Readings are live and stay on-device.</p>
+    <div class="cta-row mt-2"><button class="btn btn-warm" id="snStart">Activate sensors ${ICON.arrow}</button></div>
+    <p class="note mt-2">On a phone you'll feel it: tilt the device and watch the horizon. Desktop exposes fewer sensors — that honesty is the point. Permissions are asked on tap.</p>
+  </div>
+  <div class="hud">
+    <div class="hud-head"><span class="t">edge node · this device</span><span class="pill live"><span class="dot"></span> <span id="snStatus" data-kind="idle">DORMANT</span></span></div>
+    <div class="sn-level"><div class="sn-horizon" id="snHorizon"></div><span class="sn-bubble" id="snBubble"></span></div>
+    <div class="metric-grid mt-2">
+      <div class="metric"><div class="k">TILT β/γ</div><div class="v live" id="snTilt">—</div></div>
+      <div class="metric"><div class="k">COMPASS</div><div class="v live" id="snHeading">—</div></div>
+      <div class="metric"><div class="k">ACCEL</div><div class="v" id="snAccel">—</div><div class="bar"><i id="snAccelBar"></i></div></div>
+      <div class="metric"><div class="k">SOUND</div><div class="v" id="snSound">—</div><div class="bar"><i id="snSoundBar"></i></div></div>
+      <div class="metric"><div class="k">AMBIENT LIGHT</div><div class="v" id="snLight">—</div></div>
+    </div>
   </div>
 </div>`;
 }
@@ -252,4 +296,4 @@ function ruviewBlock() {
 write('index.html', index);
 
 /* ================================================================ build others === */
-import('./pages.mjs').then(m => m.buildPages({ OUT, page, SITE, ICON, SERVICES, serviceCard, edgeBlock, ruviewBlock, write })).catch(e => { console.error(e); process.exit(1); });
+import('./pages.mjs').then(m => m.buildPages({ OUT, page, SITE, ICON, SERVICES, serviceCard, edgeBlock, proximityBlock, sensorBlock, write })).catch(e => { console.error(e); process.exit(1); });

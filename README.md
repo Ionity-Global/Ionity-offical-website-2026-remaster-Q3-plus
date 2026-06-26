@@ -21,9 +21,11 @@ A ground-up remaster of the Ionity Global website — rebuilt as an **immersive,
 
 | | |
 |---|---|
-| **Immersive adventure** | A scroll journey of 9 "acts" with a side rail, progress bar, parallax orbital field and reveal choreography. |
-| **🛰️ Edge Micro-Audit** (signature) | A live, **100% on-device** diagnostic of *your* hardware & network — real GPU/renderer, CPU threads, memory, a compute benchmark, display refresh measured from frame timing, **measured** network RTT + throughput, battery, storage. **No simulation. Nothing is transmitted.** It's a 20-second taste of how Ionity audits infrastructure. |
-| **📡 RuView connector** | Wi-Fi (CSI) presence sensing is hardware-bound, so the panel streams **real** data from a connected RuView edge node — or stays honestly dark. It never fabricates a count. |
+| **Real brand** | Official **IONITY GLOBAL** wordmark (blue `#0079E3` + orange `#FF9500`) and the **AI** monogram as the app/PWA icon, pulled from the brand assets — with cyan + red as live/forensic accents. |
+| **Immersive adventure** | A 10-act scroll journey (Enter → Native-AI → Capabilities → Audit → Edge Scan → Proximity → Sensor Node → AEDi → Founder → Begin) with a side rail, progress bar, parallax orbital field and reveal choreography. |
+| **🛰️ Edge Micro-Audit** (signature) | A live, **100% on-device** diagnostic of *your* hardware & network — real GPU/renderer, CPU threads, memory, a compute benchmark, display refresh measured from frame timing, **measured** network RTT + throughput, battery, storage. **No simulation. Nothing is transmitted.** |
+| **📡 RSSI Proximity** (signature) | Reads the **real RSSI** of Bluetooth-LE advertisements around you to count nearby radios and **estimate people nearby** — distance-bucketed, on-device, no upload. Falls back honestly when the browser can't scan, and can connect to a real Ionity ESP32 edge node for hardware-grade RSSI. Never fabricates a count. |
+| **🛰️ Edge Sensor Node** (signature) | Turns *your* browser into a live edge node: real accelerometer, gyro/tilt/compass, ambient light and microphone sound-level — visualised live. The field-sensing pitch, demonstrated in your hand. |
 | **🎛️ 8-bit industrial soundscape** | A soft procedural machine-room drone + chiptune UI blips, **synthesised live** with the Web Audio API (zero audio files). Off by default; toggle in the nav. |
 | **🍪 Real consent** | Granular, opt-in cookie manager (necessary / preferences / analytics / marketing) with a durable `ionity_consent` cookie and a `ionity:consent` event for gating. |
 | **🔎 SEO + AEO** | Canononical URLs, Open Graph/Twitter, JSON-LD (Organization, Breadcrumb, ContactPage), `sitemap.xml`, AI-welcoming `robots.txt`, `llms.txt`, `humans.txt`, `security.txt`, PWA manifest + maskable icons. |
@@ -37,11 +39,11 @@ Published files live at the **repo root** (so GitHub Pages serves them directly 
 /                      ← published static site (served by Pages)
   index.html           ← immersive adventure home
   services.html        ← six disciplines, expanded & de-bulked
-  edge.html            ← the live Edge Micro-Audit
+  edge.html            ← Edge Micro-Audit + RSSI Proximity + Sensor Node
   about.html           ← Antwerp Designs → Ionity, AEDi, founder
   contact.html  privacy.html  terms.html  404.html
   assets/css/ionity.css     ← single design system
-  assets/js/*.js            ← core · audio · cookies · edge-diagnostics · ruview
+  assets/js/*.js            ← core · audio · cookies · edge-diagnostics · proximity · sensor-node
   assets/img · assets/og · assets/video
   manifest.json robots.txt sitemap.xml llms.txt humans.txt security.txt CNAME
 _build/                ← page generator (node, run on your machine)
@@ -67,15 +69,19 @@ Editing content? Change `_build/layout.mjs` (head/nav/footer — one source of t
 2. Custom domain is set via `CNAME` → `www.ionity.today`.
 3. `.nojekyll` is present so `_build/` and dotfiles are served as-is.
 
-## 🔌 Going live with RuView
+## 🔌 RSSI Proximity — how it stays real
 
-Point the panel at a real node: set a global before the scripts, or paste an endpoint in the UI.
+The proximity panel has three honest sources, in order:
 
-```html
-<script>window.IONITY_RUVIEW_ENDPOINT = "wss://your-node.local:8787";</script>
-```
+1. **Web Bluetooth LE scanning** — `navigator.bluetooth.requestLEScan` reads the real `rssi` of every BLE advertisement nearby (Chromium with the *Web Bluetooth scanning* capability, on user permission).
+2. **Ionity edge node** — an ESP32 Wi-Fi-promiscuous sniffer streaming real RSSI. Set a global or paste an endpoint in the UI:
+   ```html
+   <script>window.IONITY_RSSI_ENDPOINT = "wss://your-node.local:8787";</script>
+   ```
+   Frame: `{ "devices": [{ "id": "..", "rssi": -57 }, …], "people": <int?>, "ts": <ms> }`.
+3. **Nothing available** → the panel says so. It never invents a number.
 
-The bridge should emit JSON frames: `{ "devices": <int>, "presence": 0..1, "motion": 0..1, "rooms": <int>, "ts": <ms> }`.
+The **Sensor Node** panel reads real device sensors (motion, orientation/compass, `AmbientLightSensor`, mic level via `getUserMedia`) — all on-device, permission-gated.
 
 ---
 

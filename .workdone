@@ -106,6 +106,34 @@ Built : 2026-06-26   ·   Native-AI, with Claude in the loop
 - Cookie accept writes consent + hides banner; persists on reload.
 - Generator re-runs cleanly in repo layout.
 
+==================================================================
+v2 — REVISION after founder feedback (real brand + real RSSI + more)
+==================================================================
+Feedback addressed:
+1) REAL LOGO + COLORS. Pulled the official brand from Google Drive (.ionity docs/.assets):
+   - Ionity_Global_Pty_LTD_Transparrent.png → site wordmark (assets/img/wordmark.png),
+     used in nav, footer, and as the hero centrepiece.
+   - Ai-ionity.png ("AI" monogram in the Ionity double-line font) → favicon + PWA icons.
+   - Sampled exact brand colors from the logo: BLUE #0079E3 + ORANGE #FF9500.
+     Rebuilt the palette around them (+ cyan #00D2FF glow, red #FF2828 for live/forensic).
+   - Replaced my earlier invented mark/colors entirely. Real facts added from the
+     Drive license doc: Centurion, South Africa · +27 64 699 9877 · AED 986.
+2) RSSI PROXIMITY (replaces RuView). assets/js/proximity.js — REAL, no simulation:
+   Web Bluetooth LE scanning reads real advertisement RSSI → counts nearby radios,
+   buckets by distance (near/mid/far), estimates PEOPLE NEARBY from near-range density.
+   Honest fallback when the browser can't scan; optional Ionity ESP32 edge-node endpoint
+   for hardware-grade RSSI. Verified: honest "BLE SCAN UNSUPPORTED" state in browsers
+   without the capability — never a fabricated count.
+3) ANOTHER REMARKABLE FEATURE. assets/js/sensor-node.js — "your browser is an Ionity
+   edge node": live REAL sensors — accelerometer, gyro/tilt/compass, ambient light,
+   microphone sound level — visualised with a live horizon/level. On-brand AIoT sensing.
+4) Adventure is now 10 acts: Enter · Native-AI · Capabilities · Audit · Edge Scan ·
+   Proximity · Sensor Node · AEDi · Founder · Begin.
+Verified (v2): brand tokens render (#0079E3/#FF9500), official wordmark renders in hero,
+proximity + sensor sections laid out, edge scan still real. NOTE: the live screenshot
+tool was environmentally stuck this session (even a blank page timed out), so visual
+verification was done via DOM + computed-style introspection rather than image capture.
+
 ASSETS NOTE
 -----------
 Curated from legacy (logos/social icons), dropped bloat (7 MB eagle SVG, dup

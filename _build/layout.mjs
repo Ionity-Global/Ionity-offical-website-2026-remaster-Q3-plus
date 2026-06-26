@@ -11,6 +11,9 @@ export const SITE = {
   tagline: 'Native-AI engineering, AIoT & evidence-first audits.',
   desc: 'Ionity Global is a Native-AI company. We build AIoT, Cloud & Edge systems, custom MCP, dashboards and digital twins — and run evidence-first audits & forensics that cut cost and prove return. Solutionists across mechanical, electrical and IT.',
   email: 'ai@ionity.today',
+  phone: '+27 64 699 9877',
+  phoneHref: '+27646999877',
+  location: 'Centurion, South Africa',
   policy: 'Policy 986 AED',
   founder: 'Johan Wilhelm van Antwerp',
   linkedin: 'https://www.linkedin.com/in/ionity',
@@ -30,8 +33,7 @@ const navHtml = (active) => `
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav" id="nav">
   <a class="brand" href="index.html" aria-label="Ionity Global home">
-    <img class="mark" src="assets/img/icon.svg" alt="" width="34" height="34">
-    <b>IONITY<span>.</span></b>
+    <img class="wm" src="assets/img/wordmark.png" alt="Ionity Global" height="30">
   </a>
   <nav class="nav-links" id="navLinks" aria-label="Primary">
     ${NAV.map(([h, l]) => `<a href="${h}"${h === active ? ' aria-current="page"' : ''}>${l}</a>`).join('\n    ')}
@@ -80,8 +82,8 @@ export function head(page) {
 <meta name="twitter:description" content="${desc}">
 <meta name="twitter:image" content="${SITE.origin}/assets/og/social-card.png">
 <!-- Icons / PWA -->
-<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="assets/img/favicon.ico" sizes="any">
+<link rel="icon" href="assets/img/favicon-64.png" type="image/png" sizes="64x64">
+<link rel="icon" href="assets/img/icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="manifest" href="manifest.json">
 <!-- Fonts (no cookies set; degrades to system) -->
@@ -94,7 +96,7 @@ export function head(page) {
 <div class="bg-field" aria-hidden="true"></div>
 <div class="bg-grid" aria-hidden="true"></div>
 <div class="progress-top" id="progressTop"></div>
-<div class="loader" id="loader" aria-hidden="true"><img class="mark" src="assets/img/icon.svg" alt="" width="64" height="64"><span class="lbl">Initialising edge…</span></div>
+<div class="loader" id="loader" aria-hidden="true"><img class="mark" src="assets/img/ai-mark-white.png" alt="" width="72" height="72"><span class="lbl">Initialising edge…</span></div>
 ${navHtml(page.path)}
 <main id="main">`;
 }
@@ -112,8 +114,9 @@ export function footer() {
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="brand" href="index.html"><img class="mark" src="assets/img/icon.svg" alt="" width="30" height="30"><b>IONITY<span>.</span></b></a>
+        <a class="brand" href="index.html"><img class="wm" src="assets/img/wordmark.png" alt="Ionity Global" height="34"></a>
         <p class="blurb">${SITE.legal} — a Native-AI company building AIoT, Cloud & Edge systems and running evidence-first audits across mechanical, electrical and IT. Grown from Antwerp Designs (2018).</p>
+        <p class="blurb mono" style="font-size:.66rem;margin-top:.8rem">${SITE.location} · <a href="tel:${SITE.phoneHref}" style="color:var(--cyan)">${SITE.phone}</a> · <a href="mailto:${SITE.email}" style="color:var(--cyan)">${SITE.email}</a></p>
         <div class="socials">
           <a href="${SITE.linkedin}" target="_blank" rel="noopener me" aria-label="LinkedIn">${socialSvg.linkedin}</a>
           <a href="${SITE.github}" target="_blank" rel="noopener" aria-label="GitHub">${socialSvg.github}</a>
@@ -158,7 +161,8 @@ ${cookieHtml()}
 <script src="assets/js/cookies.js" defer></script>
 <script src="assets/js/core.js" defer></script>
 <script src="assets/js/edge-diagnostics.js" defer></script>
-<script src="assets/js/ruview.js" defer></script>
+<script src="assets/js/proximity.js" defer></script>
+<script src="assets/js/sensor-node.js" defer></script>
 </body>
 </html>`;
 }
