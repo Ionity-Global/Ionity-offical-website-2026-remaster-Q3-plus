@@ -2,7 +2,7 @@
   Director & Founder: Johan Wilhelm van Antwerp
   LinkedIn: in/ionity
   Gravatar: antwerpdesigns
-  Site: https://www.ionity.today
+  Site: https://ionity.co.za
   Contact: ai@ionity.today
 
 /* COMPANY */

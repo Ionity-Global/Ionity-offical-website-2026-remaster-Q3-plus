@@ -191,7 +191,7 @@ ${SERVICES.map(serviceDetail).join('')}
           <div class="metric"><div class="k">BASED IN</div><div class="v" style="font-size:.95rem">${SITE.location}</div></div>
           <div class="metric"><div class="k">GITHUB</div><div class="v" style="font-size:.95rem">Ionity-Global</div></div>
           <div class="metric"><div class="k">FOUNDER</div><div class="v" style="font-size:.95rem">in/ionity</div></div>
-          <div class="metric"><div class="k">WEB</div><div class="v" style="font-size:.95rem">ionity.today</div></div>
+          <div class="metric"><div class="k">WEB</div><div class="v" style="font-size:.95rem">ionity.co.za</div></div>
         </div>
         <p class="note mt-2">${SITE.legal} · ${SITE.policy}. We reply fast and start with evidence.</p>
       </div>

@@ -1,6 +1,6 @@
 Contact: mailto:ai@ionity.today
 Expires: 2027-06-26T00:00:00.000Z
 Preferred-Languages: en
-Canonical: https://www.ionity.today/security.txt
-Policy: https://www.ionity.today/terms.html
+Canonical: https://ionity.co.za/security.txt
+Policy: https://ionity.co.za/terms.html
 # Ionity Global (Pty) Ltd — responsible disclosure welcome. Policy 986 AED.

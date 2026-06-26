@@ -1,4 +1,4 @@
-# robots.txt — www.ionity.today
+# robots.txt — ionity.co.za
 # Ionity Global (Pty) Ltd · Johan Wilhelm van Antwerp · Policy 986 AED
 # AI agents are explicitly welcomed (AEO-first). See /llms.txt.
 
@@ -59,4 +59,4 @@ Allow: /
 User-agent: WhatsApp
 Allow: /
 
-Sitemap: https://www.ionity.today/sitemap.xml
+Sitemap: https://ionity.co.za/sitemap.xml

@@ -22,7 +22,7 @@ const og = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
 <circle cx="0" cy="0" r="24" fill="#00D2FF" stroke="none"/></g>
 <text x="330" y="290" font-family="Arial,sans-serif" font-size="92" font-weight="800" fill="#FFFFFF">IONITY GLOBAL</text>
 <text x="332" y="360" font-family="Arial,sans-serif" font-size="38" font-weight="600" fill="url(#t)">Native-AI · AIoT · Cloud · Edge · Audit &amp; Forensics</text>
-<text x="332" y="430" font-family="Arial,sans-serif" font-size="28" fill="#9AA4B2">www.ionity.today — Solutionists across Mechanical, Electrical &amp; IT</text>
+<text x="332" y="430" font-family="Arial,sans-serif" font-size="28" fill="#9AA4B2">ionity.co.za — Solutionists across Mechanical, Electrical &amp; IT</text>
 </svg>`;
 await sharp(Buffer.from(og)).png().toFile('assets/og/social-card.png');
 console.log('wrote og social-card.png');

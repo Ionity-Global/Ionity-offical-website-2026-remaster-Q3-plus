@@ -7,7 +7,7 @@
 **Native-AI · AIoT · Cloud · Edge · Audit & Forensics**
 Solutionists across mechanical, electrical and IT.
 
-[www.ionity.today](https://www.ionity.today) · [LinkedIn](https://www.linkedin.com/in/ionity) · [Gravatar](https://gravatar.com/antwerpdesigns) · Policy 986 AED
+[ionity.co.za](https://ionity.co.za) · [LinkedIn](https://www.linkedin.com/in/ionity) · [Gravatar](https://gravatar.com/antwerpdesigns) · Policy 986 AED
 
 </div>
 
@@ -66,7 +66,7 @@ Editing content? Change `_build/layout.mjs` (head/nav/footer — one source of t
 ## 🚀 Deploy (GitHub Pages)
 
 1. Settings → Pages → Build and deployment → **Deploy from a branch** → `master` / `/ (root)`.
-2. Custom domain is set via `CNAME` → `www.ionity.today`.
+2. Custom domain is set via `CNAME` → `ionity.co.za`.
 3. `.nojekyll` is present so `_build/` and dotfiles are served as-is.
 
 ## 🔌 RSSI Proximity — how it stays real

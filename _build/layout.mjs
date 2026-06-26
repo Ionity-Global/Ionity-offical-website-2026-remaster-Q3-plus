@@ -7,7 +7,8 @@
 export const SITE = {
   name: 'Ionity Global',
   legal: 'Ionity Global (Pty) Ltd',
-  origin: 'https://www.ionity.today',
+  origin: 'https://ionity.co.za',
+  sister: 'https://www.ionity.today',   // related domain — cross-linked for SEO
   tagline: 'Native-AI engineering, AIoT & evidence-first audits.',
   desc: 'Ionity Global is a Native-AI company. We build AIoT, Cloud & Edge systems, custom MCP, dashboards and digital twins — and run evidence-first audits & forensics that cut cost and prove return. Solutionists across mechanical, electrical and IT.',
   email: 'ai@ionity.today',
@@ -152,6 +153,7 @@ export function footer() {
         <a href="about.html#founder">Founder</a>
         <a href="contact.html">Contact</a>
         <a href="${SITE.github}" target="_blank" rel="noopener">Open source</a>
+        <a href="${SITE.sister}" rel="me">ionity.today ↗</a>
       </div>
       <div>
         <h5>Trust</h5>
@@ -164,7 +166,7 @@ export function footer() {
     </div>
     <div class="foot-base">
       <p>© <span data-year>2026</span> ${SITE.legal}. All rights reserved. · ${SITE.policy}</p>
-      <p>Built Native-AI · <a href="${SITE.origin}/humans.txt">humans.txt</a> · ${SITE.origin.replace('https://','')}</p>
+      <p>Built Native-AI · <a href="${SITE.origin}/humans.txt">humans.txt</a> · ${SITE.origin.replace('https://','')} · also at <a href="${SITE.sister}" rel="me">ionity.today</a></p>
     </div>
   </div>
 </footer>

@@ -50,7 +50,7 @@ const indexJsonld = {
   telephone: SITE.phone,
   address: { '@type': 'PostalAddress', addressLocality: 'Centurion', addressCountry: 'ZA' },
   founder: { '@type': 'Person', name: SITE.founder, sameAs: [SITE.linkedin, SITE.gravatar] },
-  sameAs: [SITE.linkedin, SITE.github, SITE.gravatar],
+  sameAs: [SITE.sister, SITE.linkedin, SITE.github, SITE.gravatar],
   knowsAbout: ['Native AI', 'AIoT', 'Edge computing', 'Cloud', 'Model Context Protocol', 'Digital twins', 'Website audit', 'Digital forensics', 'Wi-Fi sensing'],
   areaServed: 'Worldwide',
 };
