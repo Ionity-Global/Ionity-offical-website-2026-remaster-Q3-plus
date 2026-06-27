@@ -759,34 +759,28 @@ html:not(.no3d) .bg-grid{ opacity:.32; }
   background:repeating-linear-gradient(0deg, rgba(255,255,255,.02) 0 1px, transparent 1px 3px); opacity:.5; }
 @media (prefers-reduced-motion:reduce){ .grain{ opacity:.035; } }
 
-/* ===== REALISTIC CRT TELEVISION FRAME (matte molded bezel, rounded tube) === */
+/* ===== REALISTIC OLD-TV FRAME — SOLID bezel fills the outer edges + corners,
+   the SCREEN (inner) is the rounded cut-out. The element IS the screen (inset by
+   the bezel); a huge box-shadow paints the bezel solid all the way to the
+   viewport corners (no transparent gaps), and inset shadows give tube curvature. */
 .crt-frame {
-  position:fixed; inset:0; z-index:2500; pointer-events:none; border-radius:46px;
+  position:fixed; inset:var(--crt-bezel); z-index:2500; pointer-events:none; border-radius:22px;
   box-shadow:
-    inset 0 0 0 2px rgba(0,0,0,.92),                           /* crisp screen rim */
-    inset 0 0 0 calc(var(--crt-bezel) - 4px) #15171c,           /* matte charcoal plastic bezel */
-    inset 0 0 7px calc(var(--crt-bezel) - 4px) rgba(0,0,0,.6),  /* soft inner shadow where bezel meets screen */
-    inset 0 0 0 var(--crt-bezel) #050507,                       /* dark outer lip */
-    inset 0 0 120px 42px rgba(0,0,0,.7),                        /* smooth screen vignette (tube curve) */
-    inset 0 0 320px rgba(0,0,0,.52);
+    inset 0 0 0 2px rgba(0,0,0,.95),                 /* crisp black screen rim */
+    inset 0 1px 0 2px rgba(255,255,255,.06),         /* faint top bevel highlight (molded plastic) */
+    inset 0 0 78px 10px rgba(0,0,0,.62),             /* screen vignette = curved tube */
+    inset 0 0 230px rgba(0,0,0,.45),
+    0 0 26px 4px rgba(0,0,0,.7),                      /* soft shadow where screen meets bezel */
+    0 0 0 6px #2a2e36,                                /* bezel inner highlight lip */
+    0 0 0 9px #0a0b0e,                                /* groove */
+    0 0 0 100vmax #15171c;                            /* SOLID bezel — fills every outer corner */
 }
-/* molded-plastic directional light: top of the bezel catches light, bottom in shadow */
-.crt-frame::before {
-  content:""; position:absolute; inset:0; border-radius:46px; pointer-events:none;
-  background:linear-gradient(180deg,
-    rgba(255,255,255,.06) 0, rgba(255,255,255,0) 3.6%,
-    rgba(0,0,0,0) 96.4%, rgba(0,0,0,.42) 100%);
-}
-/* subtle curved-glass glare on the screen */
+/* curved-glass glare on the screen (top-left) */
 .crt-frame::after {
-  content:""; position:absolute; inset:var(--crt-bezel); border-radius:28px; pointer-events:none;
-  background:radial-gradient(120% 65% at 32% -4%, rgba(255,255,255,.05), transparent 46%);
+  content:""; position:absolute; inset:0; border-radius:22px; pointer-events:none;
+  background:radial-gradient(125% 70% at 30% -6%, rgba(255,255,255,.06), transparent 48%);
 }
-@media (max-width:600px){
-  .crt-frame { border-radius:28px; }
-  .crt-frame::before { border-radius:28px; }
-  .crt-frame::after { border-radius:16px; }
-}
+@media (max-width:600px){ .crt-frame, .crt-frame::after { border-radius:16px; } }
 
 /* ===== CRT safe-area — everything sits INSIDE the screen, not under the bezel */
 @media (max-width:600px){ :root{ --crt-bezel:18px; } }
