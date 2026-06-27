@@ -612,7 +612,7 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 /* --------------------------------------------------------- COOKIE BANNER --- */
 .cookie {
   position:fixed; left:50%; bottom:20px; transform:translateX(-50%) translateY(160%);
-  width:min(100% - 2rem, 720px); z-index:1200; transition:transform .5s var(--ease-out);
+  width:min(100% - 2rem, 720px); z-index:2480; transition:transform .5s var(--ease-out);
   background:rgba(10,12,20,.96); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px);
   border:1px solid var(--line-strong); border-radius:var(--radius); padding:1.4rem; box-shadow:0 20px 60px rgba(0,0,0,.5);
 }
@@ -856,6 +856,20 @@ html:not(.no3d) .bg-grid{ opacity:.32; }
 .cookie { bottom:calc(var(--crt-bezel) + 10px); }
 .foot { padding-bottom:calc(var(--crt-bezel) + 1.5rem); }
 .skip:focus { top:calc(var(--crt-bezel) + 8px); left:calc(var(--crt-bezel) + 8px); }
+
+/* mobile: cookie consent is a full-width bottom sheet, clearly in front of the
+   corner trust-badges + chat FAB (which step aside while it's open) */
+@media (max-width:600px){
+  .cookie {
+    left:0; right:0; bottom:0; width:auto; transform:translateY(170%);
+    border-radius:var(--radius) var(--radius) 0 0;
+    padding:1.1rem 1.1rem calc(var(--crt-bezel) + 1.1rem);
+    max-height:86svh; overflow-y:auto;
+  }
+  .cookie.show { transform:translateY(0); }
+  .cookie.show ~ .trust-badges,
+  .cookie.show ~ .aedi-wrap { opacity:0; pointer-events:none; transition:opacity .25s; }
+}
 
 /* CRT static / pixelation overlay — transient: on load (resolve) + on scroll */
 .crt-fx {
