@@ -110,6 +110,7 @@
 
   // Load the COCO-SSD backbone. Resolves true on success, false otherwise.
   async function loadBackbone() {
+    if (vision.cocoModel) return true;        // already warmed (e.g. idle preload on landing)
     try {
       await loadScript(TFJS_URL);
       if (!window.tf) throw new Error('tf global missing');
@@ -358,6 +359,12 @@
 
   async function start() {
     if (running) return;
+    // Bring the camera box into view + focus it the instant activation is tapped.
+    try {
+      const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      stage.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+      setTimeout(() => { try { stage.focus({ preventScroll: true }); } catch (_) {} }, reduceMotion ? 0 : 320);
+    } catch (_) { try { stage.scrollIntoView(); } catch (_) {} }
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
       setStatus('UNSUPPORTED', 'bad');
       if (note) note.textContent = 'Your browser blocks camera access here (it needs a secure https context). The matrix view can\'t start.';
@@ -417,6 +424,35 @@
     else { lastT = 0; raf = requestAnimationFrame(draw); }
     // detectPass already bails when document.hidden — timer can keep ticking cheaply.
   });
+
+  /* Pre-warm the vision CDNs + COCO-SSD as the camera box approaches the
+     viewport, so tapping "Enable camera" is instant instead of a cold ~1MB
+     serial download. Fully optional + fault-tolerant: bails on save-data /
+     slow links, never blocks paint, and loadBackbone() is idempotent so the
+     click path reuses whatever this warmed. Worst case = today's behaviour. */
+  function warmVision() {
+    if (vision.started || vision.cocoModel) return;
+    const c = navigator.connection || {};
+    if (c.saveData || /(?:^|\b)(?:slow-2g|2g)$/.test(c.effectiveType || '')) return;
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return;
+    loadBackbone().then((ok) => {
+      if (!ok || !vision.cocoModel) return;
+      // compile the WebGL kernels with a tiny synthetic frame so the first real detect is instant
+      try {
+        const w = document.createElement('canvas'); w.width = w.height = 64;
+        const g = w.getContext('2d'); g.fillStyle = '#000'; g.fillRect(0, 0, 64, 64);
+        vision.cocoModel.detect(w, 1, 0.9).catch(() => {});
+      } catch (_) {}
+    }).catch(() => {});
+  }
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((es) => {
+      if (es.some((e) => e.isIntersecting)) { io.disconnect(); warmVision(); }
+    }, { rootMargin: '1200px' });   // warm when within ~1200px of the viewport
+    io.observe(stage);
+  } else {
+    (window.requestIdleCallback ? requestIdleCallback(warmVision, { timeout: 5000 }) : setTimeout(warmVision, 3000));
+  }
 
   // paint the idle "off" background
   ctx.fillStyle = '#07080D';

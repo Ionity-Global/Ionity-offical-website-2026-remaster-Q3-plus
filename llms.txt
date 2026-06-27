@@ -14,8 +14,11 @@
 
 Site: https://ionity.co.za
 Contact: ai@ionity.today
+Phone: +27 64 699 9877
 Founder: Johan Wilhelm van Antwerp (LinkedIn in/ionity, Gravatar ionity)
 Policy: 986 AED
+Updated: 2026-06-27
+Machine-readable: Organization, WebSite, Service & FAQPage JSON-LD are embedded across the site; see also /ai.txt.
 
 ## Two pillars
 Ionity Global (Pty) Ltd operates across two core pillars — enterprise-grade IoT,
@@ -44,6 +47,7 @@ cloud and automation solutions for businesses across industries:
 ## Key pages
 - [Home](https://ionity.co.za/)
 - [About & AEDi](https://ionity.co.za/about.html)
+- [FAQ](https://ionity.co.za/faq.html)
 - [Contact](https://ionity.co.za/contact.html)
 
 ## Founder & vision — Johan Wilhelm van Antwerp

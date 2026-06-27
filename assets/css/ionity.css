@@ -457,7 +457,28 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 .sn-bubble { position:absolute; left:50%; top:50%; width:18px; height:18px; margin:-9px 0 0 -9px; border-radius:50%; background:var(--orange); box-shadow:var(--glow-orange); transition:left .12s, top .12s; }
 
 /* matrix vision — live camera rendered as blue digits (matrix-cam.js) */
-.mx-stage { position:relative; width:100%; aspect-ratio:4/3; border-radius:var(--radius-s); overflow:hidden; background:#07080D; border:1px solid var(--line-strong); box-shadow:inset 0 0 40px rgba(0,121,227,.12); }
+.mx-stage { position:relative; width:100%; aspect-ratio:4/3; border-radius:var(--radius-s); overflow:hidden; background:#07080D; border:1px solid var(--line-strong); box-shadow:inset 0 0 40px rgba(0,121,227,.12); scroll-margin-top:90px; }
+.mx-stage:focus { outline:none; }
+
+/* ===== Edge Forge — generative AIoT blueprint ===== */
+.forge-hud { display:flex; flex-direction:column; }
+.forge-canvas { width:100%; height:340px; display:block; border-radius:var(--radius-s); background:
+  radial-gradient(120% 120% at 50% 0%, rgba(0,121,227,.10), transparent 60%), #060911;
+  border:1px solid var(--line-strong); }
+.forge-out { margin-top:.7rem; }
+.forge-title { font-family:var(--f-display); font-size:1rem; color:var(--ice); display:block; }
+.forge-rationale { font-size:.82rem; color:var(--muted); margin-top:.3rem; line-height:1.5; }
+.forge-chips { display:flex; flex-wrap:wrap; gap:.5rem; }
+.forge-chip { font-family:var(--f-mono); font-size:.62rem; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--ice); background:rgba(0,121,227,.12); border:1px solid var(--line-strong); border-radius:999px;
+  padding:.4rem .8rem; cursor:pointer; transition:.2s var(--ease); }
+.forge-chip:hover { background:var(--grad-soft); border-color:var(--cyan); color:#fff; transform:translateY(-1px); }
+.forge-input-row { display:flex; gap:.6rem; flex-wrap:wrap; }
+.forge-input { flex:1; min-width:200px; background:rgba(7,8,13,.6); border:1px solid var(--line-strong); border-radius:var(--radius-s);
+  color:var(--text); font-family:var(--f-body); font-size:.85rem; padding:.7rem .9rem; }
+.forge-input:focus { outline:none; border-color:var(--cyan); box-shadow:0 0 0 3px rgba(0,210,255,.15); }
+#forgeRun[disabled] { opacity:.5; cursor:progress; }
+@media (max-width:600px){ .forge-canvas { height:260px; } }
 .mx-stage video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; pointer-events:none; }
 .mx-stage canvas { position:relative; z-index:1; width:100%; height:100%; display:block; }
 .mx-scanline { position:absolute; inset:0; z-index:2; pointer-events:none; background:repeating-linear-gradient(0deg, rgba(0,210,255,.06) 0 1px, transparent 1px 3px); mix-blend-mode:screen; }

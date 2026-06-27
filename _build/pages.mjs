@@ -12,6 +12,33 @@ export function buildPages(ctx) {
     ],
   });
 
+  // strip markup/entities so schema text is clean
+  const strip = (h) => h.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&#39;/g, "'").trim();
+  const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  // Service nodes for services.html (provider links to the Org via @id)
+  const servicesJsonld = SERVICES.map((s) => ({
+    '@context': 'https://schema.org', '@type': 'Service',
+    name: strip(s[2]), serviceType: strip(s[2]), description: strip(s[3]),
+    provider: { '@id': SITE.origin + '/#org' },
+    areaServed: 'Worldwide', url: `${SITE.origin}/services.html#${s[0]}`,
+  }));
+
+  // FAQ — visible answer text MUST byte-match acceptedAnswer.text (Google rule),
+  // so answers are kept plain (no &/</> or inline markup).
+  const FAQ = [
+    ['What is Ionity Global?', 'Ionity Global (Pty) Ltd is a South African Native-AI engineering company. We build AIoT, Cloud and Edge systems, custom MCP servers, AI agents and copilots, dashboards and live digital twins, and we run evidence-first audits and forensics. We are solutionists across mechanical, electrical and IT, and we make the hardware when the software needs a body.'],
+    ['Is Ionity Global the same as the IONITY EV-charging network?', 'No. Ionity Global (Pty) Ltd is a South African Native-AI, AIoT, Edge and audit company founded by Johan Wilhelm van Antwerp. It is a separate, unrelated entity from the European electric-vehicle charging network IONITY GmbH (ionity.com).'],
+    ['What services does Ionity Global offer?', 'Native-AI and MCP, AIoT and Edge, Cloud and digital twins, Audit and forensics, Hardware and firmware, custom B2B systems, edge-computing hardware, cloud hosting, and full-stack software and web development.'],
+    ['What is the Edge Micro-Audit?', 'A live, 100% on-device diagnostic of your hardware and network, measured entirely in your browser — nothing is transmitted. It is a real taste of how Ionity audits infrastructure, evidence-first.'],
+    ['What is AEDi?', "AEDi (Automated Ecosystems Designs Intelligence) is Ionity's own Native-AI assistant, embedded on this website. It answers questions and routes you to the right page, and it is built with Claude and our own AI fabric."],
+    ['Where is Ionity Global based and how do I get in touch?', 'Ionity Global is based in Centurion, South Africa. Reach us at ai@ionity.today or +27 64 699 9877, or start a project on the Contact page.'],
+  ];
+  const faqJsonld = {
+    '@context': 'https://schema.org', '@type': 'FAQPage',
+    mainEntity: FAQ.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  };
+
   /* ---- SERVICES (expanded, de-bulked) ---------------------------------- */
   const serviceDetail = (s) => `
 <section class="wrap" id="${s[0]}" data-act="${s[2].replace(/&amp;/g,'&')}">
@@ -65,7 +92,7 @@ export function buildPages(ctx) {
   }
 
   write('services.html', page(
-    { path:'services.html', title:'Services — Ionity Global', desc:'Native-AI & MCP, AIoT & Edge, Cloud & digital twins, Audit & forensics, Hardware & firmware, and custom B2B systems — engineered to integrate and to return.', jsonld: crumbLd('Services','services.html') },
+    { path:'services.html', title:'Services — Ionity Global', desc:'Native-AI & MCP, AIoT & Edge, Cloud & digital twins, Audit & forensics, Hardware & firmware, and custom B2B systems — engineered to integrate and to return.', jsonld: [crumbLd('Services','services.html'), ...servicesJsonld] },
     `
 <section class="hero" style="min-height:60svh" data-act="Services">
   <div class="inner">
@@ -102,6 +129,33 @@ ${SERVICES.map(serviceDetail).join('')}
 <section class="wrap" id="sensor" data-act="Sensor Node">
   <div class="section-head reveal"><span class="kicker">Edge sensing</span><h2>This device as an <span class="grad-text">Ionity node</span></h2><p>Wake the real sensors on your device — motion, tilt, compass, ambient light and live sound — the same signals our field nodes read.</p></div>
   ${sensorBlock()}
+</section>
+<hr class="divider wrap">
+<section class="wrap" id="forge" data-act="Edge Forge">
+  <div class="section-head reveal"><span class="kicker">edge forge · generative AIoT</span><h2>Forge a live <span class="grad-text">AIoT blueprint</span></h2><p>Name a real-world problem and AEDi designs a sensor → edge → AI → cloud architecture, drawn live in your browser. No backend, no upload — just Ionity's intelligence sketching how it would build it.</p></div>
+  <div class="feature split reveal" id="forgeStage">
+    <div class="hud forge-hud">
+      <div class="hud-head"><span class="t">ionity · edge forge</span><span class="pill live"><span class="dot"></span> AEDi</span></div>
+      <canvas class="forge-canvas" id="forgeCanvas" aria-label="Generated AIoT architecture diagram"></canvas>
+      <div class="forge-out"><strong class="forge-title" id="forgeTitle">Edge AIoT reference blueprint</strong><p class="forge-rationale" id="forgeRationale"></p></div>
+    </div>
+    <div>
+      <h3>Describe the system</h3>
+      <p class="mt-1">Pick a scenario or type your own — AEDi forges the topology in seconds, layer by layer.</p>
+      <div class="forge-chips mt-2">
+        <button class="forge-chip" data-prompt="Smart factory line that predicts machine failure before it happens">Predictive factory</button>
+        <button class="forge-chip" data-prompt="Cold-chain monitoring for medical vaccines across a fleet of trucks">Cold-chain medical</button>
+        <button class="forge-chip" data-prompt="Smart building occupancy, energy and security without cameras">Smart building</button>
+        <button class="forge-chip" data-prompt="Precision agriculture: soil, weather and irrigation automation on a remote farm">Precision farming</button>
+        <button class="forge-chip" data-prompt="Aerospace component traceability with predictive maintenance">Aerospace</button>
+      </div>
+      <div class="forge-input-row mt-2">
+        <input class="forge-input" id="forgeInput" type="text" maxlength="160" placeholder="e.g. monitor a remote water-treatment plant…" aria-label="Describe a scenario for Edge Forge">
+        <button class="btn btn-primary" id="forgeRun" data-sfx="powerup">Forge ${ICON.arrow}</button>
+      </div>
+      <p class="note mt-2" id="forgeNote">AI-generated illustration, not final engineering · <a href="contact.html">Start a real project ↗</a></p>
+    </div>
+  </div>
 </section>
 `));
 
@@ -201,8 +255,8 @@ ${SERVICES.map(serviceDetail).join('')}
 `));
 
   /* ---- LEGAL: privacy + terms ----------------------------------------- */
-  const legalShell = (title, kicker, body, path) => page(
-    { path, title:`${title} — Ionity Global`, desc:`${title} for ${SITE.legal} (${SITE.origin}).`, jsonld: crumbLd(title, path) },
+  const legalShell = (title, kicker, body, path, desc) => page(
+    { path, title:`${title} — Ionity Global`, desc: desc || `${title} for ${SITE.legal} (${SITE.origin}).`, jsonld: crumbLd(title, path) },
     `<section class="hero" style="min-height:40svh"><div class="inner"><span class="kicker" style="justify-content:center">${kicker}</span><h1 class="mt-1">${title}</h1><p class="lead">Last updated <span data-year>2026</span> · ${SITE.legal} · ${SITE.policy}</p></div></section>
      <section class="wrap"><div class="feature reveal" style="max-width:75ch;margin-inline:auto">${body}</div></section>`);
 
@@ -216,7 +270,8 @@ ${SERVICES.map(serviceDetail).join('')}
     ${lp('Contact form', 'The contact form opens your own email client. We only receive what you choose to send to '+SITE.email+'.')}
     ${lp('Fonts & assets', 'Web fonts load from Google Fonts (which sets no cookies). Everything else is served from this domain.')}
     ${lp('Your rights', 'Access, correction, deletion and objection — email '+SITE.email+'. We align with GDPR/POPIA principles under '+SITE.policy+'.')}`,
-    'privacy.html'));
+    'privacy.html',
+    'How Ionity Global handles your data: a single strictly-necessary cookie, an on-device edge scan that transmits nothing, and GDPR/POPIA-aligned rights. We collect as little as possible and never sell your data.'));
 
   write('terms.html', legalShell('Terms of Use', 'Trust', `
     <p class="lead">Friendly, plain terms for using this website. Engagement contracts are separate and bespoke.</p>
@@ -224,7 +279,21 @@ ${SERVICES.map(serviceDetail).join('')}
     ${lp('No warranty', 'Content and the edge micro-audit are provided “as is” for information. Measurements are best-effort and browser-dependent.')}
     ${lp('Intellectual property', '© '+new Date().getFullYear()+' '+SITE.legal+'. Brand, code and content are ours unless noted. Open-source components remain under their own licenses — see our '+'<a href="'+SITE.github+'" style="color:var(--cyan)">GitHub</a>.')}
     ${lp('Contact', 'Questions about these terms: '+SITE.email+'.')}`,
-    'terms.html'));
+    'terms.html',
+    'Plain terms of use for the Ionity Global website and its on-device edge demos — acceptable use, no-warranty, and intellectual-property notes.'));
+
+  /* ---- FAQ (AEO) ------------------------------------------------------- */
+  write('faq.html', page(
+    { path:'faq.html', title:'FAQ — Ionity Global', desc:'Answers about Ionity Global — what we are, how we differ from the IONITY EV network, our services, the Edge Micro-Audit, AEDi, and how to reach us.', jsonld: [crumbLd('FAQ','faq.html'), faqJsonld] },
+    `
+<section class="hero" style="min-height:46svh" data-act="FAQ">
+  <div class="inner"><span class="kicker" style="justify-content:center">Questions</span><h1 class="mt-1">Frequently asked <span class="grad-text">questions</span></h1><p class="lead">Straight answers about Ionity Global, our services and the live on-device demos.</p></div>
+</section>
+<section class="wrap"><div class="feature reveal" style="max-width:75ch;margin-inline:auto">
+  ${FAQ.map(([q,a]) => `<h3 style="margin-top:1.6rem">${esc(q)}</h3><p class="mt-1">${esc(a)}</p>`).join('')}
+  <div class="cta-row" style="margin-top:2rem"><a class="btn btn-primary" href="contact.html">Start a project ${ICON.arrow}</a><a class="btn btn-ghost" href="edge.html">Run the live scan</a></div>
+</div></section>
+`));
 
   /* ---- 404 ------------------------------------------------------------- */
   write('404.html', page(

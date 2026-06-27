@@ -49,6 +49,7 @@ const serviceCard = (s, cls = '') => `
 /* ================================================================ INDEX === */
 const indexJsonld = {
   '@context': 'https://schema.org', '@type': 'Organization',
+  '@id': SITE.origin + '/#org',
   name: SITE.legal, alternateName: ['Ionity', 'Ionity Global', 'Ionity AI', 'Ionity South Africa', 'AEDi'], url: SITE.origin,
   logo: SITE.origin + '/assets/img/icon-512.png',
   email: SITE.email, slogan: SITE.tagline,
@@ -73,8 +74,18 @@ const indexJsonld = {
   areaServed: 'Worldwide',
 };
 
+// WebSite node (no SearchAction — there is no on-site search endpoint, and a fake
+// one is flaggable). Links to the Org via @id so engines resolve one entity.
+const websiteJsonld = {
+  '@context': 'https://schema.org', '@type': 'WebSite',
+  '@id': SITE.origin + '/#website', url: SITE.origin + '/',
+  name: SITE.name, inLanguage: 'en',
+  publisher: { '@id': SITE.origin + '/#org' },
+  description: SITE.desc,
+};
+
 const index = page(
-  { path: 'index.html', title: 'Ionity Global — Native-AI · AIoT · Cloud · Edge · Audit', desc: SITE.desc, jsonld: indexJsonld },
+  { path: 'index.html', title: 'Ionity Global — Native-AI · AIoT · Cloud · Edge · Audit', desc: SITE.desc, jsonld: [indexJsonld, websiteJsonld] },
   `
 <!-- ACT 1 ── portal hero (wordmark + Talk to AEDi) ── -->
 <section class="hero portal-hero" id="hero" data-act="Enter">
@@ -85,7 +96,7 @@ const index = page(
   </div>
 
   <div class="portal-id">
-    <img class="hero-wm" src="assets/img/wordmark.png" alt="Ionity Global" width="460">
+    <img class="hero-wm" src="assets/img/wordmark.png" alt="Ionity Global" width="460" height="307" fetchpriority="high" decoding="async">
     <span class="pill"><span class="dot"></span> Native-AI · AIoT · Edge · Audit · ${SITE.location} · since 2018</span>
   </div>
 
@@ -315,7 +326,7 @@ function visionBlock() {
 <div class="feature split reveal">
   <div class="hud mx-hud">
     <div class="hud-head"><span class="t">ionity · vision matrix</span><span class="pill live"><span class="dot"></span> <span id="mxStatus" data-kind="idle">CAMERA OFF</span></span></div>
-    <div class="mx-stage" id="mxStage">
+    <div class="mx-stage" id="mxStage" tabindex="-1">
       <video id="mxVideo" playsinline muted autoplay></video>
       <canvas id="mxCanvas" width="384" height="288" aria-label="Live matrix camera view"></canvas>
       <div class="mx-scanline" aria-hidden="true"></div>

@@ -4,8 +4,6 @@
 
 User-agent: *
 Allow: /
-Disallow: /framework-configs/
-Disallow: /tmp/
 
 # Search engines
 User-agent: Googlebot
@@ -47,6 +45,16 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 User-agent: Diffbot
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+User-agent: Meta-ExternalAgent
+Allow: /
+User-agent: Google-CloudVertexBot
 Allow: /
 
 # Social
