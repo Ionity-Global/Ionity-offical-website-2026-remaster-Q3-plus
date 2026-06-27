@@ -19,10 +19,13 @@ Policy: 986 AED
 - [Audit & Forensics](https://ionity.co.za/services.html#audit): web/system audits, digital forensics, Level-of-Effort return.
 - [Hardware & Firmware](https://ionity.co.za/services.html#hardware): PCB, ESP32, firmware, mechatronics, edge nodes.
 - [Custom B2B Systems](https://ionity.co.za/services.html#twins): bespoke dashboards, integrations, internal tools.
+- [Edge Computing Hardware](https://ionity.co.za/services.html#edge-hw): rugged edge nodes, GPU/NPU accelerators and gateways running AI inference and control on-site.
+- [Cloud Hosting Services](https://ionity.co.za/services.html#hosting): managed, secure hosting for sites, APIs and apps — resilient infra, backups, monitoring, TLS/DNS.
+- [Software Development & Web](https://ionity.co.za/services.html#software): full-stack software and web relations — sites, web apps, portals, integrations, maintenance.
 
 ## Signature (live, on-device, real — no simulation)
 - [Edge Micro-Audit](https://ionity.co.za/edge.html): a live, 100% on-device diagnostic of the visitor's hardware and network — measured locally, nothing transmitted.
-- RSSI Proximity: reads real Bluetooth-LE advertisement RSSI to count nearby radios and estimate people nearby (Web Bluetooth scanning, with permission), or connects to a real Ionity ESP32 edge node. No fabricated counts.
+- Matrix Vision: with the visitor's permission, renders their live camera as a field of blue "matrix" digits entirely on-device — the frame is turned to glyphs and discarded, never recorded or uploaded.
 - Edge Sensor Node: turns the visitor's own browser into a live sensor node — real accelerometer, gyro/tilt/compass, ambient light and microphone sound-level readings.
 - Wi-Fi (CSI) sensing (RuView / Ionify) is an Ionity hardware product line referenced under AIoT & Edge.
 

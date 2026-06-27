@@ -105,38 +105,28 @@
   </div>
 </div></section>
 <hr class="divider wrap">
-<section class="wrap" id="proximity" data-act="RSSI Proximity">
-  <div class="section-head reveal"><span class="kicker">RSSI proximity</span><h2>How many are <span class="warm-text">nearby</span>?</h2><p>Real Bluetooth-LE RSSI, counted and turned into a people-nearby estimate — on-device, no upload, no simulation. Connect an Ionity edge node for hardware-grade RSSI.</p></div>
+<section class="wrap" id="vision" data-act="Matrix Vision">
+  <div class="section-head reveal"><span class="kicker">matrix vision</span><h2>See the room in <span class="grad-text">blue digits</span></h2><p>Enable your camera and Ionity renders the live view as matrix digits — entirely on-device. The frame is turned to glyphs and discarded; nothing is recorded or uploaded.</p></div>
   
-<div class="feature split reveal" data-endpoint="">
-  <div class="hud">
-    <div class="hud-head"><span class="t">ionity · rssi proximity</span><span class="pill live"><span class="dot"></span> <span id="pxStatus" data-kind="idle">READY</span></span></div>
-    <div class="center">
-      <div class="radar" id="pxSweep" style="opacity:.25"><div class="sweep"></div>
-        <svg viewBox="0 0 100 100" fill="none" stroke="rgba(120,170,255,.25)"><circle cx="50" cy="50" r="48"/><circle cx="50" cy="50" r="32"/><circle cx="50" cy="50" r="16"/><line x1="50" y1="2" x2="50" y2="98"/><line x1="2" y1="50" x2="98" y2="50"/></svg>
-      </div>
-      <div class="flex gap aic" style="justify-content:center;gap:2.5rem">
-        <div><div style="font-family:var(--f-display);font-size:3rem;font-weight:700" class="grad-text" id="pxPeople">—</div><div class="k mono" style="font-size:.56rem;letter-spacing:.18em;color:var(--faint)">PEOPLE NEARBY (est.)</div></div>
-        <div><div style="font-family:var(--f-display);font-size:3rem;font-weight:700" class="warm-text" id="pxDevices">—</div><div class="k mono" style="font-size:.56rem;letter-spacing:.18em;color:var(--faint)">RADIOS SENSED</div></div>
-      </div>
-      <div class="metric-grid mt-2" style="grid-template-columns:repeat(3,1fr)">
-        <div class="metric"><div class="k">NEAR &lt;-60dBm</div><div class="bar"><i id="pxNear"></i></div></div>
-        <div class="metric"><div class="k">MID</div><div class="bar"><i id="pxMid"></i></div></div>
-        <div class="metric"><div class="k">FAR &gt;-80dBm</div><div class="bar"><i id="pxFar"></i></div></div>
-      </div>
-      <p class="mono mt-1" style="font-size:.62rem;color:var(--faint)">strongest signal <span id="pxBest" class="orange">—</span></p>
+<div class="feature split reveal">
+  <div class="hud mx-hud">
+    <div class="hud-head"><span class="t">ionity · vision matrix</span><span class="pill live"><span class="dot"></span> <span id="mxStatus" data-kind="idle">CAMERA OFF</span></span></div>
+    <div class="mx-stage" id="mxStage">
+      <video id="mxVideo" playsinline muted autoplay></video>
+      <canvas id="mxCanvas" width="384" height="288" aria-label="Live matrix camera view"></canvas>
+      <div class="mx-scanline" aria-hidden="true"></div>
+      <div class="mx-off" id="mxOff">CAMERA OFF</div>
+    </div>
+    <div class="metric-grid mt-2" style="grid-template-columns:repeat(2,1fr)">
+      <div class="metric"><div class="k">PRESENCE</div><div class="v live" id="mxPresence">—</div></div>
+      <div class="metric"><div class="k">MOTION</div><div class="bar"><i id="mxMotion"></i></div></div>
     </div>
   </div>
   <div>
-    <h3>Count the room — from <span class="warm-text">radio</span>, not cameras</h3>
-    <p class="mt-1">Tap scan and Ionity reads the <strong>real RSSI</strong> of Bluetooth-LE advertisements around you — counting unique radios, bucketing them by distance, and estimating people from near-range density. Same idea our Wi-Fi edge nodes run in the field.</p>
-    <div class="cta-row mt-2"><button class="btn btn-primary" id="pxStart">Start RSSI scan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
-    <p class="note mt-2" id="pxNote">All processing is on-device; no signal data is uploaded. Live BLE scanning needs a Chromium browser with the Web&nbsp;Bluetooth scanning capability — or connect an Ionity edge node for real RSSI from hardware.</p>
-    <form id="pxForm" class="mt-2">
-      <div class="field"><label for="pxEndpoint">Ionity edge node (ESP32 RSSI sniffer)</label>
-      <input id="pxEndpoint" type="text" placeholder="wss://node.local:8787  or  https://…/rssi.json" autocomplete="off"></div>
-      <button class="btn btn-ghost" type="submit">Connect node <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-    </form>
+    <h3>See the room in <span class="grad-text">matrix</span></h3>
+    <p class="mt-1">Enable your camera and Ionity renders <em>you</em>, live, as a field of blue matrix digits — luminance becomes glyphs, movement lights the rain. A playful demo of the on-device vision pipeline our edge nodes run in the field.</p>
+    <div class="cta-row mt-2"><button class="btn btn-primary" id="mxStart" data-sfx="powerup">Enable camera <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button> <button class="btn btn-ghost" id="mxStop" hidden>Stop camera</button></div>
+    <p class="note mt-2" id="mxNote">100% on-device: the video never leaves your browser — it's drawn straight to a canvas as digits and discarded frame by frame. Nothing is recorded or uploaded. Camera permission is asked on tap; deny it and this simply stays off.</p>
   </div>
 </div>
 </section>
@@ -257,7 +247,7 @@
 <script src="assets/js/cookies.js" defer></script>
 <script src="assets/js/core.js" defer></script>
 <script src="assets/js/edge-diagnostics.js" defer></script>
-<script src="assets/js/proximity.js" defer></script>
+<script src="assets/js/matrix-cam.js" defer></script>
 <script src="assets/js/sensor-node.js" defer></script>
 <script src="assets/js/aedi-chat.js" defer></script>
 <script>window.IonityGlitch=window.IonityGlitch||{};window.IonityGlitch.config={zIndex:3000};</script>

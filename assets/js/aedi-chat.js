@@ -40,9 +40,9 @@
   // Compact fallback used only if aedi.yaml can't be fetched (e.g. file:// or 404).
   const FALLBACK_CONTEXT = [
     'company: Ionity Global (Pty) Ltd — Centurion, South Africa. Founder: Johan Wilhelm van Antwerp.',
-    'what_we_are: Native-AI engineering — AIoT, Cloud & Edge systems, custom MCP/agents/copilots, dashboards, digital twins, and evidence-first audits & forensics. Hardware too. Grown from Antwerp Designs (2018).',
+    'what_we_are: Native-AI engineering — AIoT, Cloud & Edge systems, custom MCP/agents/copilots, dashboards, digital twins, evidence-first audits & forensics, edge-computing hardware, cloud hosting, and software/web development. Grown from Antwerp Designs (2018).',
     'pages: Home (index.html), Services (services.html), Edge Scan (edge.html), About & AEDi (about.html), Contact (contact.html).',
-    'signature (real, on-device): Edge Micro-Audit, RSSI Proximity, Sensor Node — all on edge.html, no simulation.',
+    'signature (real, on-device): Edge Micro-Audit, Matrix Vision (live camera as blue digits), Sensor Node — all on edge.html, no simulation.',
     'contact: ai@ionity.today | +27 64 699 9877 | Policy 986 AED.',
   ].join('\n');
 

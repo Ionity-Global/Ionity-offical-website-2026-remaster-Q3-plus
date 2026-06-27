@@ -2,7 +2,7 @@
    IONITY remaster — supporting pages
    ========================================================================== */
 export function buildPages(ctx) {
-  const { page, SITE, ICON, SERVICES, serviceCard, edgeBlock, proximityBlock, sensorBlock, write } = ctx;
+  const { page, SITE, ICON, SERVICES, serviceCard, edgeBlock, visionBlock, sensorBlock, write } = ctx;
 
   const crumbLd = (name, path) => ({
     '@context': 'https://schema.org', '@type': 'BreadcrumbList',
@@ -94,9 +94,9 @@ ${SERVICES.map(serviceDetail).join('')}
 </section>
 <section class="wrap" id="edge" data-act="Run scan">${edgeBlock()}</section>
 <hr class="divider wrap">
-<section class="wrap" id="proximity" data-act="RSSI Proximity">
-  <div class="section-head reveal"><span class="kicker">RSSI proximity</span><h2>How many are <span class="warm-text">nearby</span>?</h2><p>Real Bluetooth-LE RSSI, counted and turned into a people-nearby estimate — on-device, no upload, no simulation. Connect an Ionity edge node for hardware-grade RSSI.</p></div>
-  ${proximityBlock()}
+<section class="wrap" id="vision" data-act="Matrix Vision">
+  <div class="section-head reveal"><span class="kicker">matrix vision</span><h2>See the room in <span class="grad-text">blue digits</span></h2><p>Enable your camera and Ionity renders the live view as matrix digits — entirely on-device. The frame is turned to glyphs and discarded; nothing is recorded or uploaded.</p></div>
+  ${visionBlock()}
 </section>
 <hr class="divider wrap">
 <section class="wrap" id="sensor" data-act="Sensor Node">

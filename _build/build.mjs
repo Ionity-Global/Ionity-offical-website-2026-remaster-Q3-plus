@@ -19,6 +19,10 @@ const ICON = {
   audit:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h12l4 4v12H4z"/><path d="M8 11l2.5 2.5L16 8M8 16h8"/></svg>`,
   chip: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M10 2v3M14 2v3M10 19v3M14 19v3M2 10h3M2 14h3M19 10h3M19 14h3"/></svg>`,
   twin: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4M3 17l9 4 9-4"/></svg>`,
+  edge: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="6" width="12" height="12" rx="2"/><circle cx="12" cy="12" r="2.2"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>`,
+  server:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01M7 17h.01"/></svg>`,
+  code: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"/></svg>`,
+  cam:  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="6" width="14" height="12" rx="2"/><path d="M16.5 10l5-3v10l-5-3z"/><circle cx="9.5" cy="12" r="2.4"/></svg>`,
   arrow:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>`,
 };
 
@@ -29,6 +33,9 @@ const SERVICES = [
   ['audit', ICON.audit, 'Audit &amp; Forensics', 'Evidence-first audits of websites, systems and infrastructure — surfacing risk, waste and quick wins with a clear Level-of-Effort return. Improve and save.', ['Web audits', 'Forensics', 'Cost savings', 'LoE return']],
   ['hardware', ICON.chip, 'Hardware &amp; Firmware', 'When software needs a body, we build it: PCBs, ESP32/edge nodes and firmware. Solutionists across mechanical, electrical and IT — with real artisan knowledge.', ['PCB', 'ESP32', 'Firmware', 'Mechatronics']],
   ['twins', ICON.twin, 'Custom B2B Systems', 'Custom anything: bespoke dashboards, internal tools and integrations engineered to grow with the business — and to keep paying for themselves.', ['Dashboards', 'Integrations', 'Internal tools', 'Growth']],
+  ['edge-hw', ICON.edge, 'Edge Computing Hardware', 'Purpose-built edge compute — rugged nodes, GPU/NPU accelerators and gateways that run AI inference and control on-site, where latency, privacy and uptime actually matter.', ['Edge nodes', 'GPU / NPU', 'Gateways', 'On-site AI']],
+  ['hosting', ICON.server, 'Cloud Hosting Services', 'Managed, secure hosting for sites, APIs and apps — resilient infrastructure with backups, monitoring and sane TLS / DNS. We keep it online so you don’t have to think about it.', ['Managed hosting', 'APIs', 'Backups', 'TLS / DNS']],
+  ['software', ICON.code, 'Software Development &amp; Web', 'Full-stack software and web relations — from fast marketing sites to complex web apps, portals and integrations — designed, built and maintained with a Native-AI workflow.', ['Web apps', 'Websites', 'APIs', 'Maintenance']],
 ];
 
 const serviceCard = (s, cls = '') => `
@@ -158,14 +165,14 @@ const index = page(
   ${edgeBlock()}
 </section>
 
-<!-- ACT 6 ── RSSI PROXIMITY (real) ─────────────────────── -->
-<section class="wrap" id="proximity" data-act="Proximity">
+<!-- ACT 6 ── MATRIX VISION (camera, on-device) ──────────── -->
+<section class="wrap" id="vision" data-act="Vision">
   <div class="section-head reveal">
-    <span class="kicker">05 · RSSI proximity</span>
-    <h2>How many are <span class="warm-text">nearby</span>? Ask the radio.</h2>
-    <p>Real RSSI from the Bluetooth-LE advertisements around you — counted, distance-bucketed, and turned into a people-nearby estimate, live in your browser. No camera, no upload, no simulation.</p>
+    <span class="kicker">05 · matrix vision</span>
+    <h2>See yourself in <span class="grad-text">blue digits</span>.</h2>
+    <p>Enable your camera and Ionity renders the live view as a field of matrix digits, on-device. The frame never leaves your browser — it's turned to glyphs and discarded. No recording, no upload.</p>
   </div>
-  ${proximityBlock()}
+  ${visionBlock()}
 </section>
 
 <!-- ACT 6b ── DEVICE-AS-SENSOR-NODE (real) ─────────────── -->
@@ -245,37 +252,27 @@ function edgeBlock() {
 </div>`;
 }
 
-function proximityBlock() {
+function visionBlock() {
   return `
-<div class="feature split reveal" data-endpoint="">
-  <div class="hud">
-    <div class="hud-head"><span class="t">ionity · rssi proximity</span><span class="pill live"><span class="dot"></span> <span id="pxStatus" data-kind="idle">READY</span></span></div>
-    <div class="center">
-      <div class="radar" id="pxSweep" style="opacity:.25"><div class="sweep"></div>
-        <svg viewBox="0 0 100 100" fill="none" stroke="rgba(120,170,255,.25)"><circle cx="50" cy="50" r="48"/><circle cx="50" cy="50" r="32"/><circle cx="50" cy="50" r="16"/><line x1="50" y1="2" x2="50" y2="98"/><line x1="2" y1="50" x2="98" y2="50"/></svg>
-      </div>
-      <div class="flex gap aic" style="justify-content:center;gap:2.5rem">
-        <div><div style="font-family:var(--f-display);font-size:3rem;font-weight:700" class="grad-text" id="pxPeople">—</div><div class="k mono" style="font-size:.56rem;letter-spacing:.18em;color:var(--faint)">PEOPLE NEARBY (est.)</div></div>
-        <div><div style="font-family:var(--f-display);font-size:3rem;font-weight:700" class="warm-text" id="pxDevices">—</div><div class="k mono" style="font-size:.56rem;letter-spacing:.18em;color:var(--faint)">RADIOS SENSED</div></div>
-      </div>
-      <div class="metric-grid mt-2" style="grid-template-columns:repeat(3,1fr)">
-        <div class="metric"><div class="k">NEAR &lt;-60dBm</div><div class="bar"><i id="pxNear"></i></div></div>
-        <div class="metric"><div class="k">MID</div><div class="bar"><i id="pxMid"></i></div></div>
-        <div class="metric"><div class="k">FAR &gt;-80dBm</div><div class="bar"><i id="pxFar"></i></div></div>
-      </div>
-      <p class="mono mt-1" style="font-size:.62rem;color:var(--faint)">strongest signal <span id="pxBest" class="orange">—</span></p>
+<div class="feature split reveal">
+  <div class="hud mx-hud">
+    <div class="hud-head"><span class="t">ionity · vision matrix</span><span class="pill live"><span class="dot"></span> <span id="mxStatus" data-kind="idle">CAMERA OFF</span></span></div>
+    <div class="mx-stage" id="mxStage">
+      <video id="mxVideo" playsinline muted autoplay></video>
+      <canvas id="mxCanvas" width="384" height="288" aria-label="Live matrix camera view"></canvas>
+      <div class="mx-scanline" aria-hidden="true"></div>
+      <div class="mx-off" id="mxOff">CAMERA OFF</div>
+    </div>
+    <div class="metric-grid mt-2" style="grid-template-columns:repeat(2,1fr)">
+      <div class="metric"><div class="k">PRESENCE</div><div class="v live" id="mxPresence">—</div></div>
+      <div class="metric"><div class="k">MOTION</div><div class="bar"><i id="mxMotion"></i></div></div>
     </div>
   </div>
   <div>
-    <h3>Count the room — from <span class="warm-text">radio</span>, not cameras</h3>
-    <p class="mt-1">Tap scan and Ionity reads the <strong>real RSSI</strong> of Bluetooth-LE advertisements around you — counting unique radios, bucketing them by distance, and estimating people from near-range density. Same idea our Wi-Fi edge nodes run in the field.</p>
-    <div class="cta-row mt-2"><button class="btn btn-primary" id="pxStart">Start RSSI scan ${ICON.arrow}</button></div>
-    <p class="note mt-2" id="pxNote">All processing is on-device; no signal data is uploaded. Live BLE scanning needs a Chromium browser with the Web&nbsp;Bluetooth scanning capability — or connect an Ionity edge node for real RSSI from hardware.</p>
-    <form id="pxForm" class="mt-2">
-      <div class="field"><label for="pxEndpoint">Ionity edge node (ESP32 RSSI sniffer)</label>
-      <input id="pxEndpoint" type="text" placeholder="wss://node.local:8787  or  https://…/rssi.json" autocomplete="off"></div>
-      <button class="btn btn-ghost" type="submit">Connect node ${ICON.arrow}</button>
-    </form>
+    <h3>See the room in <span class="grad-text">matrix</span></h3>
+    <p class="mt-1">Enable your camera and Ionity renders <em>you</em>, live, as a field of blue matrix digits — luminance becomes glyphs, movement lights the rain. A playful demo of the on-device vision pipeline our edge nodes run in the field.</p>
+    <div class="cta-row mt-2"><button class="btn btn-primary" id="mxStart" data-sfx="powerup">Enable camera ${ICON.arrow}</button> <button class="btn btn-ghost" id="mxStop" hidden>Stop camera</button></div>
+    <p class="note mt-2" id="mxNote">100% on-device: the video never leaves your browser — it's drawn straight to a canvas as digits and discarded frame by frame. Nothing is recorded or uploaded. Camera permission is asked on tap; deny it and this simply stays off.</p>
   </div>
 </div>`;
 }
@@ -306,4 +303,4 @@ function sensorBlock() {
 write('index.html', index);
 
 /* ================================================================ build others === */
-import('./pages.mjs').then(m => m.buildPages({ OUT, page, SITE, ICON, SERVICES, serviceCard, edgeBlock, proximityBlock, sensorBlock, write })).catch(e => { console.error(e); process.exit(1); });
+import('./pages.mjs').then(m => m.buildPages({ OUT, page, SITE, ICON, SERVICES, serviceCard, edgeBlock, visionBlock, sensorBlock, write })).catch(e => { console.error(e); process.exit(1); });

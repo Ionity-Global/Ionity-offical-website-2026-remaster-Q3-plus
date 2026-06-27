@@ -60,17 +60,20 @@ navigation_map:
   - section: "Audit"        ref: "services.html#audit"      use_for: "web/system audits, forensics, Level-of-Effort return."
   - section: "Hardware"     ref: "services.html#hardware"   use_for: "PCB, ESP32, firmware, mechatronics, edge nodes."
 
-services:
+services:    # nine disciplines (see services.html)
   - Native-AI & MCP — custom MCP servers, AI agents, copilots, RAG, AEDi-powered delivery (built with Claude in the loop).
   - AIoT & Edge — edge inference, Wi-Fi sensing (RuView/Ionify), device fleets, low-latency intelligence.
   - Cloud & Digital Twins — data pipelines, APIs, live digital twins, observability.
   - Audit & Forensics — evidence-first web/system audits, digital forensics, clear Level-of-Effort return.
   - Hardware & Firmware — PCB, ESP32/edge nodes, firmware, mechatronics.
   - Custom B2B Systems — bespoke dashboards, integrations, internal tools.
+  - Edge Computing Hardware — purpose-built edge compute: rugged nodes, GPU/NPU accelerators and gateways running AI inference and control on-site.
+  - Cloud Hosting Services — managed, secure hosting for sites, APIs and apps; resilient infra, backups, monitoring, TLS/DNS.
+  - Software Development & Web — full-stack software and web relations: marketing sites, web apps, portals, integrations, maintenance.
 
 signature_features:    # all REAL, on-device, no simulation — found on edge.html
   - Edge Micro-Audit — a 100% on-device read of the visitor's own hardware & network (GPU, CPU threads, memory, a compute benchmark, measured refresh, measured RTT + throughput, battery, storage). Nothing is transmitted.
-  - RSSI Proximity — reads real Bluetooth-LE advertisement RSSI to count nearby radios and estimate people nearby; honest fallback when unsupported; never fabricates a count.
+  - Matrix Vision — with the visitor's permission, renders their live camera as a field of blue "matrix" digits entirely on-device; the frame is turned to glyphs and discarded, never recorded or uploaded.
   - Sensor Node — turns the visitor's browser into a live edge node: real accelerometer, tilt/compass, ambient light and microphone level.
 
 behaviour:
