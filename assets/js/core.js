@@ -194,4 +194,9 @@
     b.addEventListener('mouseenter', () => window.Ionity.blip && window.Ionity.blip('hover'));
     b.addEventListener('click',      () => window.Ionity.blip && window.Ionity.blip('click'));
   });
+
+  /* ---- PWA: register the service worker (installable + offline) ---------- */
+  if ('serviceWorker' in navigator) {
+    addEventListener('load', () => { navigator.serviceWorker.register('/sw.js').catch(() => {}); });
+  }
 })();

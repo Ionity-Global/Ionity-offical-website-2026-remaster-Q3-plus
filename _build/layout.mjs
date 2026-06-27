@@ -93,10 +93,10 @@ export function head(page) {
 <meta name="twitter:image" content="${SITE.origin}/assets/og/social-card.png">
 <meta name="twitter:image:alt" content="Ionity Global — Native-AI · AIoT · Cloud · Edge · Audit">
 <!-- Icons / PWA -->
-<link rel="icon" href="assets/img/favicon.ico?v=62" sizes="any">
-<link rel="icon" href="assets/img/favicon-64.png?v=62" type="image/png" sizes="64x64">
-<link rel="icon" href="assets/img/icon-192.png?v=62" type="image/png" sizes="192x192">
-<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=62">
+<link rel="icon" href="assets/img/favicon.ico?v=63" sizes="any">
+<link rel="icon" href="assets/img/favicon-64.png?v=63" type="image/png" sizes="64x64">
+<link rel="icon" href="assets/img/icon-192.png?v=63" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=63">
 <link rel="manifest" href="manifest.json">
 <!-- Fonts (no cookies set; degrades to system) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -107,7 +107,7 @@ export function head(page) {
 <link rel="dns-prefetch" href="https://storage.googleapis.com">
 <link rel="preconnect" href="https://storage.googleapis.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Chakra+Petch:wght@500;600;700&display=swap">
-<link rel="stylesheet" href="assets/css/ionity.css?v=62">
+<link rel="stylesheet" href="assets/css/ionity.css?v=63">
 <!-- Three.js backdrop importmap (must precede the module) -->
 <script type="importmap">
 { "imports": {
@@ -124,7 +124,7 @@ export function head(page) {
 <div class="crt-fx" aria-hidden="true"></div>
 <div class="crt-frame" aria-hidden="true"></div>
 <div class="progress-top" id="progressTop"></div>
-<div class="loader" id="loader" aria-hidden="true"><img class="mark" src="assets/img/ionity-anim.webp" onerror="this.onerror=null;this.src='assets/img/ai-mark-white.png?v=62';this.style.cssText='width:72px;height:72px'" alt="" width="280" height="147"><span class="lbl">Initialising edge…</span></div>
+<div class="loader" id="loader" aria-hidden="true"><img class="mark" src="assets/img/ionity-anim.webp" onerror="this.onerror=null;this.src='assets/img/ai-mark-white.png?v=63';this.style.cssText='width:72px;height:72px'" alt="" width="280" height="147"><span class="lbl">Initialising edge…</span></div>
 ${navHtml(page.path)}
 <main id="main">`;
 }
@@ -210,13 +210,13 @@ ${cookieHtml()}
 <!-- AEDi on-site AI assistant -->
 <div class="aedi-wrap" id="aediWrap">
   <button class="aedi-fab" id="aediToggle" aria-label="Chat with AEDi — Ionity AI" aria-expanded="false" title="Chat with AEDi">
-    <img class="aedi-fab-logo" src="assets/img/ai-mark-white.png?v=62" alt="" width="24" height="24" aria-hidden="true">
+    <img class="aedi-fab-logo" src="assets/img/ai-mark-white.png?v=63" alt="" width="24" height="24" aria-hidden="true">
     <span class="aedi-badge">AEDi</span>
     <span class="aedi-pulse" aria-hidden="true"></span>
   </button>
   <div class="aedi-panel" id="aediPanel" role="dialog" aria-label="AEDi — Ionity AI" aria-hidden="true" hidden>
     <div class="aedi-head">
-      <img class="aedi-head-logo" src="assets/img/ai-mark-white.png?v=62" alt="" width="22" height="22" aria-hidden="true">
+      <img class="aedi-head-logo" src="assets/img/ai-mark-white.png?v=63" alt="" width="22" height="22" aria-hidden="true">
       <div>
         <span class="aedi-name">AEDi</span>
         <span class="aedi-sub">Automated Ecosystems Intelligence</span>
@@ -236,20 +236,20 @@ ${cookieHtml()}
   </div>
 </div>
 
-<script src="assets/js/audio.js?v=62" defer></script>
-<script src="assets/js/mario.js?v=62" defer></script>
-<script src="assets/js/cookies.js?v=62" defer></script>
-<script src="assets/js/core.js?v=62" defer></script>
-<script src="assets/js/edge-diagnostics.js?v=62" defer></script>
-<script src="assets/js/matrix-cam.js?v=62" defer></script>
-<script src="assets/js/sensor-node.js?v=62" defer></script>
-<script src="assets/js/disciplines-graph.js?v=62" defer></script>
-<script src="assets/js/edge-forge.js?v=62" defer></script>
-<script src="assets/js/aedi-chat.js?v=62" defer></script>
+<script src="assets/js/audio.js?v=63" defer></script>
+<script src="assets/js/mario.js?v=63" defer></script>
+<script src="assets/js/cookies.js?v=63" defer></script>
+<script src="assets/js/core.js?v=63" defer></script>
+<script src="assets/js/edge-diagnostics.js?v=63" defer></script>
+<script src="assets/js/matrix-cam.js?v=63" defer></script>
+<script src="assets/js/sensor-node.js?v=63" defer></script>
+<script src="assets/js/disciplines-graph.js?v=63" defer></script>
+<script src="assets/js/edge-forge.js?v=63" defer></script>
+<script src="assets/js/aedi-chat.js?v=63" defer></script>
 <script>window.IonityGlitch=window.IonityGlitch||{};window.IonityGlitch.config={zIndex:3000};</script>
-<script src="assets/js/glitch.js?v=62" defer></script>
+<script src="assets/js/glitch.js?v=63" defer></script>
 <!-- Three.js WebGL backdrop (ES module; degrades to CSS via html.no3d) -->
-<script type="module" src="assets/js/backdrop.js?v=62"></script>
+<script type="module" src="assets/js/backdrop.js?v=63"></script>
 <!-- DMCA badge helper (makes the protection badge verifiable) -->
 <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js" async></script>
 </body>
