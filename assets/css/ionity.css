@@ -316,10 +316,20 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 }
 .hero .inner { max-width:62ch; z-index:2; padding-inline:var(--gutter); }
 .hero-wm { width:min(78vw,520px); margin:0 auto 1.6rem;
-  /* soft white halo lifts the wordmark off the blue bg, plus the ambient blue glow */
-  filter:drop-shadow(0 0 4px rgba(255,255,255,.7)) drop-shadow(0 0 16px rgba(255,255,255,.45)) drop-shadow(0 0 40px rgba(0,121,227,.45));
+  /* white halo lifts the wordmark off the blue bg + a cyan/blue ambient glow */
+  filter:drop-shadow(0 0 6px rgba(255,255,255,.85)) drop-shadow(0 0 22px rgba(0,210,255,.5)) drop-shadow(0 0 46px rgba(0,121,227,.5));
   animation:wmIn 1s var(--ease-out) both; }
-@keyframes wmIn { from { opacity:0; transform:translateY(14px) scale(.98); filter:drop-shadow(0 0 0 transparent); } }
+/* wmIn only fades opacity/transform — the filter is left free for the glow */
+@keyframes wmIn { from { opacity:0; transform:translateY(14px) scale(.98); } }
+/* gentle breathing glow once the entry settles (animates only `filter`, so it
+   composes cleanly on top of wmIn); static stronger glow under reduced-motion */
+@media (prefers-reduced-motion: no-preference){
+  .hero-wm { animation:wmIn 1s var(--ease-out) both, wmGlow 5s ease-in-out 1.1s infinite; }
+  @keyframes wmGlow {
+    0%,100% { filter:drop-shadow(0 0 6px rgba(255,255,255,.8)) drop-shadow(0 0 18px rgba(0,210,255,.42)) drop-shadow(0 0 40px rgba(0,121,227,.45)); }
+    50%     { filter:drop-shadow(0 0 10px rgba(255,255,255,.98)) drop-shadow(0 0 30px rgba(0,210,255,.7)) drop-shadow(0 0 62px rgba(0,121,227,.62)); }
+  }
+}
 .hero h1 { margin:.6rem 0 1.2rem; font-size:clamp(2rem,1.4rem + 3.4vw,4.4rem); }
 .hero .lead { margin-inline:auto; max-width:46ch; }
 .hero .cta-row { margin-top:2rem; display:flex; gap:.9rem; justify-content:center; flex-wrap:wrap; }
