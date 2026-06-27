@@ -121,7 +121,7 @@ const index = page(
   <div class="section-head reveal">
     <span class="kicker">01 · The premise</span>
     <h2>AI-native — not AI-attached.</h2>
-    <p class="lead">Most companies bolt AI onto old shapes. We start from intelligence: every dashboard, device and decision-loop is designed around models, agents and live data from day one — with our own <a href="about.html#aedi" style="color:var(--cyan)">AEDi</a> systems doing the heavy lifting and Claude in the loop.</p>
+    <p class="lead">Most companies just <strong>bolt</strong> AI on and hope it sticks. We don't. We engineer from intelligence <em>out</em> — every dashboard, device and decision-loop built around models, agents and live data from the first sketch, with our own <a href="about.html#aedi" style="color:var(--cyan)">AEDi</a> fabric carrying the load and Claude in the loop. Not AI-flavoured software — software that genuinely <strong>thinks</strong>.</p>
   </div>
   <div class="grid cols-3">
     <div class="card reveal"><h3>Solutionists</h3><p>Across mechanical, electrical and IT — with artisan hands. If the answer needs a circuit, a script and a bracket, we make all three.</p></div>

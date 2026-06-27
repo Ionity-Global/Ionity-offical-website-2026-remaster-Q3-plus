@@ -57,7 +57,8 @@
   --step-4:  clamp(2.8rem,1.8rem + 5.2vw,6.5rem);
 
   --maxw:    1240px;
-  --gutter:  clamp(1.1rem, 5vw, 3.5rem);
+  /* always clears the CRT bezel by ~16px so content never hugs the frame edge */
+  --gutter:  max(calc(var(--crt-bezel) + 16px), clamp(1.4rem, 5.5vw, 3.6rem));
   --radius:  18px;
   --radius-s:12px;
   --ease:    cubic-bezier(.22,.61,.36,1);
@@ -893,7 +894,7 @@ html:not(.no3d) .bg-grid{ opacity:.32; }
 /* (mobile menu is centred — no top-offset override needed) */
 .aedi-wrap { left:calc(var(--crt-bezel) + 12px); bottom:calc(var(--crt-bezel) + 12px); }
 .portal-corner { left:calc(var(--crt-bezel) + 12px); }
-.scroll-rail { right:calc(var(--crt-bezel) + 10px); }
+.scroll-rail { right:calc(var(--crt-bezel) + 20px); }
 .cookie { bottom:calc(var(--crt-bezel) + 10px); }
 .foot { padding-bottom:calc(var(--crt-bezel) + 1.5rem); }
 .skip:focus { top:calc(var(--crt-bezel) + 8px); left:calc(var(--crt-bezel) + 8px); }
