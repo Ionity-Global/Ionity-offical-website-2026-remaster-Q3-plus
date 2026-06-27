@@ -132,6 +132,23 @@ const index = page(
   <div class="center mt-2 reveal"><a class="btn btn-ghost" href="services.html">See services in depth ${ICON.arrow}</a></div>
 </section>
 
+<!-- ACT 3.5 ── DISCIPLINES (3D mindmap) ─────────────────── -->
+<section class="wrap" id="disciplines" data-act="Disciplines">
+  <div class="section-head reveal">
+    <span class="kicker">02b · The disciplines</span>
+    <h2>Ten disciplines, <span class="grad-text">one mind</span>.</h2>
+    <p>Services are how we package it; <em>disciplines</em> are what we actually master. Drag the graph — it's a live 3D map of the fields Ionity fuses into every build.</p>
+  </div>
+  <div class="disc-stage reveal" id="discStage">
+    <canvas id="discCanvas" aria-hidden="true"></canvas>
+    <ul class="disc-list" aria-label="Ionity disciplines">
+      <li>Digital Innovation</li><li>Internet of Things</li><li>Artificial Intelligence — Offline</li>
+      <li>Artificial Intelligence — Online</li><li>Mechanical Engineering</li><li>Electrotechnics</li>
+      <li>Product Development</li><li>Software Engineering</li><li>Computer-Aided Drafting</li><li>Cloud &amp; Edge</li>
+    </ul>
+  </div>
+</section>
+
 <!-- ACT 4 ───────────────────────────────────────────── -->
 <section class="wrap" id="audit" data-act="Audit">
   <div class="feature split">
