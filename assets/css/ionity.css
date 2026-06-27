@@ -177,7 +177,7 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 .foot .brand .wm { height:40px; }
 .nav-links { display:flex; align-items:center; gap:1.6rem; }
 .nav-links a {
-  font-family:var(--f-mono); font-size:.66rem; letter-spacing:.18em; text-transform:uppercase;
+  font-family:var(--f-mono); font-size:.76rem; letter-spacing:.18em; text-transform:uppercase;
   color:var(--muted); position:relative; padding:.4rem 0; transition:color .25s;
 }
 .nav-links a:hover, .nav-links a[aria-current="page"] { color:var(--text); }
@@ -216,7 +216,8 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
   border-radius:999px; font-family:var(--f-mono); font-size:.74rem; letter-spacing:.12em;
   text-transform:uppercase; font-weight:600; transition:.3s var(--ease); position:relative; isolation:isolate;
 }
-.btn-primary { background:var(--grad); color:#04060f; box-shadow:var(--glow-blue); }
+.btn-primary { background:var(--grad); color:#04060f; box-shadow:var(--glow-blue);
+  padding:.62rem 1.15rem; font-size:.64rem; }   /* the "Start a project" CTA — smaller */
 .btn-primary:hover { transform:translateY(-2px); box-shadow:0 0 40px rgba(0,210,255,.6); }
 .btn-ghost { border:1px solid var(--line-strong); color:var(--text); }
 .btn-ghost:hover { background:var(--grad-soft); border-color:var(--cyan); transform:translateY(-2px); }
@@ -669,7 +670,7 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 .aedi-fab:hover { transform:translateY(-2px); box-shadow:0 8px 32px rgba(0,121,227,.6), var(--glow-blue); }
 .aedi-fab:focus-visible { outline:2px solid var(--cyan); outline-offset:3px; }
 .aedi-fab svg { width:20px; height:20px; flex:none; }
-.aedi-fab-logo { width:24px; height:24px; flex:none; object-fit:contain; filter:drop-shadow(0 1px 2px rgba(0,0,0,.3)); }
+.aedi-fab-logo { width:30px; height:30px; flex:none; object-fit:contain; filter:drop-shadow(0 1px 2px rgba(0,0,0,.3)); }
 
 .aedi-badge { pointer-events:none; }
 
@@ -698,7 +699,7 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
   border-bottom:1px solid var(--line); background:rgba(0,121,227,.08);
   flex-shrink:0;
 }
-.aedi-head-logo { width:22px; height:22px; flex:none; object-fit:contain; filter:drop-shadow(0 0 6px rgba(0,210,255,.5)); }
+.aedi-head-logo { width:28px; height:28px; flex:none; object-fit:contain; filter:drop-shadow(0 0 6px rgba(0,210,255,.5)); }
 .aedi-head > div:first-child { flex:1; min-width:0; }
 .aedi-name { font-family:var(--f-mono); font-size:.8rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--cyan); display:block; }
 .aedi-sub  { font-size:.58rem; color:var(--faint); letter-spacing:.08em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:block; }
@@ -798,12 +799,24 @@ html:not(.no3d) .bg-grid{ opacity:.32; }
     0 0 0 9px #0a0b0e,                                /* groove */
     0 0 0 100vmax #15171c;                            /* SOLID bezel — fills every outer corner */
 }
-/* curved-glass glare on the screen (top-left) */
+/* convex CRT glass — the "bend": barrel edge fall-off + faint dome highlight (static, real) */
+.crt-frame::before {
+  content:""; position:absolute; inset:0; border-radius:22px; pointer-events:none;
+  background:
+    radial-gradient(140% 135% at 50% 50%, transparent 55%, rgba(0,0,0,.20) 82%, rgba(0,0,0,.42) 100%),
+    radial-gradient(78% 60% at 50% 13%, rgba(255,255,255,.055), transparent 56%);
+}
+/* swept glass reflection + REAL static scratches (screen-blended — only the light catches show) */
 .crt-frame::after {
   content:""; position:absolute; inset:0; border-radius:22px; pointer-events:none;
-  background:radial-gradient(125% 70% at 30% -6%, rgba(255,255,255,.06), transparent 48%);
+  background:
+    linear-gradient(116deg, transparent 16%, rgba(255,255,255,.045) 30%, rgba(255,255,255,.085) 39%, transparent 50%),
+    url("../img/crt-scratches.png?v=30");
+  background-repeat:no-repeat, no-repeat;
+  background-size:100% 100%, cover;
+  mix-blend-mode:screen;
 }
-@media (max-width:600px){ .crt-frame, .crt-frame::after { border-radius:16px; } }
+@media (max-width:600px){ .crt-frame, .crt-frame::before, .crt-frame::after { border-radius:16px; } }
 
 /* ===== CRT safe-area — everything sits INSIDE the screen, not under the bezel */
 @media (max-width:600px){ :root{ --crt-bezel:18px; } }
