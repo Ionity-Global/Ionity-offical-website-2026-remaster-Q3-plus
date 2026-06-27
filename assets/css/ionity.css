@@ -373,10 +373,10 @@ main > section { scroll-snap-align: start; scroll-margin-top: calc(var(--nav-h) 
 .portal-main p { font-size:var(--step--1); color:var(--muted); max-width:40ch; margin:.65rem auto 0; }
 /* "Talk to AEDi" CTA removed everywhere — the floating chat FAB launches AEDi */
 .aedi-cta { display:none; }
-/* desktop hero: keep the AEDi focal point minimal — drop the descriptive line
-   and the "scroll to explore" link (both still show on mobile). Scoped under
-   .hero so they out-specify the base .portal-skip rule defined later. */
-@media (min-width:601px){ .hero .portal-main p, .hero .portal-skip { display:none; } }
+/* hero focal point stays minimal on ALL platforms — drop the AEDi descriptive
+   line and the "scroll to explore" text link (the animated scroll chevrons
+   remain). Scoped under .hero so they out-specify the base .portal-skip rule. */
+.hero .portal-main p, .hero .portal-skip { display:none; }
 
 /* IO // WAY — compact card, lower-left, lifted to sit above the floating AEDi launcher */
 .portal-corner { position:absolute; left:clamp(1rem,4vw,3.2rem); bottom:clamp(92px,15vh,150px); z-index:3;
