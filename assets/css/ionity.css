@@ -290,7 +290,10 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
   padding-top:var(--nav-h); position:relative; overflow:hidden;
 }
 .hero .inner { max-width:62ch; z-index:2; padding-inline:var(--gutter); }
-.hero-wm { width:min(78vw,520px); margin:0 auto 1.6rem; filter:drop-shadow(0 0 40px rgba(0,121,227,.45)); animation:wmIn 1s var(--ease-out) both; }
+.hero-wm { width:min(78vw,520px); margin:0 auto 1.6rem;
+  /* soft white halo lifts the wordmark off the blue bg, plus the ambient blue glow */
+  filter:drop-shadow(0 0 4px rgba(255,255,255,.7)) drop-shadow(0 0 16px rgba(255,255,255,.45)) drop-shadow(0 0 40px rgba(0,121,227,.45));
+  animation:wmIn 1s var(--ease-out) both; }
 @keyframes wmIn { from { opacity:0; transform:translateY(14px) scale(.98); filter:drop-shadow(0 0 0 transparent); } }
 .hero h1 { margin:.6rem 0 1.2rem; font-size:clamp(2rem,1.4rem + 3.4vw,4.4rem); }
 .hero .lead { margin-inline:auto; max-width:46ch; }
