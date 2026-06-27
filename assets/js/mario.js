@@ -43,7 +43,7 @@
     if (armed) return;
     ctx = new AC();
     master = ctx.createGain();
-    master.gain.value = 0.4;       // overall trim — gentle on first interaction
+    master.gain.value = 0.2;       // overall trim — soft hover/click effects
     master.connect(ctx.destination);
     armed = true;
     loadAll();
