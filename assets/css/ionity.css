@@ -358,10 +358,12 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 .portal-kicker { font-family:var(--f-mono); font-size:.7rem; letter-spacing:.34em; text-transform:uppercase; color:var(--cyan); }
 .portal-main h2 { font-size:clamp(1.3rem,.9rem + 1.7vw,2.15rem); line-height:1.12; letter-spacing:-.01em; margin:.1rem 0 .25rem; }
 .portal-main p { font-size:var(--step--1); color:var(--muted); max-width:40ch; margin:.65rem auto 0; }
-.aedi-cta { margin-top:1.3rem; }
-/* mobile landing: drop the hero "Talk to AEDi" CTA — the floating chat FAB
-   already launches AEDi, so it's redundant on small screens */
-@media (max-width:600px){ .aedi-cta { display:none; } }
+/* "Talk to AEDi" CTA removed everywhere — the floating chat FAB launches AEDi */
+.aedi-cta { display:none; }
+/* desktop hero: keep the AEDi focal point minimal — drop the descriptive line
+   and the "scroll to explore" link (both still show on mobile). Scoped under
+   .hero so they out-specify the base .portal-skip rule defined later. */
+@media (min-width:601px){ .hero .portal-main p, .hero .portal-skip { display:none; } }
 
 /* IO // WAY — compact card, lower-left, lifted to sit above the floating AEDi launcher */
 .portal-corner { position:absolute; left:clamp(1rem,4vw,3.2rem); bottom:clamp(92px,15vh,150px); z-index:3;
