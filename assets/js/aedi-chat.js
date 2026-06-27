@@ -2,8 +2,7 @@
    On-site AI assistant for Ionity Global. Persona spec: /aedi.yaml
    Capabilities: text & code generation, multimodal image analysis (with
    conversation-context memory), data extraction & summarisation, live web
-   search, IMAGE CREATION, and a unique ON-DEVICE "Offline AEDi" mode that
-   answers with zero network when the browser exposes a built-in model.
+   search, and IMAGE CREATION / EDITING.
    NOTE: API key is client-side — restrict it to ionity.co.za/ionity.today. */
 
 (function () {
@@ -27,7 +26,7 @@
       "Booted and bright. I'm AEDi — where to?",
       "AEDi at your service. What are you building?",
       'Signal locked. Ask me anything — I can search, summarise, and even draw.',
-      'Online and on-device-curious. Try me, or run the live Edge Scan.',
+      'Online and sharp. Try me, or run the live Edge Scan.',
       'AEDi awake. From AIoT to audits — what brings you in?',
       'Hello, human. AEDi speaking, Ionity’s own AI. How can I help?',
       'AEDi online. Native-AI, at your command. What shall we explore?',
@@ -81,10 +80,9 @@
   const history = [];
   let open = false, busy = false;
   let pendingImage = null;   // {mime, data} attached for the next message
-  let onDevice = false;      // unique "Offline AEDi" mode toggle
 
   const $ = (id) => document.getElementById(id);
-  let fab, panel, messages, input, sendBtn, closeBtn, statusDot, attachBtn, fileInput, thumb, offlineBtn;
+  let fab, panel, messages, input, sendBtn, closeBtn, statusDot, attachBtn, fileInput, thumb;
 
   /* ── formatting ───────────────────────────────────────────────────────── */
   function escHtml(s) {
@@ -128,25 +126,6 @@
     div.appendChild(b); messages.appendChild(div); messages.scrollTop = messages.scrollHeight; return div;
   }
 
-  /* ── on-device (unique "Offline AEDi") ───────────────────────────────────── */
-  function onDeviceAPI() { return window.LanguageModel || (window.ai && (window.ai.languageModel || window.ai.assistant)) || null; }
-  async function onDeviceReady() {
-    const LM = onDeviceAPI(); if (!LM) return false;
-    try {
-      if (LM.availability) { const a = await LM.availability(); return a && a !== 'unavailable'; }
-      if (LM.capabilities) { const c = await LM.capabilities(); return c && c.available && c.available !== 'no'; }
-    } catch (e) {}
-    return false;
-  }
-  async function askOnDevice(text) {
-    const LM = onDeviceAPI(); if (!LM) return null;
-    try {
-      const session = await LM.create({ initialPrompts: [{ role: 'system', content: 'You are AEDi, Ionity Global\'s on-device AI. Be concise, professional and family-friendly. No sexual content or profanity.' }] });
-      const out = await session.prompt(text);
-      if (session.destroy) session.destroy();
-      return (out || '').trim() || null;
-    } catch (e) { return null; }
-  }
 
   /* ── helpers: resilience + intent ─────────────────────────────────────── */
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -246,23 +225,9 @@
     const userDiv = appendMsg('user', userText || '(image attached)');
     if (img) { const im = document.createElement('img'); im.className = 'aedi-genimg'; im.src = `data:${img.mime};base64,${img.data}`; userDiv.querySelector('.aedi-bubble').prepend(im); }
 
-    statusDot.textContent = onDevice ? 'On-device…' : 'Thinking…';
+    statusDot.textContent = 'Thinking…';
     const typingEl = appendMsg('model', '', true);
     await systemReady;
-
-    // ----- unique: ON-DEVICE first (no network) when enabled + supported -----
-    if (onDevice && !img) {
-      const local = await askOnDevice(userText);
-      if (local) {
-        typingEl.remove();
-        history.push({ role: 'model', parts: [{ text: local }] });
-        const d = appendMsg('model', local);
-        const tag = document.createElement('div'); tag.className = 'aedi-ondevice-tag'; tag.textContent = '⚡ answered 100% on-device · no network';
-        d.appendChild(tag);
-        return done();
-      }
-      // not available → fall through to cloud with a note
-    }
 
     // ----- cloud: grounded ONLY when the query needs it (saves quota → far fewer
     //        429s), with a brief backoff retry. Then an on-device RESCUE so the
@@ -284,22 +249,12 @@
     typingEl.remove();
     if (reply) { history.push({ role: 'model', parts: [{ text: reply }] }); appendMsg('model', reply); return done(); }
     if (blocked) { appendMsg('model', "Let's keep this professional — but I'm all in on anything Ionity can build for you. What are you working on?"); return done(); }
-    // RESCUE: answer on-device if this browser can — don't let cloud limits win.
-    if (!img) {
-      const local = await askOnDevice(userText);
-      if (local) {
-        history.push({ role: 'model', parts: [{ text: local }] });
-        const d = appendMsg('model', local);
-        const tag = document.createElement('div'); tag.className = 'aedi-ondevice-tag'; tag.textContent = '⚡ cloud was busy — answered on-device'; d.appendChild(tag);
-        return done();
-      }
-    }
     appendMsg('model', rateLimited
-      ? "Lots of people are talking to me right now and the cloud throttled me for a beat ⚡ — give it ~20 seconds and ask again. In a hurry? ai@ionity.today or WhatsApp +27 50 033 7626."
+      ? "Lots of people are talking to me right now and I got throttled for a beat ⚡ — give it ~20 seconds and ask again. In a hurry? ai@ionity.today or WhatsApp +27 50 033 7626."
       : "I couldn't reach the network just now — try me again shortly, or ai@ionity.today.");
     return done();
   }
-  function done() { busy = false; sendBtn.disabled = false; statusDot.textContent = onDevice ? 'On-device' : 'Online'; }
+  function done() { busy = false; sendBtn.disabled = false; statusDot.textContent = 'Online'; }
 
   /* ── attachment ───────────────────────────────────────────────────────── */
   function clearThumb() { if (thumb) { thumb.hidden = true; thumb.innerHTML = ''; } }
@@ -340,7 +295,7 @@
   function init() {
     fab = $('aediToggle'); panel = $('aediPanel'); messages = $('aediMessages'); input = $('aediInput');
     sendBtn = $('aediSend'); closeBtn = $('aediClose'); statusDot = $('aediStatusText');
-    attachBtn = $('aediAttach'); fileInput = $('aediFile'); thumb = $('aediThumb'); offlineBtn = $('aediOffline');
+    attachBtn = $('aediAttach'); fileInput = $('aediFile'); thumb = $('aediThumb');
     if (!fab) return;
 
     fab.addEventListener('click', (e) => { e.stopPropagation(); togglePanel(); });
@@ -358,25 +313,6 @@
       fileInput.addEventListener('change', () => { if (fileInput.files[0]) onFile(fileInput.files[0]); fileInput.value = ''; });
     }
 
-    // unique "Offline AEDi" toggle — only enabled if the browser exposes on-device AI
-    if (offlineBtn) {
-      onDeviceReady().then((ok) => {
-        offlineBtn.dataset.supported = ok ? '1' : '0';
-        offlineBtn.title = ok ? 'Answer on-device (no network) — Ionity offline-AI demo'
-                              : 'On-device AI not available in this browser yet';
-        offlineBtn.addEventListener('click', async () => {
-          if (offlineBtn.dataset.supported !== '1') {
-            appendMsg('model', "On-device AI isn't exposed by this browser yet — that's the experimental built-in model (Chrome's on-device AI). It's exactly the kind of OFFLINE edge intelligence Ionity builds. For now I'll keep answering from the cloud.");
-            return;
-          }
-          onDevice = !onDevice;
-          offlineBtn.classList.toggle('on', onDevice);
-          statusDot.textContent = onDevice ? 'On-device' : 'Online';
-          appendMsg('model', onDevice ? "⚡ On-device mode ON — I'll answer right here on your machine, no network. A live taste of Ionity's offline AI."
-                                       : 'Back online — full cloud powers (search, images, vision) restored.');
-        });
-      });
-    }
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

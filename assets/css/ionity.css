@@ -859,10 +859,6 @@ main > section { scroll-margin-top: calc(var(--nav-h) + var(--crt-bezel)); }
 .aedi-icon { flex:none; width:34px; height:34px; display:grid; place-items:center; border-radius:50%;
   border:1px solid var(--line-strong); background:transparent; color:var(--muted); cursor:pointer; transition:.2s var(--ease); }
 .aedi-icon:hover { color:var(--cyan); border-color:var(--cyan); box-shadow:var(--glow); }
-.aedi-offline { width:30px; height:30px; }
-.aedi-offline.on { color:#04060f; background:var(--cyan); border-color:var(--cyan); box-shadow:0 0 14px rgba(0,210,255,.6); }
-.aedi-head .aedi-offline { margin-left:auto; }
-.aedi-status { margin-left:.4rem; }
 
 /* attached-image thumbnail strip */
 .aedi-thumb { display:flex; align-items:center; gap:.5rem; padding:.5rem .9rem 0; }
@@ -878,10 +874,6 @@ main > section { scroll-margin-top: calc(var(--nav-h) + var(--crt-bezel)); }
 .aedi-code { margin:.5rem 0; padding:.7rem .8rem; background:rgba(0,0,0,.45); border:1px solid var(--line-strong);
   border-radius:8px; overflow-x:auto; }
 .aedi-code code { font-family:var(--f-mono); font-size:.74rem; color:#cfeaff; white-space:pre; background:none; padding:0; }
-
-/* on-device answer tag (unique offline mode) */
-.aedi-ondevice-tag { margin-top:.45rem; font-family:var(--f-mono); font-size:.54rem; letter-spacing:.06em;
-  color:var(--cyan); opacity:.9; }
 
 .aedi-disc { font-family:var(--f-mono); font-size:.54rem; color:var(--faint); text-align:center; padding:.4rem .9rem .6rem; flex-shrink:0; }
 
