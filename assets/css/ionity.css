@@ -311,6 +311,12 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 @media (min-width:860px){ .feature.split { grid-template-columns:1.1fr .9fr; } }
 
 /* ------------------------------------------------------ IMMERSIVE / ACTS --- */
+/* page scrolls in "blocks" — each top-level section is a snap point. Proximity
+   (not mandatory) so tall sections never trap the scroll; offset for the nav. */
+html { scroll-snap-type: y proximity; scroll-padding-top: calc(var(--nav-h) + var(--crt-bezel)); }
+main > section { scroll-snap-align: start; scroll-margin-top: calc(var(--nav-h) + var(--crt-bezel)); }
+@media (prefers-reduced-motion: reduce){ html { scroll-snap-type: none; } }
+
 .hero {
   min-height:100svh; display:grid; place-items:center; text-align:center;
   padding-top:var(--nav-h); position:relative; overflow:hidden;
@@ -439,7 +445,7 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 .progress-top { position:fixed; top:0; left:0; height:2px; width:0; background:var(--grad); z-index:1001; box-shadow:var(--glow); }
 
 /* scroll hint chevrons */
-.scroll-hint { position:absolute; bottom:24px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; gap:3px; z-index:3; animation:bob 1.6s var(--ease) infinite; }
+.scroll-hint { position:absolute; bottom:calc(var(--crt-bezel) + 16px); left:50%; transform:translateX(-50%); display:flex; flex-direction:column; gap:3px; z-index:3; animation:bob 1.6s var(--ease) infinite; }
 .scroll-hint i { width:12px; height:12px; border-right:2px solid var(--cyan); border-bottom:2px solid var(--cyan); transform:rotate(45deg); opacity:.7; }
 .scroll-hint i:nth-child(2){ opacity:.4; }
 @keyframes bob { 50% { transform:translateX(-50%) translateY(8px); } }

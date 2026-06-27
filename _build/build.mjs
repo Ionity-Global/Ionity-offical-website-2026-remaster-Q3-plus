@@ -344,7 +344,7 @@ function visionBlock() {
   </div>
   <div>
     <h3>See the room in <span class="grad-text">matrix</span></h3>
-    <p class="mt-1">Enable your camera and Ionity renders <em>you</em>, live, as a field of blue matrix digits — luminance becomes glyphs, movement lights the rain. A playful demo of the on-device vision pipeline our edge nodes run in the field.</p>
+    <p class="mt-1">Motion detection · Recognition · Object detection. <strong>Anything is possible.</strong></p>
     <div class="cta-row mt-2"><button class="btn btn-primary" id="mxStart" data-sfx="powerup">Enable camera ${ICON.arrow}</button> <button class="btn btn-ghost" id="mxStop" hidden>Stop camera</button></div>
     <p class="note mt-2" id="mxNote">100% on-device: the video never leaves your browser — it's drawn straight to a canvas as digits and discarded frame by frame. Nothing is recorded or uploaded. Camera permission is asked on tap; deny it and this simply stays off.</p>
   </div>
@@ -358,7 +358,7 @@ function sensorBlock() {
     <h3>Your browser, as an <span class="grad-text">edge sensor node</span></h3>
     <p class="mt-1">This is what an Ionity node does in the field — now in your hand. Tap to wake the real sensors on <em>this</em> device: motion, tilt &amp; compass, ambient light, and a live microphone sound meter. Readings are live and stay on-device.</p>
     <div class="cta-row mt-2"><button class="btn btn-warm" id="snStart">Activate sensors ${ICON.arrow}</button></div>
-    <p class="note mt-2">On a phone you'll feel it: tilt the device and watch the horizon. Desktop exposes fewer sensors — that honesty is the point. Permissions are asked on tap.</p>
+    <p class="note mt-2">Sensors in action — locally, anywhere, anyplace.</p>
   </div>
   <div class="hud">
     <div class="hud-head"><span class="t">edge node · this device</span><span class="pill live"><span class="dot"></span> <span id="snStatus" data-kind="idle">DORMANT</span></span></div>
