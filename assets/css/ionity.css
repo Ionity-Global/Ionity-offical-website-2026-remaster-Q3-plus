@@ -512,8 +512,31 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
   background:linear-gradient(180deg, rgba(0,121,227,.10), rgba(0,0,0,.28)); }
 
 /* Latest — lazy YouTube embed (loads on scroll-in / click; youtube-nocookie) */
-.yt-embed { position:relative; width:100%; aspect-ratio:16/9; margin-top:1.4rem; border-radius:var(--radius);
-  overflow:hidden; border:1px solid var(--line-strong); cursor:pointer; background:#07080D; box-shadow:0 14px 40px rgba(0,0,0,.4); }
+.yt-embed { position:relative; width:100%; aspect-ratio:16/9; margin-top:1.4rem;
+  overflow:hidden; cursor:pointer; background:#07080D;
+  /* digitized silhouette: chamfered/stepped corners read as a HUD/tech panel */
+  clip-path:polygon(2.4% 0, 97.6% 0, 100% 5%, 100% 95%, 97.6% 100%, 2.4% 100%, 0 95%, 0 5%);
+  box-shadow:0 14px 40px rgba(0,0,0,.4), inset 0 0 0 1px rgba(0,210,255,.55), inset 0 0 26px rgba(0,210,255,.16);
+  filter:drop-shadow(0 0 16px rgba(0,210,255,.42)); }
+/* digitized edges — cyan corner brackets + faint moving scanlines (decorative, clicks pass through) */
+.yt-embed::before { content:""; position:absolute; inset:0; pointer-events:none; z-index:3; opacity:.9;
+  background:
+    linear-gradient(var(--cyan),var(--cyan)) left 6% top 5%/30px 2px no-repeat,
+    linear-gradient(var(--cyan),var(--cyan)) left 6% top 5%/2px 30px no-repeat,
+    linear-gradient(var(--cyan),var(--cyan)) right 6% top 5%/30px 2px no-repeat,
+    linear-gradient(var(--cyan),var(--cyan)) right 6% top 5%/2px 30px no-repeat,
+    linear-gradient(var(--cyan),var(--cyan)) left 6% bottom 5%/30px 2px no-repeat,
+    linear-gradient(var(--cyan),var(--cyan)) left 6% bottom 5%/2px 30px no-repeat,
+    linear-gradient(var(--cyan),var(--cyan)) right 6% bottom 5%/30px 2px no-repeat,
+    linear-gradient(var(--cyan),var(--cyan)) right 6% bottom 5%/2px 30px no-repeat;
+  filter:drop-shadow(0 0 4px var(--cyan)); }
+.yt-embed::after { content:""; position:absolute; inset:0; pointer-events:none; z-index:2;
+  background:repeating-linear-gradient(0deg, rgba(0,210,255,.06) 0 1px, transparent 1px 4px);
+  mix-blend-mode:screen; opacity:.45; }
+@media (prefers-reduced-motion: no-preference){
+  .yt-embed::after{ animation:ytScan 6s linear infinite; }
+  @keyframes ytScan{ from{background-position:0 0} to{background-position:0 64px} }
+}
 .yt-poster { position:absolute; inset:0; background:
   radial-gradient(circle at 50% 42%, rgba(0,121,227,.28), transparent 68%),
   linear-gradient(160deg, rgba(0,210,255,.08), rgba(7,8,13,.92)); }
@@ -524,7 +547,7 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 .yt-play svg { width:30px; height:30px; margin-left:3px; }
 .yt-label { position:absolute; left:1rem; bottom:.9rem; font-family:var(--f-mono); font-size:.62rem; letter-spacing:.18em; text-transform:uppercase; color:var(--ice); }
 .yt-embed.loaded .yt-poster, .yt-embed.loaded .yt-play, .yt-embed.loaded .yt-label { display:none; }
-.yt-frame { position:absolute; inset:0; width:100%; height:100%; border:0; }
+.yt-frame { position:absolute; top:0; bottom:0; left:-5%; width:110%; height:100%; border:0; opacity:.9; }
 
 /* radar (presence visual, only filled by REAL data) */
 .radar { width:100%; max-width:280px; aspect-ratio:1; margin-inline:auto; position:relative; }
