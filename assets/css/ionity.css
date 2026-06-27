@@ -804,6 +804,13 @@ main > section { scroll-snap-align: start; scroll-margin-top: calc(var(--nav-h) 
 .aedi-bubble a:hover { color:var(--orange); }
 
 .aedi-typing .aedi-bubble { background:var(--surface); border:1px solid var(--line); padding:.7rem 1rem; }
+
+/* starter quick-prompt chips under the first greeting */
+.aedi-suggest { display:flex; flex-wrap:wrap; gap:.4rem; padding:.1rem 0 .2rem; }
+.aedi-chip { font-family:var(--f-mono); font-size:.62rem; letter-spacing:.03em; color:var(--ice);
+  background:rgba(0,121,227,.14); border:1px solid var(--line-strong); border-radius:999px;
+  padding:.42rem .8rem; cursor:pointer; transition:.2s var(--ease); text-shadow:none; }
+.aedi-chip:hover { background:var(--grad-soft); border-color:var(--cyan); color:#fff; transform:translateY(-1px); }
 .aedi-dots { display:flex; gap:.35rem; align-items:center; height:1.2em; }
 .aedi-dots i { width:6px; height:6px; border-radius:50%; background:var(--cyan); animation:aedi-dot .9s ease-in-out infinite; }
 .aedi-dots i:nth-child(2) { animation-delay:.18s; }

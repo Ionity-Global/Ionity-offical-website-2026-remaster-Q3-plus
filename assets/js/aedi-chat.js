@@ -45,7 +45,10 @@
     'You have a live web-search tool — USE IT to explore and cite real, current content from BOTH of Ionity\'s sites: ionity.co.za (this canonical site) and www.ionity.today (the sister/reference site). When asked about Ionity\'s work, services, projects or references, search those two domains and answer from what is actually published there rather than guessing — then link the visitor to the exact page.',
     'When the visitor wants something on THIS site, DIRECT them with markdown links — e.g. [run a live Edge Scan](edge.html), [see our services](services.html), [start a project](contact.html). Same-site links use relative paths; ionity.today uses its full https URL.',
     'Always write a fresh reply to what the visitor actually said. If they just greet you ("hi"), respond in ONE short original line and invite a question about Ionity — NEVER paste a canned greeting or repeat the knowledge-base text verbatim.',
-    'Be concise (1–3 short paragraphs), professional, direct, not sales-y. No legal/medical/financial advice — refer to ai@ionity.today.',
+    'CONTENT POLICY (always, no exceptions): keep every reply strictly professional and family-friendly. Never produce sexual, explicit or adult content. Never use profanity, slurs or vulgar language — not even when quoting the visitor. If a visitor is abusive or asks for such content, briefly and politely decline and steer back to how Ionity can help.',
+    'BOUNDARIES & SAFETY: do not give legal, medical or financial advice. If a visitor expresses personal crisis, distress or self-harm, or a medical/legal emergency, reply with brief warmth, do NOT counsel, and point them to the right professionals — local emergency services or a recognised crisis line (in South Africa, the SADAG helpline). Then gently offer to continue with Ionity questions. For business/legal/financial specifics, refer to ai@ionity.today.',
+    'CAN WE BUILD IT: when asked whether Ionity can make, build, automate or integrate something, the answer is almost always YES. Affirm it confidently, add a one-line "here is how", then invite them to request a quote on the [Contact page](contact.html) or to book a one-on-one.',
+    'Be concise (1–3 short paragraphs), professional, direct and warm — never sales-y or crude.',
     'The authoritative knowledge base (identity, company, services, site map, features) follows below as YAML. Treat it as ground truth for anything about Ionity.',
     '',
     '=== AEDi KNOWLEDGE BASE (aedi.yaml) ===',
@@ -122,6 +125,8 @@
   /* ── API call ─────────────────────────────────────────────────────────── */
   async function ask(userText) {
     if (busy) return;
+    const sug = messages.querySelector('.aedi-suggest');   // clear starter chips once a chat begins
+    if (sug) sug.remove();
     busy = true;
     sendBtn.disabled = true;
     statusDot.textContent = 'Thinking…';
@@ -137,8 +142,16 @@
     await systemReady;   // make sure aedi.yaml context is loaded before the first call
 
     const baseCfg = { temperature: 0.6, maxOutputTokens: 1024, thinkingConfig: { thinkingBudget: 0 } };
+    // API-level guardrails: block sexual/explicit content hard, plus harassment,
+    // hate and dangerous content. Keeps AEDi clean even if a prompt slips through.
+    const SAFETY = [
+      { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_LOW_AND_ABOVE' },
+      { category: 'HARM_CATEGORY_HARASSMENT',        threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
+      { category: 'HARM_CATEGORY_HATE_SPEECH',       threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
+      { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
+    ];
     const mkBody = (useTools) => {
-      const b = { system_instruction: { parts: [{ text: SYSTEM }] }, contents: history, generationConfig: baseCfg };
+      const b = { system_instruction: { parts: [{ text: SYSTEM }] }, contents: history, generationConfig: baseCfg, safetySettings: SAFETY };
       if (useTools) b.tools = [{ google_search: {} }];   // live web grounding (weather/news/facts)
       return b;
     };
@@ -150,20 +163,22 @@
       if (res.status === 429) return { rate: true };
       if (!res.ok) { console.warn('[AEDi]', model, useTools ? '+search' : '', res.status); return {}; }
       const data = await res.json();
+      // content blocked by safety filters → surface a clean, professional decline
+      if (data?.promptFeedback?.blockReason || data?.candidates?.[0]?.finishReason === 'SAFETY') return { blocked: true };
       const text = (data?.candidates?.[0]?.content?.parts || []).map(p => p.text).filter(Boolean).join('').trim();
       return { text };
     }
 
     // For each model: try WITH web grounding, then WITHOUT (so a grounding
     // hiccup never blanks the chat). Fall through to the next model on 429/empty.
-    let reply = null, rateLimited = false;
+    let reply = null, rateLimited = false, blocked = false;
     for (const model of CFG.models) {
       try {
         let r = await callModel(model, true);
-        if (r.rate) rateLimited = true; else if (r.text) { reply = r.text; break; }
+        if (r.rate) rateLimited = true; else if (r.blocked) { blocked = true; break; } else if (r.text) { reply = r.text; break; }
         if (!reply) {
           r = await callModel(model, false);
-          if (r.rate) rateLimited = true; else if (r.text) { reply = r.text; break; }
+          if (r.rate) rateLimited = true; else if (r.blocked) { blocked = true; break; } else if (r.text) { reply = r.text; break; }
         }
       } catch (e) { console.warn('[AEDi]', model, e.message); }   // network error → try next
     }
@@ -172,6 +187,8 @@
     if (reply) {
       history.push({ role: 'model', parts: [{ text: reply }] });
       appendMsg('model', reply);
+    } else if (blocked) {
+      appendMsg('model', "Let's keep this professional — I can't help with that. But I'm happy to talk about anything Ionity can build for you. What are you working on?");
     } else if (rateLimited) {
       appendMsg('model', "AEDi is handling a lot of requests right now — give it a moment and ask again. For anything urgent: ai@ionity.today.");
     } else {
@@ -191,8 +208,30 @@
     fab.setAttribute('aria-expanded', String(open));
     if (open && messages.childElementCount === 0) {
       appendMsg('model', pickGreeting());
+      renderSuggestions();
     }
     if (open) setTimeout(() => input.focus(), 60);
+  }
+
+  // starter quick-prompts shown under the first greeting; tap to ask.
+  const SUGGESTIONS = [
+    'What do you do?',
+    'How safe is AEDi?',
+    'Can Ionity build my idea?',
+    'Need a quote?',
+    'Book a one-on-one?',
+  ];
+  function renderSuggestions() {
+    const wrap = document.createElement('div');
+    wrap.className = 'aedi-suggest';
+    SUGGESTIONS.forEach((s) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'aedi-chip'; b.textContent = s;
+      b.addEventListener('click', () => ask(s));
+      wrap.appendChild(b);
+    });
+    messages.appendChild(wrap);
+    messages.scrollTop = messages.scrollHeight;
   }
 
   // random AEDi greeting, never the same twice in a row
