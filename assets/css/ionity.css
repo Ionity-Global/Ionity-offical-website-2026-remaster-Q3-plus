@@ -954,7 +954,7 @@ html:not(.no3d) .bg-grid{ opacity:.32; }
 /* (mobile menu is centred — no top-offset override needed) */
 .aedi-wrap { left:calc(var(--crt-bezel) + 12px); bottom:calc(var(--crt-bezel) + 12px); }
 .portal-corner { left:calc(var(--crt-bezel) + 12px); }
-.scroll-rail { right:calc(var(--crt-bezel) + 20px); }
+.scroll-rail { right:calc(var(--crt-bezel) + 28px); }
 .cookie { bottom:calc(var(--crt-bezel) + 10px); }
 .foot { padding-bottom:calc(var(--crt-bezel) + 1.5rem); }
 .skip:focus { top:calc(var(--crt-bezel) + 8px); left:calc(var(--crt-bezel) + 8px); }
