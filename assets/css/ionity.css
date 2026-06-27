@@ -83,7 +83,7 @@ body {
   /* readability: a soft dark halo behind light copy over the 3D/gradient
      backdrop. On dark cards/HUDs a dark shadow is invisible, so it's safe
      site-wide; inherited by all text unless an element sets its own. */
-  text-shadow:-1px -1px 0 rgba(0,0,0,.7), 1px -1px 0 rgba(0,0,0,.7), -1px 1px 0 rgba(0,0,0,.7), 1px 1px 0 rgba(0,0,0,.7), 0 0 5px rgba(0,0,0,.75);
+  text-shadow:-1px -1px 0 rgba(0,0,0,.7), 1px -1px 0 rgba(0,0,0,.7), -1px 1px 0 rgba(0,0,0,.7), 1px 1px 0 rgba(0,0,0,.7), 0 0 5px rgba(0,0,0,.75), 0 0 14px rgba(150,205,255,.22);
 }
 /* big headings carry their own gradient shimmer + glow — keep them clean */
 h1, h2 { text-shadow:none; }
@@ -254,9 +254,18 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
   text-transform:uppercase; font-weight:600; transition:.3s var(--ease); position:relative; isolation:isolate;
   text-shadow:none;   /* buttons have solid fills — the body's dark rim muddies the crisp label */
 }
-.btn-primary { background:var(--grad); color:#04060f; box-shadow:var(--glow-blue);
-  padding:.62rem 1.15rem; font-size:.64rem; }   /* the "Start a project" CTA — smaller */
-.btn-primary:hover { transform:translateY(-2px); box-shadow:0 0 40px rgba(0,210,255,.6); }
+.btn-primary { background:var(--grad); color:#fff; box-shadow:var(--glow-blue);
+  padding:.62rem 1.15rem; font-size:.64rem;   /* the "Start a project" CTA — smaller, white letters */
+  text-shadow:0 1px 2px rgba(0,0,0,.55), 0 0 5px rgba(0,0,0,.4); }
+.btn-primary:hover { transform:translateY(-2px); box-shadow:0 0 40px rgba(0,210,255,.7); animation-play-state:paused; }
+/* gentle attention pulse on the primary CTAs (glow breathes); paused on hover */
+@media (prefers-reduced-motion: no-preference){
+  .btn-primary { animation:btnPulse 2.6s ease-in-out infinite; }
+  @keyframes btnPulse {
+    0%,100% { box-shadow:0 0 12px rgba(0,121,227,.45); }
+    50%     { box-shadow:0 0 28px rgba(0,210,255,.7); }
+  }
+}
 .btn-ghost { border:1px solid var(--line-strong); color:var(--text); }
 .btn-ghost:hover { background:var(--grad-soft); border-color:var(--cyan); transform:translateY(-2px); }
 .btn-warm { background:var(--grad-warm); color:#1a1000; box-shadow:var(--glow-orange); }
@@ -267,8 +276,9 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 /* --------------------------------------------------------------- BADGES ---- */
 .pill {
   display:inline-flex; align-items:center; gap:.5rem; padding:.4rem .9rem; border-radius:999px;
-  border:1px solid var(--line); background:rgba(255,255,255,.02);
-  font-family:var(--f-mono); font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);
+  border:1px solid rgba(0,210,255,.24); background:rgba(0,210,255,.05);
+  font-family:var(--f-mono); font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ice);
+  box-shadow:0 0 22px rgba(0,210,255,.22), inset 0 0 14px rgba(0,210,255,.07);
 }
 .pill .dot { width:7px; height:7px; border-radius:50%; background:var(--good); box-shadow:0 0 10px var(--good); animation:pulse 2s infinite; }
 @keyframes pulse { 50% { opacity:.35; } }
@@ -573,6 +583,7 @@ main > section { scroll-margin-top: calc(var(--nav-h) + var(--crt-bezel)); }
   transition:transform .25s var(--ease-out), box-shadow .25s; }
 .dmca-badge:hover { transform:translateY(-2px); box-shadow:0 12px 32px rgba(0,0,0,.6); }
 .dmca-badge img { display:block; width:100px; height:auto; }
+.gov-badge, .gov-badge * { text-shadow:none; }   /* dark text on a white card — the body rim muddies it */
 .gov-badge { position:relative; width:110px; background:#fff; color:#0b0c10; border-radius:9px; overflow:hidden; line-height:1;
   font-family:var(--f-body); box-shadow:0 8px 26px rgba(0,0,0,.5); transition:transform .25s var(--ease-out), box-shadow .25s; }
 .gov-badge:hover { transform:translateY(-2px); box-shadow:0 12px 32px rgba(0,0,0,.6); }
