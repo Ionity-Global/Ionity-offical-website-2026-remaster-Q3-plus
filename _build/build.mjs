@@ -156,7 +156,7 @@ const index = page(
 <section class="wrap" id="capabilities" data-act="Capabilities">
   <div class="section-head reveal">
     <span class="kicker">02 · What we do</span>
-    <h2>Six disciplines, <span class="grad-text">one stack</span>.</h2>
+    <h2>Ten disciplines, <span class="grad-text">one stack</span>.</h2>
     <p>Clean, composable, and built to integrate. Pick one or chain them into a full digital twin of your operation.</p>
   </div>
   <div class="grid cols-3">

@@ -938,8 +938,10 @@ html.crt-boot .crt-fx { animation: crtBoot 1s steps(1,end) 1 forwards; }
 
 /* Mobile: zoom the whole layout out a touch (everything scales off rem). The
    nav logo is px-based so it stays prominent. */
-@media (max-width:600px){ html{ font-size:90%; } }
-@media (max-width:380px){ html{ font-size:86%; } }
+@media (max-width:600px){ html{ font-size:86%; } }
+@media (max-width:380px){ html{ font-size:82%; } }
+/* mobile: lift grey text contrast (muted/faint read too dim on small screens) */
+@media (max-width:600px){ :root{ --muted:#BCC6D8; --faint:#828DA2; } }
 
 /* --- AEDi section: calm translucent panel over the live 3D --- */
 #aedi{ background:rgba(14,16,24,.6); border-radius:var(--radius); }
