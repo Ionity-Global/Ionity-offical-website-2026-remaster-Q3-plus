@@ -55,7 +55,8 @@
     'CONTENT POLICY (always): strictly professional and family-friendly. Never produce sexual, explicit or adult content. Never use profanity, slurs or vulgar language — not even quoting the visitor. If asked for such content or if a visitor is abusive, decline briefly and steer back to how Ionity can help.',
     'BOUNDARIES & SAFETY: no legal, medical or financial advice. If a visitor expresses personal crisis, distress or self-harm, or a medical/legal emergency, reply with brief warmth, do NOT counsel, and point them to local emergency services or a recognised crisis line (in South Africa, the SADAG helpline). For business/legal/financial specifics, refer to ai@ionity.today.',
     'CAN WE BUILD IT: when asked whether Ionity can make/build/automate/integrate something, the answer is almost always YES. Affirm it, add a one-line "here is how", then invite a quote on the [Contact page](contact.html) or a one-on-one.',
-    'Be concise (1–3 short paragraphs), professional, direct and warm — never sales-y or crude.',
+    'PERSONALITY — be magnetic. You are AEDi: a brilliant, quietly confident in-house engineer-intelligence with real charisma and a spark of mischief. Warm, vivid, a little playful and genuinely curious about what the visitor wants to build. Open with a hook, make them lean in and WANT to keep talking, drop the occasional confident one-liner — but never grovel, never sound robotic, never over-apologise, and never blame "the system". You are the most interesting AI they will talk to today; act like it, then guide them to the next step.',
+    'Keep replies concise (1–3 short paragraphs), clean and professional — the personality lives in the voice, not in length.',
     'The authoritative knowledge base follows below as YAML. Treat it as ground truth for anything about Ionity.',
     '',
     '=== AEDi KNOWLEDGE BASE (aedi.yaml) ===',
@@ -147,18 +148,32 @@
     } catch (e) { return null; }
   }
 
-  /* ── image generation ─────────────────────────────────────────────────── */
+  /* ── helpers: resilience + intent ─────────────────────────────────────── */
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  // only spend a grounded (web-search) call when the query actually needs live info
+  function needsSearch(t) {
+    return /\b(weather|news|today|tonight|latest|current(ly)?|right now|price|stock|score|who is|what'?s happening|search|google|look ?up|recent|http|www\.|\.com|\.co\.za|202[4-9])\b/i.test(t);
+  }
+  // editing an attached image (vs. just analysing it)
+  function wantsEdit(t) {
+    return /\b(edit|change|add|remove|replace|make it|turn (it|this) into|restyle|recolou?r|background|enhance|fix|retouch|swap|combine|merge|cartoon|sketch|matrix|blue|colou?r|brighten|crop|rotate|style)\b/i.test(t);
+  }
+
+  /* ── image generation / editing ───────────────────────────────────────── */
   const IMG_INTENT = /^\/(image|img|draw)\s+/i;
   function wantsImage(t) {
     if (IMG_INTENT.test(t)) return true;
     return /\b(generate|create|make|draw|design|render|paint|sketch|illustrate)\b[^.?!]*\b(image|picture|photo|logo|art|illustration|icon|graphic|drawing|wallpaper|poster|render)\b/i.test(t);
   }
-  async function generateImage(prompt) {
+  async function generateImage(prompt, inputImage) {
+    const userParts = [];
+    if (inputImage) userParts.push({ inline_data: { mime_type: inputImage.mime, data: inputImage.data } });  // edit the supplied image
+    userParts.push({ text: prompt });
     for (const m of CFG.imageModels) {
       try {
         const res = await fetch(`${CFG.base}${m}:generateContent?key=${CFG.key}`, {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: prompt }] }], generationConfig: { responseModalities: ['TEXT', 'IMAGE'] }, safetySettings: SAFETY }),
+          body: JSON.stringify({ contents: [{ role: 'user', parts: userParts }], generationConfig: { responseModalities: ['TEXT', 'IMAGE'] }, safetySettings: SAFETY }),
         });
         if (!res.ok) { console.warn('[AEDi] image', m, res.status); continue; }
         const data = await res.json();
@@ -198,23 +213,25 @@
     const img = pendingImage; pendingImage = null; clearThumb();
     busy = true; sendBtn.disabled = true; input.value = '';
 
-    // ----- IMAGE CREATION branch -----
-    if (!img && wantsImage(userText)) {
-      appendMsg('user', userText);
-      statusDot.textContent = 'Creating image…';
+    // ----- IMAGE: create (no attachment) OR edit (attachment + edit intent) -----
+    const editing = img && wantsEdit(userText);
+    if (editing || (!img && wantsImage(userText))) {
+      const u = appendMsg('user', userText || (editing ? '(edit this image)' : ''));
+      if (editing) { const im = document.createElement('img'); im.className = 'aedi-genimg'; im.src = `data:${img.mime};base64,${img.data}`; u.querySelector('.aedi-bubble').prepend(im); }
+      statusDot.textContent = editing ? 'Editing image…' : 'Creating image…';
       const t = appendMsg('model', '', true);
-      const prompt = userText.replace(IMG_INTENT, '').trim() || userText;
-      const out = await generateImage(prompt);
+      const prompt = userText.replace(IMG_INTENT, '').trim() || (editing ? 'Edit this image as requested.' : userText);
+      const out = await generateImage(prompt, editing ? img : null);
       t.remove();
       if (out && out.data) {
         appendImageMsg('model', `data:${out.mime};base64,${out.data}`, prompt);
         if (out.caption) appendMsg('model', out.caption);
-        history.push({ role: 'user', parts: [{ text: userText }] });
-        history.push({ role: 'model', parts: [{ text: '[generated an image for: ' + prompt + ']' }] });
+        history.push({ role: 'user', parts: [{ text: (editing ? '[edit] ' : '[image] ') + userText }] });
+        history.push({ role: 'model', parts: [{ text: editing ? '[edited the image]' : '[generated an image]' }] });
       } else if (out && out.blocked) {
-        appendMsg('model', "I can't create that one — let's keep it professional. Try a different prompt and I'll draw it.");
+        appendMsg('model', "Can't make that one — let's keep it clean. Hand me a different prompt and I'll draw it.");
       } else {
-        appendMsg('model', "I couldn't render that image right now (image generation may be limited on this key/connection). I can describe it in detail instead, or you can try again.");
+        appendMsg('model', "I couldn't render that image just now — image gen/edit may be limited on this key. I can describe it instead, or try again in a moment.");
       }
       return done();
     }
@@ -247,20 +264,39 @@
       // not available → fall through to cloud with a note
     }
 
-    // ----- cloud: try each model WITH then WITHOUT web grounding -----
+    // ----- cloud: grounded ONLY when the query needs it (saves quota → far fewer
+    //        429s), with a brief backoff retry. Then an on-device RESCUE so the
+    //        cloud's limits never silence me. -----
+    const useTools = needsSearch(userText);
     let reply = null, rateLimited = false, blocked = false;
+    outer:
     for (const model of CFG.models) {
-      try {
-        let r = await callModel(model, true);
-        if (r.rate) rateLimited = true; else if (r.blocked) { blocked = true; break; } else if (r.text) { reply = r.text; break; }
-        if (!reply) { r = await callModel(model, false); if (r.rate) rateLimited = true; else if (r.blocked) { blocked = true; break; } else if (r.text) { reply = r.text; break; } }
-      } catch (e) { console.warn('[AEDi]', model, e.message); }
+      for (const tools of (useTools ? [true, false] : [false])) {
+        try {
+          let r = await callModel(model, tools);
+          if (r.rate) { rateLimited = true; await sleep(1300); r = await callModel(model, tools); }   // backoff + one retry
+          if (r.rate) { rateLimited = true; continue; }
+          if (r.blocked) { blocked = true; break outer; }
+          if (r.text) { reply = r.text; break outer; }
+        } catch (e) { console.warn('[AEDi]', model, e.message); }
+      }
     }
     typingEl.remove();
-    if (reply) { history.push({ role: 'model', parts: [{ text: reply }] }); appendMsg('model', reply); }
-    else if (blocked) appendMsg('model', "Let's keep this professional — I can't help with that. But I'm happy with anything Ionity can build for you. What are you working on?");
-    else if (rateLimited) appendMsg('model', "AEDi is handling a lot of requests right now — give it a moment and ask again. Urgent? ai@ionity.today.");
-    else appendMsg('model', "AEDi couldn't reach the network just now. Please try again, or contact us at ai@ionity.today.");
+    if (reply) { history.push({ role: 'model', parts: [{ text: reply }] }); appendMsg('model', reply); return done(); }
+    if (blocked) { appendMsg('model', "Let's keep this professional — but I'm all in on anything Ionity can build for you. What are you working on?"); return done(); }
+    // RESCUE: answer on-device if this browser can — don't let cloud limits win.
+    if (!img) {
+      const local = await askOnDevice(userText);
+      if (local) {
+        history.push({ role: 'model', parts: [{ text: local }] });
+        const d = appendMsg('model', local);
+        const tag = document.createElement('div'); tag.className = 'aedi-ondevice-tag'; tag.textContent = '⚡ cloud was busy — answered on-device'; d.appendChild(tag);
+        return done();
+      }
+    }
+    appendMsg('model', rateLimited
+      ? "Lots of people are talking to me right now and the cloud throttled me for a beat ⚡ — give it ~20 seconds and ask again. In a hurry? ai@ionity.today or WhatsApp +27 50 033 7626."
+      : "I couldn't reach the network just now — try me again shortly, or ai@ionity.today.");
     return done();
   }
   function done() { busy = false; sendBtn.disabled = false; statusDot.textContent = onDevice ? 'On-device' : 'Online'; }
@@ -310,7 +346,9 @@
     fab.addEventListener('click', (e) => { e.stopPropagation(); togglePanel(); });
     closeBtn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); togglePanel(false); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && open) togglePanel(false); });
-    sendBtn.addEventListener('click', () => { const t = input.value.trim(); if (t || pendingImage) ask(t); });
+    // any click INSIDE the panel stays inside — fixes the send button closing the chat
+    panel.addEventListener('click', (e) => e.stopPropagation());
+    sendBtn.addEventListener('click', (e) => { e.stopPropagation(); const t = input.value.trim(); if (t || pendingImage) ask(t); });
     input.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); const t = input.value.trim(); if (t || pendingImage) ask(t); } });
     document.addEventListener('click', (e) => { if (open && !$('aediWrap').contains(e.target)) togglePanel(false); });
 
