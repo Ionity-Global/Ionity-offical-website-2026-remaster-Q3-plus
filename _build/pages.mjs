@@ -48,7 +48,7 @@ export function buildPages(ctx) {
       'audit': [
         { t:'Web & system audits', d:'Performance, accessibility, SEO/AEO, security and forensics — scored with evidence.' },
         { t:'Digital forensics', d:'Capture, preserve and interpret the trail when something matters.' },
-        { t:'LoE return', d:'Every finding is ranked by effort vs. saving, so you fix what pays first.' },
+        { t:'Level of Effort (LoE) return', d:'Every finding is ranked by effort vs. saving, so you fix what pays first — maximising productivity and effectiveness per rand spent.' },
       ],
       'hardware': [
         { t:'PCB & firmware', d:'From schematic to ESP32 firmware to enclosure — we build the body for the software.' },

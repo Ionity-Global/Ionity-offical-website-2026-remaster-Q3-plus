@@ -70,7 +70,7 @@ export function head(page) {
 <meta name="author" content="${SITE.founder} — ${SITE.legal}">
 <meta name="generator" content="Ionity remaster build">
 <meta name="robots" content="index,follow,max-image-preview:large">
-<meta name="keywords" content="Native-AI, AIoT, edge computing, custom MCP, AI dashboards, digital twins, website audit, forensics, RuView, Wi-Fi sensing, Ionity, Antwerp Designs, ${SITE.founder}">
+<meta name="keywords" content="Ionity, Ionity Global, Ionity South Africa, Ionity AI, AEDi, Native-AI, AIoT, edge computing hardware, cloud hosting, software development, custom MCP, AI dashboards, digital twins, website audit, digital forensics, Level of Effort, RuView, Wi-Fi sensing, Antwerp Designs, ${SITE.founder}, Centurion">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="${SITE.name}">
@@ -94,7 +94,7 @@ export function head(page) {
 <!-- Fonts (no cookies set; degrades to system) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Black+Ops+One&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Chakra+Petch:wght@500;600;700&display=swap">
 <link rel="stylesheet" href="assets/css/ionity.css?v=17">
 <!-- Three.js backdrop importmap (must precede the module) -->
 <script type="importmap">

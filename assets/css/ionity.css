@@ -43,7 +43,7 @@
 
   /* type */
   --f-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
-  --f-stencil: "Black Ops One", "Space Grotesk", system-ui, sans-serif;  /* old-school industrial stencil for headings */
+  --f-stencil: "Chakra Petch", "Space Grotesk", system-ui, sans-serif;  /* technical/industrial display for headings */
   --crt-bezel: 26px;   /* CRT frame thickness — used to keep content inside the screen */
   --f-body:    "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --f-mono:    "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
@@ -108,12 +108,13 @@ ul { list-style:none; }
 
 /* ------------------------------------------------------------- TYPOGRAPHY -- */
 h1,h2,h3,h4 { font-family:var(--f-display); font-weight:700; line-height:1.05; letter-spacing:-.02em; }
-/* old-school industrial stencil headings (Black Ops One is bold by design → weight 400) */
+/* technical/industrial display headings (Chakra Petch) — distinctive, readable */
 h1, h2, .portal-main h2, .section-head h2 {
-  font-family:var(--f-stencil); font-weight:400; letter-spacing:.01em; line-height:1.16;
+  font-family:var(--f-stencil); font-weight:600; letter-spacing:.005em; line-height:1.15;
   text-transform:uppercase;
 }
-.portal-main h2 { letter-spacing:.02em; }
+h1 { font-weight:700; }
+.portal-main h2 { letter-spacing:.015em; }
 h1 { font-size:var(--step-4); }
 h2 { font-size:var(--step-3); }
 h3 { font-size:var(--step-2); }
@@ -143,12 +144,15 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 /* --------------------------------------------------------------------- NAV -- */
 .nav {
   position:fixed; top:0; left:0; width:100%; height:var(--nav-h); z-index:1000;
-  display:flex; align-items:center; justify-content:space-between;
+  display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
   padding-inline:var(--gutter);
   background:rgba(7,8,13,.55);
   -webkit-backdrop-filter:blur(16px) saturate(140%); backdrop-filter:blur(16px) saturate(140%);
   border-bottom:1px solid transparent; transition:background .4s, border-color .4s;
 }
+.nav .brand { justify-self:start; }
+.nav-links { justify-self:center; }          /* centred nav */
+.nav-cta { justify-self:end; }
 .nav.scrolled { background:rgba(7,8,13,.9); border-bottom-color:var(--line); }
 .brand { display:flex; align-items:center; gap:.7rem; }
 .brand .wm { height:58px; width:auto; filter:drop-shadow(0 0 10px rgba(0,121,227,.35)) drop-shadow(0 0 22px rgba(0,210,255,.18)); transition:filter .3s, transform .3s var(--ease-out); }
@@ -215,7 +219,7 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 
 /* --------------------------------------------------------------- CARDS ----- */
 .card {
-  position:relative; padding:1.8rem; border-radius:var(--radius);
+  position:relative; padding:1.8rem; border-radius:var(--radius); perspective:700px;
   background:linear-gradient(160deg, var(--surface), var(--bg-2));
   border:1px solid var(--line); overflow:hidden; transition:transform .4s var(--ease), border-color .4s;
 }
@@ -227,10 +231,23 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 .card:hover { transform:translateY(-6px); }
 .card:hover::before { opacity:.8; }
 .card .ico {
-  width:52px; height:52px; border-radius:14px; display:grid; place-items:center; margin-bottom:1.1rem;
-  background:var(--grad-soft); border:1px solid var(--line-strong); color:var(--cyan);
+  width:56px; height:56px; border-radius:15px; display:grid; place-items:center; margin-bottom:1.2rem;
+  background:linear-gradient(145deg, rgba(0,210,255,.20), rgba(0,121,227,.07));
+  border:1px solid var(--line-strong); color:var(--cyan);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14), 0 7px 20px rgba(0,121,227,.28), 0 0 0 1px rgba(0,210,255,.10);
+  transform-style:preserve-3d; transition:transform .5s var(--ease-out), box-shadow .4s;
+  animation:icoFloat 5.5s ease-in-out infinite;
 }
-.card .ico svg { width:26px; height:26px; }
+.card:nth-child(even) .ico { animation-delay:-2.75s; }
+.card .ico svg { width:28px; height:28px; filter:drop-shadow(0 0 6px rgba(0,210,255,.55)); transition:transform .5s var(--ease-out); }
+.card:hover .ico {
+  animation-play-state:paused;
+  transform:rotateX(13deg) rotateY(-16deg) translateZ(10px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.2), 0 16px 34px rgba(0,121,227,.45), 0 0 26px rgba(0,210,255,.4);
+}
+.card:hover .ico svg { transform:scale(1.12) rotateZ(-5deg); }
+@keyframes icoFloat { 0%,100%{ transform:translateY(0) rotateX(0deg) rotateY(0deg); } 50%{ transform:translateY(-4px) rotateX(7deg) rotateY(-6deg); } }
+@media (prefers-reduced-motion:reduce){ .card .ico{ animation:none; } }
 .card h3 { font-size:var(--step-1); margin-bottom:.5rem; }
 .card p { font-size:var(--step--1); }
 .card .tag-row { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:1.1rem; }
@@ -652,38 +669,33 @@ html:not(.no3d) .bg-grid{ opacity:.32; }
   background:repeating-linear-gradient(0deg, rgba(255,255,255,.02) 0 1px, transparent 1px 3px); opacity:.5; }
 @media (prefers-reduced-motion:reduce){ .grain{ opacity:.035; } }
 
-/* ===== OLD-SCHOOL CRT TELEVISION FRAME (chunky bezel + rounded screen) ===== */
+/* ===== REALISTIC CRT TELEVISION FRAME (matte molded bezel, rounded tube) === */
 .crt-frame {
-  position:fixed; inset:0; z-index:2500; pointer-events:none; border-radius:48px;
+  position:fixed; inset:0; z-index:2500; pointer-events:none; border-radius:46px;
   box-shadow:
-    inset 0 0 0 3px rgba(0,0,0,.95),                                  /* inner black screen rim */
-    inset 0 0 0 calc(var(--crt-bezel) - 6px) #1c1f25,                  /* chunky plastic bezel body */
-    inset 0 0 0 calc(var(--crt-bezel) - 3px) #41464f,                 /* bezel highlight (top light) */
-    inset 0 0 0 var(--crt-bezel) #0a0b0e,                              /* outer lip */
-    inset 0 0 130px 34px rgba(0,0,0,.72),                              /* heavy edge vignette = tube bulge */
-    inset 0 0 280px rgba(0,0,0,.5);
+    inset 0 0 0 2px rgba(0,0,0,.92),                           /* crisp screen rim */
+    inset 0 0 0 calc(var(--crt-bezel) - 4px) #15171c,           /* matte charcoal plastic bezel */
+    inset 0 0 7px calc(var(--crt-bezel) - 4px) rgba(0,0,0,.6),  /* soft inner shadow where bezel meets screen */
+    inset 0 0 0 var(--crt-bezel) #050507,                       /* dark outer lip */
+    inset 0 0 120px 42px rgba(0,0,0,.7),                        /* smooth screen vignette (tube curve) */
+    inset 0 0 320px rgba(0,0,0,.52);
 }
-/* old-school detail: four corner screws set into the bezel */
+/* molded-plastic directional light: top of the bezel catches light, bottom in shadow */
 .crt-frame::before {
-  content:""; position:absolute; inset:calc(var(--crt-bezel)/2 - 6px); border-radius:40px; pointer-events:none;
-  background:
-    radial-gradient(circle at 0 0,        #4a505b 0 2.4px, #0b0c10 2.4px 4.6px, transparent 4.8px),
-    radial-gradient(circle at 100% 0,     #4a505b 0 2.4px, #0b0c10 2.4px 4.6px, transparent 4.8px),
-    radial-gradient(circle at 0 100%,     #4a505b 0 2.4px, #0b0c10 2.4px 4.6px, transparent 4.8px),
-    radial-gradient(circle at 100% 100%,  #4a505b 0 2.4px, #0b0c10 2.4px 4.6px, transparent 4.8px);
-  background-repeat:no-repeat;
+  content:""; position:absolute; inset:0; border-radius:46px; pointer-events:none;
+  background:linear-gradient(180deg,
+    rgba(255,255,255,.06) 0, rgba(255,255,255,0) 3.6%,
+    rgba(0,0,0,0) 96.4%, rgba(0,0,0,.42) 100%);
 }
-/* curved-glass glare across the top-left of the tube */
+/* subtle curved-glass glare on the screen */
 .crt-frame::after {
-  content:""; position:absolute; inset:var(--crt-bezel); border-radius:30px; pointer-events:none;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.07), rgba(255,255,255,0) 34%),
-    radial-gradient(140% 90% at 50% 120%, rgba(0,0,0,.28), transparent 60%);
+  content:""; position:absolute; inset:var(--crt-bezel); border-radius:28px; pointer-events:none;
+  background:radial-gradient(120% 65% at 32% -4%, rgba(255,255,255,.05), transparent 46%);
 }
 @media (max-width:600px){
-  .crt-frame { border-radius:30px; }
-  .crt-frame::before { border-radius:26px; }
-  .crt-frame::after { border-radius:18px; }
+  .crt-frame { border-radius:28px; }
+  .crt-frame::before { border-radius:28px; }
+  .crt-frame::after { border-radius:16px; }
 }
 
 /* ===== CRT safe-area — everything sits INSIDE the screen, not under the bezel */

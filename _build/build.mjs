@@ -30,7 +30,7 @@ const SERVICES = [
   ['native-ai', ICON.ai, 'Native-AI &amp; MCP', 'We are AI-native, not AI-bolted-on. Custom MCP servers, agents, copilots and dashboards wired straight into your stack — built with Claude and our own AEDi systems.', ['Custom MCP', 'AI agents', 'Copilots', 'RAG']],
   ['aiot', ICON.iot, 'AIoT &amp; Edge', 'Sensing, inference and control at the edge. Device fleets, Wi-Fi sensing (RuView / Ionify), and low-latency intelligence that runs where the data is born.', ['Edge inference', 'Wi-Fi sensing', 'Fleets', 'Telemetry']],
   ['cloud', ICON.cloud, 'Cloud &amp; Digital Twins', 'Data plumbing that actually holds: pipelines, APIs and live digital twins that mirror your operation so decisions are made on reality, not guesswork.', ['Pipelines', 'APIs', 'Digital twins', 'Observability']],
-  ['audit', ICON.audit, 'Audit &amp; Forensics', 'Evidence-first audits of websites, systems and infrastructure — surfacing risk, waste and quick wins with a clear Level-of-Effort return. Improve and save.', ['Web audits', 'Forensics', 'Cost savings', 'LoE return']],
+  ['audit', ICON.audit, 'Audit &amp; Forensics', 'Evidence-first audits of websites, systems and infrastructure — surfacing risk, waste and quick wins, each ranked by <strong>Level of Effort (LoE)</strong> vs. return. We don\'t just find problems; we lift productivity and effectiveness, then prove the saving.', ['Web audits', 'Forensics', 'Cost savings', 'Level-of-Effort (LoE)']],
   ['hardware', ICON.chip, 'Hardware &amp; Firmware', 'When software needs a body, we build it: PCBs, ESP32/edge nodes and firmware. Solutionists across mechanical, electrical and IT — with real artisan knowledge.', ['PCB', 'ESP32', 'Firmware', 'Mechatronics']],
   ['twins', ICON.twin, 'Custom B2B Systems', 'Custom anything: bespoke dashboards, internal tools and integrations engineered to grow with the business — and to keep paying for themselves.', ['Dashboards', 'Integrations', 'Internal tools', 'Growth']],
   ['edge-hw', ICON.edge, 'Edge Computing Hardware', 'Purpose-built edge compute — rugged nodes, GPU/NPU accelerators and gateways that run AI inference and control on-site, where latency, privacy and uptime actually matter.', ['Edge nodes', 'GPU / NPU', 'Gateways', 'On-site AI']],
@@ -49,10 +49,11 @@ const serviceCard = (s, cls = '') => `
 /* ================================================================ INDEX === */
 const indexJsonld = {
   '@context': 'https://schema.org', '@type': 'Organization',
-  name: SITE.legal, alternateName: 'Ionity', url: SITE.origin,
+  name: SITE.legal, alternateName: ['Ionity', 'Ionity Global', 'Ionity AI', 'Ionity South Africa', 'AEDi'], url: SITE.origin,
   logo: SITE.origin + '/assets/img/icon-512.png',
   email: SITE.email, slogan: SITE.tagline,
   description: SITE.desc,
+  disambiguatingDescription: 'Ionity Global (Pty) Ltd is a South African Native-AI, AIoT, Edge, cloud-hosting and audit/forensics company founded by Johan Wilhelm van Antwerp. It is a distinct, unrelated entity from the European electric-vehicle charging network IONITY GmbH (ionity.com).',
   foundingDate: '2018',
   telephone: SITE.phone,
   address: { '@type': 'PostalAddress', addressLocality: 'Centurion', addressCountry: 'ZA' },
@@ -114,7 +115,7 @@ const index = page(
   <div class="grid cols-3">
     <div class="card reveal"><h3>Solutionists</h3><p>Across mechanical, electrical and IT — with artisan hands. If the answer needs a circuit, a script and a bracket, we make all three.</p></div>
     <div class="card reveal d1"><h3>Evidence-first</h3><p>We measure before we claim. Audits, forensics and benchmarks turn opinions into numbers — and numbers into savings.</p></div>
-    <div class="card reveal d2"><h3>Return-driven</h3><p>Every engagement carries a Level-of-Effort return. Systems should pay for themselves; we design them to.</p></div>
+    <div class="card reveal d2"><h3>Return-driven</h3><p>Every engagement carries a <strong>Level of Effort (LoE)</strong> return — ranked effort vs. saving. We build for measurable gains in productivity and effectiveness; systems should pay for themselves, and we design them to.</p></div>
   </div>
 </section>
 
@@ -142,7 +143,7 @@ const index = page(
         <div><div class="n grad-text" data-count="100" data-suffix="%">100%</div><div class="l">Evidence-based</div></div>
         <div><div class="n grad-text" data-count="6">6</div><div class="l">Audit dimensions</div></div>
         <div><div class="n grad-text" data-count="24" data-suffix="h">24h</div><div class="l">Rapid turnaround</div></div>
-        <div><div class="n grad-text">LoE</div><div class="l">Return modelled</div></div>
+        <div><div class="n grad-text">LoE</div><div class="l">Level of Effort · return modelled</div></div>
       </div>
     </div>
     <div class="reveal d2">
