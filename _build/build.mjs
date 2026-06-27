@@ -102,7 +102,6 @@ const index = page(
 
   <!-- CENTRE — AEDi (the focal point) -->
   <div class="portal portal-ai portal-main reveal">
-    <span class="portal-kicker">AEDi</span>
     <h2>Automated Ecosystems<br>Designs Intelligence</h2>
     <p>Our own Native-AI fabric. Ask it anything about Ionity — it routes you through the build.</p>
     <button class="btn btn-primary aedi-cta" id="portalAccess" data-sfx="powerup" aria-label="Talk to AEDi">Talk to AEDi ${ICON.arrow}</button>
