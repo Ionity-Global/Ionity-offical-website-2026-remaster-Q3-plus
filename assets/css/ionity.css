@@ -122,6 +122,23 @@ p  { color:var(--muted); }
 .lead { font-size:var(--step-1); color:var(--text); opacity:.92; }
 .grad-text { background:var(--grad-bi); -webkit-background-clip:text; background-clip:text; color:transparent; }
 .warm-text { background:var(--grad-warm); -webkit-background-clip:text; background-clip:text; color:transparent; }
+
+/* WHITE display headings only: a moving blue "digitification" shimmer + sparkle glow.
+   Coloured .grad-text / .warm-text spans re-assert their own gradient, so they're
+   untouched. Disabled under reduced-motion (headings render as plain white). */
+@media (prefers-reduced-motion: no-preference) {
+  h1, h2 {
+    background-image:linear-gradient(100deg, #fff 0 42%, #bdeeff 47%, #1aa0ff 50%, #bdeeff 53%, #fff 58% 100%);
+    background-size:260% 100%; background-repeat:no-repeat;
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent;
+    animation:headDigit 7.5s linear infinite;
+    filter:drop-shadow(0 0 9px rgba(0,210,255,.20));
+  }
+  h1 { animation-duration:9.5s; }
+  h1 .grad-text, h2 .grad-text { background-image:var(--grad-bi); -webkit-text-fill-color:transparent; }
+  h1 .warm-text, h2 .warm-text { background-image:var(--grad-warm); -webkit-text-fill-color:transparent; }
+  @keyframes headDigit { from{ background-position:165% 0; } to{ background-position:-165% 0; } }
+}
 .orange { color:var(--orange); }
 .kicker {
   font-family:var(--f-mono); font-size:var(--step--1); letter-spacing:.32em;
