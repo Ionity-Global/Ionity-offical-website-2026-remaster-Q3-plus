@@ -176,8 +176,8 @@ const index = page(
     <ul class="disc-list" aria-label="Ionity disciplines">
       <li>Digital Innovation</li><li>Internet of Things</li><li>Artificial Intelligence — Offline</li>
       <li>Artificial Intelligence — Online</li><li>Mechanical Engineering</li><li>Electrotechnics</li>
-      <li>Product Development</li><li>Software Engineering</li><li>Computer-Aided Drafting</li><li>Cloud &amp; Edge</li>
-      <li>AI Automation</li><li>Computer-Aided Design (CAD)</li>
+      <li>Product Development</li><li>Software Engineering</li><li>Cloud &amp; Edge</li>
+      <li>Computer-Aided Drafting (CAD)</li><li>AI Automation Solutions</li><li>Technical Advisory</li>
     </ul>
   </div>
 </section>

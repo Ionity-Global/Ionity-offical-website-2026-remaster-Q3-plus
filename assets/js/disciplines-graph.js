@@ -16,8 +16,8 @@
   const LABELS = [
     'Digital Innovation', 'Internet of Things', 'AI · Offline', 'AI · Online',
     'Mechanical Engineering', 'Electrotechnics', 'Product Development',
-    'Software Engineering', 'Computer-Aided Drafting', 'Cloud & Edge',
-    'AI Automation', 'Computer-Aided Design (CAD)',
+    'Software Engineering', 'Cloud & Edge',
+    'Computer-Aided Drafting (CAD)', 'AI Automation Solutions', 'Technical Advisory',
   ];
   const N = LABELS.length;
 

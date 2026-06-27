@@ -212,9 +212,9 @@ ${SERVICES.map(serviceDetail).join('')}
   <div class="feature center reveal" style="max-width:60ch;margin-inline:auto">
     <span class="kicker" style="justify-content:center">Advisory</span>
     <h2 class="mt-1">Technical Advisory Services — <span class="grad-text">available</span>.</h2>
-    <p class="lead mt-1">Beyond build and audit, Ionity offers technical advisory. We also make use of <a href="https://www.linkedin.com/in/azmanbakhtiar" target="_blank" rel="noopener" style="color:var(--cyan)">Azman Bakhtiar</a> — technical advisor.</p>
+    <p class="lead mt-1">Beyond build and audit, Ionity offers technical advisory. We also make use of <a href="https://www.linkedin.com/in/azmanbakhtiar" target="_blank" rel="noopener" style="color:var(--cyan)">Azman Bakhtiar</a> — our offshore Build Specialist (20K+ followers).</p>
     <div class="flex gap wrapf aic mt-2" style="justify-content:center">
-      <a class="btn btn-ghost" href="https://www.linkedin.com/in/azmanbakhtiar" target="_blank" rel="noopener">Azman Bakhtiar · LinkedIn ↗</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/azmanbakhtiar" target="_blank" rel="noopener">Azman Bakhtiar · 20K+ on LinkedIn ↗</a>
     </div>
   </div>
 </section>
