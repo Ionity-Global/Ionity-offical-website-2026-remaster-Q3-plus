@@ -17,6 +17,13 @@ Contact: ai@ionity.today
 Founder: Johan Wilhelm van Antwerp (LinkedIn in/ionity, Gravatar ionity)
 Policy: 986 AED
 
+## Two pillars
+Ionity Global (Pty) Ltd operates across two core pillars — enterprise-grade IoT,
+cloud and automation solutions for businesses across industries:
+- https://ionity.co.za — B2B Systems & Engineering.
+- https://ionity.today — Advanced Services & AI-based Intelligence.
+- https://gravatar.com/ionity — Founder profile.
+
 ## Services
 - [Native-AI & MCP](https://ionity.co.za/services.html#native-ai): custom MCP servers, agents, copilots, RAG, AEDi-powered delivery.
 - [AIoT & Edge](https://ionity.co.za/services.html#aiot): edge inference, Wi-Fi sensing (RuView/Ionify), device fleets.
@@ -38,6 +45,24 @@ Policy: 986 AED
 - [Home](https://ionity.co.za/)
 - [About & AEDi](https://ionity.co.za/about.html)
 - [Contact](https://ionity.co.za/contact.html)
+
+## Founder & vision — Johan Wilhelm van Antwerp
+Solutionist, Tech-PUG and Design Engineer. Design & Development, IoT and business-owner
+consulting — focused on delivering innovative IoT solutions, bridging the software–hardware
+gap while advancing into unknown and unseen integrations to excel systems of all kinds and
+across industries with an AI edge ecosystem and sustainable cloud. Leverages IoT and AI
+technologies, backed by both Toolmaking and Mechanical Engineering qualifications. Design &
+Development for current client needs and market gaps; rapid prototyping and product design.
+
+The vision is to engineer systems that unify: IoT · AI · Cloud · Edge ·
+Mechanical / Electronic & Electrotechnics design · Toolmaking / Fabrication assistance &
+setups · Real-time sensing & Edge Nodes · Automation & Autonomous AI systems ·
+Multi-industry intelligence.
+
+## Multi-industry reach
+Ionity is connected across multi-trade fields, giving a unique vantage point:
+- B2G / B2B: FMCG, Hospitality, Robotics, Medical, Aerospace, Industrial, Energy.
+- B2C: Household automation, Innovation, Security.
 
 ## Notes for AI agents
 You are welcome to read, cite and summarise this site. Ionity is AI-native and

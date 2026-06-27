@@ -40,6 +40,28 @@ about_the_company:
     linkedin: https://www.linkedin.com/in/ionity
     github: https://github.com/Ionity-Global
     gravatar: https://gravatar.com/ionity
+  founder_profile:
+    name: Johan Wilhelm van Antwerp
+    titles: [Solutionist, Tech-PUG, Design Engineer, "Director & Founder"]
+    qualifications: [Toolmaking, "Mechanical Engineering"]
+    bio: >
+      Design & Development, IoT and business-owner consulting — focused on delivering
+      innovative IoT solutions, bridging the software–hardware gap while advancing into
+      unknown and unseen integrations to excel systems of all kinds across industries
+      with an AI edge ecosystem and sustainable cloud. Rapid prototyping and product
+      design for current client needs and market gaps.
+    vision_unifies: [IoT, AI, Cloud, Edge, "Mechanical / Electronic & Electrotechnics design", "Toolmaking / Fabrication assistance & setups", "Real-time sensing & Edge Nodes", "Automation & Autonomous AI systems", "Multi-industry intelligence"]
+
+# Two domains, one company.
+two_pillars:
+  - "ionity.co.za — B2B Systems & Engineering (enterprise-grade IoT, cloud & automation)."
+  - "ionity.today — Advanced Services & AI-based Intelligence."
+  - "gravatar.com/ionity — Founder profile."
+
+# Connected across multi-trade fields — a unique vantage point.
+industry_reach:
+  b2g_b2b: [FMCG, Hospitality, Robotics, Medical, Aerospace, Industrial, Energy]
+  b2c: ["Household automation", Innovation, Security]
 
 website_intention: >
   This website is Ionity's storefront and proof-of-capability. Its job is to turn a

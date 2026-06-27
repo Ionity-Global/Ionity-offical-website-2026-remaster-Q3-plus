@@ -57,9 +57,19 @@ const indexJsonld = {
   foundingDate: '2018',
   telephone: SITE.phone,
   address: { '@type': 'PostalAddress', addressLocality: 'Centurion', addressCountry: 'ZA' },
-  founder: { '@type': 'Person', name: SITE.founder, sameAs: [SITE.linkedin, SITE.gravatar] },
+  founder: { '@type': 'Person', name: SITE.founder,
+    jobTitle: 'Director & Founder — Solutionist, Tech-PUG, Design Engineer',
+    description: 'Design & Development, IoT and business-owner consulting. Bridges the software–hardware gap and advances into unseen integrations to excel systems across industries with AI edge ecosystems and sustainable cloud. Backed by Toolmaking and Mechanical Engineering qualifications; rapid prototyping and product design. Connected across FMCG, Robotics, Medical, Aerospace, Industrial, Energy and Households.',
+    knowsAbout: ['IoT', 'AI', 'Cloud', 'Edge', 'Mechanical Engineering', 'Electronic design', 'Electrotechnics', 'Toolmaking', 'Fabrication', 'Rapid Prototyping', 'Product Design', 'Automation', 'Autonomous AI Systems', 'Real-time sensing', 'Edge Nodes'],
+    sameAs: [SITE.linkedin, SITE.gravatar] },
   sameAs: [SITE.sister, SITE.linkedin, SITE.github, SITE.gravatar],
-  knowsAbout: ['Native AI', 'AIoT', 'Edge computing', 'Cloud', 'Model Context Protocol', 'Digital twins', 'Website audit', 'Digital forensics', 'Wi-Fi sensing'],
+  knowsAbout: ['Native AI', 'AIoT', 'Edge computing', 'Cloud', 'Model Context Protocol', 'Digital twins', 'Website audit', 'Digital forensics', 'Wi-Fi sensing', 'Automation', 'Autonomous AI', 'Mechanical engineering', 'Electrotechnics', 'Toolmaking', 'Fabrication', 'Rapid prototyping', 'Product design', 'Real-time sensing', 'Multi-industry intelligence'],
+  keywords: 'IoT, AIoT, AI, Edge, Cloud, Automation, Autonomous AI, Mechanical Engineering, Electrotechnics, Toolmaking, Fabrication, Rapid Prototyping, Product Design, Real-time sensing, Edge Nodes, FMCG, Hospitality, Robotics, Medical, Aerospace, Industrial, Energy, Household automation, Security, B2B, B2G, B2C',
+  knowsLanguage: 'en',
+  brand: [
+    { '@type': 'Brand', name: 'ionity.co.za — B2B Systems & Engineering', url: SITE.origin },
+    { '@type': 'Brand', name: 'ionity.today — Advanced Services & AI Intelligence', url: SITE.sister }
+  ],
   areaServed: 'Worldwide',
 };
 
