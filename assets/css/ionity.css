@@ -127,8 +127,13 @@ h2 { font-size:var(--step-3); }
 h3 { font-size:var(--step-2); }
 p  { color:var(--muted); }
 .lead { font-size:var(--step-1); color:var(--text); opacity:.92; }
-.grad-text { background:var(--grad-bi); -webkit-background-clip:text; background-clip:text; color:transparent; }
-.warm-text { background:var(--grad-warm); -webkit-background-clip:text; background-clip:text; color:transparent; }
+/* gradient-clipped text: the body's dark rim shows THROUGH the transparent fill
+   and muddies/darkens these, so clear it — the gradient is bright by design. */
+.grad-text { background:var(--grad-bi); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; text-shadow:none; }
+.warm-text { background:var(--grad-warm); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; text-shadow:none; }
+/* the stat numbers + edge score sit on dark cards — give them a faint glow so the
+   bright gradient pops cleanly without the dark rim */
+.statband .n, #edgeScore { filter:drop-shadow(0 0 8px rgba(0,210,255,.35)); }
 
 /* WHITE display headings only: a moving blue "digitification" shimmer + sparkle glow.
    Coloured .grad-text / .warm-text spans re-assert their own gradient, so they're
