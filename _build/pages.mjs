@@ -97,7 +97,7 @@ export function buildPages(ctx) {
 <section class="hero" style="min-height:60svh" data-act="Services">
   <div class="inner">
     <span class="kicker" style="justify-content:center">Capabilities</span>
-    <h1 class="mt-1">Ten disciplines.<br><span class="grad-text">One integrated stack.</span></h1>
+    <h1 class="mt-1">Twelve disciplines.<br><span class="grad-text">One integrated stack.</span></h1>
     <p class="lead">Clean and composable — chosen à la carte or chained into a full digital twin. No overlap, no bloat, all return.</p>
   </div>
   <div class="scroll-hint" aria-hidden="true"><i></i><i></i></div>

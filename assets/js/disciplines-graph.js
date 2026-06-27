@@ -17,6 +17,7 @@
     'Digital Innovation', 'Internet of Things', 'AI · Offline', 'AI · Online',
     'Mechanical Engineering', 'Electrotechnics', 'Product Development',
     'Software Engineering', 'Computer-Aided Drafting', 'Cloud & Edge',
+    'AI Automation', 'Computer-Aided Design (CAD)',
   ];
   const N = LABELS.length;
 
@@ -31,7 +32,7 @@
   // edges: hub→every node, plus a ring linking neighbours (the "mindmap" web)
   const ring = [];
   for (let i = 0; i < N; i++) ring.push([i, (i + 1) % N]);
-  const extra = [[0, 5], [2, 7], [3, 9], [1, 6], [4, 8]];   // a few cross-links
+  const extra = [[0, 5], [2, 7], [3, 9], [1, 6], [4, 8], [3, 10], [8, 11], [10, 6]];   // a few cross-links (incl. the new nodes)
 
   let W = 0, H = 0, R = 0, cx = 0, cy = 0, dpr = 1;
   function resize() {
