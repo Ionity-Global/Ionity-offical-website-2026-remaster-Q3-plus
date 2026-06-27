@@ -10,11 +10,29 @@
 
   /* ---- loader out → glitch.js detects #loader.done and fires the
          randomized static-glitch burst (single source of glitch truth) ----- */
+  const root = document.documentElement;
   window.addEventListener('load', () => {
     const l = $('#loader');
     if (!l) return;
-    setTimeout(() => l.classList.add('done'), reduce ? 250 : 320);
+    setTimeout(() => {
+      l.classList.add('done');
+      // CRT "tune-in": the page resolves from blocky pixels to clear once.
+      if (!reduce) {
+        root.classList.add('crt-boot');
+        setTimeout(() => root.classList.remove('crt-boot'), 1100);
+      }
+    }, reduce ? 250 : 320);
   });
+
+  /* ---- CRT scanline shimmer while scrolling (brief, faint) --------------- */
+  if (!reduce) {
+    let crtT = 0;
+    addEventListener('scroll', () => {
+      root.classList.add('crt-scroll');
+      clearTimeout(crtT);
+      crtT = setTimeout(() => root.classList.remove('crt-scroll'), 220);
+    }, { passive: true });
+  }
 
   /* ---- nav: scrolled state + mobile menu -------------------------------- */
   const nav = $('.nav');

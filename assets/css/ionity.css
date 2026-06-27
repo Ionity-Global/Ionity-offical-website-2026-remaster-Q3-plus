@@ -43,6 +43,7 @@
 
   /* type */
   --f-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --f-stencil: "Orbitron", "Space Grotesk", system-ui, sans-serif;  /* AI / sci-fi display for headings */
   --f-body:    "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --f-mono:    "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
 
@@ -106,6 +107,13 @@ ul { list-style:none; }
 
 /* ------------------------------------------------------------- TYPOGRAPHY -- */
 h1,h2,h3,h4 { font-family:var(--f-display); font-weight:700; line-height:1.05; letter-spacing:-.02em; }
+/* AI / stencil display treatment on the big headings — open, futuristic, airy */
+h1, h2, .portal-main h2, .section-head h2 {
+  font-family:var(--f-stencil); font-weight:700; letter-spacing:.02em; line-height:1.12;
+  text-transform:uppercase;
+}
+h1 { font-weight:800; }
+.portal-main h2 { letter-spacing:.04em; }
 h1 { font-size:var(--step-4); }
 h2 { font-size:var(--step-3); }
 h3 { font-size:var(--step-2); }
@@ -643,6 +651,55 @@ html:not(.no3d) .bg-grid{ opacity:.32; }
 .grain::after{ content:""; position:absolute; inset:0;
   background:repeating-linear-gradient(0deg, rgba(255,255,255,.02) 0 1px, transparent 1px 3px); opacity:.5; }
 @media (prefers-reduced-motion:reduce){ .grain{ opacity:.035; } }
+
+/* ===== CRT TELEVISION FRAME (bezel around the whole page) ================= */
+.crt-frame {
+  position:fixed; inset:0; z-index:2500; pointer-events:none; border-radius:30px;
+  box-shadow:
+    inset 0 0 0 4px #000,                       /* black screen rim */
+    inset 0 0 0 20px #15171c,                    /* dark bezel body */
+    inset 0 0 0 23px #34383f,                    /* bezel highlight edge */
+    inset 0 0 0 25px #0c0d11,                     /* outer lip */
+    inset 0 0 80px 14px rgba(0,0,0,.62),         /* screen-edge vignette (curvature) */
+    inset 0 0 200px rgba(0,0,0,.34);
+}
+/* faint glass glare, top-left */
+.crt-frame::after {
+  content:""; position:absolute; inset:25px; border-radius:16px; pointer-events:none;
+  background:linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,0) 38%);
+}
+@media (max-width:600px){
+  .crt-frame { border-radius:20px; box-shadow:
+    inset 0 0 0 3px #000, inset 0 0 0 12px #15171c, inset 0 0 0 14px #34383f, inset 0 0 0 16px #0c0d11,
+    inset 0 0 50px 8px rgba(0,0,0,.6), inset 0 0 140px rgba(0,0,0,.32); }
+  .crt-frame::after { inset:16px; }
+}
+
+/* CRT static / pixelation overlay — transient: on load (resolve) + on scroll */
+.crt-fx {
+  position:fixed; inset:0; z-index:2400; pointer-events:none; opacity:0;
+  background-image:
+    linear-gradient(rgba(0,0,0,.55) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,.55) 1px, transparent 1px),
+    repeating-linear-gradient(0deg, rgba(0,0,0,.42) 0 2px, transparent 2px 4px);
+  background-size: 5px 5px, 5px 5px, 100% 4px;
+  transition: opacity .26s ease;
+}
+/* scroll: brief faint scanline shimmer */
+html.crt-scroll .crt-fx { opacity:.16; }
+/* load: blocky → fine pixel resolve with a flicker, then clear */
+html.crt-boot .crt-fx { animation: crtBoot 1s steps(1,end) 1 forwards; }
+@keyframes crtBoot {
+  0%   { opacity:.9;  background-size:22px 22px, 22px 22px, 100% 10px; }
+  18%  { opacity:.55; }
+  30%  { opacity:.85; background-size:14px 14px, 14px 14px, 100% 7px; }
+  60%  { opacity:.5;  background-size:8px 8px, 8px 8px, 100% 5px; }
+  100% { opacity:0;   background-size:5px 5px, 5px 5px, 100% 4px; }
+}
+@media (prefers-reduced-motion:reduce){
+  html.crt-boot .crt-fx { animation:none; opacity:0; }
+  html.crt-scroll .crt-fx { opacity:0; }
+}
 
 /* --- mobile logo (still bigger than the timid old 30px) --- */
 @media (max-width:880px){ .brand .wm{ height:50px; } }
