@@ -443,6 +443,14 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 .mx-off { position:absolute; inset:0; z-index:3; display:grid; place-items:center; font-family:var(--f-mono); font-size:.66rem; letter-spacing:.28em; color:var(--faint); background:radial-gradient(circle at 50% 50%, rgba(0,121,227,.08), transparent 70%); }
 .mx-stage.on .mx-off { display:none; }
 
+/* Matrix Vision: detection overlay canvas (created by matrix-cam.js) + counts */
+.mx-stage canvas#mxOverlay { position:absolute; inset:0; z-index:2; width:100%; height:100%; display:block; pointer-events:none; }
+.mx-scanline { z-index:3; }
+.mx-off { z-index:4; }
+.mx-metrics .v.live { font-variant-numeric:tabular-nums; }
+.mx-seen .v { color:var(--text); font-family:var(--f-mono); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+@media (max-width:760px){ .mx-metrics { grid-template-columns:repeat(2,1fr) !important; } }
+
 /* disciplines — live 3D mindmap (disciplines-graph.js) */
 .disc-stage { position:relative; width:100%; height:clamp(380px,52vw,560px); margin-top:1.4rem;
   border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; cursor:grab;

@@ -209,8 +209,8 @@ const index = page(
 <section class="wrap" id="vision" data-act="Vision">
   <div class="section-head reveal">
     <span class="kicker">05 · matrix vision</span>
-    <h2>See yourself in <span class="grad-text">blue digits</span>.</h2>
-    <p>Enable your camera and Ionity renders the live view as a field of matrix digits, on-device. The frame never leaves your browser — it's turned to glyphs and discarded. No recording, no upload.</p>
+    <h2>See yourself in <span class="grad-text">blue digits</span> — and let it <span class="warm-text">recognise</span>.</h2>
+    <p>Enable your camera: Ionity renders the live view as matrix digits <em>and</em> runs on-device computer vision over it — counting people, faces and hands and recognising everyday objects, boxed live. 100% on-device; the frame is turned to glyphs and discarded, never recorded or uploaded.</p>
   </div>
   ${visionBlock()}
 </section>
@@ -303,10 +303,15 @@ function visionBlock() {
       <div class="mx-scanline" aria-hidden="true"></div>
       <div class="mx-off" id="mxOff">CAMERA OFF</div>
     </div>
-    <div class="metric-grid mt-2" style="grid-template-columns:repeat(2,1fr)">
+    <div class="metric-grid mt-2 mx-metrics" style="grid-template-columns:repeat(3,1fr)">
+      <div class="metric"><div class="k">PEOPLE</div><div class="v live" id="mxPeople">0</div></div>
+      <div class="metric"><div class="k">FACES</div><div class="v live" id="mxFaces">—</div></div>
+      <div class="metric"><div class="k">HANDS</div><div class="v live" id="mxHands">—</div></div>
+      <div class="metric"><div class="k">OBJECTS</div><div class="v live" id="mxObjects">0</div></div>
       <div class="metric"><div class="k">PRESENCE</div><div class="v live" id="mxPresence">—</div></div>
       <div class="metric"><div class="k">MOTION</div><div class="bar"><i id="mxMotion"></i></div></div>
     </div>
+    <div class="metric mx-seen mt-1" style="grid-column:1/-1"><div class="k">SEEN</div><div class="v" id="mxLabels" style="font-size:.72rem;letter-spacing:.04em">—</div></div>
   </div>
   <div>
     <h3>See the room in <span class="grad-text">matrix</span></h3>
