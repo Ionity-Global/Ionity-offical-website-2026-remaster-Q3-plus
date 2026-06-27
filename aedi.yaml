@@ -61,6 +61,13 @@ navigation_map:
   - section: "Audit"        ref: "services.html#audit"      use_for: "web/system audits, forensics, Level-of-Effort return."
   - section: "Hardware"     ref: "services.html#hardware"   use_for: "PCB, ESP32, firmware, mechatronics, edge nodes."
 
+tagline: "Building tomorrow, today."
+positioning: >
+  A Native-AI company supporting automation across CLOUD solutions and OFFLINE /
+  on-device AI, carrying digital design & development into physical hardware.
+  Arc: Antwerp Designs (2018) → Ionity / AEDi (2022) → automation everywhere (now).
+industries_served: [Aerospace, Hospitality, Governance, Medical, Corporate Sales, "Production & Fabrication"]   # not limited to — enquire for more
+
 services:    # nine disciplines (see services.html)
   - Native-AI & MCP — custom MCP servers, AI agents, copilots, RAG, AEDi-powered delivery (built with Claude in the loop).
   - AIoT & Edge — edge inference, Wi-Fi sensing (RuView/Ionify), device fleets, low-latency intelligence.

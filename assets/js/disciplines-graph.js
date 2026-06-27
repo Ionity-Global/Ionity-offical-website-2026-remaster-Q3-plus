@@ -93,7 +93,7 @@
       ctx.font = `600 ${Math.round(10.5 + p.scale * 2)}px "Chakra Petch","Space Grotesk",sans-serif`;
       ctx.fillStyle = `rgba(225,240,255,${0.35 + o * 0.6})`;
       ctx.textAlign = 'center';
-      ctx.fillText(p.label, p.sx, p.sy - rad - 5);
+      ctx.fillText(nodes[i].label, p.sx, p.sy - rad - 5);   // label lives on the node, not the projected point
     });
   }
 

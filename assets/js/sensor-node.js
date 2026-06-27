@@ -18,11 +18,14 @@
         elSound = $('#snSound'), elLight = $('#snLight');
   const bubble = $('#snBubble');
   const accelBar = $('#snAccelBar'), soundBar = $('#snSoundBar'),
-        tiltBar = $('#snTiltBar'), headingBar = $('#snHeadingBar'), lightBar = $('#snLightBar');
+        tiltBar = $('#snTiltBar'), headingBar = $('#snHeadingBar'), lightBar = $('#snLightBar'),
+        velBar = $('#snVelBar'), elVel = $('#snVel');
+  const soundGraph = $('#snSoundGraph');
   const horizon = $('#snHorizon');
   const setBar = (el, pct) => { if (el) el.style.width = Math.max(0, Math.min(100, pct)) + '%'; };
   const setStatus = (t, k) => { if (statusEl) { statusEl.textContent = t; statusEl.dataset.kind = k || ''; } };
   let running = false;
+  let vel = 0, lastMotionT = 0;   // integrated speed estimate (m/s)
 
   function onOrient(e) {
     const beta = e.beta || 0, gamma = e.gamma || 0, alpha = e.alpha;
@@ -39,6 +42,16 @@
     const m = Math.hypot(a.x || 0, a.y || 0, a.z || 0);
     if (elAccel) elAccel.textContent = m.toFixed(2) + ' m/s²';
     setBar(accelBar, m / 20 * 100);
+
+    // movement (m/s): integrate LINEAR acceleration (gravity removed) over the
+    // real interval, with damping so sensor drift decays back toward zero.
+    const lin = e.acceleration || {};
+    const la = Math.hypot(lin.x || 0, lin.y || 0, lin.z || 0);
+    const dt = (e.interval && e.interval < 1) ? e.interval : 0.016;
+    vel = vel * 0.86 + (la > 0.12 ? la * dt : 0);   // high-pass + decay
+    vel = Math.min(vel, 12);
+    if (elVel) elVel.textContent = vel.toFixed(2) + ' m/s';
+    setBar(velBar, vel / 6 * 100);
   }
 
   async function enableMotion() {
@@ -60,16 +73,37 @@
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       const AC = window.AudioContext || window.webkitAudioContext;
       const ctx = new AC(); const src = ctx.createMediaStreamSource(stream);
-      const an = ctx.createAnalyser(); an.fftSize = 512; src.connect(an);
-      const buf = new Uint8Array(an.fftSize);
+      const an = ctx.createAnalyser(); an.fftSize = 1024; an.smoothingTimeConstant = 0.72; src.connect(an);
+      const time = new Uint8Array(an.fftSize);
+      const freq = new Uint8Array(an.frequencyBinCount);
+      const gc = soundGraph ? soundGraph.getContext('2d') : null;
+      let gw = 0, gh = 0;
+      const sizeGraph = () => {
+        if (!soundGraph) return;
+        const r = soundGraph.getBoundingClientRect(); const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        soundGraph.width = Math.max(1, r.width * dpr); soundGraph.height = Math.max(1, r.height * dpr);
+        gc.setTransform(dpr, 0, 0, dpr, 0, 0); gw = r.width; gh = r.height;
+      };
+      sizeGraph(); window.addEventListener('resize', sizeGraph);
       const loop = () => {
-        an.getByteTimeDomainData(buf);
-        let sum = 0; for (let i = 0; i < buf.length; i++) { const v = (buf[i] - 128) / 128; sum += v * v; }
-        const rms = Math.sqrt(sum / buf.length);
-        const db = 20 * Math.log10(rms || 1e-7);            // real relative dB
-        const pct = Math.max(0, Math.min(100, (db + 60) / 60 * 100));
+        an.getByteTimeDomainData(time);
+        let sum = 0; for (let i = 0; i < time.length; i++) { const v = (time[i] - 128) / 128; sum += v * v; }
+        const rms = Math.sqrt(sum / time.length);
+        const db = 20 * Math.log10(rms || 1e-7);            // real relative dBFS
         if (elSound) elSound.textContent = (db <= -60 ? '−∞' : db.toFixed(0)) + ' dBFS';
-        setBar(soundBar, pct);
+        // live spiking frequency spectrum
+        if (gc && gw) {
+          an.getByteFrequencyData(freq);
+          gc.clearRect(0, 0, gw, gh);
+          const bins = 60, step = Math.floor(freq.length / bins), bw = gw / bins;
+          for (let i = 0; i < bins; i++) {
+            let mx = 0; for (let j = 0; j < step; j++) mx = Math.max(mx, freq[i * step + j]);
+            const h = (mx / 255) * (gh - 2);
+            const g = gc.createLinearGradient(0, gh, 0, gh - h);
+            g.addColorStop(0, 'rgba(0,121,227,.5)'); g.addColorStop(1, 'rgba(0,210,255,.95)');
+            gc.fillStyle = g; gc.fillRect(i * bw + 0.7, gh - h, bw - 1.4, h);
+          }
+        }
         if (running) requestAnimationFrame(loop);
       };
       loop(); return true;

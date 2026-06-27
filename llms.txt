@@ -1,11 +1,16 @@
 # Ionity Global
 
-> Ionity Global (Pty) Ltd is a Native-AI company. We engineer AIoT, Cloud and Edge
-> systems, build custom MCP servers, AI dashboards and digital twins, and run
-> evidence-first audits & forensics that cut cost and prove return. We are
-> solutionists across mechanical, electrical and IT — and we make the hardware
-> when the software needs a body. Grown from Antwerp Designs (a product-design
-> firm since 2018). We build with Claude and our own AI fabric, AEDi.
+> Ionity Global (Pty) Ltd — "Building tomorrow, today." A Native-AI company that
+> supports automation across CLOUD solutions and OFFLINE / on-device AI. We engineer
+> AIoT, Cloud and Edge systems, custom MCP servers, AI dashboards and digital twins,
+> run evidence-first audits & forensics that cut cost and prove return, and carry
+> digital design & development all the way into physical hardware. Solutionists
+> across mechanical, electrical and IT. Grown from Antwerp Designs (product design,
+> 2018) → Ionity/AEDi (2022) → automation everywhere (now). Built with Claude and
+> our own AI fabric, AEDi.
+>
+> Industries served (not limited to): Aerospace, Hospitality, Governance, Medical,
+> Corporate Sales, Production & Fabrication — enquire for more.
 
 Site: https://ionity.co.za
 Contact: ai@ionity.today

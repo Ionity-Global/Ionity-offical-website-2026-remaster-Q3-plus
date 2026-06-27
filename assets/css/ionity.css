@@ -452,6 +452,25 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 /* the <ul> is a screen-reader / SEO / no-JS fallback — the canvas shows the labels */
 .disc-list { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
 
+/* trajectory timeline (2018 · 2022 · NOW) */
+.timeline-row { list-style:none; display:grid; grid-template-columns:repeat(3,1fr); gap:1.1rem; margin-top:1.6rem; }
+.timeline-row li { position:relative; padding:1.3rem; border:1px solid var(--line); border-radius:var(--radius);
+  background:linear-gradient(160deg, var(--surface), var(--bg-2)); }
+.timeline-row li.now { border-color:var(--cyan); box-shadow:var(--glow); }
+.timeline-row .ty { font-family:var(--f-stencil); font-size:1.7rem; letter-spacing:.04em; color:var(--cyan); display:block; }
+.timeline-row li.now .ty { color:var(--orange); }
+.timeline-row h4 { margin:.45rem 0 .35rem; font-size:var(--step-0); }
+.timeline-row p { font-size:var(--step--1); color:var(--muted); }
+@media (max-width:680px){ .timeline-row { grid-template-columns:1fr; } }
+.tag-cta { border-color:var(--cyan); color:var(--cyan); display:inline-flex; align-items:center; gap:.35rem; }
+.tag-cta svg { width:12px; height:12px; }
+.tag-cta:hover { background:rgba(0,210,255,.12); }
+
+/* sensor-node: full-width live sound spectrum graph */
+.metric-graph { grid-column:1 / -1; }
+.sn-graph { display:block; width:100%; height:64px; margin-top:.5rem; border-radius:6px;
+  background:linear-gradient(180deg, rgba(0,121,227,.10), rgba(0,0,0,.28)); }
+
 /* radar (presence visual, only filled by REAL data) */
 .radar { width:100%; max-width:280px; aspect-ratio:1; margin-inline:auto; position:relative; }
 .radar .sweep { position:absolute; inset:0; border-radius:50%; background:conic-gradient(from 0deg, transparent 0 300deg, rgba(0,210,255,.25) 360deg); animation:spin 3.4s linear infinite; }

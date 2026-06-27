@@ -147,7 +147,8 @@
     <div class="hud-head"><span class="t">edge node · this device</span><span class="pill live"><span class="dot"></span> <span id="snStatus" data-kind="idle">DORMANT</span></span></div>
     <div class="sn-level"><div class="sn-horizon" id="snHorizon"></div><span class="sn-bubble" id="snBubble"></span></div>
     <div class="metric-grid mt-2">
-      <div class="metric"><div class="k">SOUND · dBFS</div><div class="bar"><i id="snSoundBar"></i></div><div class="v live" id="snSound">—</div></div>
+      <div class="metric metric-graph"><div class="k">SOUND · dBFS — live spectrum<span class="v live" id="snSound" style="float:right">—</span></div><canvas class="sn-graph" id="snSoundGraph"></canvas></div>
+      <div class="metric"><div class="k">MOVEMENT · m/s</div><div class="bar"><i id="snVelBar"></i></div><div class="v" id="snVel">—</div></div>
       <div class="metric"><div class="k">ACCEL · m/s²</div><div class="bar"><i id="snAccelBar"></i></div><div class="v" id="snAccel">—</div></div>
       <div class="metric"><div class="k">TILT β/γ</div><div class="bar"><i id="snTiltBar"></i></div><div class="v live" id="snTilt">—</div></div>
       <div class="metric"><div class="k">COMPASS</div><div class="bar"><i id="snHeadingBar"></i></div><div class="v live" id="snHeading">—</div></div>

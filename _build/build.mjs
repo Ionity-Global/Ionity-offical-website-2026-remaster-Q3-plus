@@ -119,6 +119,28 @@ const index = page(
   </div>
 </section>
 
+<!-- ACT 2.5 ── TRAJECTORY + INDUSTRIES ──────────────────── -->
+<section class="wrap" id="trajectory" data-act="Trajectory">
+  <div class="section-head reveal">
+    <span class="kicker">01b · The arc</span>
+    <h2>Building <span class="grad-text">tomorrow</span>, today.</h2>
+    <p>A Native-AI company driving automation across <strong>cloud solutions</strong> and <strong>offline / on-device AI</strong> — and carrying digital design &amp; development all the way into <strong>physical hardware</strong>.</p>
+  </div>
+  <ol class="timeline-row reveal">
+    <li><span class="ty">2018</span><h4>Antwerp Designs</h4><p>Product design &amp; development — the artisan roots.</p></li>
+    <li class="d1"><span class="ty">2022</span><h4>Ionity · AEDi</h4><p>Native-AI, AIoT &amp; edge — intelligence designed in from day one.</p></li>
+    <li class="now d2"><span class="ty">NOW</span><h4>Automation, everywhere</h4><p>Cloud automation + offline AI for industry — digital → physical.</p></li>
+  </ol>
+  <div class="reveal mt-2">
+    <p class="kicker" style="margin-bottom:.9rem">Industries we automate</p>
+    <div class="tag-row">
+      <span class="tag">Aerospace</span><span class="tag">Hospitality</span><span class="tag">Governance</span>
+      <span class="tag">Medical</span><span class="tag">Corporate Sales</span><span class="tag">Production &amp; Fabrication</span>
+      <a class="tag tag-cta" href="contact.html" data-sfx="coin">Enquire for more ${ICON.arrow}</a>
+    </div>
+  </div>
+</section>
+
 <!-- ACT 3 ───────────────────────────────────────────── -->
 <section class="wrap" id="capabilities" data-act="Capabilities">
   <div class="section-head reveal">
@@ -308,7 +330,8 @@ function sensorBlock() {
     <div class="hud-head"><span class="t">edge node · this device</span><span class="pill live"><span class="dot"></span> <span id="snStatus" data-kind="idle">DORMANT</span></span></div>
     <div class="sn-level"><div class="sn-horizon" id="snHorizon"></div><span class="sn-bubble" id="snBubble"></span></div>
     <div class="metric-grid mt-2">
-      <div class="metric"><div class="k">SOUND · dBFS</div><div class="bar"><i id="snSoundBar"></i></div><div class="v live" id="snSound">—</div></div>
+      <div class="metric metric-graph"><div class="k">SOUND · dBFS — live spectrum<span class="v live" id="snSound" style="float:right">—</span></div><canvas class="sn-graph" id="snSoundGraph"></canvas></div>
+      <div class="metric"><div class="k">MOVEMENT · m/s</div><div class="bar"><i id="snVelBar"></i></div><div class="v" id="snVel">—</div></div>
       <div class="metric"><div class="k">ACCEL · m/s²</div><div class="bar"><i id="snAccelBar"></i></div><div class="v" id="snAccel">—</div></div>
       <div class="metric"><div class="k">TILT β/γ</div><div class="bar"><i id="snTiltBar"></i></div><div class="v live" id="snTilt">—</div></div>
       <div class="metric"><div class="k">COMPASS</div><div class="bar"><i id="snHeadingBar"></i></div><div class="v live" id="snHeading">—</div></div>

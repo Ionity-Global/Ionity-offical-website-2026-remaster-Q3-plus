@@ -9,7 +9,7 @@ export const SITE = {
   legal: 'Ionity Global (Pty) Ltd',
   origin: 'https://ionity.co.za',
   sister: 'https://www.ionity.today',   // related domain — cross-linked for SEO
-  tagline: 'Native-AI engineering, AIoT & evidence-first audits.',
+  tagline: 'Building tomorrow, today — Native-AI automation across cloud & offline AI, into hardware.',
   desc: 'Ionity Global is a Native-AI company. We build AIoT, Cloud & Edge systems, custom MCP, dashboards and digital twins — and run evidence-first audits & forensics that cut cost and prove return. Solutionists across mechanical, electrical and IT.',
   email: 'ai@ionity.today',
   phone: '+27 64 699 9877',
