@@ -43,7 +43,8 @@
 
   /* type */
   --f-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
-  --f-stencil: "Orbitron", "Space Grotesk", system-ui, sans-serif;  /* AI / sci-fi display for headings */
+  --f-stencil: "Black Ops One", "Space Grotesk", system-ui, sans-serif;  /* old-school industrial stencil for headings */
+  --crt-bezel: 26px;   /* CRT frame thickness — used to keep content inside the screen */
   --f-body:    "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --f-mono:    "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
 
@@ -107,13 +108,12 @@ ul { list-style:none; }
 
 /* ------------------------------------------------------------- TYPOGRAPHY -- */
 h1,h2,h3,h4 { font-family:var(--f-display); font-weight:700; line-height:1.05; letter-spacing:-.02em; }
-/* AI / stencil display treatment on the big headings — open, futuristic, airy */
+/* old-school industrial stencil headings (Black Ops One is bold by design → weight 400) */
 h1, h2, .portal-main h2, .section-head h2 {
-  font-family:var(--f-stencil); font-weight:700; letter-spacing:.02em; line-height:1.12;
+  font-family:var(--f-stencil); font-weight:400; letter-spacing:.01em; line-height:1.16;
   text-transform:uppercase;
 }
-h1 { font-weight:800; }
-.portal-main h2 { letter-spacing:.04em; }
+.portal-main h2 { letter-spacing:.02em; }
 h1 { font-size:var(--step-4); }
 h2 { font-size:var(--step-3); }
 h3 { font-size:var(--step-2); }
@@ -652,28 +652,53 @@ html:not(.no3d) .bg-grid{ opacity:.32; }
   background:repeating-linear-gradient(0deg, rgba(255,255,255,.02) 0 1px, transparent 1px 3px); opacity:.5; }
 @media (prefers-reduced-motion:reduce){ .grain{ opacity:.035; } }
 
-/* ===== CRT TELEVISION FRAME (bezel around the whole page) ================= */
+/* ===== OLD-SCHOOL CRT TELEVISION FRAME (chunky bezel + rounded screen) ===== */
 .crt-frame {
-  position:fixed; inset:0; z-index:2500; pointer-events:none; border-radius:30px;
+  position:fixed; inset:0; z-index:2500; pointer-events:none; border-radius:48px;
   box-shadow:
-    inset 0 0 0 4px #000,                       /* black screen rim */
-    inset 0 0 0 20px #15171c,                    /* dark bezel body */
-    inset 0 0 0 23px #34383f,                    /* bezel highlight edge */
-    inset 0 0 0 25px #0c0d11,                     /* outer lip */
-    inset 0 0 80px 14px rgba(0,0,0,.62),         /* screen-edge vignette (curvature) */
-    inset 0 0 200px rgba(0,0,0,.34);
+    inset 0 0 0 3px rgba(0,0,0,.95),                                  /* inner black screen rim */
+    inset 0 0 0 calc(var(--crt-bezel) - 6px) #1c1f25,                  /* chunky plastic bezel body */
+    inset 0 0 0 calc(var(--crt-bezel) - 3px) #41464f,                 /* bezel highlight (top light) */
+    inset 0 0 0 var(--crt-bezel) #0a0b0e,                              /* outer lip */
+    inset 0 0 130px 34px rgba(0,0,0,.72),                              /* heavy edge vignette = tube bulge */
+    inset 0 0 280px rgba(0,0,0,.5);
 }
-/* faint glass glare, top-left */
+/* old-school detail: four corner screws set into the bezel */
+.crt-frame::before {
+  content:""; position:absolute; inset:calc(var(--crt-bezel)/2 - 6px); border-radius:40px; pointer-events:none;
+  background:
+    radial-gradient(circle at 0 0,        #4a505b 0 2.4px, #0b0c10 2.4px 4.6px, transparent 4.8px),
+    radial-gradient(circle at 100% 0,     #4a505b 0 2.4px, #0b0c10 2.4px 4.6px, transparent 4.8px),
+    radial-gradient(circle at 0 100%,     #4a505b 0 2.4px, #0b0c10 2.4px 4.6px, transparent 4.8px),
+    radial-gradient(circle at 100% 100%,  #4a505b 0 2.4px, #0b0c10 2.4px 4.6px, transparent 4.8px);
+  background-repeat:no-repeat;
+}
+/* curved-glass glare across the top-left of the tube */
 .crt-frame::after {
-  content:""; position:absolute; inset:25px; border-radius:16px; pointer-events:none;
-  background:linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,0) 38%);
+  content:""; position:absolute; inset:var(--crt-bezel); border-radius:30px; pointer-events:none;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.07), rgba(255,255,255,0) 34%),
+    radial-gradient(140% 90% at 50% 120%, rgba(0,0,0,.28), transparent 60%);
 }
 @media (max-width:600px){
-  .crt-frame { border-radius:20px; box-shadow:
-    inset 0 0 0 3px #000, inset 0 0 0 12px #15171c, inset 0 0 0 14px #34383f, inset 0 0 0 16px #0c0d11,
-    inset 0 0 50px 8px rgba(0,0,0,.6), inset 0 0 140px rgba(0,0,0,.32); }
-  .crt-frame::after { inset:16px; }
+  .crt-frame { border-radius:30px; }
+  .crt-frame::before { border-radius:26px; }
+  .crt-frame::after { border-radius:18px; }
 }
+
+/* ===== CRT safe-area — everything sits INSIDE the screen, not under the bezel */
+@media (max-width:600px){ :root{ --crt-bezel:18px; } }
+.nav { top:var(--crt-bezel); padding-inline:max(var(--gutter), calc(var(--crt-bezel) + 14px)); }
+.progress-top { top:var(--crt-bezel); }
+.hero { padding-top:calc(var(--nav-h) + var(--crt-bezel)); }
+.portal-hero { padding-block:calc(var(--nav-h) + var(--crt-bezel) + .5rem) calc(var(--crt-bezel) + 2rem); }
+@media (max-width:880px){ #navLinks { top:calc(var(--nav-h) + var(--crt-bezel)); } }
+.aedi-wrap { left:calc(var(--crt-bezel) + 12px); bottom:calc(var(--crt-bezel) + 12px); }
+.portal-corner { left:calc(var(--crt-bezel) + 12px); }
+.scroll-rail { right:calc(var(--crt-bezel) + 10px); }
+.cookie { bottom:calc(var(--crt-bezel) + 10px); }
+.foot { padding-bottom:calc(var(--crt-bezel) + 1.5rem); }
+.skip:focus { top:calc(var(--crt-bezel) + 8px); left:calc(var(--crt-bezel) + 8px); }
 
 /* CRT static / pixelation overlay — transient: on load (resolve) + on scroll */
 .crt-fx {
