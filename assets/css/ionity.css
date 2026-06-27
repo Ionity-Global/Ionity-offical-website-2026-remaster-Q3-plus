@@ -83,7 +83,7 @@ body {
   /* readability: a soft dark halo behind light copy over the 3D/gradient
      backdrop. On dark cards/HUDs a dark shadow is invisible, so it's safe
      site-wide; inherited by all text unless an element sets its own. */
-  text-shadow:0 0 3px rgba(0,0,0,.5), 0 1px 3px rgba(0,0,0,.55);
+  text-shadow:-1px -1px 0 rgba(0,0,0,.7), 1px -1px 0 rgba(0,0,0,.7), -1px 1px 0 rgba(0,0,0,.7), 1px 1px 0 rgba(0,0,0,.7), 0 0 5px rgba(0,0,0,.75);
 }
 /* big headings carry their own gradient shimmer + glow — keep them clean */
 h1, h2 { text-shadow:none; }
@@ -319,7 +319,7 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 /* ------------------------------------------------------ IMMERSIVE / ACTS --- */
 /* page scrolls in "blocks" — each top-level section is a snap point. Proximity
    (not mandatory) so tall sections never trap the scroll; offset for the nav. */
-html { scroll-snap-type: y proximity; scroll-padding-top: calc(var(--nav-h) + var(--crt-bezel)); }
+html { scroll-snap-type: y mandatory; scroll-padding-top: calc(var(--nav-h) + var(--crt-bezel)); }
 main > section { scroll-snap-align: start; scroll-margin-top: calc(var(--nav-h) + var(--crt-bezel)); }
 @media (prefers-reduced-motion: reduce){ html { scroll-snap-type: none; } }
 
