@@ -483,18 +483,18 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 
 /* Govchain "Registered Company" trust badge — fixed bottom-right, inside the bezel */
 .gov-badge { position:fixed; right:calc(var(--crt-bezel) + 12px); bottom:calc(var(--crt-bezel) + 12px); z-index:1400;
-  width:150px; background:#fff; color:#0b0c10; border-radius:11px; overflow:hidden; line-height:1;
+  width:110px; background:#fff; color:#0b0c10; border-radius:9px; overflow:hidden; line-height:1;
   font-family:var(--f-body); box-shadow:0 8px 26px rgba(0,0,0,.5); transition:transform .25s var(--ease-out), box-shadow .25s; }
 .gov-badge:hover { transform:translateY(-2px); box-shadow:0 12px 32px rgba(0,0,0,.6); }
-.gov-head { display:flex; align-items:center; gap:.5rem; padding:.5rem .6rem .45rem; }
-.gov-check { width:20px; height:20px; flex:none; }
+.gov-head { display:flex; align-items:center; gap:.38rem; padding:.38rem .46rem .34rem; }
+.gov-check { width:15px; height:15px; flex:none; }
 .gov-txt { display:flex; flex-direction:column; gap:.1rem; }
-.gov-reg { font-size:.64rem; color:#555; }
-.gov-co { font-size:.86rem; font-weight:700; letter-spacing:.01em; color:#0b0c10; }
-.gov-bar { display:block; text-align:center; padding:.32rem; font-size:.58rem; letter-spacing:.08em; color:#fff;
+.gov-reg { font-size:.5rem; color:#555; }
+.gov-co { font-size:.66rem; font-weight:700; letter-spacing:.01em; color:#0b0c10; }
+.gov-bar { display:block; text-align:center; padding:.26rem; font-size:.46rem; letter-spacing:.08em; color:#fff;
   background:linear-gradient(90deg, #1a2cff, #2f80ff); }
 .gov-bar strong { font-weight:700; }
-@media (max-width:600px){ .gov-badge { width:124px; right:calc(var(--crt-bezel) + 8px); bottom:calc(var(--crt-bezel) + 8px); } .gov-co{ font-size:.78rem; } }
+@media (max-width:600px){ .gov-badge { width:90px; right:calc(var(--crt-bezel) + 8px); bottom:calc(var(--crt-bezel) + 8px); } .gov-co{ font-size:.6rem; } }
 
 /* trajectory timeline (2018 · 2022 · NOW) */
 .timeline-row { list-style:none; display:grid; grid-template-columns:repeat(3,1fr); gap:1.1rem; margin-top:1.6rem; }
