@@ -149,7 +149,7 @@ ${SERVICES.map(serviceDetail).join('')}
     <p class="lead mt-1">Director &amp; Founder, ${SITE.legal}. Building Native-AI, AIoT and audit practice — hands-on across disciplines.</p>
     <div class="flex gap wrapf aic mt-2" style="justify-content:center">
       <a class="btn btn-ghost" href="${SITE.linkedin}" target="_blank" rel="noopener me">LinkedIn · in/ionity</a>
-      <a class="btn btn-ghost" href="${SITE.gravatar}" target="_blank" rel="noopener me">Gravatar · antwerpdesigns</a>
+      <a class="btn btn-ghost" href="${SITE.gravatar}" target="_blank" rel="noopener me">Gravatar · ionity</a>
     </div>
   </div>
 </section>

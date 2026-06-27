@@ -16,8 +16,11 @@
   const startBtn = $('#snStart'), statusEl = $('#snStatus');
   const elTilt = $('#snTilt'), elHeading = $('#snHeading'), elAccel = $('#snAccel'),
         elSound = $('#snSound'), elLight = $('#snLight');
-  const bubble = $('#snBubble'), accelBar = $('#snAccelBar>i'), soundBar = $('#snSoundBar>i');
+  const bubble = $('#snBubble');
+  const accelBar = $('#snAccelBar'), soundBar = $('#snSoundBar'),
+        tiltBar = $('#snTiltBar'), headingBar = $('#snHeadingBar'), lightBar = $('#snLightBar');
   const horizon = $('#snHorizon');
+  const setBar = (el, pct) => { if (el) el.style.width = Math.max(0, Math.min(100, pct)) + '%'; };
   const setStatus = (t, k) => { if (statusEl) { statusEl.textContent = t; statusEl.dataset.kind = k || ''; } };
   let running = false;
 
@@ -25,6 +28,9 @@
     const beta = e.beta || 0, gamma = e.gamma || 0, alpha = e.alpha;
     if (elTilt) elTilt.textContent = `${beta.toFixed(0)}° / ${gamma.toFixed(0)}°`;
     if (elHeading) elHeading.textContent = (alpha != null) ? `${alpha.toFixed(0)}°` : 'n/a';
+    // bars: tilt = combined lean (0–135° → 0–100%), compass = heading round the dial
+    setBar(tiltBar, (Math.abs(beta) + Math.abs(gamma)) / 135 * 100);
+    if (alpha != null) setBar(headingBar, alpha / 360 * 100);
     if (horizon) horizon.style.transform = `rotate(${(-gamma).toFixed(1)}deg) translateY(${(beta).toFixed(0)}px)`;
     if (bubble) { bubble.style.left = `calc(50% + ${Math.max(-46, Math.min(46, gamma)) }px)`; bubble.style.top = `calc(50% + ${Math.max(-46, Math.min(46, beta - 0)) }px)`; }
   }
@@ -32,7 +38,7 @@
     const a = e.accelerationIncludingGravity || e.acceleration || {};
     const m = Math.hypot(a.x || 0, a.y || 0, a.z || 0);
     if (elAccel) elAccel.textContent = m.toFixed(2) + ' m/s²';
-    if (accelBar) accelBar.style.width = Math.min(100, m / 20 * 100) + '%';
+    setBar(accelBar, m / 20 * 100);
   }
 
   async function enableMotion() {
@@ -63,7 +69,7 @@
         const db = 20 * Math.log10(rms || 1e-7);            // real relative dB
         const pct = Math.max(0, Math.min(100, (db + 60) / 60 * 100));
         if (elSound) elSound.textContent = (db <= -60 ? '−∞' : db.toFixed(0)) + ' dBFS';
-        if (soundBar) soundBar.style.width = pct + '%';
+        setBar(soundBar, pct);
         if (running) requestAnimationFrame(loop);
       };
       loop(); return true;
@@ -74,7 +80,7 @@
     try {
       if ('AmbientLightSensor' in window) {
         const s = new AmbientLightSensor();
-        s.addEventListener('reading', () => { if (elLight) elLight.textContent = Math.round(s.illuminance) + ' lux'; });
+        s.addEventListener('reading', () => { if (elLight) elLight.textContent = Math.round(s.illuminance) + ' lux'; setBar(lightBar, Math.log10((s.illuminance || 0) + 1) / 3 * 100); });
         s.addEventListener('error', () => { if (elLight) elLight.textContent = 'blocked'; });
         s.start(); return true;
       }

@@ -18,7 +18,7 @@ export const SITE = {
   policy: 'Policy 986 AED',
   founder: 'Johan Wilhelm van Antwerp',
   linkedin: 'https://www.linkedin.com/in/ionity',
-  gravatar: 'https://gravatar.com/antwerpdesigns',
+  gravatar: 'https://gravatar.com/ionity',
   github: 'https://github.com/Ionity-Global',
 };
 
@@ -86,16 +86,16 @@ export function head(page) {
 <meta name="twitter:description" content="${desc}">
 <meta name="twitter:image" content="${SITE.origin}/assets/og/social-card.png">
 <!-- Icons / PWA -->
-<link rel="icon" href="assets/img/favicon.ico" sizes="any">
-<link rel="icon" href="assets/img/favicon-64.png" type="image/png" sizes="64x64">
-<link rel="icon" href="assets/img/icon-192.png" type="image/png" sizes="192x192">
-<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="icon" href="assets/img/favicon.ico?v=17" sizes="any">
+<link rel="icon" href="assets/img/favicon-64.png?v=17" type="image/png" sizes="64x64">
+<link rel="icon" href="assets/img/icon-192.png?v=17" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=17">
 <link rel="manifest" href="manifest.json">
 <!-- Fonts (no cookies set; degrades to system) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Black+Ops+One&display=swap">
-<link rel="stylesheet" href="assets/css/ionity.css?v=14">
+<link rel="stylesheet" href="assets/css/ionity.css?v=17">
 <!-- Three.js backdrop importmap (must precede the module) -->
 <script type="importmap">
 { "imports": {
@@ -200,18 +200,18 @@ ${cookieHtml()}
   </div>
 </div>
 
-<script src="assets/js/audio.js?v=14" defer></script>
-<script src="assets/js/mario.js?v=14" defer></script>
-<script src="assets/js/cookies.js?v=14" defer></script>
-<script src="assets/js/core.js?v=14" defer></script>
-<script src="assets/js/edge-diagnostics.js?v=14" defer></script>
-<script src="assets/js/matrix-cam.js?v=14" defer></script>
-<script src="assets/js/sensor-node.js?v=14" defer></script>
-<script src="assets/js/aedi-chat.js?v=14" defer></script>
+<script src="assets/js/audio.js?v=17" defer></script>
+<script src="assets/js/mario.js?v=17" defer></script>
+<script src="assets/js/cookies.js?v=17" defer></script>
+<script src="assets/js/core.js?v=17" defer></script>
+<script src="assets/js/edge-diagnostics.js?v=17" defer></script>
+<script src="assets/js/matrix-cam.js?v=17" defer></script>
+<script src="assets/js/sensor-node.js?v=17" defer></script>
+<script src="assets/js/aedi-chat.js?v=17" defer></script>
 <script>window.IonityGlitch=window.IonityGlitch||{};window.IonityGlitch.config={zIndex:3000};</script>
-<script src="assets/js/glitch.js?v=14" defer></script>
+<script src="assets/js/glitch.js?v=17" defer></script>
 <!-- Three.js WebGL backdrop (ES module; degrades to CSS via html.no3d) -->
-<script type="module" src="assets/js/backdrop.js?v=14"></script>
+<script type="module" src="assets/js/backdrop.js?v=17"></script>
 </body>
 </html>`;
 }

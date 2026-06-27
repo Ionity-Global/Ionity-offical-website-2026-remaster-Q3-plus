@@ -210,7 +210,7 @@ const index = page(
     <p class="lead mt-1">Ionity Global is directed and founded by ${SITE.founder}. The work — and the receipts — are public.</p>
     <div class="flex gap wrapf aic mt-2" style="justify-content:center">
       <a class="btn btn-ghost" href="${SITE.linkedin}" target="_blank" rel="noopener me">LinkedIn · in/ionity</a>
-      <a class="btn btn-ghost" href="${SITE.gravatar}" target="_blank" rel="noopener me">Gravatar · antwerpdesigns</a>
+      <a class="btn btn-ghost" href="${SITE.gravatar}" target="_blank" rel="noopener me">Gravatar · ionity</a>
       <a class="btn btn-ghost" href="${SITE.github}" target="_blank" rel="noopener">GitHub · Ionity-Global</a>
     </div>
   </div>
@@ -290,11 +290,11 @@ function sensorBlock() {
     <div class="hud-head"><span class="t">edge node · this device</span><span class="pill live"><span class="dot"></span> <span id="snStatus" data-kind="idle">DORMANT</span></span></div>
     <div class="sn-level"><div class="sn-horizon" id="snHorizon"></div><span class="sn-bubble" id="snBubble"></span></div>
     <div class="metric-grid mt-2">
-      <div class="metric"><div class="k">TILT β/γ</div><div class="v live" id="snTilt">—</div></div>
-      <div class="metric"><div class="k">COMPASS</div><div class="v live" id="snHeading">—</div></div>
-      <div class="metric"><div class="k">ACCEL</div><div class="v" id="snAccel">—</div><div class="bar"><i id="snAccelBar"></i></div></div>
-      <div class="metric"><div class="k">SOUND</div><div class="v" id="snSound">—</div><div class="bar"><i id="snSoundBar"></i></div></div>
-      <div class="metric"><div class="k">AMBIENT LIGHT</div><div class="v" id="snLight">—</div></div>
+      <div class="metric"><div class="k">SOUND · dBFS</div><div class="bar"><i id="snSoundBar"></i></div><div class="v live" id="snSound">—</div></div>
+      <div class="metric"><div class="k">ACCEL · m/s²</div><div class="bar"><i id="snAccelBar"></i></div><div class="v" id="snAccel">—</div></div>
+      <div class="metric"><div class="k">TILT β/γ</div><div class="bar"><i id="snTiltBar"></i></div><div class="v live" id="snTilt">—</div></div>
+      <div class="metric"><div class="k">COMPASS</div><div class="bar"><i id="snHeadingBar"></i></div><div class="v live" id="snHeading">—</div></div>
+      <div class="metric"><div class="k">AMBIENT LIGHT</div><div class="bar"><i id="snLightBar"></i></div><div class="v" id="snLight">—</div></div>
     </div>
   </div>
 </div>`;
