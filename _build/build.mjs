@@ -66,7 +66,7 @@ const indexJsonld = {
 const index = page(
   { path: 'index.html', title: 'Ionity Global — Native-AI · AIoT · Cloud · Edge · Audit', desc: SITE.desc, jsonld: indexJsonld },
   `
-<!-- ACT 1 ── split-portal hero (the old "Access System / IO // WAY" concept) ── -->
+<!-- ACT 1 ── portal hero (wordmark + Talk to AEDi) ── -->
 <section class="hero portal-hero" id="hero" data-act="Enter">
   <div class="orbit-field" aria-hidden="true">
     <div class="ring r1"><span class="sat"></span></div>
@@ -86,16 +86,6 @@ const index = page(
     <p>Our own Native-AI fabric. Ask it anything about Ionity — it routes you through the build.</p>
     <button class="btn btn-primary aedi-cta" id="portalAccess" data-sfx="powerup" aria-label="Talk to AEDi">Talk to AEDi ${ICON.arrow}</button>
   </div>
-
-  <!-- LEFT CORNER — IO // WAY / Gateway -->
-  <a class="portal-corner reveal" href="edge.html" data-sfx="coin" aria-label="Enter the IO Way gateway — live on-device edge scan">
-    <span class="portal-corner-orbit" aria-hidden="true"></span>
-    <span class="portal-corner-text">
-      <span class="portal-kicker warm-text">IO // WAY</span>
-      <span class="portal-corner-title">Enter the Gateway System</span>
-      <span class="portal-corner-cue">Live edge scan ${ICON.arrow}</span>
-    </span>
-  </a>
 
   <a class="portal-skip" href="#ethos" data-sfx="coin">scroll to explore ${ICON.arrow}</a>
   <div class="scroll-hint" aria-hidden="true"><i></i><i></i></div>
