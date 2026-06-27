@@ -19,7 +19,20 @@
     models: ['gemini-2.5-flash', 'gemini-2.5-flash-lite'],
     base:  'https://generativelanguage.googleapis.com/v1beta/models/',
     maxHistory: 12,
-    greeting: 'AEDi online. Ask me about Ionity, the site — or anything else (weather, news, you name it).',
+    greetings: [
+      'AEDi online. What can I route you to today?',
+      "Systems nominal. I'm AEDi — Ionity's intelligence. Ask me anything.",
+      'Hey — AEDi here. Curious about our edge tech, or just exploring?',
+      'AEDi, listening. Want the tour, the tech, or a straight answer?',
+      "Booted and bright. I'm AEDi — where to?",
+      "AEDi at your service. What are you building?",
+      'Signal locked. Ask me about Ionity — or anything else; I can look it up.',
+      'Online and on-device-curious. Try me, or run the live Edge Scan.',
+      'AEDi awake. From AIoT to audits — what brings you in?',
+      'Hello, human. AEDi speaking, Ionity’s own AI. How can I help?',
+      'AEDi online. Native-AI, at your command. What shall we explore?',
+      'Powered up. I map you to anything on the site — say the word.',
+    ],
   };
 
   // Hard rules — always enforced, even if the YAML fails to load. These keep AEDi
@@ -177,9 +190,17 @@
     panel.setAttribute('aria-hidden', String(!open));
     fab.setAttribute('aria-expanded', String(open));
     if (open && messages.childElementCount === 0) {
-      appendMsg('model', CFG.greeting);
+      appendMsg('model', pickGreeting());
     }
     if (open) setTimeout(() => input.focus(), 60);
+  }
+
+  // random AEDi greeting, never the same twice in a row
+  let _lastGreet = -1;
+  function pickGreeting() {
+    const g = CFG.greetings; if (!g || !g.length) return 'AEDi online.';
+    let i; do { i = Math.floor(Math.random() * g.length); } while (g.length > 1 && i === _lastGreet);
+    _lastGreet = i; return g[i];
   }
 
   /* ── init ─────────────────────────────────────────────────────────────── */

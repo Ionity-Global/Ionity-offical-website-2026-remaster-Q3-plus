@@ -131,6 +131,7 @@ export function footer() {
     <div class="foot-grid">
       <div>
         <a class="brand" href="index.html"><img class="wm" src="assets/img/wordmark.png" alt="Ionity Global" height="40"></a>
+        <p class="foot-verse">“Loof die Here, want Hy is goed; aan Sy liefde is daar geen einde nie. Sy trou duur van geslag tot geslag.”</p>
         <p class="blurb">${SITE.legal} — a Native-AI company building AIoT, Cloud & Edge systems and running evidence-first audits across mechanical, electrical and IT. Grown from Antwerp Designs (2018).</p>
         <p class="blurb mono" style="font-size:.66rem;margin-top:.8rem">${SITE.location} · <a href="tel:${SITE.phoneHref}" style="color:var(--cyan)">${SITE.phone}</a> · <a href="mailto:${SITE.email}" style="color:var(--cyan)">${SITE.email}</a></p>
         <div class="socials">
@@ -170,6 +171,7 @@ export function footer() {
       <p>© <span data-year>2026</span> ${SITE.legal}. All rights reserved. · ${SITE.policy}</p>
       <p>Built Native-AI · <a href="${SITE.origin}/humans.txt">humans.txt</a> · ${SITE.origin.replace('https://','')} · also at <a href="${SITE.sister}" rel="me">ionity.today</a></p>
     </div>
+    <p class="foot-center">Ionity Global</p>
   </div>
 </footer>
 ${cookieHtml()}
@@ -184,6 +186,7 @@ ${cookieHtml()}
   </button>
   <div class="aedi-panel" id="aediPanel" role="dialog" aria-label="AEDi — Ionity AI" aria-hidden="true" hidden>
     <div class="aedi-head">
+      <img class="aedi-head-logo" src="assets/img/ai-mark-white.png" alt="" width="22" height="22" aria-hidden="true">
       <div>
         <span class="aedi-name">AEDi</span>
         <span class="aedi-sub">Automated Ecosystems Intelligence</span>
