@@ -97,7 +97,7 @@ const index = page(
 
   <div class="portal-id">
     <img class="hero-wm" src="assets/img/wordmark.png" alt="Ionity Global" width="460" height="307" fetchpriority="high" decoding="async">
-    <span class="pill"><span class="dot"></span> Native-AI · AIoT · Edge · Audit · ${SITE.location} · since 2018</span>
+    <span class="pill"><span class="dot"></span> Native-AI · AIoT · Edge · Audit · Cloud Solutions</span>
   </div>
 
   <!-- CENTRE — AEDi (the focal point) -->
