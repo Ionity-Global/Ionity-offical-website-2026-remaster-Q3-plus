@@ -53,10 +53,25 @@
     burger.addEventListener('click', () => {
       const open = links.classList.toggle('open');
       burger.setAttribute('aria-expanded', open);
+      document.body.classList.toggle('nav-open', open);
     });
     $$('a', links).forEach(a => a.addEventListener('click', () => {
       links.classList.remove('open'); burger.setAttribute('aria-expanded', false);
+      document.body.classList.remove('nav-open');
     }));
+    // tap outside the centred panel (or Esc) closes it
+    document.addEventListener('click', (e) => {
+      if (!links.classList.contains('open')) return;
+      if (links.contains(e.target) || burger.contains(e.target)) return;
+      links.classList.remove('open'); burger.setAttribute('aria-expanded', false);
+      document.body.classList.remove('nav-open');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && links.classList.contains('open')) {
+        links.classList.remove('open'); burger.setAttribute('aria-expanded', false);
+        document.body.classList.remove('nav-open');
+      }
+    });
   }
 
   /* ---- hero ecosystem video: pause when off-screen ---------------------- */
