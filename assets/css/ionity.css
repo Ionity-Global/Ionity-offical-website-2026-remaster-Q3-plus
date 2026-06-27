@@ -325,9 +325,11 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 /* ------------------------------------------------------ IMMERSIVE / ACTS --- */
 /* page scrolls in "blocks" — each top-level section is a snap point. Proximity
    (not mandatory) so tall sections never trap the scroll; offset for the nav. */
-html { scroll-snap-type: y proximity; scroll-padding-top: calc(var(--nav-h) + var(--crt-bezel)); }
-main > section { scroll-snap-align: start; scroll-margin-top: calc(var(--nav-h) + var(--crt-bezel)); }
-@media (prefers-reduced-motion: reduce){ html { scroll-snap-type: none; } }
+/* free, smooth scrolling — no scroll-snap (it felt enforced/bulky). Keep the
+   smooth anchor behaviour (html scroll-behavior) + the nav-height offset so
+   in-page links land below the fixed nav. */
+html { scroll-padding-top: calc(var(--nav-h) + var(--crt-bezel)); }
+main > section { scroll-margin-top: calc(var(--nav-h) + var(--crt-bezel)); }
 
 .hero {
   min-height:100svh; display:grid; place-items:center; text-align:center;
