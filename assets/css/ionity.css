@@ -432,7 +432,9 @@ main > section { scroll-snap-align: start; scroll-margin-top: calc(var(--nav-h) 
 .portal-skip svg { width:14px; height:14px; }
 
 @media (max-width:760px){
-  .portal-hero { min-height:auto; padding-block:calc(var(--nav-h) + 2rem) 3rem; gap:1.4rem; }
+  /* fill the screen and centre the focal block so the landing loads in focused
+     on the IONITY wordmark + heading (not parked at the top) */
+  .portal-hero { min-height:100svh; padding-block:calc(var(--nav-h) + var(--crt-bezel)) calc(var(--crt-bezel) + 1.5rem); gap:1.2rem; justify-content:center; }
   /* corner card flows back into the column so it can't overlap the centred AEDi */
   .portal-corner { position:static; align-self:center; margin-top:.4rem; }
 }
