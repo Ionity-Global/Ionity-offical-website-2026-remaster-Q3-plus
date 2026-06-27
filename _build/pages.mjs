@@ -235,16 +235,17 @@ ${SERVICES.map(serviceDetail).join('')}
       <div class="field"><label for="cf-msg">Your problem, briefly</label><textarea id="cf-msg" name="message" required></textarea></div>
       <div class="cta-row mt-1" style="gap:.7rem">
         <button class="btn btn-primary" type="submit">Send ${ICON.arrow}</button>
-        <a class="btn btn-ghost" href="https://wa.me/${SITE.phoneHref.replace(/\D/g,'')}" target="_blank" rel="noopener">WhatsApp me</a>
+        <a class="btn btn-ghost" href="https://wa.me/${SITE.waHref}" target="_blank" rel="noopener">WhatsApp me</a>
       </div>
-      <p class="note mt-2">This form opens your mail client (no third-party tracker). Prefer direct? <a href="mailto:${SITE.email}" style="color:var(--cyan)">${SITE.email}</a> · <a href="https://wa.me/${SITE.phoneHref.replace(/\D/g,'')}" target="_blank" rel="noopener" style="color:var(--cyan)">WhatsApp</a></p>
+      <p class="note mt-2">This form opens your mail client (no third-party tracker). Prefer direct? <a href="mailto:${SITE.email}" style="color:var(--cyan)">${SITE.email}</a> · <a href="https://wa.me/${SITE.waHref}" target="_blank" rel="noopener" style="color:var(--cyan)">WhatsApp</a></p>
     </form>
     <div class="reveal d1">
       <div class="hud">
         <div class="hud-head"><span class="t">direct lines</span><span class="pill"><span class="dot"></span> open</span></div>
         <div class="metric-grid">
           <div class="metric"><div class="k">EMAIL</div><div class="v" style="font-size:.95rem">${SITE.email}</div></div>
-          <div class="metric"><div class="k">PHONE / WHATSAPP</div><div class="v" style="font-size:.95rem"><a href="https://wa.me/${SITE.phoneHref.replace(/\D/g,'')}" target="_blank" rel="noopener" style="color:var(--cyan)">${SITE.phone}</a></div></div>
+          <div class="metric"><div class="k">PHONE</div><div class="v" style="font-size:.95rem"><a href="tel:${SITE.phoneHref}" style="color:var(--cyan)">${SITE.phone}</a></div></div>
+          <div class="metric"><div class="k">WHATSAPP</div><div class="v" style="font-size:.95rem"><a href="https://wa.me/${SITE.waHref}" target="_blank" rel="noopener" style="color:var(--cyan)">${SITE.whatsapp}</a></div></div>
           <div class="metric"><div class="k">BASED IN</div><div class="v" style="font-size:.95rem">${SITE.location}</div></div>
           <div class="metric"><div class="k">GITHUB</div><div class="v" style="font-size:.95rem">Ionity-Global</div></div>
           <div class="metric"><div class="k">FOUNDER</div><div class="v" style="font-size:.95rem">in/ionity</div></div>

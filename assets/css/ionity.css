@@ -252,6 +252,7 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
   display:inline-flex; align-items:center; gap:.55rem; padding:.85rem 1.5rem;
   border-radius:999px; font-family:var(--f-mono); font-size:.74rem; letter-spacing:.12em;
   text-transform:uppercase; font-weight:600; transition:.3s var(--ease); position:relative; isolation:isolate;
+  text-shadow:none;   /* buttons have solid fills — the body's dark rim muddies the crisp label */
 }
 .btn-primary { background:var(--grad); color:#04060f; box-shadow:var(--glow-blue);
   padding:.62rem 1.15rem; font-size:.64rem; }   /* the "Start a project" CTA — smaller */
@@ -324,7 +325,7 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 /* ------------------------------------------------------ IMMERSIVE / ACTS --- */
 /* page scrolls in "blocks" — each top-level section is a snap point. Proximity
    (not mandatory) so tall sections never trap the scroll; offset for the nav. */
-html { scroll-snap-type: y mandatory; scroll-padding-top: calc(var(--nav-h) + var(--crt-bezel)); }
+html { scroll-snap-type: y proximity; scroll-padding-top: calc(var(--nav-h) + var(--crt-bezel)); }
 main > section { scroll-snap-align: start; scroll-margin-top: calc(var(--nav-h) + var(--crt-bezel)); }
 @media (prefers-reduced-motion: reduce){ html { scroll-snap-type: none; } }
 
