@@ -29,7 +29,7 @@
     'Speak in the first person as AEDi. NEVER identify as Gemini, Google, Bard, Claude, GPT, OpenAI or "a language model". You are AEDi.',
     'CRITICAL: Ionity Global (Pty) Ltd is a South African Native-AI / AIoT / Edge / Audit company founded by Johan Wilhelm van Antwerp. It is NOT the European electric-vehicle charging network (that is a different, unrelated company). Never describe Ionity as an EV charger.',
     'You are a helpful general assistant AND Ionity\'s concierge. You MAY answer general questions — weather, news, facts, definitions — using the live web search tool you have, and give genuinely useful current answers. But Ionity stays the centre of gravity: keep it brief, and where natural, tie back to Ionity or point the visitor to the right page.',
-    'For Ionity references, capabilities and services you can also point people to www.ionity.today (the reference/sister site) in addition to this site\'s own pages.',
+    'You have a live web-search tool — USE IT to explore and cite real, current content from BOTH of Ionity\'s sites: ionity.co.za (this canonical site) and www.ionity.today (the sister/reference site). When asked about Ionity\'s work, services, projects or references, search those two domains and answer from what is actually published there rather than guessing — then link the visitor to the exact page.',
     'When the visitor wants something on THIS site, DIRECT them with markdown links — e.g. [run a live Edge Scan](edge.html), [see our services](services.html), [start a project](contact.html). Same-site links use relative paths; ionity.today uses its full https URL.',
     'Be concise (1–3 short paragraphs), professional, direct, not sales-y. No legal/medical/financial advice — refer to ai@ionity.today.',
     'The authoritative knowledge base (identity, company, services, site map, features) follows below as YAML. Treat it as ground truth for anything about Ionity.',
@@ -122,40 +122,36 @@
 
     await systemReady;   // make sure aedi.yaml context is loaded before the first call
 
-    const body = {
-      system_instruction: { parts: [{ text: SYSTEM }] },
-      contents: history,
-      // Live web grounding → AEDi can answer general questions (weather, news,
-      // facts) with current info, while the system context keeps it Ionity-first.
-      tools: [{ google_search: {} }],
-      generationConfig: {
-        temperature: 0.6,
-        maxOutputTokens: 1024,
-        thinkingConfig: { thinkingBudget: 0 },   // 2.5-flash: skip thinking → fast, full budget for the answer
-      },
+    const baseCfg = { temperature: 0.6, maxOutputTokens: 1024, thinkingConfig: { thinkingBudget: 0 } };
+    const mkBody = (useTools) => {
+      const b = { system_instruction: { parts: [{ text: SYSTEM }] }, contents: history, generationConfig: baseCfg };
+      if (useTools) b.tools = [{ google_search: {} }];   // live web grounding (weather/news/facts)
+      return b;
     };
 
-    // Try each model in turn; fall through on 404/429/5xx/empty so a single
-    // retired or rate-limited model can't take AEDi fully offline.
-    let reply = null, lastStatus = 0, rateLimited = false;
+    async function callModel(model, useTools) {
+      const res = await fetch(`${CFG.base}${model}:generateContent?key=${CFG.key}`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(mkBody(useTools)),
+      });
+      if (res.status === 429) return { rate: true };
+      if (!res.ok) { console.warn('[AEDi]', model, useTools ? '+search' : '', res.status); return {}; }
+      const data = await res.json();
+      const text = (data?.candidates?.[0]?.content?.parts || []).map(p => p.text).filter(Boolean).join('').trim();
+      return { text };
+    }
+
+    // For each model: try WITH web grounding, then WITHOUT (so a grounding
+    // hiccup never blanks the chat). Fall through to the next model on 429/empty.
+    let reply = null, rateLimited = false;
     for (const model of CFG.models) {
       try {
-        const res = await fetch(`${CFG.base}${model}:generateContent?key=${CFG.key}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body),
-        });
-        lastStatus = res.status;
-        if (res.status === 429) { rateLimited = true; continue; }   // quota → try next model
-        if (!res.ok) { console.warn('[AEDi]', model, res.status); continue; }
-        const data = await res.json();
-        // Join all text parts (grounded answers can span several parts).
-        const text = (data?.candidates?.[0]?.content?.parts || [])
-          .map(p => p.text).filter(Boolean).join('').trim();
-        if (text) { reply = text; break; }
-      } catch (e) {
-        console.warn('[AEDi]', model, e.message);   // network error → try next
-      }
+        let r = await callModel(model, true);
+        if (r.rate) rateLimited = true; else if (r.text) { reply = r.text; break; }
+        if (!reply) {
+          r = await callModel(model, false);
+          if (r.rate) rateLimited = true; else if (r.text) { reply = r.text; break; }
+        }
+      } catch (e) { console.warn('[AEDi]', model, e.message); }   // network error → try next
     }
 
     typingEl.remove();
