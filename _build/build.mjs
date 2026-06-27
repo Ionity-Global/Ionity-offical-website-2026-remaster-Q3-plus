@@ -256,6 +256,24 @@ const index = page(
   </div>
 </section>
 
+<!-- ACT 8.5 ── LATEST (video + LinkedIn) ───────────────── -->
+<section class="wrap" id="latest" data-act="Latest">
+  <div class="section-head reveal">
+    <span class="kicker">08 · Latest</span>
+    <h2>See it <span class="grad-text">in motion</span>.</h2>
+    <p>A look at what Ionity is building — it plays automatically when you reach it (muted; tap for sound). More on our LinkedIn.</p>
+  </div>
+  <div class="yt-embed reveal" id="ytEmbed" data-yt="mk4qoNVtKrI" role="button" tabindex="0" aria-label="Play the Ionity video">
+    <div class="yt-poster"></div>
+    <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+    <span class="yt-label">Watch · Ionity</span>
+  </div>
+  <div class="cta-row mt-2 reveal" style="justify-content:center">
+    <a class="btn btn-primary" href="https://www.linkedin.com/feed/update/urn:li:activity:7476582605912604673" target="_blank" rel="noopener" data-sfx="coin">See the LinkedIn post ${ICON.arrow}</a>
+    <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=mk4qoNVtKrI" target="_blank" rel="noopener">Watch on YouTube ${ICON.arrow}</a>
+  </div>
+</section>
+
 <!-- ACT 9 ── CTA ──────────────────────────────────────── -->
 <section class="wrap" id="cta" data-act="Begin">
   <div class="feature center reveal">

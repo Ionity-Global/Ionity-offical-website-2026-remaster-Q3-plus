@@ -71,6 +71,31 @@
     vio.observe(heroVid);
   }
 
+  /* ---- Latest: lazy YouTube embed — autoplay (muted) on scroll-in or click - */
+  const yt = $('#ytEmbed');
+  if (yt) {
+    const id = yt.dataset.yt;
+    let loaded = false;
+    const load = (auto) => {
+      if (loaded || !id) return; loaded = true;
+      const f = document.createElement('iframe');
+      f.className = 'yt-frame'; f.title = 'Ionity video';
+      f.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture; fullscreen');
+      f.setAttribute('allowfullscreen', '');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + id +
+        '?rel=0&modestbranding=1&playsinline=1' + (auto ? '&autoplay=1&mute=1' : '&autoplay=1');
+      yt.appendChild(f); yt.classList.add('loaded');
+    };
+    yt.addEventListener('click', () => load(false));   // click = with sound
+    yt.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); load(false); } });
+    if (!reduce && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver((es) => {
+        es.forEach(e => { if (e.isIntersecting) { load(true); io.disconnect(); } });   // scroll-in = muted autoplay
+      }, { threshold: 0.5 });
+      io.observe(yt);
+    }
+  }
+
   /* ---- portal "Access System" opens the AEDi assistant ------------------ */
   const access = $('#portalAccess');
   if (access) access.addEventListener('click', (e) => {

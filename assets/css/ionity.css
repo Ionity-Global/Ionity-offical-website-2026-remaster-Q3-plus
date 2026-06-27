@@ -511,6 +511,21 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 .sn-graph { display:block; width:100%; height:64px; margin-top:.5rem; border-radius:6px;
   background:linear-gradient(180deg, rgba(0,121,227,.10), rgba(0,0,0,.28)); }
 
+/* Latest — lazy YouTube embed (loads on scroll-in / click; youtube-nocookie) */
+.yt-embed { position:relative; width:100%; aspect-ratio:16/9; margin-top:1.4rem; border-radius:var(--radius);
+  overflow:hidden; border:1px solid var(--line-strong); cursor:pointer; background:#07080D; box-shadow:0 14px 40px rgba(0,0,0,.4); }
+.yt-poster { position:absolute; inset:0; background:
+  radial-gradient(circle at 50% 42%, rgba(0,121,227,.28), transparent 68%),
+  linear-gradient(160deg, rgba(0,210,255,.08), rgba(7,8,13,.92)); }
+.yt-play { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:74px; height:74px; border-radius:50%;
+  display:grid; place-items:center; background:rgba(0,121,227,.88); color:#fff; box-shadow:var(--glow-blue);
+  transition:transform .25s var(--ease-out), background .25s; }
+.yt-embed:hover .yt-play { transform:translate(-50%,-50%) scale(1.08); background:var(--cyan); color:#04060f; }
+.yt-play svg { width:30px; height:30px; margin-left:3px; }
+.yt-label { position:absolute; left:1rem; bottom:.9rem; font-family:var(--f-mono); font-size:.62rem; letter-spacing:.18em; text-transform:uppercase; color:var(--ice); }
+.yt-embed.loaded .yt-poster, .yt-embed.loaded .yt-play, .yt-embed.loaded .yt-label { display:none; }
+.yt-frame { position:absolute; inset:0; width:100%; height:100%; border:0; }
+
 /* radar (presence visual, only filled by REAL data) */
 .radar { width:100%; max-width:280px; aspect-ratio:1; margin-inline:auto; position:relative; }
 .radar .sweep { position:absolute; inset:0; border-radius:50%; background:conic-gradient(from 0deg, transparent 0 300deg, rgba(0,210,255,.25) 360deg); animation:spin 3.4s linear infinite; }
