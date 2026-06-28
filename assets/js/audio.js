@@ -64,7 +64,7 @@
     };
     setTimeout(tick, 2000);
 
-    bed.gain.linearRampToValueAtTime(0.5, ctx.currentTime + 2.5);
+    bed.gain.linearRampToValueAtTime(0.36, ctx.currentTime + 2.5);
   }
 
   /* --- chiptune blip: short square beep ---------------------------------- */
@@ -91,7 +91,7 @@
       if (ctx.state === 'suspended') ctx.resume();
       buildBed();
       master.gain.cancelScheduledValues(ctx.currentTime);
-      master.gain.linearRampToValueAtTime(0.28, ctx.currentTime + 0.4);
+      master.gain.linearRampToValueAtTime(0.2, ctx.currentTime + 0.4);
       started = true;
     } else if (master) {
       master.gain.linearRampToValueAtTime(0.0, ctx.currentTime + 0.4);

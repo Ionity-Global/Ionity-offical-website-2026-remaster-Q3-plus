@@ -6,7 +6,7 @@
      is a new URL, so updates are picked up automatically).
    • Cross-origin (fonts, CDNs, the Gemini API) passes straight through.
    ========================================================================== */
-const VERSION = 'ionity-v63';
+const VERSION = 'ionity-v64';
 const SHELL = [
   '/', '/index.html', '/services.html', '/edge.html', '/about.html',
   '/faq.html', '/contact.html', '/privacy.html', '/terms.html', '/404.html',
