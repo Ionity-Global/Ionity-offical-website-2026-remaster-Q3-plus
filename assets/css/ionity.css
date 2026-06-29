@@ -1016,6 +1016,24 @@ html.crt-boot .crt-fx { animation: crtBoot 1s steps(1,end) 1 forwards; }
 /* --- asymmetry: left-weight the ethos head, keep capability cards centered --- */
 #ethos .section-head{ margin-inline:0; text-align:left; }
 
+/* --- Live Neural Inference section (#neural) ----------------------------- */
+.neural-stage { display:flex; gap:1.6rem; align-items:flex-start; margin-top:1.4rem; }
+#neuralCanvas { flex:1; min-width:0; width:100%; height:auto; border-radius:12px;
+  background:#07080D; border:1px solid rgba(0,210,255,.18);
+  box-shadow:0 0 52px rgba(0,210,255,.07); display:block; }
+.neural-metrics { flex-shrink:0; width:186px; display:flex; flex-direction:column; gap:.55rem; }
+.nm-row { display:flex; flex-direction:column; gap:.18rem;
+  background:rgba(255,255,255,.03); border:1px solid rgba(0,210,255,.10);
+  border-radius:8px; padding:.55rem .8rem; }
+.nm-label { font-family:var(--f-mono); font-size:.6rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--faint); }
+.nm-val { font-family:var(--f-mono); font-size:.88rem; color:var(--text); font-weight:600; line-height:1.2; }
+.nm-score-row .nm-val { font-size:1.1rem; color:var(--cyan); }
+@media (max-width:680px) {
+  .neural-stage { flex-direction:column; }
+  .neural-metrics { width:100%; display:grid; grid-template-columns:1fr 1fr; }
+}
+
 /* ============================ no3d FALLBACK ============================ */
 /* ===========================================================================
    Static fallback backdrop for when the WebGL scene is suppressed.

@@ -357,6 +357,26 @@
 </div>
 </section>
 
+<!-- ACT 6b ── LIVE NEURAL INFERENCE (WebGPU) ────────────── -->
+<section class="wrap" id="neural" data-act="Neural">
+  <div class="section-head reveal">
+    <span class="kicker">06b · Live inference</span>
+    <h2>Your GPU is running AI. <span class="grad-text">Right now.</span></h2>
+    <p>Not a simulation. A real two-layer neural network is executing WGSL compute shaders on your device's GPU, live in this tab. Every glowing dot is a real neuron activation read directly from GPU memory. This is on-device edge inference — the class of intelligence Ionity ships in hardware.</p>
+  </div>
+  <div class="neural-stage reveal">
+    <canvas id="neuralCanvas" width="900" height="250" aria-label="Live neural network — hidden and output neuron activations"></canvas>
+    <div class="neural-metrics">
+      <div class="nm-row"><span class="nm-label">Backend</span><span class="nm-val" id="nmBackend">initialising…</span></div>
+      <div class="nm-row"><span class="nm-label">Inference</span><span class="nm-val" id="nmInference">—</span></div>
+      <div class="nm-row"><span class="nm-label">Throughput</span><span class="nm-val" id="nmThroughput">—</span></div>
+      <div class="nm-row"><span class="nm-label">CPU Pressure</span><span class="nm-val" id="nmPressure">—</span></div>
+      <div class="nm-row nm-score-row"><span class="nm-label">Edge AI Score</span><span class="nm-val" id="nmScore">—</span></div>
+    </div>
+  </div>
+  <p class="note mt-2">16 inputs → 64 hidden neurons (ReLU) → 32 outputs (sigmoid). Weights are Xavier-initialised. Activations are read back from GPU storage buffers via WebGPU MapAsync every frame — falls back to CPU Float32 on browsers without WebGPU. Edge AI Score is derived from measured inference latency + device thermal pressure.</p>
+</section>
+
 <!-- ACT 7 ── AEDi ──────────────────────────────────────── -->
 <section class="wrap" id="aedi" data-act="AEDi">
   <div class="feature split">
@@ -536,6 +556,7 @@
 <script src="assets/js/edge-diagnostics.js?v=64" defer></script>
 <script src="assets/js/matrix-cam.js?v=64" defer></script>
 <script src="assets/js/sensor-node.js?v=64" defer></script>
+<script src="assets/js/neural-gpu.js?v=64" defer></script>
 <script src="assets/js/disciplines-graph.js?v=64" defer></script>
 <script src="assets/js/edge-forge.js?v=64" defer></script>
 <script src="assets/js/aedi-chat.js?v=64" defer></script>
