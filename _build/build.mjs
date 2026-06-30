@@ -275,14 +275,19 @@ const index = page(
 
 <!-- ACT 8 ── FOUNDER ───────────────────────────────────── -->
 <section class="wrap" id="founder" data-act="Founder">
-  <div class="center reveal" style="max-width:60ch;margin-inline:auto">
-    <span class="kicker" style="justify-content:center">08 · Behind it</span>
-    <h2 class="mt-1">Founder-led, evidence-driven.</h2>
-    <p class="lead mt-1">Ionity Global is directed and founded by ${SITE.founder}. The work — and the receipts — are public.</p>
-    <div class="flex gap wrapf aic mt-2" style="justify-content:center">
-      <a class="btn btn-ghost" href="${SITE.linkedin}" target="_blank" rel="noopener me">LinkedIn · in/ionity</a>
-      <a class="btn btn-ghost" href="${SITE.gravatar}" target="_blank" rel="noopener me">Gravatar · ionity</a>
-      <a class="btn btn-ghost" href="${SITE.github}" target="_blank" rel="noopener">GitHub · Ionity-Global</a>
+  <div class="feature founder-feature reveal">
+    <figure class="founder-figure">
+      <img src="assets/img/founder-johan.webp?v=65" alt="${SITE.founder} — Director &amp; Founder of Ionity Global" width="800" height="1434" loading="lazy" decoding="async">
+    </figure>
+    <div class="founder-bio">
+      <span class="kicker">08 · Behind it</span>
+      <h2 class="mt-1">Founder-led, evidence-driven.</h2>
+      <p class="lead mt-1">Ionity Global is directed and founded by ${SITE.founder}. The work — and the receipts — are public.</p>
+      <div class="flex gap wrapf aic mt-2">
+        <a class="btn btn-ghost" href="${SITE.linkedin}" target="_blank" rel="noopener me">LinkedIn · in/ionity</a>
+        <a class="btn btn-ghost" href="${SITE.gravatar}" target="_blank" rel="noopener me">Gravatar · ionity</a>
+        <a class="btn btn-ghost" href="${SITE.github}" target="_blank" rel="noopener">GitHub · Ionity-Global</a>
+      </div>
     </div>
   </div>
 </section>

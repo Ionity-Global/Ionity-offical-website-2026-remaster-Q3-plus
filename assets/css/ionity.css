@@ -332,6 +332,29 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
 }
 @media (min-width:860px){ .feature.split { grid-template-columns:1.1fr .9fr; } }
 
+/* founder portrait — transparent cutout on the glow card: brand spotlight behind
+   the subject + a soft bottom fade so the forearms dissolve into the card. */
+@media (min-width:760px){
+  .founder-feature { grid-template-columns:minmax(0,320px) 1fr; gap:clamp(1.6rem,4vw,2.8rem); }
+}
+.founder-figure { position:relative; margin:0; }
+.founder-figure::before {
+  content:""; position:absolute; inset:2% 4% 8% 4%; z-index:0; pointer-events:none;
+  background:radial-gradient(58% 50% at 50% 36%, rgba(0,210,255,.22), rgba(0,210,255,.04) 60%, transparent 72%);
+  filter:blur(10px);
+}
+.founder-figure img {
+  position:relative; z-index:1; display:block; width:100%; height:auto;
+  -webkit-mask-image:linear-gradient(to bottom,#000 85%,transparent);
+          mask-image:linear-gradient(to bottom,#000 85%,transparent);
+  filter:drop-shadow(0 22px 42px rgba(0,0,0,.55));
+}
+@media (max-width:759px){
+  .founder-figure { max-width:300px; margin-inline:auto; }
+  .founder-bio { text-align:center; }
+  .founder-bio .flex { justify-content:center; }
+}
+
 /* ------------------------------------------------------ IMMERSIVE / ACTS --- */
 /* page scrolls in "blocks" — each top-level section is a snap point. Proximity
    (not mandatory) so tall sections never trap the scroll; offset for the nav. */
