@@ -982,14 +982,16 @@ html:not(.no3d) .bg-grid{ opacity:.32; }
 .foot { padding-bottom:calc(var(--crt-bezel) + 1.5rem); }
 .skip:focus { top:calc(var(--crt-bezel) + 8px); left:calc(var(--crt-bezel) + 8px); }
 
-/* mobile: cookie consent is a full-width bottom sheet, clearly in front of the
-   corner trust-badges + chat FAB (which step aside while it's open) */
+/* mobile: cookie consent is a near-full-width sheet INSET within the CRT bezel
+   (the frame paints at z-index 2500, above the sheet — flush edges were being
+   clipped by it on the left/right). Sits clearly inside the screen now. */
 @media (max-width:600px){
   .cookie {
-    left:0; right:0; bottom:0; width:auto; transform:translateY(170%);
-    border-radius:var(--radius) var(--radius) 0 0;
-    padding:1.1rem 1.1rem calc(var(--crt-bezel) + 1.1rem);
-    max-height:86svh; overflow-y:auto;
+    left:var(--crt-bezel); right:var(--crt-bezel); bottom:calc(var(--crt-bezel) + 6px);
+    width:auto; transform:translateY(200%);
+    border-radius:var(--radius);
+    padding:1.1rem 1.1rem 1.2rem;
+    max-height:84svh; overflow-y:auto;
   }
   .cookie.show { transform:translateY(0); }
   .cookie.show ~ .trust-badges,
@@ -1022,9 +1024,25 @@ html.crt-boot .crt-fx { animation: crtBoot 1s steps(1,end) 1 forwards; }
   html.crt-scroll .crt-fx { opacity:0; }
 }
 
-/* --- mobile logo (still bigger than the timid old 30px) --- */
-@media (max-width:880px){ .brand .wm{ height:50px; } }
-@media (max-width:420px){ .brand .wm{ height:46px; } }
+/* --- logo: never let a crowded bar squish it. The global img{max-width:100%}
+   would otherwise compress the wordmark when the nav column tightens (it was
+   rendering 31px wide instead of ~75). flex:none + max-width:none keep its
+   true aspect off the height alone. --- */
+.brand .wm { flex:none; max-width:none; }
+@media (max-width:880px){ .brand .wm{ height:56px; } }
+@media (max-width:420px){ .brand .wm{ height:50px; } }
+
+/* --- mobile nav controls: smaller, evenly-spaced sound toggles; drop the
+   redundant "Start a project" pill on narrow phones (Contact lives in the
+   menu) so the logo and toggles get room to breathe. --- */
+@media (max-width:880px){
+  .nav-cta { gap:.45rem; }
+  .nav-cta .icon-btn[data-sfx-toggle],
+  .nav-cta .icon-btn[data-audio-toggle] { width:32px; height:32px; }
+  .nav-cta .icon-btn[data-sfx-toggle] svg,
+  .nav-cta .icon-btn[data-audio-toggle] svg { width:15px; height:15px; }
+}
+@media (max-width:480px){ .nav-cta .btn-primary { display:none; } }
 
 /* Mobile: zoom the whole layout out a touch (everything scales off rem). The
    nav logo is px-based so it stays prominent. */
