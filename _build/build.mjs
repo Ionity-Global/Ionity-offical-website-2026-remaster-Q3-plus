@@ -129,6 +129,53 @@ const index = page(
   </div>
 </section>
 
+<!-- ACT 2.2 ── AI ANATOMY (human-analogy explainer) ─────── -->
+<section class="wrap" id="anatomy" data-act="Anatomy">
+  <div class="section-head reveal">
+    <span class="kicker">01c · The anatomy</span>
+    <h2>AI systems: a <span class="grad-text">human analogy</span>.</h2>
+    <p class="lead">Still fuzzy on the jargon? Think of an AI system like a human body — four organs, four jobs. This is the anatomy behind everything we ship, and Ionity engineers every part of it.</p>
+  </div>
+  <ol class="anatomy">
+    <li class="anatomy-step reveal" style="--ac:var(--blue)">
+      <div class="anatomy-node"><span class="n">1</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5a3 3 0 1 0-5.997.142 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.142 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M12 5v13"/></svg></div>
+      <div class="anatomy-card">
+        <h3>LLM <span class="anatomy-eq">= the brain</span></h3>
+        <p>The reasoning engine. It learns patterns, understands language and generates intelligent responses — raw intelligence on its own, with no memory of your world. We pair frontier brains like Claude with our own AEDi fabric.</p>
+        <div class="tag-row"><span class="tag">Reasoning</span><span class="tag">Language</span><span class="tag">Generation</span><span class="tag">Claude</span></div>
+      </div>
+    </li>
+    <li class="anatomy-step reveal d1" style="--ac:var(--cyan)">
+      <div class="anatomy-node"><span class="n">2</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z"/></svg></div>
+      <div class="anatomy-card">
+        <h3>RAG <span class="anatomy-eq">= brain + books</span></h3>
+        <p>Retrieval-Augmented Generation hands the brain the right reference at the right moment — your documents, databases and live data — so answers come out accurate, current and grounded in your business, not guesswork.</p>
+        <div class="tag-row"><span class="tag">Retrieval</span><span class="tag">Your data</span><span class="tag">Grounded answers</span><span class="tag">Vector search</span></div>
+      </div>
+    </li>
+    <li class="anatomy-step reveal d2" style="--ac:var(--violet)">
+      <div class="anatomy-node"><span class="n">3</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="8" width="14" height="10" rx="2.5"/><path d="M12 4v4M12 2.5v0"/><circle cx="12" cy="3.2" r=".8"/><path d="M9 12.5h.01M15 12.5h.01M9.5 15.5h5"/><path d="M2 12.5h3M19 12.5h3"/></svg></div>
+      <div class="anatomy-card">
+        <h3>AI Agent <span class="anatomy-eq">= brain + hands</span></h3>
+        <p>An agent doesn't just answer — it acts. It plans, decides and drives tools, APIs and systems to carry real work from start to finish: triaging inboxes, running dashboards, steering devices at the edge.</p>
+        <div class="tag-row"><span class="tag">Planning</span><span class="tag">Tool use</span><span class="tag">APIs</span><span class="tag">Autonomy</span></div>
+      </div>
+    </li>
+    <li class="anatomy-step reveal d3" style="--ac:var(--orange)">
+      <div class="anatomy-node"><span class="n">4</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="2.6"/><path d="M12 2.5v4.4M12 17.1v4.4M2.5 12h4.4M17.1 12h4.4M5.2 5.2l3.1 3.1M15.7 15.7l3.1 3.1M18.8 5.2l-3.1 3.1M8.3 15.7l-3.1 3.1"/></svg></div>
+      <div class="anatomy-card">
+        <h3>MCP <span class="anatomy-eq">= the nervous system</span></h3>
+        <p>The Model Context Protocol is the connection layer that wires it all together — a universal standard linking AI to files, tools, data and services, securely and reliably. It's the layer <a href="services.html#native-ai" style="color:var(--orange)">Ionity builds custom</a>, in-house.</p>
+        <div class="tag-row"><span class="tag">Connection layer</span><span class="tag">Files</span><span class="tag">Tools</span><span class="tag">Data</span></div>
+      </div>
+    </li>
+  </ol>
+  <div class="cta-row mt-2 reveal" style="justify-content:center">
+    <a class="btn btn-primary" href="contact.html" data-sfx="coin">Build your AI anatomy ${ICON.arrow}</a>
+    <a class="btn btn-ghost" href="services.html#native-ai">Native-AI &amp; MCP services ${ICON.arrow}</a>
+  </div>
+</section>
+
 <!-- ACT 2.5 ── TRAJECTORY + INDUSTRIES ──────────────────── -->
 <section class="wrap" id="trajectory" data-act="Trajectory">
   <div class="section-head reveal">
@@ -277,7 +324,7 @@ const index = page(
 <section class="wrap" id="founder" data-act="Founder">
   <div class="feature founder-feature reveal">
     <figure class="founder-figure">
-      <img src="assets/img/founder-johan.webp?v=66" alt="${SITE.founder} — Director &amp; Founder of Ionity Global" width="800" height="1434" loading="lazy" decoding="async">
+      <img src="assets/img/founder-johan.webp?v=67" alt="${SITE.founder} — Director &amp; Founder of Ionity Global" width="800" height="1434" loading="lazy" decoding="async">
     </figure>
     <div class="founder-bio">
       <span class="kicker">08 · Behind it</span>
