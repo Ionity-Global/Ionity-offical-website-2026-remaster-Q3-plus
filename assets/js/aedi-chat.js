@@ -15,7 +15,7 @@
   const CFG = {
     get key() { return _k(); },
     models: ['gemini-2.5-flash', 'gemini-2.5-flash-lite'],                       // text/multimodal
-    imageModels: ['gemini-2.5-flash-image', 'gemini-2.0-flash-preview-image-generation'], // image creation
+    imageModels: ['gemini-2.5-flash-image', 'gemini-3.1-flash-image', 'gemini-3-pro-image'], // image creation — each carries its own per-minute free bucket, so we rotate
     base:  'https://generativelanguage.googleapis.com/v1beta/models/',
     maxHistory: 24,                                                             // wider context window
     greetings: [
@@ -144,26 +144,49 @@
     if (IMG_INTENT.test(t)) return true;
     return /\b(generate|create|make|draw|design|render|paint|sketch|illustrate)\b[^.?!]*\b(image|picture|photo|logo|art|illustration|icon|graphic|drawing|wallpaper|poster|render)\b/i.test(t);
   }
+  // pull Google's server-suggested wait (RetryInfo.retryDelay, e.g. "35s") off a 429
+  async function retrySeconds(res) {
+    try {
+      const j = await res.json();
+      const ri = (j.error?.details || []).find(d => /RetryInfo/.test(d['@type'] || ''));
+      if (ri && ri.retryDelay) return Math.ceil(parseFloat(ri.retryDelay)) || 0;
+    } catch (e) { /* ignore */ }
+    return 0;
+  }
   async function generateImage(prompt, inputImage) {
     const userParts = [];
     if (inputImage) userParts.push({ inline_data: { mime_type: inputImage.mime, data: inputImage.data } });  // edit the supplied image
     userParts.push({ text: prompt });
-    for (const m of CFG.imageModels) {
-      try {
-        const res = await fetch(`${CFG.base}${m}:generateContent?key=${CFG.key}`, {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ contents: [{ role: 'user', parts: userParts }], generationConfig: { responseModalities: ['TEXT', 'IMAGE'] }, safetySettings: SAFETY }),
-        });
-        if (!res.ok) { console.warn('[AEDi] image', m, res.status); continue; }
-        const data = await res.json();
-        if (data?.promptFeedback?.blockReason) return { blocked: true };
-        const parts = data?.candidates?.[0]?.content?.parts || [];
-        const inl = (parts.find(p => p.inlineData || p.inline_data) || {});
-        const d = inl.inlineData || inl.inline_data;
-        if (d && d.data) return { mime: d.mimeType || d.mime_type || 'image/png', data: d.data, caption: (parts.find(p => p.text) || {}).text };
-      } catch (e) { console.warn('[AEDi] image', m, e.message); }
+    const body = JSON.stringify({ contents: [{ role: 'user', parts: userParts }], generationConfig: { responseModalities: ['TEXT', 'IMAGE'] }, safetySettings: SAFETY });
+    let minRetry = 0;   // shortest server-suggested retry seen while throttled
+    // The free tier throttles image gen by input-tokens-per-minute; each model has
+    // its own bucket, so we ROTATE. If everything's briefly capped and the wait is
+    // short, we honour the server's retryDelay once before giving up gracefully.
+    for (let pass = 0; pass < 2; pass++) {
+      for (const m of CFG.imageModels) {
+        try {
+          const res = await fetch(`${CFG.base}${m}:generateContent?key=${CFG.key}`, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' }, body,
+          });
+          if (res.status === 429) {
+            const rd = await retrySeconds(res);
+            if (rd && (!minRetry || rd < minRetry)) minRetry = rd;
+            console.warn('[AEDi] image', m, '429 (retry~' + (rd || '?') + 's)');
+            continue;
+          }
+          if (!res.ok) { console.warn('[AEDi] image', m, res.status); continue; }
+          const data = await res.json();
+          if (data?.promptFeedback?.blockReason) return { blocked: true };
+          const parts = data?.candidates?.[0]?.content?.parts || [];
+          const inl = (parts.find(p => p.inlineData || p.inline_data) || {});
+          const d = inl.inlineData || inl.inline_data;
+          if (d && d.data) return { mime: d.mimeType || d.mime_type || 'image/png', data: d.data, caption: (parts.find(p => p.text) || {}).text };
+        } catch (e) { console.warn('[AEDi] image', m, e.message); }
+      }
+      if (pass === 0 && minRetry && minRetry <= 12) { await sleep((minRetry + 1) * 1000); continue; }  // short cap → wait once, re-rotate
+      break;
     }
-    return null;
+    return { quota: !!minRetry, retry: minRetry };
   }
 
   /* ── text/multimodal API ──────────────────────────────────────────────── */
@@ -209,8 +232,11 @@
         history.push({ role: 'model', parts: [{ text: editing ? '[edited the image]' : '[generated an image]' }] });
       } else if (out && out.blocked) {
         appendMsg('model', "Can't make that one — let's keep it clean. Hand me a different prompt and I'll draw it.");
+      } else if (out && out.quota) {
+        const wait = out.retry ? `~${out.retry}s` : 'a moment';
+        appendMsg('model', `Lots of art flowing through me right now — I hit my per-minute image limit ⚡ Give it ${wait} and ask again. (Text and code I've got for you anytime.)`);
       } else {
-        appendMsg('model', "I couldn't render that image just now — image gen/edit may be limited on this key. I can describe it instead, or try again in a moment.");
+        appendMsg('model', "I couldn't render that image just now — try me again in a moment, or I can describe it instead.");
       }
       return done();
     }
