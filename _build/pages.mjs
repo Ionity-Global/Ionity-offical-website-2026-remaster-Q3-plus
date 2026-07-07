@@ -199,7 +199,7 @@ ${SERVICES.map(serviceDetail).join('')}
 <section class="wrap" id="founder" data-act="Founder">
   <div class="feature founder-feature reveal">
     <figure class="founder-figure">
-      <img src="assets/img/founder-johan.webp?v=67" alt="${SITE.founder} — Director &amp; Founder of Ionity Global" width="800" height="1434" loading="lazy" decoding="async">
+      <img src="assets/img/founder-johan.webp?v=68" alt="${SITE.founder} — Director &amp; Founder of Ionity Global" width="800" height="1434" loading="lazy" decoding="async">
     </figure>
     <div class="founder-bio">
       <span class="kicker">Founder</span>
@@ -303,6 +303,52 @@ ${SERVICES.map(serviceDetail).join('')}
     'Plain terms of use for the Ionity Global website and its on-device edge demos — acceptable use, no-warranty, and intellectual-property notes.'));
 
   /* ---- FAQ (AEO) ------------------------------------------------------- */
+  /* ---- TEAM ----------------------------------------------------------- */
+  const TEAM = [
+    ['johan',   'Johan Wilhelm van Antwerp', 'Director &amp; Founder · AI &amp; IoT Solutionist', 'Centurion, South Africa'],
+    ['ian',     'Ian Jaco Raven',            'Industrial Engineer · Partner',                     'Centurion, South Africa'],
+    ['william', 'William Njabulo Kodua',     'Shareholder · Partner',                             'Pretoria, South Africa'],
+    ['dennis',  'Dennis Grobler',            'Tech Manager',                                      'Pretoria, South Africa'],
+    ['robin',   'Robin Mary du Toit',        'Systems Administrator',                             'Centurion, South Africa'],
+  ];
+  const teamJsonld = {
+    '@context':'https://schema.org', '@type':'AboutPage', name:'Ionity Global — Team', url:SITE.origin+'/team.html',
+    about:{ '@type':'Organization', name:SITE.legal, url:SITE.origin,
+      employee: TEAM.map(([,name,role]) => ({ '@type':'Person', name: strip(name), jobTitle: strip(role) })) },
+  };
+  write('team.html', page(
+    { path:'team.html', title:'Team — Ionity Global', desc:'Meet the people behind Ionity Global (Pty) Ltd — solutionists across AI, IoT, engineering and operations in Centurion & Pretoria, South Africa. Download the business portfolio.', jsonld: [crumbLd('Team','team.html'), teamJsonld] },
+    `
+<section class="hero" style="min-height:46svh" data-act="Team">
+  <div class="inner"><span class="kicker" style="justify-content:center">Our people</span>
+  <h1 class="mt-1">The team behind <span class="grad-text">Ionity Global</span></h1>
+  <p class="lead">Solutionists across AI, IoT, engineering and operations — building tomorrow, today.</p></div>
+</section>
+<section class="wrap" id="team" data-act="Team">
+  <div class="team-grid reveal">
+    ${TEAM.map(([id,name,role,loc]) => `
+    <article class="team-card">
+      <img class="team-avatar" src="assets/img/team/${id}.png?v=68" alt="${strip(name)}" width="150" height="150" loading="lazy" decoding="async">
+      <h3>${name}</h3>
+      <p class="team-role">${role}</p>
+      <p class="team-loc">${loc}</p>
+    </article>`).join('')}
+  </div>
+</section>
+<section class="wrap" data-act="Portfolio">
+  <div class="feature center reveal" style="max-width:70ch;margin-inline:auto">
+    <span class="kicker" style="justify-content:center">Company profile</span>
+    <h2 class="mt-1">The full <span class="grad-text">business portfolio</span></h2>
+    <p class="lead mt-1">Who we are, what we build, and how we deliver — the complete Ionity Global (Pty) Ltd profile in one document.</p>
+    <div class="cta-row" style="justify-content:center;margin-top:1.6rem">
+      <a class="btn btn-primary" href="assets/docs/ionity-global-portfolio-v7.pdf" target="_blank" rel="noopener" data-sfx="coin">Download portfolio · PDF ${ICON.arrow}</a>
+      <a class="btn btn-ghost" href="contact.html">Start a project</a>
+    </div>
+    <p class="note mt-2">PDF · Ionity Global Portfolio V7 · Centurion &amp; Pretoria, South Africa</p>
+  </div>
+</section>
+`));
+
   write('faq.html', page(
     { path:'faq.html', title:'FAQ — Ionity Global', desc:'Answers about Ionity Global — what we are, how we differ from the IONITY EV network, our services, the Edge Micro-Audit, AEDi, and how to reach us.', jsonld: [crumbLd('FAQ','faq.html'), faqJsonld] },
     `

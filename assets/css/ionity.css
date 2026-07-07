@@ -355,6 +355,18 @@ section { padding-block:clamp(4rem,9vw,8rem); position:relative; }
   .founder-bio .flex { justify-content:center; }
 }
 
+/* team grid — people cards + circular avatars */
+.team-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:1.4rem; margin-top:1.4rem; }
+.team-card { text-align:center; padding:1.9rem 1.2rem 1.6rem; border-radius:var(--radius); border:1px solid var(--line);
+  background:radial-gradient(120% 120% at 50% 0%, rgba(0,210,255,.06), transparent 55%), var(--surface);
+  transition:transform .3s var(--ease-out), border-color .3s, box-shadow .3s; }
+.team-card:hover { transform:translateY(-4px); border-color:var(--line-strong); box-shadow:0 0 40px rgba(0,210,255,.10); }
+.team-avatar { width:150px; height:150px; border-radius:50%; margin:0 auto 1rem; display:block; object-fit:cover;
+  border:2px solid rgba(0,210,255,.35); box-shadow:0 0 0 5px rgba(0,210,255,.06), 0 12px 30px rgba(0,0,0,.45); background:#0b0d12; }
+.team-card h3 { font-size:1.02rem; margin:0; letter-spacing:.01em; }
+.team-role { font-family:var(--f-mono); font-size:.68rem; letter-spacing:.09em; text-transform:uppercase; color:var(--cyan); margin-top:.5rem; }
+.team-loc { font-size:.8rem; color:var(--faint); margin-top:.3rem; }
+
 /* ------------------------------------------------------ IMMERSIVE / ACTS --- */
 /* page scrolls in "blocks" — each top-level section is a snap point. Proximity
    (not mandatory) so tall sections never trap the scroll; offset for the nav. */
