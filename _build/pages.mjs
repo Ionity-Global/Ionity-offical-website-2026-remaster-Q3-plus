@@ -199,7 +199,7 @@ ${SERVICES.map(serviceDetail).join('')}
 <section class="wrap" id="founder" data-act="Founder">
   <div class="feature founder-feature reveal">
     <figure class="founder-figure">
-      <img src="assets/img/founder-johan.webp?v=68" alt="${SITE.founder} — Director &amp; Founder of Ionity Global" width="800" height="1434" loading="lazy" decoding="async">
+      <img src="assets/img/founder-johan.webp?v=69" alt="${SITE.founder} — Director &amp; Founder of Ionity Global" width="800" height="1434" loading="lazy" decoding="async">
     </figure>
     <div class="founder-bio">
       <span class="kicker">Founder</span>
@@ -305,7 +305,7 @@ ${SERVICES.map(serviceDetail).join('')}
   /* ---- FAQ (AEO) ------------------------------------------------------- */
   /* ---- TEAM ----------------------------------------------------------- */
   const TEAM = [
-    ['johan',   'Johan Wilhelm van Antwerp', 'Director &amp; Founder · AI &amp; IoT Solutionist', 'Centurion, South Africa'],
+    ['johan',   'Johan Wilhelm van Antwerp', 'Founder', 'Centurion, South Africa'],
     ['ian',     'Ian Jaco Raven',            'Industrial Engineer · Partner',                     'Centurion, South Africa'],
     ['william', 'William Njabulo Kodua',     'Shareholder · Partner',                             'Pretoria, South Africa'],
     ['dennis',  'Dennis Grobler',            'Tech Manager',                                      'Pretoria, South Africa'],
@@ -324,11 +324,18 @@ ${SERVICES.map(serviceDetail).join('')}
   <h1 class="mt-1">The team behind <span class="grad-text">Ionity Global</span></h1>
   <p class="lead">Solutionists across AI, IoT, engineering and operations — building tomorrow, today.</p></div>
 </section>
-<section class="wrap" id="team" data-act="Team">
+<section class="wrap" data-act="Who we are">
+  <div class="feature center reveal" style="max-width:72ch;margin-inline:auto">
+    <span class="kicker" style="justify-content:center">Who we are</span>
+    <p class="lead mt-2">We aim to develop the unseen into the norm — innovative solutions across the board, from Cloud to Edge, from Systems to Network — maintaining quality above quantity.</p>
+    <h2 class="mt-2"><span class="grad-text">Engineering Tomorrow, Today.</span></h2>
+  </div>
+</section>
+<section class="wrap" id="team" data-act="The team">
   <div class="team-grid reveal">
     ${TEAM.map(([id,name,role,loc]) => `
     <article class="team-card">
-      <img class="team-avatar" src="assets/img/team/${id}.png?v=68" alt="${strip(name)}" width="150" height="150" loading="lazy" decoding="async">
+      <img class="team-avatar" src="assets/img/team/${id}.png?v=69" alt="${strip(name)}" width="150" height="150" loading="lazy" decoding="async">
       <h3>${name}</h3>
       <p class="team-role">${role}</p>
       <p class="team-loc">${loc}</p>
