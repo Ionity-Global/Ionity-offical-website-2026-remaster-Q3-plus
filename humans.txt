@@ -18,3 +18,12 @@
   Vanilla HTML/CSS/JS. Procedural Web-Audio soundscape. On-device edge micro-audit.
   Built Native-AI, with Claude in the loop.
   Last updated: 2026-06-26
+
+/* LINKS - AEDI addendum 2026-07-12 (appended; nothing above changed) */
+  YouTube: https://www.youtube.com/@Ionityglobal
+  GitHub orgs: Ionity-Global | Ionity-Global-Pty-Ltd | Antwerp-Ecosystem-Designs-Ionity
+  GitHub enterprise: https://github.com/enterprises/ionity-global
+  ORCID: 0009-0005-7181-0347
+  Network: https://www.ionity.today | https://www.ionity.world | https://ionityearth.shop
+  Link registry: ionity-links.json / .yml (ionity-assets repo + Meta-Data-AEDI)
+  Registry addendum: 2026/07/12

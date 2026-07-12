@@ -68,3 +68,19 @@ User-agent: WhatsApp
 Allow: /
 
 Sitemap: https://ionity.co.za/sitemap.xml
+
+# --- AEDI additions 2026-07-12: extra AI agents, explicitly welcomed (appended; nothing removed) ---
+User-agent: GoogleOther
+Allow: /
+User-agent: DuckAssistBot
+Allow: /
+User-agent: MistralAI-User
+Allow: /
+User-agent: YouBot
+Allow: /
+User-agent: Bytespider
+Allow: /
+
+# Supplementary sitemap (additive - multiple Sitemap lines are permitted)
+Sitemap: https://ionity.co.za/sitemap-ionity-coza-2026.xml
+# --- end AEDI additions ---

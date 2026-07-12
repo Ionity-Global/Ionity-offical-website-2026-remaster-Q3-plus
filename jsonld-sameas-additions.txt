@@ -1,0 +1,16 @@
+ADDITIVE - merge these URLs into the "sameAs" array of the Organization JSON-LD
+already embedded in ionity.co.za pages (do not remove existing entries):
+
+"https://www.youtube.com/@Ionityglobal",
+"https://www.youtube.com/channel/UCQz2VHGFGhtdRVJU1CWGPMA",
+"https://github.com/Ionity-Global",
+"https://github.com/Ionity-Global-Pty-Ltd",
+"https://github.com/Antwerp-Ecosystem-Designs-Ionity",
+"https://github.com/enterprises/ionity-global",
+"https://www.gravatar.com/ionity",
+"https://www.linkedin.com/in/ionity",
+"https://www.ionity.today",
+"https://www.ionity.world",
+"https://ionityearth.shop"
+
+Policy 986 AED | 2026-07-12
