@@ -2,7 +2,7 @@
    IONITY remaster — supporting pages
    ========================================================================== */
 export function buildPages(ctx) {
-  const { page, SITE, ICON, SERVICES, serviceCard, edgeBlock, visionBlock, sensorBlock, write } = ctx;
+  const { page, SITE, TEAM, ICON, SERVICES, serviceCard, edgeBlock, visionBlock, sensorBlock, write } = ctx;
 
   const crumbLd = (name, path) => ({
     '@context': 'https://schema.org', '@type': 'BreadcrumbList',
@@ -199,7 +199,7 @@ ${SERVICES.map(serviceDetail).join('')}
 <section class="wrap" id="founder" data-act="Founder">
   <div class="feature founder-feature reveal">
     <figure class="founder-figure">
-      <img src="assets/img/founder-johan.webp?v=69" alt="${SITE.founder} — Director &amp; Founder of Ionity Global" width="800" height="1434" loading="lazy" decoding="async">
+      <img src="assets/img/founder-johan.webp?v=70" alt="${SITE.founder} — Director &amp; Founder of Ionity Global" width="800" height="1434" loading="lazy" decoding="async">
     </figure>
     <div class="founder-bio">
       <span class="kicker">Founder</span>
@@ -303,18 +303,14 @@ ${SERVICES.map(serviceDetail).join('')}
     'Plain terms of use for the Ionity Global website and its on-device edge demos — acceptable use, no-warranty, and intellectual-property notes.'));
 
   /* ---- FAQ (AEO) ------------------------------------------------------- */
-  /* ---- TEAM ----------------------------------------------------------- */
-  const TEAM = [
-    ['johan',   'Johan Wilhelm van Antwerp', 'Founder', 'Centurion, South Africa'],
-    ['ian',     'Ian Jaco Raven',            'Industrial Engineer · Partner',                     'Centurion, South Africa'],
-    ['william', 'William Njabulo Kodua',     'Shareholder · Partner',                             'Pretoria, South Africa'],
-    ['dennis',  'Dennis Grobler',            'Tech Manager',                                      'Pretoria, South Africa'],
-    ['robin',   'Robin Mary du Toit',        'Systems Administrator',                             'Centurion, South Africa'],
-  ];
+  /* ---- TEAM (data shared from layout.mjs via ctx.TEAM) ---------------- */
   const teamJsonld = {
-    '@context':'https://schema.org', '@type':'AboutPage', name:'Ionity Global — Team', url:SITE.origin+'/team.html',
-    about:{ '@type':'Organization', name:SITE.legal, url:SITE.origin,
-      employee: TEAM.map(([,name,role]) => ({ '@type':'Person', name: strip(name), jobTitle: strip(role) })) },
+    '@context':'https://schema.org', '@type':'AboutPage',
+    name:'Ionity Global — Team', url:SITE.origin+'/team.html',
+    about:{ '@id': SITE.origin + '/#org' },
+    mainEntity:{ '@type':'Organization', '@id': SITE.origin + '/#org', name:SITE.legal, url:SITE.origin,
+      employee: TEAM.map(([id,name,role]) => ({ '@type':'Person', name: strip(name), jobTitle: strip(role).replace(/ · /g, ', '),
+        ...(id==='johan' ? { '@id': SITE.origin + '/#founder', sameAs:[SITE.linkedin, SITE.gravatar, SITE.orcid] } : {}) })) },
   };
   write('team.html', page(
     { path:'team.html', title:'Team — Ionity Global', desc:'Meet the people behind Ionity Global (Pty) Ltd — solutionists across AI, IoT, engineering and operations in Centurion & Pretoria, South Africa. Download the business portfolio.', jsonld: [crumbLd('Team','team.html'), teamJsonld] },
@@ -335,7 +331,7 @@ ${SERVICES.map(serviceDetail).join('')}
   <div class="team-grid reveal">
     ${TEAM.map(([id,name,role,loc]) => `
     <article class="team-card">
-      <img class="team-avatar" src="assets/img/team/${id}.png?v=69" alt="${strip(name)}" width="150" height="150" loading="lazy" decoding="async">
+      <img class="team-avatar" src="assets/img/team/${id}.png?v=70" alt="${strip(name)}" width="150" height="150" loading="lazy" decoding="async">
       <h3>${name}</h3>
       <p class="team-role">${role}</p>
       <p class="team-loc">${loc}</p>

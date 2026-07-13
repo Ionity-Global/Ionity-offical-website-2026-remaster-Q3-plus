@@ -5,7 +5,7 @@
 import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { head, footer, SITE } from './layout.mjs';
+import { head, footer, SITE, TEAM } from './layout.mjs';
 
 const OUT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const write = (file, html) => { writeFileSync(join(OUT, file), html); console.log('· wrote', file); };
@@ -57,13 +57,17 @@ const indexJsonld = {
   disambiguatingDescription: 'Ionity Global (Pty) Ltd is a South African Native-AI, AIoT, Edge, cloud-hosting and audit/forensics company founded by Johan Wilhelm van Antwerp. It is a distinct, unrelated entity from the European electric-vehicle charging network IONITY GmbH (ionity.com).',
   foundingDate: '2018',
   telephone: SITE.phone,
-  address: { '@type': 'PostalAddress', addressLocality: 'Centurion', addressCountry: 'ZA' },
-  founder: { '@type': 'Person', name: SITE.founder,
+  address: { '@type': 'PostalAddress', addressLocality: 'Centurion', addressRegion: 'Gauteng', addressCountry: 'ZA' },
+  foundingLocation: { '@type': 'Place', name: 'Centurion, South Africa' },
+  areaServed: [{ '@type': 'Country', name: 'South Africa' }, 'Worldwide'],
+  contactPoint: [{ '@type': 'ContactPoint', contactType: 'sales', email: SITE.email, telephone: SITE.phoneHref, areaServed: 'Worldwide', availableLanguage: ['en', 'af'] }],
+  founder: { '@type': 'Person', '@id': SITE.origin + '/#founder', name: SITE.founder,
     jobTitle: 'Director & Founder — Solutionist, Tech-PUG, Design Engineer',
     description: 'Design & Development, IoT and business-owner consulting. Bridges the software–hardware gap and advances into unseen integrations to excel systems across industries with AI edge ecosystems and sustainable cloud. Backed by Toolmaking and Mechanical Engineering qualifications; rapid prototyping and product design. Connected across FMCG, Robotics, Medical, Aerospace, Industrial, Energy and Households.',
     knowsAbout: ['IoT', 'AI', 'Cloud', 'Edge', 'Mechanical Engineering', 'Electronic design', 'Electrotechnics', 'Toolmaking', 'Fabrication', 'Rapid Prototyping', 'Product Design', 'Automation', 'Autonomous AI Systems', 'Real-time sensing', 'Edge Nodes'],
-    sameAs: [SITE.linkedin, SITE.gravatar] },
-  sameAs: [SITE.sister, SITE.linkedin, SITE.github, SITE.gravatar],
+    sameAs: [SITE.linkedin, SITE.gravatar, SITE.orcid] },
+  employee: TEAM.map(([, name, role]) => ({ '@type': 'Person', name, jobTitle: role.replace(/ · /g, ', ') })),
+  sameAs: [SITE.sister, SITE.world, SITE.linkedin, SITE.github, SITE.gravatar],
   knowsAbout: ['Native AI', 'AIoT', 'Edge computing', 'Cloud', 'Model Context Protocol', 'Digital twins', 'Website audit', 'Digital forensics', 'Wi-Fi sensing', 'Automation', 'Autonomous AI', 'Mechanical engineering', 'Electrotechnics', 'Toolmaking', 'Fabrication', 'Rapid prototyping', 'Product design', 'Real-time sensing', 'Multi-industry intelligence'],
   keywords: 'IoT, AIoT, AI, Edge, Cloud, Automation, Autonomous AI, Mechanical Engineering, Electrotechnics, Toolmaking, Fabrication, Rapid Prototyping, Product Design, Real-time sensing, Edge Nodes, FMCG, Hospitality, Robotics, Medical, Aerospace, Industrial, Energy, Household automation, Security, B2B, B2G, B2C',
   knowsLanguage: 'en',
@@ -324,7 +328,7 @@ const index = page(
 <section class="wrap" id="founder" data-act="Founder">
   <div class="feature founder-feature reveal">
     <figure class="founder-figure">
-      <img src="assets/img/founder-johan.webp?v=69" alt="${SITE.founder} — Director &amp; Founder of Ionity Global" width="800" height="1434" loading="lazy" decoding="async">
+      <img src="assets/img/founder-johan.webp?v=70" alt="${SITE.founder} — Director &amp; Founder of Ionity Global" width="800" height="1434" loading="lazy" decoding="async">
     </figure>
     <div class="founder-bio">
       <span class="kicker">08 · Behind it</span>
@@ -450,4 +454,4 @@ function sensorBlock() {
 write('index.html', index);
 
 /* ================================================================ build others === */
-import('./pages.mjs').then(m => m.buildPages({ OUT, page, SITE, ICON, SERVICES, serviceCard, edgeBlock, visionBlock, sensorBlock, write })).catch(e => { console.error(e); process.exit(1); });
+import('./pages.mjs').then(m => m.buildPages({ OUT, page, SITE, TEAM, ICON, SERVICES, serviceCard, edgeBlock, visionBlock, sensorBlock, write })).catch(e => { console.error(e); process.exit(1); });

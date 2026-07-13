@@ -22,7 +22,20 @@ export const SITE = {
   linkedin: 'https://www.linkedin.com/in/ionity',
   gravatar: 'https://gravatar.com/ionity',
   github: 'https://github.com/Ionity-Global',
+  world: 'https://www.ionity.world',                       // third domain — Advanced Services & AI Intelligence
+  orcid: 'https://orcid.org/0009-0005-7181-0347',          // founder ORCID — strong entity signal
+  geo: { region: 'ZA-GP', place: 'Centurion, Gauteng, South Africa', lat: '-25.8603', lon: '28.1894' },
 };
+
+// Single source of truth for the team — used by the Organization JSON-LD (employee
+// graph) AND the /team.html cards, so the entity and the page never drift.
+export const TEAM = [
+  ['johan',   'Johan Wilhelm van Antwerp', 'Founder',                          'Centurion, South Africa'],
+  ['ian',     'Ian Jaco Raven',            'Industrial Engineer · Partner',    'Centurion, South Africa'],
+  ['william', 'William Njabulo Kodua',     'Shareholder · Partner',            'Pretoria, South Africa'],
+  ['dennis',  'Dennis Grobler',            'Tech Manager',                     'Pretoria, South Africa'],
+  ['robin',   'Robin Mary du Toit',        'Systems Administrator',            'Centurion, South Africa'],
+];
 
 export const NAV = [
   ['index.html', 'Home'],
@@ -73,7 +86,16 @@ export function head(page) {
 <meta name="theme-color" content="#07080D">
 <meta name="author" content="${SITE.founder} — ${SITE.legal}">
 <meta name="generator" content="Ionity remaster build">
-<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="geo.region" content="${SITE.geo.region}">
+<meta name="geo.placename" content="${SITE.geo.place}">
+<meta name="geo.position" content="${SITE.geo.lat};${SITE.geo.lon}">
+<meta name="ICBM" content="${SITE.geo.lat}, ${SITE.geo.lon}">
+<meta name="ai-content-declaration" content="human-directed, AI-assisted">
+<link rel="alternate" href="${SITE.sister}" hreflang="en">
+<link rel="me" href="${SITE.sister}">
+<link rel="me" href="${SITE.linkedin}">
+<link rel="me" href="${SITE.orcid}">
 <meta name="dmca-site-verification" content="S0hYZnZSRHl0dksxMFdTdkh0K3A1Zz090">
 <meta name="keywords" content="Ionity, Ionity Global, Ionity South Africa, Ionity AI, AEDi, Native-AI, AIoT, IoT, edge computing hardware, cloud hosting, software development, custom MCP, AI dashboards, digital twins, website audit, digital forensics, Level of Effort, RuView, Wi-Fi sensing, automation, autonomous AI, mechanical engineering, electrotechnics, toolmaking, fabrication, rapid prototyping, product design, real-time sensing, edge nodes, FMCG, robotics, medical, aerospace, industrial, energy, household automation, security, B2B, B2G, B2C, Antwerp Designs, ${SITE.founder}, Solutionist, Tech-PUG, Design Engineer, Centurion">
 <!-- Open Graph -->
@@ -94,10 +116,10 @@ export function head(page) {
 <meta name="twitter:image" content="${SITE.origin}/assets/og/social-card.png">
 <meta name="twitter:image:alt" content="Ionity Global — Native-AI · AIoT · Cloud · Edge · Audit">
 <!-- Icons / PWA -->
-<link rel="icon" href="assets/img/favicon.ico?v=69" sizes="any">
-<link rel="icon" href="assets/img/favicon-64.png?v=69" type="image/png" sizes="64x64">
-<link rel="icon" href="assets/img/icon-192.png?v=69" type="image/png" sizes="192x192">
-<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=69">
+<link rel="icon" href="assets/img/favicon.ico?v=70" sizes="any">
+<link rel="icon" href="assets/img/favicon-64.png?v=70" type="image/png" sizes="64x64">
+<link rel="icon" href="assets/img/icon-192.png?v=70" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=70">
 <link rel="manifest" href="manifest.json">
 <!-- Fonts (no cookies set; degrades to system) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -108,7 +130,7 @@ export function head(page) {
 <link rel="dns-prefetch" href="https://storage.googleapis.com">
 <link rel="preconnect" href="https://storage.googleapis.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Chakra+Petch:wght@500;600;700&display=swap">
-<link rel="stylesheet" href="assets/css/ionity.css?v=69">
+<link rel="stylesheet" href="assets/css/ionity.css?v=70">
 <!-- Three.js backdrop importmap (must precede the module) -->
 <script type="importmap">
 { "imports": {
@@ -125,7 +147,7 @@ export function head(page) {
 <div class="crt-fx" aria-hidden="true"></div>
 <div class="crt-frame" aria-hidden="true"></div>
 <div class="progress-top" id="progressTop"></div>
-<div class="loader" id="loader" aria-hidden="true"><img class="mark" src="assets/img/ionity-anim.webp" onerror="this.onerror=null;this.src='assets/img/ai-mark-white.png?v=69';this.style.cssText='width:72px;height:72px'" alt="" width="280" height="147"><span class="lbl">Initialising edge…</span></div>
+<div class="loader" id="loader" aria-hidden="true"><img class="mark" src="assets/img/ionity-anim.webp" onerror="this.onerror=null;this.src='assets/img/ai-mark-white.png?v=70';this.style.cssText='width:72px;height:72px'" alt="" width="280" height="147"><span class="lbl">Initialising edge…</span></div>
 ${navHtml(page.path)}
 <main id="main">`;
 }
@@ -213,13 +235,13 @@ ${cookieHtml()}
 <!-- AEDi on-site AI assistant -->
 <div class="aedi-wrap" id="aediWrap">
   <button class="aedi-fab" id="aediToggle" aria-label="Chat with AEDi — Ionity AI" aria-expanded="false" title="Chat with AEDi">
-    <img class="aedi-fab-logo" src="assets/img/ai-mark-white.png?v=69" alt="" width="24" height="24" aria-hidden="true">
+    <img class="aedi-fab-logo" src="assets/img/ai-mark-white.png?v=70" alt="" width="24" height="24" aria-hidden="true">
     <span class="aedi-badge">AEDi</span>
     <span class="aedi-pulse" aria-hidden="true"></span>
   </button>
   <div class="aedi-panel" id="aediPanel" role="dialog" aria-label="AEDi — Ionity AI" aria-hidden="true" hidden>
     <div class="aedi-head">
-      <img class="aedi-head-logo" src="assets/img/ai-mark-white.png?v=69" alt="" width="22" height="22" aria-hidden="true">
+      <img class="aedi-head-logo" src="assets/img/ai-mark-white.png?v=70" alt="" width="22" height="22" aria-hidden="true">
       <div>
         <span class="aedi-name">AEDi</span>
         <span class="aedi-sub">Automated Ecosystems Intelligence</span>
@@ -239,21 +261,21 @@ ${cookieHtml()}
   </div>
 </div>
 
-<script src="assets/js/audio.js?v=69" defer></script>
-<script src="assets/js/mario.js?v=69" defer></script>
-<script src="assets/js/cookies.js?v=69" defer></script>
-<script src="assets/js/core.js?v=69" defer></script>
-<script src="assets/js/edge-diagnostics.js?v=69" defer></script>
-<script src="assets/js/matrix-cam.js?v=69" defer></script>
-<script src="assets/js/sensor-node.js?v=69" defer></script>
-<script src="assets/js/neural-gpu.js?v=69" defer></script>
-<script src="assets/js/disciplines-graph.js?v=69" defer></script>
-<script src="assets/js/edge-forge.js?v=69" defer></script>
-<script src="assets/js/aedi-chat.js?v=69" defer></script>
+<script src="assets/js/audio.js?v=70" defer></script>
+<script src="assets/js/mario.js?v=70" defer></script>
+<script src="assets/js/cookies.js?v=70" defer></script>
+<script src="assets/js/core.js?v=70" defer></script>
+<script src="assets/js/edge-diagnostics.js?v=70" defer></script>
+<script src="assets/js/matrix-cam.js?v=70" defer></script>
+<script src="assets/js/sensor-node.js?v=70" defer></script>
+<script src="assets/js/neural-gpu.js?v=70" defer></script>
+<script src="assets/js/disciplines-graph.js?v=70" defer></script>
+<script src="assets/js/edge-forge.js?v=70" defer></script>
+<script src="assets/js/aedi-chat.js?v=70" defer></script>
 <script>window.IonityGlitch=window.IonityGlitch||{};window.IonityGlitch.config={zIndex:3000};</script>
-<script src="assets/js/glitch.js?v=69" defer></script>
+<script src="assets/js/glitch.js?v=70" defer></script>
 <!-- Three.js WebGL backdrop (ES module; degrades to CSS via html.no3d) -->
-<script type="module" src="assets/js/backdrop.js?v=69"></script>
+<script type="module" src="assets/js/backdrop.js?v=70"></script>
 <!-- DMCA badge helper (makes the protection badge verifiable) -->
 <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js" async></script>
 </body>

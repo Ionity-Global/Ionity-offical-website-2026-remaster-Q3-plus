@@ -17,7 +17,7 @@ Contact: ai@ionity.today
 Phone: +27 64 699 9877
 Founder: Johan Wilhelm van Antwerp (LinkedIn in/ionity, Gravatar ionity)
 Policy: 986 AED
-Updated: 2026-06-27
+Updated: 2026-07-13
 Machine-readable: Organization, WebSite, Service & FAQPage JSON-LD are embedded across the site; see also /ai.txt.
 
 ## Two pillars
@@ -46,9 +46,27 @@ cloud and automation solutions for businesses across industries:
 
 ## Key pages
 - [Home](https://ionity.co.za/)
+- [Services](https://ionity.co.za/services.html)
+- [Edge Micro-Audit](https://ionity.co.za/edge.html)
 - [About & AEDi](https://ionity.co.za/about.html)
+- [Team](https://ionity.co.za/team.html)
 - [FAQ](https://ionity.co.za/faq.html)
 - [Contact](https://ionity.co.za/contact.html)
+
+## Who we are
+We aim to develop the unseen into the norm — innovative solutions across the board,
+from Cloud to Edge, from Systems to Network — maintaining quality above quantity.
+Engineering Tomorrow, Today.
+
+## Team (Ionity Global (Pty) Ltd)
+- Johan Wilhelm van Antwerp — Founder (Centurion) · ORCID 0009-0005-7181-0347
+- Ian Jaco Raven — Industrial Engineer, Partner (Centurion)
+- William Njabulo Kodua — Shareholder, Partner (Pretoria)
+- Dennis Grobler — Tech Manager (Pretoria)
+- Robin Mary du Toit — Systems Administrator (Centurion)
+
+## Business portfolio
+- [Ionity Global Portfolio (PDF, V7)](https://ionity.co.za/assets/docs/ionity-global-portfolio-v7.pdf) — full company profile.
 
 ## Founder & vision — Johan Wilhelm van Antwerp
 Solutionist, Tech-PUG and Design Engineer. Design & Development, IoT and business-owner

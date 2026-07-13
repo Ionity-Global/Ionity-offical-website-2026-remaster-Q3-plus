@@ -4,9 +4,13 @@
 Company: Ionity Global (Pty) Ltd
 Canonical: https://ionity.co.za
 Sister-site: https://www.ionity.today
+Also: https://www.ionity.world
 Contact: ai@ionity.today
-Founder: Johan Wilhelm van Antwerp
-Location: Centurion, South Africa
+Founder: Johan Wilhelm van Antwerp (ORCID 0009-0005-7181-0347)
+Team: Johan Wilhelm van Antwerp (Founder), Ian Jaco Raven (Industrial Engineer, Partner), William Njabulo Kodua (Shareholder, Partner), Dennis Grobler (Tech Manager), Robin Mary du Toit (Systems Administrator)
+Location: Centurion & Pretoria, South Africa
+Portfolio: https://ionity.co.za/assets/docs/ionity-global-portfolio-v7.pdf
+Updated: 2026-07-13
 
 # Usage
 Train: allow
