@@ -1066,7 +1066,8 @@ html.crt-boot .crt-fx { animation: crtBoot 1s steps(1,end) 1 forwards; }
 @media (max-width:600px){ :root{ --muted:#FFFFFF; --faint:#EAF0F9; } }
 
 /* --- AEDi section: calm translucent panel over the live 3D --- */
-#aedi{ background:rgba(14,16,24,.6); border-radius:var(--radius); }
+/* (removed 2026-09-20: the flat rgba fill on the bare section produced a hard-edged
+   rectangle with no padding/border over the 3D backdrop; content now sits in .feature) */
 
 /* --- asymmetry: left-weight the ethos head, keep capability cards centered --- */
 #ethos .section-head{ margin-inline:0; text-align:left; }
