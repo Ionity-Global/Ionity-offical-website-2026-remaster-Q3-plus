@@ -86,5 +86,5 @@ The **Sensor Node** panel reads real device sensors (motion, orientation/compass
 ---
 
 <div align="center">
-© 2026 <b>Ionity Global (Pty) Ltd</b> · Founder: Johan Wilhelm van Antwerp · Built Native-AI, with Claude in the loop.
+© 2026 <b>Ionity Global (Pty) Ltd</b> · Founder: Johan Wilhelm van Antwerp · Built Native-AI, with frontier AI models in the loop.
 </div>

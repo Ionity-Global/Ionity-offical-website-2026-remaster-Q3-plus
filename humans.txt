@@ -16,7 +16,7 @@
 /* TECH */
   Hand-built static site. No framework, no tracker bloat.
   Vanilla HTML/CSS/JS. Restrained Web-Audio interface cues (off by default). On-device edge micro-audit.
-  Built Native-AI, with Claude in the loop.
+  Built Native-AI, with frontier AI models in the loop.
   Last updated: 2026-06-26
 
 /* LINKS - AEDI addendum 2026-07-12 (appended; nothing above changed) */
@@ -24,6 +24,6 @@
   GitHub orgs: Ionity-Global | Ionity-Global-Pty-Ltd | Antwerp-Ecosystem-Designs-Ionity
   GitHub enterprise: https://github.com/enterprises/ionity-global
   ORCID: 0009-0005-7181-0347
-  Network: https://www.ionity.today | https://www.ionity.world | https://ionityearth.shop
+  Network: https://www.ionity.world | https://ionityearth.shop
   Link registry: ionity-links.json / .yml (ionity-assets repo + Meta-Data-AEDI)
   Registry addendum: 2026/07/12

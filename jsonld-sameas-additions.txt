@@ -9,7 +9,6 @@ already embedded in ionity.co.za pages (do not remove existing entries):
 "https://github.com/enterprises/ionity-global",
 "https://www.gravatar.com/ionity",
 "https://www.linkedin.com/in/ionity",
-"https://www.ionity.today",
 "https://www.ionity.world",
 "https://ionityearth.shop"
 

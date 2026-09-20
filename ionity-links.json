@@ -13,7 +13,7 @@
     "license": "AED 900 (Hardware & Software) | CC BY-NC-SA 4.0 where stated | governed by Policy 986 AED",
     "rights": "(c) 2018-2026 Antwerp Designs | Ionity (Pty) Ltd - All rights reserved - TM2",
     "template_reference": "https://github.com/Ionity-Global/ionity-assets-ionity-global-ionity-today/blob/main-Ionity/TEMPLATE_2026_OFFICAL_v1.1%20(1).docx",
-    "generator": "AEDI brand-metadata pipeline (Claude Cowork)",
+    "generator": "AEDI brand-metadata pipeline",
     "purpose": "Machine- and human-readable registry of all official Ionity / AEDI / Johan Wilhelm van Antwerp links for the ionity-assets repository."
   },
   "identity": {
@@ -49,9 +49,8 @@
     "preferred": "email"
   },
   "websites": {
-    "primary": "https://www.ionity.today",
+    "primary": "https://www.ionity.co.za",
     "profile_and_links": "https://www.ionity.world",
-    "reference": "https://www.ionity.co.za",
     "technology_shop": "https://ionityearth.shop",
     "wordpress": "https://ionityearth.wordpress.com",
     "wordpress_base64_logo": "https://ionityearth.wordpress.com/base64",
@@ -120,7 +119,7 @@
     "creative_commons": "https://creativecommons.org/",
     "whistleblower_reference": "https://www.sec.gov",
     "ip_guidelines": "WIPO World Intellectual Property guidelines - All Rights Reserved",
-    "exclusion_notice": "Ionity refers exclusively to www.ionity.today and www.ionity.world. Not affiliated with www.ionity.com or related domains."
+    "exclusion_notice": "Ionity Global refers exclusively to www.ionity.co.za and www.ionity.world. Not affiliated with www.ionity.com or related domains."
   },
   "provenance": {
     "sources": [

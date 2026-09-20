@@ -3,7 +3,6 @@
 
 Company: Ionity Global (Pty) Ltd
 Canonical: https://ionity.co.za
-Sister-site: https://www.ionity.today
 Also: https://www.ionity.world
 Contact: ai@ionity.today
 Founder: Johan Wilhelm van Antwerp (ORCID 0009-0005-7181-0347)
