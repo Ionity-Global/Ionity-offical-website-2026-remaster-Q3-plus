@@ -65,7 +65,7 @@
     'company: Ionity Global (Pty) Ltd — Centurion, South Africa. Founder: Johan Wilhelm van Antwerp.',
     'what_we_are: Native-AI engineering — AIoT, Cloud & Edge, custom MCP/agents, dashboards, digital twins, evidence-first audits & forensics, hardware, hosting, software/web. Grown from Antwerp Designs (2018).',
     'pages: Home (index.html), Services (services.html), Edge Scan (edge.html), About & AEDi (about.html), FAQ (faq.html), Contact (contact.html).',
-    'contact: ai@ionity.today | +27 64 699 9877 | WhatsApp +27 50 033 7626 | Policy 986 AED.',
+    'contact: ai@ionity.today | +27 646 999 877 | WhatsApp +27 646 999 877 | Policy 986 AED.',
   ].join('\n');
 
   let SYSTEM = PREAMBLE + '\n' + FALLBACK_CONTEXT;
@@ -276,7 +276,7 @@
     if (reply) { history.push({ role: 'model', parts: [{ text: reply }] }); appendMsg('model', reply); return done(); }
     if (blocked) { appendMsg('model', "Let's keep this professional — but I'm all in on anything Ionity can build for you. What are you working on?"); return done(); }
     appendMsg('model', rateLimited
-      ? "Lots of people are talking to me right now and I got throttled for a beat ⚡ — give it ~20 seconds and ask again. In a hurry? ai@ionity.today or WhatsApp +27 50 033 7626."
+      ? "Lots of people are talking to me right now and I got throttled for a beat ⚡ — give it ~20 seconds and ask again. In a hurry? ai@ionity.today or WhatsApp +27 646 999 877."
       : "I couldn't reach the network just now — try me again shortly, or ai@ionity.today.");
     return done();
   }

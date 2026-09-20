@@ -6,10 +6,10 @@
      is a new URL, so updates are picked up automatically).
    • Cross-origin (fonts, CDNs, the Gemini API) passes straight through.
    ========================================================================== */
-const VERSION = 'ionity-v70';
+const VERSION = 'ionity-v71';
 const SHELL = [
   '/', '/index.html', '/services.html', '/edge.html', '/about.html',
-  '/team.html', '/faq.html', '/contact.html', '/privacy.html', '/terms.html', '/404.html',
+  '/team.html', '/faq.html', '/contact.html', '/privacy.html', '/cookies.html', '/terms.html', '/404.html',
   '/manifest.json',
   '/assets/img/favicon.ico', '/assets/img/icon-192.png', '/assets/img/icon-512.png',
   '/assets/img/ai-mark-white.png', '/assets/img/wordmark.png',

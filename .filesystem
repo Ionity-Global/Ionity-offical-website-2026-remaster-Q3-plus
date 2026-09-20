@@ -12,7 +12,7 @@ contact.html    Mailto form + direct lines (Centurion SA, phone, email)
 privacy/terms/404
 assets/css/ionity.css         design system (tokens: --blue #0079E3, --orange #FF9500, --cyan, --live)
 assets/js/core.js             nav, scroll-rail, progress, reveals, count-up, parallax
-assets/js/audio.js            procedural 8-bit industrial Web-Audio soundscape
+assets/js/ui-sound.js         restrained Web-Audio interface cues (off by default, one toggle)
 assets/js/cookies.js          granular consent + ionity_consent cookie
 assets/js/edge-diagnostics.js Edge Micro-Audit — REAL, on-device, no simulation
 assets/js/proximity.js        RSSI people-nearby — Web Bluetooth LE + edge node, no simulation

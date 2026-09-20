@@ -67,12 +67,13 @@ Built : 2026-06-26   ·   Native-AI, with Claude in the loop
   live device/presence/motion; otherwise it shows a truthful "NO EDGE NODE"
   state. It NEVER fabricates a number. Verified: default state = "NO EDGE NODE / —".
 
-5. AUDIO (assets/js/audio.js)
------------------------------
-- Procedural 8-bit INDUSTRIAL soundscape, fully synthesised with Web Audio API
-  (no files): detuned square drones + LFO-swept filter + filtered noise "machine
-  room" bed + periodic mechanical tick + chiptune hover/click/ok blips.
-  Off by default; nav toggle; preference persisted; respects reduced-motion.
+5. AUDIO (assets/js/ui-sound.js)
+--------------------------------
+- Interface sound: two restrained Web-Audio cues (muted tap on click, two-note
+  confirm on primary actions). No files, no hover sound, no ambient bed.
+  Off by default; single nav toggle; preference persisted (ionity-sound).
+  Replaced the earlier 8-bit / game-clip layer (mario.js + audio.js + assets/sfx)
+  on 2026-09-20.
 
 6. COOKIES / CONSENT (assets/js/cookies.js)
 -------------------------------------------
@@ -117,7 +118,7 @@ Feedback addressed:
    - Sampled exact brand colors from the logo: BLUE #0079E3 + ORANGE #FF9500.
      Rebuilt the palette around them (+ cyan #00D2FF glow, red #FF2828 for live/forensic).
    - Replaced my earlier invented mark/colors entirely. Real facts added from the
-     Drive license doc: Centurion, South Africa · +27 64 699 9877 · AED 986.
+     Drive license doc: Centurion, South Africa · +27 646 999 877 · AED 986.
 2) RSSI PROXIMITY (replaces RuView). assets/js/proximity.js — REAL, no simulation:
    Web Bluetooth LE scanning reads real advertisement RSSI → counts nearby radios,
    buckets by distance (near/mid/far), estimates PEOPLE NEARBY from near-range density.
@@ -146,3 +147,37 @@ POSSIBLE NEXT (optional, your call)
 - Stand up a public RuView demo bridge so the panel is live for all visitors.
 - Privacy-friendly analytics (e.g. self-hosted) gated behind the analytics
   consent category already wired in cookies.js.
+
+============================================================
+2026-09-20 · Q3 refresh (Policy 986 AED)
+============================================================
+- Sound: removed mario.js, audio.js and assets/sfx/*.wav (Nintendo game clips).
+  New assets/js/ui-sound.js: two restrained Web-Audio cues (tap / confirm),
+  no hover sound, no ambient bed, OFF by default, one nav toggle; preference
+  persisted only if the visitor allowed the "Preferences" cookie category.
+- Landing page: device-demo sections (audit lens, edge micro-audit, matrix
+  vision, sensor node, live neural inference) removed from index.html and
+  replaced by one compact "Edge Lab" teaser → edge.html (renamed Edge Lab).
+  Landing scripts trimmed (edge-diagnostics, matrix-cam, sensor-node,
+  neural-gpu, edge-forge no longer loaded on the home page).
+- Services: twelve services in four pillars — Native-AI Integration,
+  AI Implementation & Adoption, Agent Development · Hardware AI Training &
+  Deployment, AIoT & Edge Systems, Hardware/Firmware & Edge Compute ·
+  Software Development, Custom B2B Systems & Dashboards (RMS), Cloud/Data &
+  Hosting · Audit & Forensics, Technical Advisory, Live Edge Lab.
+  services.html rebuilt (index cards + detail sections + Service JSON-LD),
+  landing "Four pillars, twelve services" block, footer lists, FAQ, llms.txt.
+- Navigation reduced to Home · Services · Edge Lab · About · Contact (Team,
+  FAQ, portfolio moved to footer). One sound toggle instead of two.
+- New cookies.html (full Cookie Policy: categories, every first-party item,
+  third parties, withdrawal, legal basis). Banner + footer link to it;
+  consent VERSION bumped to 2 so returning visitors are asked again.
+- terms.html expanded (AEDi assistant, Edge Lab, IP, liability, governing
+  law). privacy.html: AEDi/Gemini disclosure, Edge Lab wording, POPIA rights.
+- Phone normalised everywhere to +27 646 999 877 (tel:+27646999877,
+  wa.me/27646999877) — old WhatsApp number removed.
+- CSS fix: white h1/h2 shimmer used a single no-repeat gradient that slid off
+  the glyphs for ~60% of each cycle (headings went blank). Now layered over a
+  solid white base — always visible. Pillar/services/policy table styles added.
+- Cache: assets ?v=71, service worker ionity-v71 (+ /cookies.html in shell),
+  sitemaps updated (lastmod 2026-09-20, cookies.html added).

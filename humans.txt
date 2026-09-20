@@ -15,7 +15,7 @@
 
 /* TECH */
   Hand-built static site. No framework, no tracker bloat.
-  Vanilla HTML/CSS/JS. Procedural Web-Audio soundscape. On-device edge micro-audit.
+  Vanilla HTML/CSS/JS. Restrained Web-Audio interface cues (off by default). On-device edge micro-audit.
   Built Native-AI, with Claude in the loop.
   Last updated: 2026-06-26
 

@@ -6,7 +6,7 @@
    ========================================================================== */
 (() => {
   'use strict';
-  const VERSION = 1;
+  const VERSION = 2;   // bumped 2026-09-20: cookie policy published, sound layer replaced
   const LS = 'ionity-consent';
   const CATS = [
     { id: 'necessary',   name: 'Strictly necessary', locked: true,  desc: 'Security, consent state, and core site function. Always on.' },

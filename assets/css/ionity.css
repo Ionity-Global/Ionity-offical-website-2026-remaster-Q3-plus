@@ -139,17 +139,21 @@ p  { color:var(--muted); }
    Coloured .grad-text / .warm-text spans re-assert their own gradient, so they're
    untouched. Disabled under reduced-motion (headings render as plain white). */
 @media (prefers-reduced-motion: no-preference) {
+  /* Two layers: the moving shimmer band on top of a solid white base. The base
+     guarantees the glyphs are always filled — previously the single no-repeat
+     gradient slid off the text for ~60% of each cycle and headings went blank. */
   h1, h2 {
-    background-image:linear-gradient(100deg, #fff 0 42%, #bdeeff 47%, #1aa0ff 50%, #bdeeff 53%, #fff 58% 100%);
-    background-size:260% 100%; background-repeat:no-repeat;
+    background-image:linear-gradient(100deg, #fff 0 42%, #bdeeff 47%, #1aa0ff 50%, #bdeeff 53%, #fff 58% 100%), linear-gradient(#fff, #fff);
+    background-size:260% 100%, 100% 100%; background-repeat:no-repeat;
+    background-position:165% 0, 0 0;
     -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent;
     animation:headDigit 7.5s linear infinite;
     filter:drop-shadow(0 0 9px rgba(0,210,255,.20));
   }
   h1 { animation-duration:9.5s; }
-  h1 .grad-text, h2 .grad-text { background-image:var(--grad-bi); -webkit-text-fill-color:transparent; }
-  h1 .warm-text, h2 .warm-text { background-image:var(--grad-warm); -webkit-text-fill-color:transparent; }
-  @keyframes headDigit { from{ background-position:165% 0; } to{ background-position:-165% 0; } }
+  h1 .grad-text, h2 .grad-text { background-image:var(--grad-bi); background-size:100% 100%; background-position:0 0; animation:none; -webkit-text-fill-color:transparent; }
+  h1 .warm-text, h2 .warm-text { background-image:var(--grad-warm); background-size:100% 100%; background-position:0 0; animation:none; -webkit-text-fill-color:transparent; }
+  @keyframes headDigit { from{ background-position:165% 0, 0 0; } to{ background-position:-165% 0, 0 0; } }
 }
 .orange { color:var(--orange); }
 .kicker {
@@ -1049,10 +1053,8 @@ html.crt-boot .crt-fx { animation: crtBoot 1s steps(1,end) 1 forwards; }
    menu) so the logo and toggles get room to breathe. --- */
 @media (max-width:880px){
   .nav-cta { gap:.45rem; }
-  .nav-cta .icon-btn[data-sfx-toggle],
-  .nav-cta .icon-btn[data-audio-toggle] { width:32px; height:32px; }
-  .nav-cta .icon-btn[data-sfx-toggle] svg,
-  .nav-cta .icon-btn[data-audio-toggle] svg { width:15px; height:15px; }
+  .nav-cta .icon-btn[data-sound-toggle] { width:32px; height:32px; }
+  .nav-cta .icon-btn[data-sound-toggle] svg { width:15px; height:15px; }
 }
 @media (max-width:480px){ .nav-cta .btn-primary { display:none; } }
 
@@ -1223,3 +1225,29 @@ body.glitching {
   /* glitch.js already does a 120ms fade instead of the storm; keep cursor calm */
   body.glitching { cursor: progress; }
 }
+
+/* ── Service pillars (landing) · 2026-09 restructure ─────────────────────── */
+.pillar-grid { gap:1.6rem; }
+.card.pillar .kicker { margin-bottom:.55rem; font-size:.58rem; }
+.card.pillar h3 { font-size:var(--step-2); }
+.pillar-list { list-style:none; margin:1.2rem 0 0; padding:0; display:grid; gap:.7rem; }
+.pillar-list li { display:grid; gap:.15rem; padding:.75rem .9rem; border:1px solid var(--line); border-radius:var(--radius-s); background:rgba(255,255,255,.015); transition:border-color .25s, background .25s; }
+.pillar-list li:hover { border-color:var(--cyan); background:rgba(0,210,255,.05); }
+.pillar-list li a { color:var(--text); font-weight:600; font-size:var(--step-0); text-decoration:none; display:inline-flex; align-items:center; gap:.4rem; }
+.pillar-list li a svg { width:14px; height:14px; color:var(--cyan); transition:transform .25s; }
+.pillar-list li:hover a svg { transform:translateX(3px); }
+.pillar-list li span { font-size:var(--step--1); color:var(--muted); }
+
+/* ── Services page: grouped service index ─────────────────────────────── */
+.svc-group { margin-top:2.4rem; }
+.svc-group > .kicker { margin-bottom:1rem; }
+.svc-detail .tag-row { margin-top:1.2rem; }
+.svc-detail ul.deliv { margin:1rem 0 0; padding-left:1.1rem; display:grid; gap:.4rem; font-size:var(--step--1); color:var(--muted); }
+.svc-detail ul.deliv li::marker { color:var(--cyan); }
+
+/* ── Cookie policy tables ─────────────────────────────────────────────── */
+.policy table { width:100%; border-collapse:collapse; font-size:var(--step--1); margin:1rem 0 1.6rem; }
+.policy th, .policy td { text-align:left; padding:.65rem .8rem; border:1px solid var(--line); vertical-align:top; }
+.policy th { font-family:var(--f-mono); font-size:.6rem; letter-spacing:.16em; text-transform:uppercase; color:var(--faint); background:var(--surface-2); }
+.policy td code { font-family:var(--f-mono); font-size:.78em; color:var(--cyan); }
+@media (max-width:620px){ .policy table { display:block; overflow-x:auto; } }
