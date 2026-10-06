@@ -63,8 +63,8 @@
 
   const FALLBACK_CONTEXT = [
     'company: Ionity Global (Pty) Ltd — Centurion, South Africa. Founder: Johan Wilhelm van Antwerp.',
-    'what_we_are: Native-AI engineering in four pillars — Intelligence (Native-AI integration, AI implementation, agent development), Edge & hardware (hardware AI training & deployment, AIoT & edge, hardware & firmware), Software & cloud (software development, custom B2B systems/RMS, cloud & hosting), Assurance (audit & forensics, technical advisory). Vendor-neutral on AI models. Grown from Antwerp Designs (2018).',
-    'pages: Home (index.html), Services (services.html), Edge Lab (edge.html), About & AEDi (about.html), Team (team.html), FAQ (faq.html), Contact (contact.html), Cookie Policy (cookies.html). Company portfolio PDF: assets/docs/ionity-global-portfolio-v7.pdf · Founder portfolio: assets/docs/portfolio-johan-wilhelm-van-antwerp.pdf.',
+    'what_we_are: Native-AI engineering in five pillars — Intelligence (Native-AI integration, AI implementation, agent development), Edge & hardware (hardware AI training & deployment, AIoT & edge, hardware & firmware), Software & cloud (software development, custom B2B systems/RMS, cloud & hosting), Assurance (audit & forensics, technical advisory), Now trending 2026 (sovereign & offline AI, AI security, preemptive cyber defence, physical AI, predictive maintenance, energy & ESG, AI search visibility/GEO, digital provenance, AI literacy). Vendor-neutral on AI models. Grown from Antwerp Designs (2018).',
+    'pages: Home (index.html), Services (services.html), Software — ProGramerly, free, at ionity.digital (software.html), Freebies — IO-MAN game on ionity.fun (freebies.html), Edge Lab (edge.html), About & AEDi (about.html), Team (team.html), FAQ (faq.html), Contact (contact.html), Cookie Policy (cookies.html). Company portfolio PDF: assets/docs/ionity-global-portfolio-v7.pdf · Founder portfolio: assets/docs/portfolio-johan-wilhelm-van-antwerp.pdf.',
     'contact: ai@ionity.today | +27 646 999 877 | WhatsApp +27 646 999 877 | Policy 986 AED.',
   ].join('\n');
 

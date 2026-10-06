@@ -27,3 +27,10 @@
   Network: https://www.ionity.world | https://ionityearth.shop
   Link registry: ionity-links.json / .yml (ionity-assets repo + Meta-Data-AEDI)
   Registry addendum: 2026/07/12
+
+/* SITE v19.2 - addendum 2026-10-03 (appended; nothing above changed) */
+  Release: v19.2 — refinement & smoothing pass over the remaster (cache key 192)
+  New pages: /software.html (ProGramerly -> https://ionity.digital) · /freebies.html (IO-MAN -> https://www.ionity.fun)
+  New: Pillar 05 · Now trending (2026) — nine services on /services.html
+  New: AEDi Edge AI Node display loop (X870M build) on the home page
+  UX: cross-document view transitions, spotlight cards, blur-in reveals, 8-item nav, 5-column footer

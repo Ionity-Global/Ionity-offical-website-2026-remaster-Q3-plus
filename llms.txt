@@ -17,16 +17,16 @@ Contact: ai@ionity.today
 Phone: +27 646 999 877
 Founder: Johan Wilhelm van Antwerp (LinkedIn in/ionity, Gravatar ionity)
 Policy: 986 AED
-Updated: 2026-07-13
+Updated: 2026-10-03 (site v19.2)
 Machine-readable: Organization, WebSite, Service & FAQPage JSON-LD are embedded across the site; see also /ai.txt.
 
 ## Two pillars
 Ionity Global (Pty) Ltd delivers enterprise-grade Native-AI, IoT, cloud and
 automation solutions for businesses across industries:
-- https://ionity.co.za — the official site (twelve services in four pillars).
+- https://ionity.co.za — the official site (twenty-one services in five pillars).
 - https://gravatar.com/ionity — Founder profile.
 
-## Services (twelve, in four pillars)
+## Services (twenty-one, in five pillars)
 Pillar 01 · Intelligence
 - [Native-AI Integration](https://ionity.co.za/services.html#native-ai): frontier models, RAG and custom MCP servers wired into existing systems, data and tools; in-product copilots.
 - [AI Implementation & Adoption](https://ionity.co.za/services.html#ai-implementation): use-case scoring, data readiness, pilot-to-production, governance and team enablement.
@@ -43,6 +43,16 @@ Pillar 04 · Assurance
 - [Audit & Forensics](https://ionity.co.za/services.html#audit): six-dimension evidence-first audits (performance, accessibility, SEO/AEO, security, forensics, cost) ranked by Level of Effort vs return.
 - [Technical Advisory](https://ionity.co.za/services.html#advisory): architecture reviews, AI roadmaps, build/buy/partner selection, fractional technical lead.
 - [Live Edge Lab](https://ionity.co.za/edge.html): on-device micro-audit, vision, sensors and Edge Forge — nothing uploaded.
+Pillar 05 · Now trending (2026)
+- [Sovereign & Offline AI](https://ionity.co.za/services.html#sovereign-ai): Local LLMs and on-prem inference — your data stays in your building.
+- [AI Security & Red-Teaming](https://ionity.co.za/services.html#ai-security): Red-team your chatbots, agents and MCP servers — then harden them.
+- [Preemptive Cyber Defence](https://ionity.co.za/services.html#cyber-defence): AI-assisted monitoring, hardening and deception that act first.
+- [Physical AI & Robotics](https://ionity.co.za/services.html#physical-ai): Machine vision, robotics and autonomous inspection, built end to end.
+- [Predictive Maintenance & Industrial AI](https://ionity.co.za/services.html#predictive-maintenance): Sensors and ML that forecast failure and raise the work order.
+- [Energy & ESG Intelligence](https://ionity.co.za/services.html#energy-esg): Metering, solar and battery orchestration, carbon-ready data.
+- [AI Search Visibility (GEO)](https://ionity.co.za/services.html#ai-visibility): Get found, described right and cited by AI assistants (GEO/AEO).
+- [Digital Provenance & Trust](https://ionity.co.za/services.html#provenance): SBOMs, signed builds, content credentials and evidence chains.
+- [AI Literacy & Team Enablement](https://ionity.co.za/services.html#ai-literacy): Hands-on AI training, safe-use policy and developer enablement.
 
 ## Signature (live, on-device, real — no simulation)
 - [Edge Lab / Edge Micro-Audit](https://ionity.co.za/edge.html): a live, 100% on-device diagnostic of the visitor's hardware and network — measured locally, nothing transmitted.
@@ -50,9 +60,15 @@ Pillar 04 · Assurance
 - Edge Sensor Node: turns the visitor's own browser into a live sensor node — real accelerometer, gyro/tilt/compass, ambient light and microphone sound-level readings.
 - Wi-Fi (CSI) sensing (RuView / Ionify) is an Ionity hardware product line referenced under AIoT & Edge.
 
+## Ionity software & freebies
+- [Software — ProGramerly](https://ionity.co.za/software.html): Ionity’s free desktop app that provisions a complete development environment on Windows, macOS and Linux in one run, keeps it in sync and watches the machine from the tray, with AEDi local AI running offline. Product site: https://ionity.digital/ · Releases: https://github.com/Ionity-Global-Pty-Ltd/ProGramerly/releases/latest
+- [Freebies](https://ionity.co.za/freebies.html): free games and tools. Featured: IO-MAN — Get Over It Door, a free ASCII side-scrolling beat-em-up on Ionity’s gaming site https://www.ionity.fun/ (browser, gamepad, mobile landscape).
+
 ## Key pages
 - [Home](https://ionity.co.za/)
 - [Services](https://ionity.co.za/services.html)
+- [Software](https://ionity.co.za/software.html)
+- [Freebies](https://ionity.co.za/freebies.html)
 - [Edge Lab](https://ionity.co.za/edge.html)
 - [Cookie Policy](https://ionity.co.za/cookies.html)
 - [About & AEDi](https://ionity.co.za/about.html)

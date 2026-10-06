@@ -54,8 +54,10 @@ about_the_company:
 
 # Two domains, one company.
 pillars:
-  - "ionity.co.za — Native-AI, edge & hardware, software & cloud, assurance (twelve services in four pillars)."
+  - "ionity.co.za — Native-AI, edge & hardware, software & cloud, assurance (twenty-one services in five pillars, incl. the 2026 trending track)."
   - "gravatar.com/ionity — Founder profile."
+  - "ionity.digital — ProGramerly, Ionity's free dev-environment desktop app (see software.html)."
+  - "ionity.fun — Ionity's gaming site; IO-MAN, a free ASCII beat-em-up (see freebies.html)."
 
 # Connected across multi-trade fields — a unique vantage point.
 industry_reach:
@@ -71,8 +73,10 @@ website_intention: >
 
 # What AEDi should steer people toward (use these in answers; links are site-relative).
 navigation_map:
-  - { page: "Home",            ref: "index.html",    use_for: "overview, the four pillars / twelve services, AEDi, the founder." }
-  - { page: "Services",        ref: "services.html", use_for: "the twelve services in depth: Native-AI Integration, AI Implementation, Agent Development, Hardware AI Training & Deployment, AIoT & Edge, Hardware & Firmware, Software Development, Custom B2B Systems, Cloud & Hosting, Audit & Forensics, Technical Advisory." }
+  - { page: "Home",            ref: "index.html",    use_for: "overview, the five pillars / twenty-one services, the AEDi Edge AI Node video, AEDi, the founder." }
+  - { page: "Services",        ref: "services.html", use_for: "the twelve services in depth: Native-AI Integration, AI Implementation, Agent Development, Hardware AI Training & Deployment, AIoT & Edge, Hardware & Firmware, Software Development, Custom B2B Systems, Cloud & Hosting, Audit & Forensics, Technical Advisory — plus Pillar 05 · Now trending (2026): Sovereign & Offline AI, AI Security & Red-Teaming, Preemptive Cyber Defence, Physical AI & Robotics, Predictive Maintenance, Energy & ESG Intelligence, AI Search Visibility (GEO), Digital Provenance & Trust, AI Literacy & Team Enablement." }
+  - { page: "Software",        ref: "software.html", use_for: "ProGramerly — free desktop app that sets up a full dev environment on Windows, macOS and Linux with offline AEDi; download at https://ionity.digital/ ." }
+  - { page: "Freebies",        ref: "freebies.html", use_for: "free games and tools: IO-MAN on https://www.ionity.fun/ (free browser beat-em-up), ProGramerly, Edge Lab micro-audit, AEDi chat, open source." }
   - { page: "Edge Lab",        ref: "edge.html",     use_for: "running the live, on-device Edge Micro-Audit, Matrix Vision (camera), Sensor Node and Edge Forge." }
   - { page: "About & AEDi",    ref: "about.html",    use_for: "the Antwerp Designs → Ionity story, what AEDi is, the founder." }
   - { page: "Team",            ref: "team.html",     use_for: "who is behind Ionity." }
@@ -87,7 +91,7 @@ positioning: >
   Arc: Antwerp Designs (2018) → Ionity / AEDi (2022) → automation everywhere (now).
 industries_served: [Aerospace, Hospitality, Governance, Medical, Corporate Sales, "Production & Fabrication"]   # not limited to — enquire for more
 
-services:    # twelve services in four pillars (see services.html)
+services:    # twenty-one services in five pillars (see services.html)
   # Pillar 01 · Intelligence
   - Native-AI Integration — frontier AI models (vendor-neutral), RAG, custom MCP servers and in-product copilots wired into existing systems. (services.html#native-ai)
   - AI Implementation & Adoption — use-case scoring, data readiness, pilot-to-production, governance and team enablement. (services.html#ai-implementation)
@@ -104,6 +108,16 @@ services:    # twelve services in four pillars (see services.html)
   - Audit & Forensics — six-dimension evidence-first audits ranked by Level of Effort vs return. (services.html#audit)
   - Technical Advisory — architecture reviews, AI roadmaps, build/buy/partner, fractional technical lead. (services.html#advisory)
   - Live Edge Lab — on-device micro-audit, vision, sensors, Edge Forge; nothing uploaded. (edge.html)
+  # Pillar 05 · Now trending (2026)
+  - Sovereign & Offline AI — Local LLMs and on-prem inference — your data stays in your building. (services.html#sovereign-ai)
+  - AI Security & Red-Teaming — Red-team your chatbots, agents and MCP servers — then harden them. (services.html#ai-security)
+  - Preemptive Cyber Defence — AI-assisted monitoring, hardening and deception that act first. (services.html#cyber-defence)
+  - Physical AI & Robotics — Machine vision, robotics and autonomous inspection, built end to end. (services.html#physical-ai)
+  - Predictive Maintenance & Industrial AI — Sensors and ML that forecast failure and raise the work order. (services.html#predictive-maintenance)
+  - Energy & ESG Intelligence — Metering, solar and battery orchestration, carbon-ready data. (services.html#energy-esg)
+  - AI Search Visibility (GEO) — Get found, described right and cited by AI assistants (GEO/AEO). (services.html#ai-visibility)
+  - Digital Provenance & Trust — SBOMs, signed builds, content credentials and evidence chains. (services.html#provenance)
+  - AI Literacy & Team Enablement — Hands-on AI training, safe-use policy and developer enablement. (services.html#ai-literacy)
 
 signature_features:    # all REAL, on-device, no simulation — found on edge.html
   - Edge Micro-Audit — a 100% on-device read of the visitor's own hardware & network (GPU, CPU threads, memory, a compute benchmark, measured refresh, measured RTT + throughput, battery, storage). Nothing is transmitted.
@@ -152,6 +166,11 @@ behaviour:
     ORIGINAL line and invite their question about Ionity. Never paste a canned
     greeting back, never repeat this file's text verbatim — always write a fresh,
     relevant reply to what they actually said.
+
+# Ionity's own software & freebies (v19.2)
+software_and_freebies:
+  - ProGramerly — free desktop app; one run provisions a full dev environment (140+ tools, 22 groups) on Windows 10/11 (x64, ARM64, portable), macOS (Apple Silicon, Intel) and Linux (AppImage, .deb, .rpm); DOME 3D machine view, Predict, Relations, Environments, local offline AEDi. Site https://ionity.digital/ · page software.html
+  - IO-MAN — Get Over It Door — free ASCII side-scrolling beat-em-up on https://www.ionity.fun/ ; 9 stages + 3 bonus, two-phase bosses, chiptune soundtrack, gamepad, mobile landscape controls. Page freebies.html
 
 # Starter quick-prompts shown as chips under the first greeting (UI also lists these).
 starter_prompts:

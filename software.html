@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Software — ProGramerly · Ionity Global</title>
+<meta name="description" content="Ionity software: ProGramerly, a free desktop app that provisions a complete development environment on Windows, macOS and Linux — with AEDi local AI. Get it at ionity.digital.">
+<link rel="canonical" href="https://ionity.co.za/software.html">
+<meta name="theme-color" content="#07080D">
+<meta name="author" content="Johan Wilhelm van Antwerp — Ionity Global (Pty) Ltd">
+<meta name="generator" content="Ionity remaster build v19.2">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="geo.region" content="ZA-GP">
+<meta name="geo.placename" content="Centurion, Gauteng, South Africa">
+<meta name="geo.position" content="-25.8603;28.1894">
+<meta name="ICBM" content="-25.8603, 28.1894">
+<meta name="ai-content-declaration" content="human-directed, AI-assisted">
+<link rel="me" href="https://www.linkedin.com/in/ionity">
+<link rel="me" href="https://orcid.org/0009-0005-7181-0347">
+<meta name="dmca-site-verification" content="S0hYZnZSRHl0dksxMFdTdkh0K3A1Zz090">
+<meta name="keywords" content="Ionity, Ionity Global, Ionity South Africa, Ionity AI, AEDi, Native-AI, AIoT, IoT, edge computing hardware, cloud hosting, software development, custom MCP, AI dashboards, digital twins, website audit, digital forensics, Level of Effort, RuView, Wi-Fi sensing, automation, autonomous AI, mechanical engineering, electrotechnics, toolmaking, fabrication, rapid prototyping, product design, real-time sensing, edge nodes, FMCG, robotics, medical, aerospace, industrial, energy, household automation, security, B2B, B2G, B2C, Antwerp Designs, Johan Wilhelm van Antwerp, Solutionist, Tech-PUG, Design Engineer, Centurion">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ionity Global">
+<meta property="og:title" content="Software — ProGramerly · Ionity Global">
+<meta property="og:description" content="ProGramerly by Ionity — one free app that sets up your whole dev environment on Windows, macOS and Linux. Get it at ionity.digital.">
+<meta property="og:url" content="https://ionity.co.za/software.html">
+<meta property="og:image" content="https://ionity.co.za/assets/og/social-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ionity Global — Native-AI · AIoT · Cloud · Edge · Audit">
+<meta property="og:locale" content="en_ZA">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Software — ProGramerly · Ionity Global">
+<meta name="twitter:description" content="ProGramerly by Ionity — one free app that sets up your whole dev environment on Windows, macOS and Linux. Get it at ionity.digital.">
+<meta name="twitter:image" content="https://ionity.co.za/assets/og/social-card.png">
+<meta name="twitter:image:alt" content="Ionity Global — Native-AI · AIoT · Cloud · Edge · Audit">
+<!-- Icons / PWA -->
+<link rel="icon" href="assets/img/favicon.ico?v=192" sizes="any">
+<link rel="icon" href="assets/img/favicon-64.png?v=192" type="image/png" sizes="64x64">
+<link rel="icon" href="assets/img/icon-192.png?v=192" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=192">
+<link rel="manifest" href="manifest.json">
+<!-- Fonts (no cookies set; degrades to system) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Model/3D CDNs — pre-resolved so the vision pipeline warms fast (warmed lazily, never blocks paint) -->
+<link rel="dns-prefetch" href="https://storage.googleapis.com">
+<link rel="preconnect" href="https://storage.googleapis.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Chakra+Petch:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="assets/css/ionity.css?v=192">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ionity.co.za/"}, {"@type": "ListItem", "position": 2, "name": "Software", "item": "https://ionity.co.za/software.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "ProGramerly", "alternateName": "ProGramerly — Basic Coding Software for All", "description": "One free desktop app that provisions a complete development environment on Windows, macOS and Linux, keeps it in sync, and watches the machine from the tray — with AEDi local AI running offline.", "applicationCategory": "DeveloperApplication", "operatingSystem": "Windows 10, Windows 11, macOS, Linux", "url": "https://ionity.digital/", "downloadUrl": "https://github.com/Ionity-Global-Pty-Ltd/ProGramerly/releases/latest", "image": "https://ionity.co.za/assets/img/software/programerly-hero.webp", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "ZAR"}, "isAccessibleForFree": true, "publisher": {"@id": "https://ionity.co.za/#org"}, "author": {"@id": "https://ionity.co.za/#founder"}, "featureList": ["DOME 3D machine view", "Predict", "Relations graph", "Environments (venv, uv, conda, Node, Compose)", "AEDi local offline AI", "System controls", "OCR and vision", "140+ tools in 22 groups", "Fan curves"]}</script>
+</head>
+<body>
+<canvas id="bg3d" aria-hidden="true"></canvas>
+<div class="bg-field" aria-hidden="true"></div>
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="crt-fx" aria-hidden="true"></div>
+<div class="crt-frame" aria-hidden="true"></div>
+<div class="progress-top" id="progressTop"></div>
+<div class="loader" id="loader" aria-hidden="true"><img class="mark" src="assets/img/ionity-anim.webp" onerror="this.onerror=null;this.src='assets/img/ai-mark-white.png?v=192';this.style.cssText='width:72px;height:72px'" alt="" width="280" height="147"><span class="lbl">Initialising edge…</span></div>
+
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" id="nav">
+  <a class="brand" href="index.html" aria-label="Ionity Global home">
+    <img class="wm" src="assets/img/wordmark.png" alt="Ionity Global" width="87" height="58" decoding="async">
+  </a>
+  <nav class="nav-links" id="navLinks" aria-label="Primary">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="software.html" aria-current="page">Software</a>
+    <a href="freebies.html">Freebies<span class="nav-badge">free</span></a>
+    <a href="edge.html">Edge Lab</a>
+    <a href="about.html">About</a>
+    <a href="team.html">Team</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="nav-cta">
+    <button class="icon-btn" data-sound-toggle title="Interface sound: off" aria-label="Toggle interface sound" aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>
+    </button>
+    <a class="btn btn-primary" href="contact.html">Start a project</a>
+    <button class="icon-btn burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+<main id="main">
+<section class="hero product" data-act="Software" id="top">
+  <div class="product-hero">
+    <div class="reveal">
+      <span class="kicker">Software · by Ionity</span>
+      <h1>ProGramerly. <span class="grad-text">Your whole workstation, set up.</span></h1>
+      <p class="lead">Our flagship software. One <strong>free</strong> desktop app that provisions a complete development environment on Windows, macOS and Linux, keeps it in sync, and watches the machine from the tray — with <strong>AEDi running locally</strong>, not in someone else’s cloud.</p>
+      <div class="meta-row">
+        <span class="pill"><span class="dot"></span> Free</span>
+        <span class="pill">Windows · macOS · Linux</span>
+        <span class="pill">140+ tools · 22 groups</span>
+        <span class="pill">Offline AEDi</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://ionity.digital/" target="_blank" rel="noopener" data-sfx="confirm">Open ionity.digital <svg class="ext-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        <a class="btn btn-ghost" href="https://github.com/Ionity-Global-Pty-Ltd/ProGramerly/releases/latest" target="_blank" rel="noopener">Latest release <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v12M6 10l6 6 6-6M4 20h16"/></svg></a>
+        <a class="btn btn-ghost" href="freebies.html">Freebies <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+    <a class="browser reveal d2" href="https://ionity.digital/" target="_blank" rel="noopener" aria-label="Open ProGramerly on ionity.digital">
+      <div class="browser-bar"><i></i><i></i><i></i><span class="url">https://ionity.digital</span></div>
+      <img src="assets/img/software/programerly-hero.webp" alt="ProGramerly home page on ionity.digital: Your whole workstation, seen and unseen" width="1200" height="712" fetchpriority="high" decoding="async">
+    </a>
+  </div>
+  <div class="scroll-hint" aria-hidden="true"><i></i><i></i></div>
+</section>
+
+<section class="wrap" id="how" data-act="How it works">
+  <div class="section-head reveal">
+    <span class="kicker">01 · How it works</span>
+    <h2>Tick it. Install it. <span class="grad-text">Walk away.</span></h2>
+    <p>New laptop, new hire, new project — the hours lost to setting up a machine are hours not spent building. ProGramerly turns that into one run.</p>
+  </div>
+  <ol class="flow">
+    <li class="reveal"><h4>Pick</h4><p>Choose a profile or tick tools from a catalogue of 140+ in 22 groups.</p></li>
+    <li class="reveal"><h4>Predict</h4><p>It forecasts the run first — likelihood, minutes and disk — before anything installs.</p></li>
+    <li class="reveal"><h4>Install</h4><p>One click. winget, Homebrew and npm do the heavy lifting; you walk away.</p></li>
+    <li class="reveal"><h4>Watch</h4><p>AEDi stays on guard in the tray — locally, offline-capable, on your machine.</p></li>
+  </ol>
+</section>
+
+<section class="wrap" id="suite" data-act="One suite">
+  <div class="node-split">
+    <div>
+      <div class="section-head reveal" style="margin-bottom:1.6rem">
+        <span class="kicker">02 · One suite</span>
+        <h2>Your machine, <span class="grad-text">seen and unseen</span>.</h2>
+        <p>More than an installer: a control room for the whole workstation.</p>
+      </div>
+      <div class="mini-grid">
+        <div class="mini reveal"><span class="k">DOME</span><h4>Your machine in 3D</h4><p>Five strata, 26 segments, live — drag it.</p></div>
+        <div class="mini reveal"><span class="k">Predict</span><h4>Knows the run first</h4><p>Likelihood, minutes and disk — and it learns.</p></div>
+        <div class="mini reveal"><span class="k">Relations</span><h4>All of it, as a graph</h4><p>Processes, ports and services, mapped.</p></div>
+        <div class="mini reveal"><span class="k">Environments</span><h4>Say it, get it</h4><p>venv, uv, conda, Node and Compose.</p></div>
+        <div class="mini reveal"><span class="k">AEDi</span><h4>Local AI, offline</h4><p>Ollama-compatible, CPU-ready, private.</p></div>
+        <div class="mini reveal"><span class="k">System</span><h4>One action per row</h4><p>End, restart, disable, restore.</p></div>
+        <div class="mini reveal"><span class="k">Reading</span><h4>Page to text</h4><p>OCR, vision and PDF extraction.</p></div>
+        <div class="mini reveal"><span class="k">Fans</span><h4>Every curve, live</h4><p>RPM and fan curves on Windows.</p></div>
+      </div>
+    </div>
+    <div class="reveal d2">
+      <a class="browser" href="https://ionity.digital/" target="_blank" rel="noopener" aria-label="See the DOME on ionity.digital">
+        <div class="browser-bar"><i></i><i></i><i></i><span class="url">ionity.digital · The DOME</span></div>
+        <img src="assets/img/software/programerly-dome.webp" alt="The DOME: a 3D view of the machine in strata — intelligence, toolchain, storage, system, hardware" width="1000" height="660" loading="lazy" decoding="async">
+      </a>
+      <p class="device-cap">The DOME · your machine in five strata</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="every-os" data-act="Every OS">
+  <div class="feature split reveal">
+    <div>
+      <span class="kicker">03 · Every OS</span>
+      <h2 class="mt-1">Free. <span class="grad-text">Everywhere you code.</span></h2>
+      <p class="lead mt-1">Native builds for the three desktops your team actually runs — including ARM and a portable Windows build for locked-down machines.</p>
+      <div class="cta-row mt-2">
+        <a class="btn btn-primary" href="https://ionity.digital/" target="_blank" rel="noopener">Download at ionity.digital <svg class="ext-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        <a class="btn btn-ghost" href="https://ionity.digital/versions/" target="_blank" rel="noopener">Version history <svg class="ext-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+      </div>
+    </div>
+    <div class="os-row" style="flex-direction:column;align-items:stretch">
+      <div class="os"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.5 4.4v7.1H3zM11.5 4.3 21 3v8.5h-9.5zM3 12.5h7.5v7.1L3 18.5zM11.5 12.5H21V21l-9.5-1.3z"/></svg><strong>Windows 10 · 11</strong><span>x64 · ARM64 · Portable</span></div>
+      <div class="os"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-4M14 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.6-2.8 1.4-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.5 2.8-1.3"/></svg><strong>macOS</strong><span>Apple Silicon · Intel</span></div>
+      <div class="os"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c-2 0-3 1.8-3 4 0 1.6.4 2.6-.6 4.3C7 13.6 6 15 6.3 17c.3 1.6 1.6 2.4 2.7 2.6M12 3c2 0 3 1.8 3 4 0 1.6-.4 2.6.6 4.3 1.4 2.3 2.4 3.7 2.1 5.7-.3 1.6-1.6 2.4-2.7 2.6"/><path d="M9 20.5c1 .6 2 .9 3 .9s2-.3 3-.9"/><circle cx="10.5" cy="7" r=".6"/><circle cx="13.5" cy="7" r=".6"/></svg><strong>Linux</strong><span>AppImage · .deb · .rpm</span></div>
+      <p class="note">Free to download and use. Releases are published openly on GitHub and announced on ionity.digital.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="lab" data-act="More software">
+  <div class="section-head reveal">
+    <span class="kicker">04 · More from the lab</span>
+    <h2>The rest of the <span class="grad-text">Ionity stack</span>.</h2>
+    <p>ProGramerly is the flagship. Around it sit the tools we use on every engagement — and the custom software we build for clients.</p>
+  </div>
+  <div class="grid cols-3">
+    <a class="card reveal" href="edge.html" style="text-decoration:none;color:inherit">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M7 12l3-3 2 2 4-4"/></svg></div>
+      <h3>Edge Lab</h3>
+      <p>Our audit lens, in your browser: an on-device micro-audit, live vision and sensor readouts. Nothing uploaded.</p>
+      <div class="tag-row"><span class="tag">On-device</span><span class="tag">Free</span><span class="tag">Private</span></div>
+    </a>
+    <button class="card reveal" type="button" data-aedi-open style="text-align:left;font:inherit;cursor:pointer;color:inherit">
+      <div class="ico"><img src="assets/img/ai-mark-white.png?v=192" alt="" width="28" height="28" style="width:28px;height:auto"></div>
+      <h3>AEDi assistant</h3>
+      <p>The same AI fabric that runs inside ProGramerly, live on this site. Ask it anything about Ionity — it routes you through the build.</p>
+      <div class="tag-row"><span class="tag">Text</span><span class="tag">Vision</span><span class="tag">Talk now</span></div>
+    </button>
+    <a class="card reveal" href="services.html#software" style="text-decoration:none;color:inherit">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"/></svg></div>
+      <h3>Custom software</h3>
+      <p>Web apps, portals, APIs, desktop and mobile — and B2B dashboards — engineered with the same Native-AI workflow.</p>
+      <div class="tag-row"><span class="tag">Full stack</span><span class="tag">B2B</span><span class="tag">Native-AI</span></div>
+    </a>
+  </div>
+</section>
+
+<section class="wrap" id="get" data-act="Get it">
+  <div class="feature center reveal">
+    <span class="kicker" style="justify-content:center">05 · Your move</span>
+    <h2 class="mt-1">Set up in one run. <span class="grad-text">Free.</span></h2>
+    <p class="lead mt-1" style="margin-inline:auto;max-width:50ch">Grab ProGramerly at ionity.digital — or tell us about the software your business needs and we’ll build it.</p>
+    <div class="cta-row" style="justify-content:center;margin-top:1.6rem">
+      <a class="btn btn-primary" href="https://ionity.digital/" target="_blank" rel="noopener">Get ProGramerly <svg class="ext-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+      <a class="btn btn-ghost" href="contact.html?service=software">Build my software <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn-ghost" href="freebies.html">More freebies <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="index.html"><img class="wm" src="assets/img/wordmark.png" alt="Ionity Global" width="114" height="76" loading="lazy" decoding="async"></a>
+        <p class="blurb">Ionity Global (Pty) Ltd — a Native-AI company delivering Native-AI integration, agents, edge AI hardware, software and evidence-first audits across mechanical, electrical and IT. Grown from Antwerp Designs (2018).</p>
+        <p class="blurb mono" style="font-size:.66rem;margin-top:.8rem">Centurion, South Africa · <a href="tel:+27646999877" style="color:var(--cyan)">+27 646 999 877</a> · <a href="mailto:ai@ionity.today" style="color:var(--cyan)">ai@ionity.today</a></p>
+        <div class="socials">
+          <a href="https://www.linkedin.com/in/ionity" target="_blank" rel="noopener me" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.3c0-1.26-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21H9z"/></svg></a>
+          <a href="https://github.com/Ionity-Global" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.46-1.11-1.46-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85l-.01 2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg></a>
+          <a href="https://gravatar.com/ionity" target="_blank" rel="noopener me" aria-label="Gravatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M6.2 18.8A4 4 0 0 1 10 16h4a4 4 0 0 1 3.8 2.9"/></svg></a>
+          <a href="https://wa.me/27646999877" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.23 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg></a>
+          <a href="mailto:ai@ionity.today" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <a href="services.html#native-ai">Native-AI Integration</a>
+        <a href="services.html#ai-implementation">AI Implementation</a>
+        <a href="services.html#agents">Agent Development</a>
+        <a href="services.html#hardware-ai">Hardware AI Training &amp; Deployment</a>
+        <a href="services.html#aiot">AIoT &amp; Edge</a>
+        <a href="services.html#hardware">Hardware &amp; Firmware</a>
+        <a href="services.html#software">Software Development</a>
+        <a href="services.html#b2b">Custom B2B Systems</a>
+        <a href="services.html#cloud">Cloud, Data &amp; Hosting</a>
+        <a href="services.html#audit">Audit &amp; Forensics</a>
+        <a href="services.html#advisory">Technical Advisory</a>
+      </div>
+      <div>
+        <h5>Now trending</h5>
+        <a href="services.html#sovereign-ai">Sovereign &amp; Offline AI</a>
+        <a href="services.html#ai-security">AI Security &amp; Red-Teaming</a>
+        <a href="services.html#cyber-defence">Preemptive Cyber Defence</a>
+        <a href="services.html#physical-ai">Physical AI &amp; Robotics</a>
+        <a href="services.html#predictive-maintenance">Predictive Maintenance</a>
+        <a href="services.html#energy-esg">Energy &amp; ESG Intelligence</a>
+        <a href="services.html#ai-visibility">AI Search Visibility (GEO)</a>
+        <a href="services.html#provenance">Digital Provenance &amp; Trust</a>
+        <a href="services.html#ai-literacy">AI Literacy &amp; Enablement</a>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <a href="edge.html">Edge Lab</a>
+        <a href="software.html">Software · ProGramerly</a>
+        <a href="freebies.html">Freebies · games &amp; tools</a>
+        <a href="https://ionity.digital/" target="_blank" rel="noopener">ionity.digital ↗</a>
+        <a href="https://www.ionity.fun/" target="_blank" rel="noopener">ionity.fun ↗</a>
+        <a href="about.html">About &amp; AEDi</a>
+        <a href="team.html">Team</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="assets/docs/ionity-global-portfolio-v7.pdf" download="Ionity-Global-Portfolio-V7-Rev1.pdf" type="application/pdf">Download portfolio (PDF, 2.8 MB) ↓</a>
+        <a href="assets/docs/portfolio-johan-wilhelm-van-antwerp.pdf" download="Portfolio-Johan-Wilhelm-van-Antwerp.pdf" type="application/pdf">Founder portfolio — Johan (PDF) ↓</a>
+        <a href="https://github.com/Ionity-Global" target="_blank" rel="noopener">Open source ↗</a>
+      </div>
+      <div>
+        <h5>Trust</h5>
+        <a href="privacy.html">Privacy</a>
+        <a href="cookies.html">Cookie policy</a>
+        <a href="terms.html">Terms</a>
+        <a href="#" data-cookie-open>Cookie settings</a>
+        <a href="https://ionity.co.za/security.txt">Security</a>
+        <a href="https://ionity.co.za/llms.txt">llms.txt</a>
+      </div>
+    </div>
+    <p class="foot-verse">“Loof die Here, want Hy is goed; aan Sy liefde is daar geen einde nie. Sy trou duur van geslag tot geslag.”</p>
+    <div class="foot-base">
+      <p>© <span data-year>2026</span> Ionity Global (Pty) Ltd. All rights reserved. · Policy 986 AED</p>
+      <p>Built Native-AI · <a href="https://ionity.co.za/humans.txt">humans.txt</a> · ionity.co.za · <span class="ver-chip">v19.2</span></p>
+    </div>
+    <p class="foot-center">Ionity Global</p>
+  </div>
+</footer>
+
+<section class="cookie" id="cookie" role="dialog" aria-live="polite" aria-label="Cookie consent">
+  <h4>Cookies &amp; your choices</h4>
+  <p>We use a strictly-necessary cookie to remember this choice. Optional cookies stay <strong>off</strong> until you allow them. Read our <a href="cookies.html">cookie policy</a> and <a href="privacy.html">privacy notice</a>.</p>
+  <div id="cookieDetails" hidden>
+    <div class="cookie-toggles" id="cookieToggles"></div>
+  </div>
+  <div class="row">
+    <button class="btn btn-primary" id="ckAccept">Accept all</button>
+    <button class="btn btn-ghost" id="ckReject">Reject non-essential</button>
+    <button class="btn btn-ghost" id="ckCustomize">Customize</button>
+    <button class="btn btn-ghost" id="ckSave" style="display:none">Save choices</button>
+  </div>
+</section>
+<aside class="scroll-rail" id="scrollRail" aria-hidden="true"></aside>
+
+<!-- Trust badges (bottom-right): DMCA protection + Govchain registered-company -->
+<div class="trust-badges">
+  <a class="dmca-badge" href="https://www.dmca.com/Protection/Status.aspx?ID=d853202c-5fcd-41cd-aa39-a4b50ab5b5d4" target="_blank" rel="noopener" title="DMCA.com Protection Status">
+    <img src="https://images.dmca.com/Badges/dmca_protected_sml_120l.png?ID=d853202c-5fcd-41cd-aa39-a4b50ab5b5d4" alt="DMCA.com Protection Status" width="120" height="20" loading="lazy">
+  </a>
+  <a class="gov-badge" href="https://govchain.co.za" target="_blank" rel="noopener" title="Registered Company — verified by Govchain" aria-label="Registered company, verified by Govchain">
+    <span class="gov-head">
+      <svg class="gov-check" viewBox="0 0 24 24" fill="none" stroke="#0b0c10" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg>
+      <span class="gov-txt"><span class="gov-reg">Registered</span><span class="gov-co">Company</span></span>
+    </span>
+    <span class="gov-bar">VERIFIED BY <strong>Govchain</strong></span>
+  </a>
+</div>
+
+<!-- AEDi on-site AI assistant -->
+<div class="aedi-wrap" id="aediWrap">
+  <button class="aedi-fab" id="aediToggle" aria-label="Chat with AEDi — Ionity AI" aria-expanded="false" title="Chat with AEDi">
+    <img class="aedi-fab-logo" src="assets/img/ai-mark-white.png?v=192" alt="" width="24" height="24" aria-hidden="true">
+    <span class="aedi-badge">AEDi</span>
+    <span class="aedi-pulse" aria-hidden="true"></span>
+  </button>
+  <div class="aedi-panel" id="aediPanel" role="dialog" aria-label="AEDi — Ionity AI" aria-hidden="true" hidden>
+    <div class="aedi-head">
+      <img class="aedi-head-logo" src="assets/img/ai-mark-white.png?v=192" alt="" width="22" height="22" aria-hidden="true">
+      <div>
+        <span class="aedi-name">AEDi</span>
+        <span class="aedi-sub">Automated Ecosystems Intelligence</span>
+      </div>
+      <div class="aedi-status"><span class="dot"></span><span id="aediStatusText">Online</span></div>
+      <button class="aedi-close" id="aediClose" aria-label="Close AEDi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="aedi-messages" id="aediMessages"></div>
+    <div class="aedi-thumb" id="aediThumb" hidden></div>
+    <div class="aedi-input-row">
+      <button class="aedi-icon aedi-attach" id="aediAttach" aria-label="Attach an image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21.44 11.05 12.25 20.24a5 5 0 0 1-7.07-7.07l9.19-9.19a3 3 0 0 1 4.24 4.24l-9.2 9.19a1 1 0 0 1-1.41-1.41l8.49-8.49"/></svg></button>
+      <input class="aedi-file" id="aediFile" type="file" accept="image/*" hidden>
+      <input class="aedi-input" id="aediInput" type="text" placeholder="Ask AEDi — or “draw me…”, attach an image…" autocomplete="off" maxlength="500" aria-label="Message AEDi">
+      <button class="aedi-send" id="aediSend" aria-label="Send message"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
+    </div>
+    <p class="aedi-disc">AEDi by Ionity · text, code, images, vision &amp; web</p>
+  </div>
+</div>
+
+<script src="assets/js/ui-sound.js?v=192" defer></script>
+<script src="assets/js/cookies.js?v=192" defer></script>
+<script src="assets/js/core.js?v=192" defer></script>
+<script src="assets/js/refine.js?v=192" defer></script>
+<script src="assets/js/aedi-chat.js?v=192" defer></script>
+<script>window.IonityGlitch=window.IonityGlitch||{};window.IonityGlitch.config={zIndex:3000};</script>
+<script src="assets/js/glitch.js?v=192" defer></script>
+<!-- Three.js WebGL backdrop (self-hosted bundle; degrades to CSS via html.no3d) -->
+<script defer src="assets/js/backdrop.bundle.js?v=193"></script>
+<!-- DMCA badge helper (makes the protection badge verifiable) -->
+<script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js" async></script>
+</body>
+</html>
